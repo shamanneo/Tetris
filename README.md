@@ -1,2 +1,2 @@
 # Tetris
-Windows Tetris program using C++
+My first Windows program using Active Template Library
