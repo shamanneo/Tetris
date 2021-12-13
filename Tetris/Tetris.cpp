@@ -2,32 +2,48 @@
 #include "Tetris.h"
 #include "MainWnd.h"
 
+using namespace Gdiplus ; 
+
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
                      _In_ LPWSTR    lpCmdLine,
                      _In_ int       nCmdShow)
 {
-    UNREFERENCED_PARAMETER(hPrevInstance);
-    UNREFERENCED_PARAMETER(lpCmdLine);
+    UNREFERENCED_PARAMETER(hPrevInstance) ;
+    UNREFERENCED_PARAMETER(lpCmdLine) ;
 
-    RECT rc { 100, 100, 500, 500 } ;
+    RECT rc { 100, 100, 1000, 1000 } ;
     CMainWnd MainWnd ; 
+    GdiplusStartupInput gdiplusStartupInput ; 
+    ULONG_PTR gdiplusToken ; 
+    GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL) ; 
+
     MainWnd.Create(NULL, &rc, _T("Tetris"), WS_OVERLAPPEDWINDOW, 0) ;  
     MainWnd.ShowWindow(SW_SHOW) ; 
     MainWnd.UpdateWindow() ; 
 
-    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_TETRIS));
-    MSG msg;
+    HDC hDC = GetDC(MainWnd.m_hWnd) ; 
+    DrawBoard(hDC) ; 
 
-    while (GetMessage(&msg, nullptr, 0, 0))
+    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_TETRIS)) ;
+    MSG msg ;
+
+    SetTimer(MainWnd.m_hWnd, IDT_DRAW_TIMER, 0, NULL) ; 
+    SetTimer(MainWnd.m_hWnd, IDT_DOWN_TIMER, 300, NULL) ;
+
+    while (GetMessage(&msg, nullptr, 0, 0)) // main message loop.
     {
         if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            TranslateMessage(&msg) ;
+            DispatchMessage(&msg) ;
         }
     }
 
-    return (int) msg.wParam;
+    KillTimer(MainWnd.m_hWnd, IDT_DRAW_TIMER) ;
+    KillTimer(MainWnd.m_hWnd, IDT_DOWN_TIMER) ;
+    ReleaseDC(MainWnd.m_hWnd, hDC) ; 
+    GdiplusShutdown(gdiplusToken) ; 
+    return (int) msg.wParam ;
 }
 
