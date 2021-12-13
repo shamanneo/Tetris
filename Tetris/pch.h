@@ -11,4 +11,7 @@
 #include "framework.h"
 #include "atlsupport.h" 
 
+#include <gdiplus.h>
+#pragma comment (lib, "Gdiplus.lib")
+
 #endif //PCH_H
