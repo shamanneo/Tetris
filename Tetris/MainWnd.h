@@ -1,7 +1,11 @@
 #pragma once
+#include <memory>
+#include "Command.h"
 
 class CMainWnd : public CWindowImpl<CMainWnd>
 {
+    private :
+        std::unique_ptr<CCommand> m_spComm ; 
     public :
         CMainWnd() ; 
         ~CMainWnd() ;
@@ -20,3 +24,5 @@ class CMainWnd : public CWindowImpl<CMainWnd>
         LRESULT OnTimer(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled) ; 
         LRESULT OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled) ; 
 } ; 
+
+

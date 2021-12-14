@@ -1,10 +1,8 @@
 #include "pch.h"
 #include "BlockT.h"
 
-const int CBlockT::m_nSize = 4 ; 
-
 CBlockT::CBlockT()
-    : m_bIsReached(false) 
+    :m_nId(32)
 {
     m_posArray = new CPos[9] ; 
     m_posArray[0].Set(0, 0) ; 
@@ -23,6 +21,22 @@ CBlockT::~CBlockT()
     delete[] m_posArray ; 
 }
 
+bool CBlockT::GetPos(INT nIndex, INT &nX, INT &nY) const
+{
+    nX = m_posArray[nIndex].m_nX ;
+    nY = m_posArray[nIndex].m_nY ;
+    if((nX == 0) && (nY == 0))
+    {
+        return false ; 
+    }
+    return true ; 
+}
+
+INT CBlockT::GetId() const 
+{
+    return m_nId ; 
+}
+
 void CBlockT::Draw(HDC hDC) 
 {   
     Gdiplus::Graphics grap { hDC } ; 
@@ -31,7 +45,7 @@ void CBlockT::Draw(HDC hDC)
     {
         if(!m_posArray[i].IsEmpty())
         {
-            grap.FillRectangle(&blackBru, 30 * m_posArray[i].m_nX + 32, 30 * m_posArray[i].m_nY + 32, 28, 28) ; 
+            grap.FillRectangle(&blackBru, 30 * (m_posArray[i].m_nX - 0) + 32, 30 * (m_posArray[i].m_nY - 0) + 32, 28, 28) ; 
         }
     }
 }
@@ -44,68 +58,43 @@ void CBlockT::Erase(HDC hDC)
     {
         if(!m_posArray[i].IsEmpty())
         {
-            grap.FillRectangle(&whiteBru, 30 * m_posArray[i].m_nX + 32, 30 * m_posArray[i].m_nY + 32, 28, 28) ; 
-        }
-    }
-}
-
-void CBlockT::RightRotate()
-{
-    CPos posTempArr[9] ; 
-    posTempArr[0] = m_posArray[2] ; 
-    posTempArr[1] = m_posArray[5] ; 
-    posTempArr[2] = m_posArray[8] ; 
-    posTempArr[3] = m_posArray[1] ; 
-    posTempArr[4] = m_posArray[4] ; 
-    posTempArr[5] = m_posArray[7] ; 
-    posTempArr[6] = m_posArray[0] ; 
-    posTempArr[7] = m_posArray[3] ; 
-    posTempArr[8] = m_posArray[6] ; 
-
-    m_posArray = posTempArr ; 
-}
-
-void CBlockT::Down()
-{
-    if(m_bIsReached)
-    {
-        return ; 
-    }
-    for(int i = 0 ; i < 9 ; i++)
-    {
-        if(!m_posArray[i].IsEmpty())
-        {
-            int nY = ++m_posArray[i].m_nY ; 
-            if(nY == 19)
-            {
-                m_bIsReached = true ;
-            }
+            grap.FillRectangle(&whiteBru, 30 * (m_posArray[i].m_nX - 0) + 32, 30 * (m_posArray[i].m_nY - 0) + 32, 28, 28) ; 
         }
     }
 }
 
 void CBlockT::Left() 
 {
-    for(int i = 0 ; i < 9 ; i++)
+    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
-        if(!m_posArray[i].IsEmpty())
+        if(!m_posArray[nIndex].IsEmpty())
         {
-            m_posArray[i].m_nX-- ;         
+            m_posArray[nIndex].m_nX-- ;         
         }
     }
 }
 
 void CBlockT::Right()
 {
-    for(int i = 0 ; i < 9 ; i++)
+    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
-        if(!m_posArray[i].IsEmpty())
+        if(!m_posArray[nIndex].IsEmpty())
         {
-            m_posArray[i].m_nX++ ;         
+            m_posArray[nIndex].m_nX++ ;         
         }
     }
 }
 
+void CBlockT::Down()
+{
+    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
+    {
+        if(!m_posArray[nIndex].IsEmpty())
+        {
+            m_posArray[nIndex].m_nY++ ; 
+        }
+    }
+}
 
 
 
