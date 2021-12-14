@@ -153,7 +153,7 @@ bool CTetrisGame::isMoveLeft()
         INT nY = 0 ; 
         if(m_spCurBk->GetPos(nIndex, nX, nY))
         {
-            if((m_arrBoard[nX + 1][nY] != CURRENT) && (m_arrBoard[nX + 1][nY] != OFF)) 
+            if((m_arrBoard[nX - 1][nY] != CURRENT) && (m_arrBoard[nX - 1][nY] != OFF)) 
             {
                 return false ; 
             }
@@ -170,7 +170,7 @@ bool CTetrisGame::isMoveRight()
         INT nY = 0 ; 
         if(m_spCurBk->GetPos(nIndex, nX, nY))
         {
-            if((m_arrBoard[nX - 1][nY] != CURRENT) && (m_arrBoard[nX - 1][nY] != OFF)) 
+            if((m_arrBoard[nX + 1][nY] != CURRENT) && (m_arrBoard[nX + 1][nY] != OFF)) 
             {
                 return false ; 
             }
