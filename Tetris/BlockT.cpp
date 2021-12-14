@@ -6,11 +6,11 @@ CBlockT::CBlockT()
 {
     m_posArray = new CPos[9] ; 
     m_posArray[0].Set(0, 0) ; 
-    m_posArray[1].Set(4, 0) ; 
+    m_posArray[1].Set(5, 0) ; 
     m_posArray[2].Set(0, 0) ; 
-    m_posArray[3].Set(3, 1) ; 
-    m_posArray[4].Set(4, 1) ; 
-    m_posArray[5].Set(5, 1) ; 
+    m_posArray[3].Set(4, 1) ; 
+    m_posArray[4].Set(5, 1) ; 
+    m_posArray[5].Set(6, 1) ; 
     m_posArray[6].Set(0, 0) ; 
     m_posArray[7].Set(0, 0) ; 
     m_posArray[8].Set(0, 0) ; 
@@ -45,7 +45,7 @@ void CBlockT::Draw(HDC hDC)
     {
         if(!m_posArray[i].IsEmpty())
         {
-            grap.FillRectangle(&blackBru, 30 * (m_posArray[i].m_nX - 0) + 32, 30 * (m_posArray[i].m_nY - 0) + 32, 28, 28) ; 
+            grap.FillRectangle(&blackBru, 30 * (m_posArray[i].m_nX - 1) + 32, 30 * (m_posArray[i].m_nY - 0) + 32, 28, 28) ; 
         }
     }
 }
@@ -58,7 +58,7 @@ void CBlockT::Erase(HDC hDC)
     {
         if(!m_posArray[i].IsEmpty())
         {
-            grap.FillRectangle(&whiteBru, 30 * (m_posArray[i].m_nX - 0) + 32, 30 * (m_posArray[i].m_nY - 0) + 32, 28, 28) ; 
+            grap.FillRectangle(&whiteBru, 30 * (m_posArray[i].m_nX - 1) + 32, 30 * (m_posArray[i].m_nY - 0) + 32, 28, 28) ; 
         }
     }
 }
