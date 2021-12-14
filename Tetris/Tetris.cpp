@@ -22,9 +22,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     MainWnd.ShowWindow(SW_SHOW) ; 
     MainWnd.UpdateWindow() ; 
 
-    HDC hDC = GetDC(MainWnd.m_hWnd) ; 
-    DrawBoard(hDC) ; 
-
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_TETRIS)) ;
     MSG msg ;
 
@@ -42,7 +39,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     KillTimer(MainWnd.m_hWnd, IDT_DRAW_TIMER) ;
     KillTimer(MainWnd.m_hWnd, IDT_DOWN_TIMER) ;
-    ReleaseDC(MainWnd.m_hWnd, hDC) ; 
     GdiplusShutdown(gdiplusToken) ; 
     return (int) msg.wParam ;
 }

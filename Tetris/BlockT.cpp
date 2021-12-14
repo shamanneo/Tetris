@@ -1,8 +1,6 @@
 #include "pch.h"
 #include "BlockT.h"
 
-const int CBlockT::m_nSize = 4 ; 
-
 CBlockT::CBlockT()
     : m_bIsReached(false) 
 {
@@ -47,22 +45,6 @@ void CBlockT::Erase(HDC hDC)
             grap.FillRectangle(&whiteBru, 30 * m_posArray[i].m_nX + 32, 30 * m_posArray[i].m_nY + 32, 28, 28) ; 
         }
     }
-}
-
-void CBlockT::RightRotate()
-{
-    CPos posTempArr[9] ; 
-    posTempArr[0] = m_posArray[2] ; 
-    posTempArr[1] = m_posArray[5] ; 
-    posTempArr[2] = m_posArray[8] ; 
-    posTempArr[3] = m_posArray[1] ; 
-    posTempArr[4] = m_posArray[4] ; 
-    posTempArr[5] = m_posArray[7] ; 
-    posTempArr[6] = m_posArray[0] ; 
-    posTempArr[7] = m_posArray[3] ; 
-    posTempArr[8] = m_posArray[6] ; 
-
-    m_posArray = posTempArr ; 
 }
 
 void CBlockT::Down()

@@ -1,49 +1,29 @@
 #include "pch.h"
 #include "MainWnd.h"
-#include "BlockT.h" 
 #include "resource.h" 
 
-int nKey ;
-CBlockT *bp = nullptr ; 
-
-void f(HDC hDC)
+int nKey ; 
+void DrawBoard(HDC hDC)
 {
-    switch(nKey)
+    Gdiplus::Graphics grap { hDC } ; 
+    Gdiplus::Pen pen { Gdiplus::Color(0, 0, 0) } ; 
+
+    grap.DrawRectangle(&pen, 30, 30, 300, 600) ; 
+   
+    for(int i = 0 ; i < 10 ; i++)
     {
-        case 1 : // left
-        {
-            bp->Erase(hDC) ; 
-            bp->Left() ; 
-            break ; 
-        }
-        case 2 : // right
-        {
-            bp->Erase(hDC) ; 
-            bp->Right() ; 
-            break ; 
-        }
-        case 3 :
-        {
-            //bp->Erase(hDC) ; 
-            //bp->RightRotate() ; 
-            break ; 
-        }
-        case 4 :
-        {
-            break ; 
-        }
-        default :
-        {
-            
-        }
+        grap.DrawLine(&pen, 30 + 30 * i, 30, 30 + 30 * i, 630) ; 
     }
-    nKey = 0 ; 
+    for(int i = 0 ; i < 20 ; i++)
+    {
+        grap.DrawLine(&pen, 30, 30 + 30 * i, 330, 30 + 30 * i) ; 
+    }
 }
+
 
 CMainWnd::CMainWnd()
 {
-    CBlockT *block = new CBlockT ; 
-    bp = block ; 
+    m_spTetrisGm = std::make_unique<CTetrisGame>() ;
 } 
 
 CMainWnd::~CMainWnd()
@@ -54,7 +34,11 @@ CMainWnd::~CMainWnd()
 LRESULT CMainWnd::OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled)
 {
     PAINTSTRUCT ps ; 
-    BeginPaint(&ps) ; 
+    BeginPaint(&ps) ;
+
+    HDC hDC = GetDC() ; 
+    DrawBoard(hDC) ; 
+    ReleaseDC(hDC) ; 
 
     EndPaint(&ps) ; 
     return 0 ;
@@ -66,22 +50,22 @@ LRESULT CMainWnd::OnKeyDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHand
     {
         case VK_LEFT : // Move left.
         {
-            nKey = 1 ; 
+            nKey = LEFT ; 
             break ;
         }
         case VK_RIGHT : // Move right.
         {
-            nKey = 2 ; 
+            nKey = RIGHT ; 
             break ;
         }
         case VK_UP : // Rotate clock-wise.
         {
-            nKey = 3 ; 
+            nKey = UP ; 
             break ;
         }
         case VK_DOWN : // Fast Down.
         {
-            nKey = 4 ; 
+            nKey = DOWN ; 
             break ;
         }
         default :
@@ -99,14 +83,14 @@ LRESULT CMainWnd::OnTimer(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandle
     {
         case IDT_DRAW_TIMER :
         {
-            f(hDC) ; 
-            bp->Draw(hDC) ; 
+            m_spTetrisGm->InputKey(nKey, hDC) ; 
+            nKey = 0 ; 
             break ; 
         }
         case IDT_DOWN_TIMER :
         {
-            bp->Erase(hDC) ; 
-            bp->Down() ; 
+            m_spTetrisGm->Erase(hDC) ; 
+            m_spTetrisGm->Down() ; 
             break ; 
         }
     }

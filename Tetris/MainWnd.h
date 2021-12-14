@@ -1,7 +1,10 @@
 #pragma once
+#include "TetrisGame.h"
 
 class CMainWnd : public CWindowImpl<CMainWnd>
 {
+    private :
+        std::unique_ptr<CTetrisGame> m_spTetrisGm ; 
     public :
         CMainWnd() ; 
         ~CMainWnd() ;
@@ -20,3 +23,5 @@ class CMainWnd : public CWindowImpl<CMainWnd>
         LRESULT OnTimer(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled) ; 
         LRESULT OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled) ; 
 } ; 
+
+

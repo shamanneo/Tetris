@@ -14,4 +14,9 @@
 #include <gdiplus.h>
 #pragma comment (lib, "Gdiplus.lib")
 
+#define LEFT 1 
+#define RIGHT 2 
+#define UP 3 
+#define DOWN 4 
+
 #endif //PCH_H
