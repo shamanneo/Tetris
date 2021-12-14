@@ -3,12 +3,15 @@
 
 class CBlockT : public CBlock
 {
-    private :   
+    public :   
         CPos *m_posArray ; 
-        bool m_bIsReached ; 
+        const INT m_nId ; 
     public :
         CBlockT() ;
         ~CBlockT() ; 
+    public :
+        virtual bool GetPos(INT nIndex, INT &nX, INT &nY) const override ; 
+        virtual INT GetId() const override ; 
     public :
         virtual void Draw(HDC hDC) override ; 
         virtual void Erase(HDC hDC) override ; 

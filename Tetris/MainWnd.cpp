@@ -90,7 +90,7 @@ LRESULT CMainWnd::OnTimer(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandle
         case IDT_DOWN_TIMER :
         {
             m_spComm->Erase(hDC) ; 
-            m_spComm->Down() ; 
+            m_spComm->Down(hDC) ; 
             break ; 
         }
     }

@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include "Command.h"
 
 class CMainWnd : public CWindowImpl<CMainWnd>

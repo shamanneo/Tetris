@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include "Block.h" 
 #include "TetrisGame.h"
 
@@ -9,7 +10,7 @@ class CCommand
     protected :
         void OnLeft(HDC hDC) ; 
         void OnRight(HDC hDC) ; 
-        void OnUp(HDC hDC) ; 
+        void OnRotate(HDC hDC) ; 
         void OnDown(HDC hDC) ; 
     public :
         CCommand() ; 
@@ -18,6 +19,6 @@ class CCommand
         void InputKey(int nKey, HDC hDC) ;
         void Draw(HDC hDC) ; 
         void Erase(HDC hDC) ; 
-        void Down() ; 
+        void Down(HDC hDC) ; 
 } ;
 

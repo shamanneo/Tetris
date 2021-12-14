@@ -28,7 +28,7 @@ void CCommand::InputKey(int nKey, HDC hDC)
         }
         case UP :
         {
-            OnUp(hDC) ;
+            OnRotate(hDC) ;
             break ; 
         }
         case DOWN :
@@ -50,28 +50,28 @@ void CCommand::Erase(HDC hDC)
     m_spTetrisGm->Erase(hDC) ; 
 }
 
-void CCommand::Down() 
+void CCommand::Down(HDC hDC) 
 {
-    m_spTetrisGm->Down() ; 
+    m_spTetrisGm->Down(hDC) ; 
 }
 
 void CCommand::OnLeft(HDC hDC) 
 {
-    m_spTetrisGm->Left() ; 
+    m_spTetrisGm->Left(hDC) ; 
 }
 
 void CCommand::OnRight(HDC hDC) 
 {
-    m_spTetrisGm->Right() ; 
+    m_spTetrisGm->Right(hDC) ; 
 }
 
-void CCommand::OnUp(HDC hDC) 
+void CCommand::OnRotate(HDC hDC) 
 {
-
+    m_spTetrisGm->Rotate(hDC) ; 
 }
 
 void CCommand::OnDown(HDC hDC)
 {
-    m_spTetrisGm->Down() ; 
+    m_spTetrisGm->Down(hDC) ; 
 }
 
