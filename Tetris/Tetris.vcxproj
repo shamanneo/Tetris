@@ -150,6 +150,7 @@
     <ClInclude Include="atlsupport.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="BlockT.h" />
+    <ClInclude Include="TetrisGame.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="MainWnd.h" />
     <ClInclude Include="pch.h" />
@@ -157,11 +158,12 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Tetris.h" />
-    <ClInclude Include="TetrisGame.h" />
+    <ClInclude Include="Command.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="BlockT.cpp" />
+    <ClCompile Include="TetrisGame.cpp" />
     <ClCompile Include="MainWnd.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -171,7 +173,7 @@
     </ClCompile>
     <ClCompile Include="Pos.cpp" />
     <ClCompile Include="Tetris.cpp" />
-    <ClCompile Include="TetrisGame.cpp" />
+    <ClCompile Include="Command.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Tetris.rc" />

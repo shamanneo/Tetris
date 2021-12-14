@@ -23,7 +23,7 @@ void DrawBoard(HDC hDC)
 
 CMainWnd::CMainWnd()
 {
-    m_spTetrisGm = std::make_unique<CTetrisGame>() ;
+    m_spComm = std::make_unique<CCommand>() ;
 } 
 
 CMainWnd::~CMainWnd()
@@ -83,14 +83,14 @@ LRESULT CMainWnd::OnTimer(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandle
     {
         case IDT_DRAW_TIMER :
         {
-            m_spTetrisGm->InputKey(nKey, hDC) ; 
+            m_spComm->InputKey(nKey, hDC) ; 
             nKey = 0 ; 
             break ; 
         }
         case IDT_DOWN_TIMER :
         {
-            m_spTetrisGm->Erase(hDC) ; 
-            m_spTetrisGm->Down() ; 
+            m_spComm->Erase(hDC) ; 
+            m_spComm->Down() ; 
             break ; 
         }
     }

@@ -1,18 +1,33 @@
 #pragma once
-#include "Block.h" 
+#include<string.h>
 
-class CTetrisGame
+class CTetrisGame 
 {
+    enum
+    {
+        WIDTH = 10,
+        HEIGHT = 20,
+
+        ON = 0,
+        OFF = 1, 
+        CURRENT = 3
+    } ; 
     private :
-        std::unique_ptr<CBlock> m_blockCurr ;
+        INT m_arrBoard[HEIGHT][WIDTH] ; 
     public :
-        CTetrisGame() ; 
+        CTetrisGame() ;
         ~CTetrisGame() ; 
     public :
-        void InputKey(int nKey, HDC hDC) ;
-        void SetBlock() ; 
+        void Create() ; 
         void Draw(HDC hDC) ; 
         void Erase(HDC hDC) ; 
+    public :
+        void Left() ; 
+        void Right() ; 
         void Down() ; 
+    public :
+        bool isMoveLeft() ; 
+        bool isMoveRight() ; 
+        bool isMoveDown() ; 
 } ;
 

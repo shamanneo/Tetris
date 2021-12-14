@@ -1,10 +1,9 @@
 #include "pch.h"
 #include "TetrisGame.h"
-#include "BlockT.h"
 
 CTetrisGame::CTetrisGame()
 {
-    m_blockCurr = std::make_unique<CBlockT>() ; 
+    memset(m_arrBoard, OFF, sizeof(m_arrBoard)) ; 
 }
 
 CTetrisGame::~CTetrisGame()
@@ -12,54 +11,48 @@ CTetrisGame::~CTetrisGame()
 
 }
 
-void CTetrisGame::InputKey(int nKey, HDC hDC)
+
+void CTetrisGame::Create()
 {
-    switch (nKey)
-    {
-        case LEFT :
-        {
-            m_blockCurr->Erase(hDC) ; 
-            m_blockCurr->Left() ; 
-            break ; 
-        }
-        case RIGHT :
-        {
-            m_blockCurr->Erase(hDC) ; 
-            m_blockCurr->Right() ; 
-            break ; 
-        }
-        case UP :
-        {
-            break ; 
-        }
-        case DOWN :
-        {
-            m_blockCurr->Erase(hDC) ; 
-            m_blockCurr->Down() ; 
-            break ; 
-        }
-    }
-    m_blockCurr->Draw(hDC) ;         
+
 }
 
-void CTetrisGame::SetBlock() 
+void CTetrisGame::Draw(HDC hDC)
 {
-    // random..
-    m_blockCurr = std::make_unique<CBlockT>() ;
-}
 
-void CTetrisGame::Draw(HDC hDC) 
-{
-    m_blockCurr->Draw(hDC) ; 
 }
 
 void CTetrisGame::Erase(HDC hDC)
 {
-    m_blockCurr->Erase(hDC) ; 
+
 }
 
-void CTetrisGame::Down() 
+void CTetrisGame::Left()
 {
-    m_blockCurr->Down() ; 
+    
 }
 
+void CTetrisGame::Right() 
+{
+
+}
+
+void CTetrisGame::Down()
+{
+
+}
+
+bool CTetrisGame::isMoveLeft() 
+{
+    return true ; 
+}
+
+bool CTetrisGame::isMoveRight() 
+{
+    return true ; 
+}
+
+bool CTetrisGame::isMoveDown()
+{
+    return true ; 
+}

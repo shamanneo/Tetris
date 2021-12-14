@@ -1,10 +1,10 @@
 #pragma once
-#include "TetrisGame.h"
+#include "Command.h"
 
 class CMainWnd : public CWindowImpl<CMainWnd>
 {
     private :
-        std::unique_ptr<CTetrisGame> m_spTetrisGm ; 
+        std::unique_ptr<CCommand> m_spComm ; 
     public :
         CMainWnd() ; 
         ~CMainWnd() ;
