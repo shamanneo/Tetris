@@ -1,10 +1,11 @@
 #include "pch.h"
 #include "BlockT.h"
+#include <math.h>
 
 CBlockT::CBlockT()
     :m_nId(32)
 {
-    m_spPosArr = std::make_unique<CSpace[]>(9) ; 
+    m_spPosArr = std::make_unique<CSpace[]>(BLOCKSIZE) ; 
     m_spPosArr[0].Set(4, 0, OFF) ; 
     m_spPosArr[1].Set(5, 0, ON) ; 
     m_spPosArr[2].Set(6, 0, OFF) ; 
@@ -25,7 +26,7 @@ bool CBlockT::GetPos(INT nIndex, INT &nX, INT &nY) const
 {
     nX = m_spPosArr[nIndex].m_nX ;
     nY = m_spPosArr[nIndex].m_nY ;
-    if(m_spPosArr[nIndex].m_bPres)
+    if(!m_spPosArr[nIndex].m_bPres)
     {
         return false ; 
     }
@@ -67,10 +68,7 @@ void CBlockT::Left()
 {
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
-        if(!m_spPosArr[nIndex].IsEmpty())
-        {
-            m_spPosArr[nIndex].m_nX-- ;         
-        }
+        m_spPosArr[nIndex].m_nX-- ;         
     }
 }
 
@@ -78,28 +76,37 @@ void CBlockT::Right()
 {
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
-        if(!m_spPosArr[nIndex].IsEmpty())
-        {
-            m_spPosArr[nIndex].m_nX++ ;         
-        }
+        m_spPosArr[nIndex].m_nX++ ;         
     }
 }
 
 void CBlockT::Rotate() 
 {
-    std::unique_ptr<CSpace[]> spTempPosArr = std::make_unique<CSpace[]>(9) ; 
-
-    m_spPosArr = std::move(spTempPosArr) ; 
+    bool bArr[9] { } ; 
+    for(INT i = 0 ; i < 9 ; i++)
+    {
+        if(m_spPosArr[i].m_bPres == true)
+        {
+            bArr[i] = m_spPosArr[i].m_bPres ; 
+        }
+        m_spPosArr[i].m_bPres = OFF ; 
+    }
+    m_spPosArr[0].m_bPres = bArr[6] ; 
+    m_spPosArr[1].m_bPres = bArr[3] ; 
+    m_spPosArr[2].m_bPres = bArr[0] ; 
+    m_spPosArr[3].m_bPres = bArr[7] ; 
+    m_spPosArr[4].m_bPres = bArr[4] ; 
+    m_spPosArr[5].m_bPres = bArr[1] ; 
+    m_spPosArr[6].m_bPres = bArr[8] ; 
+    m_spPosArr[7].m_bPres = bArr[5] ; 
+    m_spPosArr[8].m_bPres = bArr[2] ; 
 }
 
 void CBlockT::Down()
 {
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
-        if(!m_spPosArr[nIndex].IsEmpty())
-        {
-            m_spPosArr[nIndex].m_nY++ ; 
-        }
+        m_spPosArr[nIndex].m_nY++ ; 
     }
 }
 

@@ -6,8 +6,9 @@ class CBlockT : public CBlock
 {
     enum
     {
-        ON = 0, 
-        OFF = 1 
+        ON = 1, 
+        OFF = 0,
+        BLOCKSIZE = 9
     } ; 
     public :   
         std::unique_ptr<CSpace[]> m_spPosArr ; 

@@ -21,7 +21,7 @@ inline void CSpace::Set(INT nX, INT nY, bool bPres)
 
 inline bool CSpace::IsEmpty() const 
 {
-    return m_bPres ; 
+    return !m_bPres ; 
 }
 
 inline void CSpace::SetOnOff(bool bpres)

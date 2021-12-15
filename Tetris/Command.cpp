@@ -55,6 +55,8 @@ void CCommand::Down(HDC hDC)
     m_spTetrisGm->Down(hDC) ; 
 }
 
+// ===========================
+
 void CCommand::OnLeft(HDC hDC) 
 {
     m_spTetrisGm->Left(hDC) ; 
