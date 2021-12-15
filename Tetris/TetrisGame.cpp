@@ -124,7 +124,11 @@ void CTetrisGame::Right(HDC hDC)
 
 void CTetrisGame::Rotate(HDC hDC)
 {
-
+    if(CanRotate())
+    {
+        Erase(hDC) ; 
+        m_spCurBk->Rotate() ; 
+    }
 }
 
 void CTetrisGame::Down(HDC hDC)
@@ -181,6 +185,7 @@ bool CTetrisGame::isMoveRight()
 
 bool CTetrisGame::CanRotate()
 {
+    
     return true ; 
 }
 

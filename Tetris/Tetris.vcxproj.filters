@@ -36,7 +36,7 @@
     <ClInclude Include="MainWnd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Pos.h">
+    <ClInclude Include="Space.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BlockT.h">
@@ -65,7 +65,7 @@
     <ClCompile Include="BlockT.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Pos.cpp">
+    <ClCompile Include="Space.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Command.cpp">
