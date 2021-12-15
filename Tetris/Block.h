@@ -1,5 +1,5 @@
 #pragma once
-#include "Pos.h"
+#include "Space.h"
 
 class CBlock
 {
@@ -11,6 +11,7 @@ class CBlock
         virtual void Erase(HDC hDC) ; 
         virtual void Left() ; 
         virtual void Right() ; 
+        virtual void Rotate() ; 
         virtual void Down() ;
 } ;
 

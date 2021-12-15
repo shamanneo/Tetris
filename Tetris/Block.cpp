@@ -21,17 +21,22 @@ void CBlock::Erase(HDC hDC)
 
 }
 
-void CBlock::Down()
-{
-
-}
-
 void CBlock::Left() 
 {
 
 }
 
 void CBlock::Right() 
+{
+
+}
+
+void CBlock::Rotate()
+{
+
+}
+
+void CBlock::Down()
 {
 
 }
