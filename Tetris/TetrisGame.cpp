@@ -185,6 +185,7 @@ bool CTetrisGame::isMoveRight()
 
 bool CTetrisGame::CanRotate()
 {
+    
     return true ; 
 }
 
