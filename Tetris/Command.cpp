@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Command.h"
-#include "BlockT.h"
+#include "Teewee.h"
 
 CCommand::CCommand()
 {
@@ -28,13 +28,20 @@ void CCommand::InputKey(int nKey, HDC hDC)
         }
         case UP :
         {
-            OnRotate(hDC) ;
+            //OnRotate(hDC) ;
             break ; 
         }
         case DOWN :
         {
             OnDown(hDC) ; 
             break ; 
+        }
+        case SPACE :
+        {
+            while(!m_spTetrisGm->Down(hDC))
+            {
+
+            }
         }
     }
     m_spTetrisGm->Draw(hDC) ;         

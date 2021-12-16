@@ -39,11 +39,11 @@ class CTetrisGame
         void Left(HDC hDC) ; 
         void Right(HDC hDC) ; 
         void Rotate(HDC hDC) ; 
-        void Down(HDC hDC) ; 
+        bool Down(HDC hDC) ; 
     public :
         bool isMoveLeft() ; 
         bool isMoveRight() ; 
-        bool CanRotate() ; 
+        bool CanRotate(HDC hDC) ; 
         bool isMoveDown() ; 
 } ;
 

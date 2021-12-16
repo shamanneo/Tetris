@@ -63,10 +63,15 @@ LRESULT CMainWnd::OnKeyDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHand
             nKey = UP ; 
             break ;
         }
-        case VK_DOWN : // Fast Down.
+        case VK_DOWN : // Slow Down.
         {
             nKey = DOWN ; 
             break ;
+        }
+        case VK_SPACE : // Fast Down
+        {
+            nKey = SPACE ;
+            break ; 
         }
         default :
         {

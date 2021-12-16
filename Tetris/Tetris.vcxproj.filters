@@ -39,7 +39,7 @@
     <ClInclude Include="Space.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BlockT.h">
+    <ClInclude Include="Teewee.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Command.h">
@@ -49,6 +49,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TetrisGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SmashBoy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -62,7 +65,7 @@
     <ClCompile Include="MainWnd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BlockT.cpp">
+    <ClCompile Include="Teewee.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Space.cpp">
@@ -75,6 +78,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TetrisGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SmashBoy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

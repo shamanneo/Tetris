@@ -149,7 +149,8 @@
   <ItemGroup>
     <ClInclude Include="atlsupport.h" />
     <ClInclude Include="Block.h" />
-    <ClInclude Include="BlockT.h" />
+    <ClInclude Include="SmashBoy.h" />
+    <ClInclude Include="Teewee.h" />
     <ClInclude Include="TetrisGame.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="MainWnd.h" />
@@ -162,7 +163,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp" />
-    <ClCompile Include="BlockT.cpp" />
+    <ClCompile Include="SmashBoy.cpp" />
+    <ClCompile Include="Teewee.cpp" />
     <ClCompile Include="TetrisGame.cpp" />
     <ClCompile Include="MainWnd.cpp" />
     <ClCompile Include="pch.cpp">
