@@ -64,11 +64,10 @@ void CTetrisGame::Create()
             break ;
         }
     }
-
+    INT nX = 0 ;
+    INT nY = 0 ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
-    {
-        INT nX = 0 ;
-        INT nY = 0 ; 
+    { 
         if(m_spCurBk->GetPos(nIndex, nX, nY)) 
         {
             m_arrBoard[nX][nY] = CURRENT ; 
@@ -78,10 +77,10 @@ void CTetrisGame::Create()
 
 void CTetrisGame::Reach()
 {
+    INT nX = 0 ;
+    INT nY = 0 ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
-        INT nX = 0 ;
-        INT nY = 0 ; 
         if(m_spCurBk->GetPos(nIndex, nX, nY))
         {
             m_arrBoard[nX][nY] = m_spCurBk->GetId() ; 
@@ -124,37 +123,38 @@ void CTetrisGame::Right(HDC hDC)
 
 void CTetrisGame::Rotate(HDC hDC)
 {
-    if(CanRotate())
+    if(CanRotate(hDC))
     {
         Erase(hDC) ; 
         m_spCurBk->Rotate() ; 
     }
 }
 
-void CTetrisGame::Down(HDC hDC)
+bool CTetrisGame::Down(HDC hDC)
 {
     if(isMoveDown())
     {
         Erase(hDC) ; 
         m_spCurBk->Down() ; 
         m_spCurBk->Draw(hDC) ; 
+        return false ; 
     }
     else
     {
         m_spCurBk->Draw(hDC) ; 
         Reach() ; 
+        return true ;
     }
-    return ; 
 }
 
 // ================================================
 
 bool CTetrisGame::isMoveLeft() 
 {
+    INT nX = 0 ;
+    INT nY = 0 ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
-        INT nX = 0 ;
-        INT nY = 0 ; 
         if(m_spCurBk->GetPos(nIndex, nX, nY))
         {
             if((m_arrBoard[nX - 1][nY] != CURRENT) && (m_arrBoard[nX - 1][nY] != OFF)) 
@@ -168,10 +168,10 @@ bool CTetrisGame::isMoveLeft()
 
 bool CTetrisGame::isMoveRight() 
 {
+    INT nX = 0 ;
+    INT nY = 0 ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
-        INT nX = 0 ;
-        INT nY = 0 ; 
         if(m_spCurBk->GetPos(nIndex, nX, nY))
         {
             if((m_arrBoard[nX + 1][nY] != CURRENT) && (m_arrBoard[nX + 1][nY] != OFF)) 
@@ -183,18 +183,47 @@ bool CTetrisGame::isMoveRight()
     return true ; 
 }
 
-bool CTetrisGame::CanRotate()
+bool CTetrisGame::CanRotate(HDC hDC)
 {
-    
+    INT nX = 0 ; 
+    INT nY = 0 ; 
+    INT nLCount = 0 ; 
+    INT nRCount = 0 ; 
+    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
+    {
+        if(m_spCurBk->GetPos(nIndex ,nX, nY))
+        {   
+            if((m_arrBoard[nX - 1][nY] != CURRENT) && (m_arrBoard[nX - 1][nY] != OFF)) 
+            {
+                nLCount++ ; 
+                if(nLCount > 2) 
+                {
+                    m_spCurBk->Erase(hDC) ; 
+                    m_spCurBk->Right() ;
+                    return true ; 
+                }
+            }
+            else if((m_arrBoard[nX + 1][nY] != CURRENT) && (m_arrBoard[nX + 1][nY] != OFF)) 
+            {
+                nRCount++ ;
+                if(nRCount > 2) 
+                {
+                    m_spCurBk->Erase(hDC) ; 
+                    m_spCurBk->Left() ; 
+                    return true ; 
+                }
+            }
+        }
+    }
     return true ; 
 }
 
 bool CTetrisGame::isMoveDown()
 {
+    INT nX = 0 ;
+    INT nY = 0 ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
-        INT nX = 0 ;
-        INT nY = 0 ; 
         if(m_spCurBk->GetPos(nIndex, nX, nY))
         {
             if((m_arrBoard[nX][nY + 1] != CURRENT) && (m_arrBoard[nX][nY + 1] != OFF)) 

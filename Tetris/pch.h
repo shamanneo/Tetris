@@ -18,5 +18,6 @@
 #define RIGHT 2 
 #define UP 3 
 #define DOWN 4 
+#define SPACE 5
 
 #endif //PCH_H

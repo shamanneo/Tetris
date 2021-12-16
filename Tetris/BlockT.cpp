@@ -41,7 +41,7 @@ INT CBlockT::GetId() const
 void CBlockT::Draw(HDC hDC) 
 {   
     Gdiplus::Graphics grap { hDC } ; 
-    Gdiplus::SolidBrush blackBru { Gdiplus::Color { 255, 0, 0 } } ; 
+    Gdiplus::SolidBrush blackBru { Gdiplus::Color { 102, 0, 153 } } ; 
     for(int i = 0 ; i < 9 ; i++)
     {
         if(!m_spPosArr[i].IsEmpty())
