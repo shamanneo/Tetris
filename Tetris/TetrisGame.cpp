@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "TetrisGame.h"
-#include "BlockT.h" 
+#include "Teewee.h" 
+#include "SmashBoy.h" 
 #include <time.h>
 
 CTetrisGame::CTetrisGame()
@@ -24,9 +25,9 @@ CTetrisGame::~CTetrisGame()
 
 void CTetrisGame::Create()
 {
-    srand(unsigned int(NULL)) ; 
-    int nName = LICKY + (rand() % 7) ; 
-    switch(TEEWEE)
+    //srand(unsigned int(NULL)) ; 
+    int nName = TEEWEE + (rand() % 2) ; 
+    switch(nName)
     {
         case LICKY :
         {
@@ -55,12 +56,12 @@ void CTetrisGame::Create()
         }
         case TEEWEE :
         {
-            m_spCurBk = std::make_unique<CBlockT>() ; 
+            m_spCurBk = std::make_unique<CTeewee>() ; 
             break ;
         }
         case SMASHBOY :
         {
-            // create SMASHBOY.
+            m_spCurBk = std::make_unique<CSmashBoy>() ; 
             break ;
         }
     }

@@ -1,15 +1,15 @@
 #include "pch.h"
-#include "BlockT.h"
+#include "SmashBoy.h"
 #include <math.h>
 
-CBlockT::CBlockT()
-    :m_nId(32)
+CSmashBoy::CSmashBoy()
+    :m_nId(36)
 {
     m_spPosArr = std::make_unique<CSpace[]>(BLOCKSIZE) ; 
     m_spPosArr[0].Set(4, 0, OFF) ; 
     m_spPosArr[1].Set(5, 0, ON) ; 
-    m_spPosArr[2].Set(6, 0, OFF) ; 
-    m_spPosArr[3].Set(4, 1, ON) ; 
+    m_spPosArr[2].Set(6, 0, ON) ; 
+    m_spPosArr[3].Set(4, 1, OFF) ; 
     m_spPosArr[4].Set(5, 1, ON) ; 
     m_spPosArr[5].Set(6, 1, ON) ; 
     m_spPosArr[6].Set(4, 2, OFF) ; 
@@ -17,12 +17,12 @@ CBlockT::CBlockT()
     m_spPosArr[8].Set(6, 2, OFF) ; 
 }
 
-CBlockT::~CBlockT()
+CSmashBoy::~CSmashBoy()
 {
 
 }
 
-bool CBlockT::GetPos(INT nIndex, INT &nX, INT &nY) const
+bool CSmashBoy::GetPos(INT nIndex, INT &nX, INT &nY) const
 {
     nX = m_spPosArr[nIndex].m_nX ;
     nY = m_spPosArr[nIndex].m_nY ;
@@ -33,15 +33,15 @@ bool CBlockT::GetPos(INT nIndex, INT &nX, INT &nY) const
     return true ; 
 }
 
-INT CBlockT::GetId() const 
+INT CSmashBoy::GetId() const 
 {
     return m_nId ; 
 }
 
-void CBlockT::Draw(HDC hDC) 
+void CSmashBoy::Draw(HDC hDC) 
 {   
     Gdiplus::Graphics grap { hDC } ; 
-    Gdiplus::SolidBrush blackBru { Gdiplus::Color { 102, 0, 153 } } ; 
+    Gdiplus::SolidBrush blackBru { Gdiplus::Color { 255, 212, 0 } } ; 
     for(int i = 0 ; i < 9 ; i++)
     {
         if(!m_spPosArr[i].IsEmpty())
@@ -51,7 +51,7 @@ void CBlockT::Draw(HDC hDC)
     }
 }
 
-void CBlockT::Erase(HDC hDC)
+void CSmashBoy::Erase(HDC hDC)
 {
     Gdiplus::Graphics grap { hDC } ; 
     Gdiplus::SolidBrush whiteBru { Gdiplus::Color { 255, 255, 255 } } ; 
@@ -64,7 +64,7 @@ void CBlockT::Erase(HDC hDC)
     }
 }
 
-void CBlockT::Left() 
+void CSmashBoy::Left() 
 {
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
@@ -72,7 +72,7 @@ void CBlockT::Left()
     }
 }
 
-void CBlockT::Right()
+void CSmashBoy::Right()
 {
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
@@ -80,7 +80,7 @@ void CBlockT::Right()
     }
 }
 
-void CBlockT::Rotate() 
+void CSmashBoy::Rotate() 
 {
     bool bArr[9] { } ; 
     for(INT i = 0 ; i < 9 ; i++)
@@ -102,7 +102,7 @@ void CBlockT::Rotate()
     m_spPosArr[8].m_bPres = bArr[2] ; 
 }
 
-void CBlockT::Down()
+void CSmashBoy::Down()
 {
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
