@@ -1,7 +1,11 @@
 #include "pch.h"
 #include "TetrisGame.h"
+#include "Licky.h"
+#include "Ricky.h"
+#include "Cleveland.h"
+#include "Phodeisland.h"
 #include "Teewee.h" 
-#include "SmashBoy.h" 
+#include "Smashboy.h" 
 #include <time.h>
 
 CTetrisGame::CTetrisGame()
@@ -25,33 +29,28 @@ CTetrisGame::~CTetrisGame()
 
 void CTetrisGame::Create()
 {
-    //srand(unsigned int(NULL)) ; 
-    int nName = TEEWEE + (rand() % 2) ; 
+    srand((unsigned int)time(NULL)) ; 
+    int nName = LICKY + (rand() % 6) ; 
     switch(nName)
     {
         case LICKY :
         {
-            // create LICKY.
+            m_spCurBk = std::make_unique<CLicky>() ; 
             break ;
         }
         case RICKY :
         {
-            // create RICKY.
+            m_spCurBk = std::make_unique<CRicky>() ; 
             break ;
         }
         case CLEVELAND :
         {
-            // create CLEVELAND.
+            m_spCurBk = std::make_unique<CCleveland>() ; 
             break ;
         }
         case PHODEISLAND :
         {
-            // create PHODEISLAND.
-            break ;
-        }
-        case HERO :
-        {
-            // create HERO.
+            m_spCurBk = std::make_unique<CPhodeisland>() ; 
             break ;
         }
         case TEEWEE :
@@ -61,9 +60,16 @@ void CTetrisGame::Create()
         }
         case SMASHBOY :
         {
-            m_spCurBk = std::make_unique<CSmashBoy>() ; 
+            m_spCurBk = std::make_unique<CSmashboy>() ; 
             break ;
         }
+        /*
+        case HERO :
+        {
+            // create HERO.
+            break ;
+        }
+        */
     }
     INT nX = 0 ;
     INT nY = 0 ; 

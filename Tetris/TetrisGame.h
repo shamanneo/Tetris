@@ -18,9 +18,9 @@ class CTetrisGame
         RICKY = 31, 
         CLEVELAND = 32, 
         PHODEISLAND = 33,
-        HERO = 34, 
-        TEEWEE = 35, 
-        SMASHBOY = 36
+        TEEWEE = 34, 
+        SMASHBOY = 35,
+        HERO = 36
     } ; 
 
     private :

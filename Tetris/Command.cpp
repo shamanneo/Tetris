@@ -28,7 +28,7 @@ void CCommand::InputKey(int nKey, HDC hDC)
         }
         case UP :
         {
-            //OnRotate(hDC) ;
+            OnRotate(hDC) ;
             break ; 
         }
         case DOWN :

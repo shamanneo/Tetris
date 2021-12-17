@@ -1,14 +1,14 @@
 #include "pch.h"
-#include "Smashboy.h"
+#include "Cleveland.h"
 #include <math.h>
 
-CSmashboy::CSmashboy()
-    :m_nId(36)
+CCleveland::CCleveland()
+    :m_nId(32)
 {
     m_spPosArr = std::make_unique<CSpace[]>(BLOCKSIZE) ; 
-    m_spPosArr[0].Set(4, 0, OFF) ; 
+    m_spPosArr[0].Set(4, 0, ON) ; 
     m_spPosArr[1].Set(5, 0, ON) ; 
-    m_spPosArr[2].Set(6, 0, ON) ; 
+    m_spPosArr[2].Set(6, 0, OFF) ; 
     m_spPosArr[3].Set(4, 1, OFF) ; 
     m_spPosArr[4].Set(5, 1, ON) ; 
     m_spPosArr[5].Set(6, 1, ON) ; 
@@ -17,12 +17,12 @@ CSmashboy::CSmashboy()
     m_spPosArr[8].Set(6, 2, OFF) ; 
 }
 
-CSmashboy::~CSmashboy()
+CCleveland::~CCleveland()
 {
 
 }
 
-bool CSmashboy::GetPos(INT nIndex, INT &nX, INT &nY) const
+bool CCleveland::GetPos(INT nIndex, INT &nX, INT &nY) const
 {
     nX = m_spPosArr[nIndex].m_nX ;
     nY = m_spPosArr[nIndex].m_nY ;
@@ -33,15 +33,15 @@ bool CSmashboy::GetPos(INT nIndex, INT &nX, INT &nY) const
     return true ; 
 }
 
-INT CSmashboy::GetId() const 
+INT CCleveland::GetId() const 
 {
     return m_nId ; 
 }
 
-void CSmashboy::Draw(HDC hDC) 
+void CCleveland::Draw(HDC hDC) 
 {   
     Gdiplus::Graphics grap { hDC } ; 
-    Gdiplus::SolidBrush blackBru { Gdiplus::Color { 255, 212, 0 } } ; 
+    Gdiplus::SolidBrush blackBru { Gdiplus::Color { 255, 0, 0 } } ; 
     for(int i = 0 ; i < 9 ; i++)
     {
         if(!m_spPosArr[i].IsEmpty())
@@ -51,7 +51,7 @@ void CSmashboy::Draw(HDC hDC)
     }
 }
 
-void CSmashboy::Erase(HDC hDC)
+void CCleveland::Erase(HDC hDC)
 {
     Gdiplus::Graphics grap { hDC } ; 
     Gdiplus::SolidBrush whiteBru { Gdiplus::Color { 255, 255, 255 } } ; 
@@ -64,7 +64,7 @@ void CSmashboy::Erase(HDC hDC)
     }
 }
 
-void CSmashboy::Left() 
+void CCleveland::Left() 
 {
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
@@ -72,7 +72,7 @@ void CSmashboy::Left()
     }
 }
 
-void CSmashboy::Right()
+void CCleveland::Right()
 {
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
@@ -80,7 +80,7 @@ void CSmashboy::Right()
     }
 }
 
-void CSmashboy::Rotate() 
+void CCleveland::Rotate() 
 {
     bool bArr[9] { } ; 
     for(INT i = 0 ; i < 9 ; i++)
@@ -102,13 +102,14 @@ void CSmashboy::Rotate()
     m_spPosArr[8].m_bPres = bArr[2] ; 
 }
 
-void CSmashboy::Down()
+void CCleveland::Down()
 {
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
         m_spPosArr[nIndex].m_nY++ ; 
     }
 }
+
 
 
 

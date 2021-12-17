@@ -51,7 +51,19 @@
     <ClInclude Include="TetrisGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SmashBoy.h">
+    <ClInclude Include="Smashboy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cleveland.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Phodeisland.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Licky.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ricky.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -80,7 +92,19 @@
     <ClCompile Include="TetrisGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SmashBoy.cpp">
+    <ClCompile Include="Smashboy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cleveland.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Phodeisland.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Licky.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ricky.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
