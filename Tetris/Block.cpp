@@ -11,12 +11,12 @@ INT CBlock::GetId() const
     return 0 ; 
 }
 
-void CBlock::Draw(HDC hDC) 
+void CBlock::Draw() 
 {
 
 }
 
-void CBlock::Erase(HDC hDC)
+void CBlock::Erase()
 {
 
 }

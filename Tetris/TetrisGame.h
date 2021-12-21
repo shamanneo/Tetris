@@ -32,17 +32,17 @@ class CTetrisGame
         void Create() ; 
         void Reach() ; 
     public :
-        void Draw(HDC hDC) ; 
-        void Erase(HDC hDC) ; 
+        void Draw() ; 
+        void Erase() ; 
     public :
-        void Left(HDC hDC) ; 
-        void Right(HDC hDC) ; 
-        void Rotate(HDC hDC) ; 
-        bool Down(HDC hDC) ; 
+        void Left() ; 
+        void Right() ; 
+        void Rotate() ; 
+        bool Down() ; 
     public :
         bool isMoveLeft() ; 
         bool isMoveRight() ; 
-        bool CanRotate(HDC hDC) ; 
+        bool CanRotate() ; 
         bool isMoveDown() ; 
 } ;
 

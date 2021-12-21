@@ -11,12 +11,12 @@ class CCommand
         CCommand() ; 
         ~CCommand() ; 
     public :
-        void InputKey(int nKey, HDC hDC) ;
-        void Draw(HDC hDC) ; 
+        void InputKey(int nKey) ;
+        void Draw() ; 
     public :
-        void Left(HDC hDC) ; 
-        void Right(HDC hDC) ; 
-        void Rotate(HDC hDC) ; 
-        void Down(HDC hDC) ; 
+        void Left() ; 
+        void Right() ; 
+        void Rotate() ; 
+        void Down() ; 
 } ;
 

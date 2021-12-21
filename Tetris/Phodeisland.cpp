@@ -38,8 +38,9 @@ INT CPhodeisland::GetId() const
     return m_nId ; 
 }
 
-void CPhodeisland::Draw(HDC hDC) 
+void CPhodeisland::Draw() 
 {   
+    /*
     Gdiplus::Graphics grap { hDC } ; 
     Gdiplus::SolidBrush blackBru { Gdiplus::Color { 0, 128, 0 } } ; 
     for(int i = 0 ; i < 9 ; i++)
@@ -49,10 +50,12 @@ void CPhodeisland::Draw(HDC hDC)
             grap.FillRectangle(&blackBru, 30 * (m_spPosArr[i].m_nX - 1) + 32, 30 * (m_spPosArr[i].m_nY - 0) + 32, 28, 28) ; 
         }
     }
+    */
 }
 
-void CPhodeisland::Erase(HDC hDC)
+void CPhodeisland::Erase()
 {
+    /*
     Gdiplus::Graphics grap { hDC } ; 
     Gdiplus::SolidBrush whiteBru { Gdiplus::Color { 255, 255, 255 } } ; 
     for(int i = 0 ; i < 9 ; i++)
@@ -62,6 +65,7 @@ void CPhodeisland::Erase(HDC hDC)
             grap.FillRectangle(&whiteBru, 30 * (m_spPosArr[i].m_nX - 1) + 32, 30 * (m_spPosArr[i].m_nY - 0) + 32, 28, 28) ; 
         }
     }
+    */
 }
 
 void CPhodeisland::Left() 

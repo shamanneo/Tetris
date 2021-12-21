@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Teewee.h"
 #include <math.h>
+#include "Paint.h"
 
 CTeewee::CTeewee()
     :m_nId(32)
@@ -38,30 +39,16 @@ INT CTeewee::GetId() const
     return m_nId ; 
 }
 
-void CTeewee::Draw(HDC hDC) 
+void CTeewee::Draw() 
 {   
-    Gdiplus::Graphics grap { hDC } ; 
-    Gdiplus::SolidBrush blackBru { Gdiplus::Color { 102, 0, 153 } } ; 
-    for(int i = 0 ; i < 9 ; i++)
-    {
-        if(!m_spPosArr[i].IsEmpty())
-        {
-            grap.FillRectangle(&blackBru, 30 * (m_spPosArr[i].m_nX - 1) + 32, 30 * (m_spPosArr[i].m_nY - 0) + 32, 28, 28) ; 
-        }
-    }
+    CPaint paint ; 
+    paint.PaintBlock(m_spPosArr, 102, 0, 153) ; 
 }
 
-void CTeewee::Erase(HDC hDC)
+void CTeewee::Erase()
 {
-    Gdiplus::Graphics grap { hDC } ; 
-    Gdiplus::SolidBrush whiteBru { Gdiplus::Color { 255, 255, 255 } } ; 
-    for(int i = 0 ; i < 9 ; i++)
-    {
-        if(!m_spPosArr[i].IsEmpty())
-        {
-            grap.FillRectangle(&whiteBru, 30 * (m_spPosArr[i].m_nX - 1) + 32, 30 * (m_spPosArr[i].m_nY - 0) + 32, 28, 28) ; 
-        }
-    }
+    CPaint paint ; 
+    paint.EraseBlock(m_spPosArr) ; 
 }
 
 void CTeewee::Left() 

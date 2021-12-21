@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "MainWnd.h"
 #include "resource.h" 
+#include <gdiplus.h>
+#pragma comment (lib, "Gdiplus.lib")
 
 int nKey ; 
 void DrawBoard(HDC hDC)
@@ -88,13 +90,13 @@ LRESULT CMainWnd::OnTimer(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandle
     {
         case IDT_DRAW_TIMER :
         {
-            m_spComm->InputKey(nKey, hDC) ; 
+            m_spComm->InputKey(nKey) ; 
             nKey = 0 ; 
             break ; 
         }
         case IDT_DOWN_TIMER :
         {
-            m_spComm->Down(hDC) ; 
+            m_spComm->Down() ; 
             break ; 
         }
     }

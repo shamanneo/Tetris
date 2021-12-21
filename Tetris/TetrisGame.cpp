@@ -10,13 +10,13 @@
 
 CTetrisGame::CTetrisGame()
 {
-    for(INT nY = 0 ; nY <= 20 ; nY++)
+    for(INT nY = 0 ; nY <= HEIGHT ; nY++)
     {
         m_arrBoard[0][nY] = BOUND ; 
         m_arrBoard[11][nY] = BOUND ; 
         if(nY < 12)
         {
-            m_arrBoard[nY][20] = BOUND ; 
+            m_arrBoard[nY][HEIGHT] = BOUND ; 
         }
     }
     Create() ; 
@@ -31,7 +31,7 @@ void CTetrisGame::Create()
 {
     srand((unsigned int)time(NULL)) ; 
     int nName = LICKY + (rand() % 6) ; 
-    switch(nName)
+    switch(TEEWEE)
     {
         case LICKY :
         {
@@ -98,57 +98,57 @@ void CTetrisGame::Reach()
     Create() ; 
 }
 
-void CTetrisGame::Draw(HDC hDC)
+void CTetrisGame::Draw()
 {
-    m_spCurBk->Draw(hDC) ;
+    m_spCurBk->Draw() ;
 }
 
-void CTetrisGame::Erase(HDC hDC)
+void CTetrisGame::Erase()
 {
-    m_spCurBk->Erase(hDC) ;
+    m_spCurBk->Erase() ;
 }
 
 // ================================================
 
-void CTetrisGame::Left(HDC hDC)
+void CTetrisGame::Left()
 {
     if(isMoveLeft())
     {
-        Erase(hDC) ; 
+        Erase() ; 
         m_spCurBk->Left() ; 
     }
 }
 
-void CTetrisGame::Right(HDC hDC) 
+void CTetrisGame::Right() 
 {   
     if(isMoveRight())
     {
-        Erase(hDC) ; 
+        Erase() ; 
         m_spCurBk->Right() ; 
     }
 }
 
-void CTetrisGame::Rotate(HDC hDC)
+void CTetrisGame::Rotate()
 {
-    if(CanRotate(hDC))
+    if(CanRotate())
     {
-        Erase(hDC) ; 
+        Erase() ; 
         m_spCurBk->Rotate() ; 
     }
 }
 
-bool CTetrisGame::Down(HDC hDC)
+bool CTetrisGame::Down()
 {
     if(isMoveDown())
     {
-        Erase(hDC) ; 
+        Erase() ; 
         m_spCurBk->Down() ; 
-        m_spCurBk->Draw(hDC) ; 
+        m_spCurBk->Draw() ; 
         return false ; 
     }
     else
     {
-        m_spCurBk->Draw(hDC) ; 
+        m_spCurBk->Draw() ; 
         Reach() ; 
         return true ;
     }
@@ -190,7 +190,7 @@ bool CTetrisGame::isMoveRight()
     return true ; 
 }
 
-bool CTetrisGame::CanRotate(HDC hDC)
+bool CTetrisGame::CanRotate()
 {
     INT nX = 0 ; 
     INT nY = 0 ; 
@@ -205,7 +205,7 @@ bool CTetrisGame::CanRotate(HDC hDC)
                 nLCount++ ; 
                 if(nLCount > 2) 
                 {
-                    m_spCurBk->Erase(hDC) ; 
+                    m_spCurBk->Erase() ; 
                     m_spCurBk->Right() ;
                     return true ; 
                 }
@@ -215,7 +215,7 @@ bool CTetrisGame::CanRotate(HDC hDC)
                 nRCount++ ;
                 if(nRCount > 2) 
                 {
-                    m_spCurBk->Erase(hDC) ; 
+                    m_spCurBk->Erase() ; 
                     m_spCurBk->Left() ; 
                     return true ; 
                 }

@@ -7,8 +7,8 @@ class CBlock
         virtual bool GetPos(INT nIndex, INT &nX, INT &nY) const ; 
         virtual INT GetId() const ; 
     public :
-        virtual void Draw(HDC hDC) ; 
-        virtual void Erase(HDC hDC) ; 
+        virtual void Draw() ; 
+        virtual void Erase() ; 
         virtual void Left() ; 
         virtual void Right() ; 
         virtual void Rotate() ; 
