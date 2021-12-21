@@ -12,28 +12,30 @@ CCommand::~CCommand()
 
 }
 
+// ===========================
+
 void CCommand::InputKey(int nKey, HDC hDC)
 {
     switch (nKey)
     {
         case LEFT :
         {
-            OnLeft(hDC) ; 
+            Left(hDC) ; 
             break ; 
         }
         case RIGHT :
         {
-            OnRight(hDC) ; 
+            Right(hDC) ; 
             break ; 
         }
         case UP :
         {
-            OnRotate(hDC) ;
+            Rotate(hDC) ;
             break ; 
         }
         case DOWN :
         {
-            OnDown(hDC) ; 
+            Down(hDC) ; 
             break ; 
         }
         case SPACE :
@@ -57,29 +59,24 @@ void CCommand::Erase(HDC hDC)
     m_spTetrisGm->Erase(hDC) ; 
 }
 
-void CCommand::Down(HDC hDC) 
-{
-    m_spTetrisGm->Down(hDC) ; 
-}
-
 // ===========================
 
-void CCommand::OnLeft(HDC hDC) 
+void CCommand::Left(HDC hDC) 
 {
     m_spTetrisGm->Left(hDC) ; 
 }
 
-void CCommand::OnRight(HDC hDC) 
+void CCommand::Right(HDC hDC) 
 {
     m_spTetrisGm->Right(hDC) ; 
 }
 
-void CCommand::OnRotate(HDC hDC) 
+void CCommand::Rotate(HDC hDC) 
 {
     m_spTetrisGm->Rotate(hDC) ; 
 }
 
-void CCommand::OnDown(HDC hDC)
+void CCommand::Down(HDC hDC)
 {
     m_spTetrisGm->Down(hDC) ; 
 }

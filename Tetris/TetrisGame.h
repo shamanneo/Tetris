@@ -22,7 +22,6 @@ class CTetrisGame
         SMASHBOY = 35,
         HERO = 36
     } ; 
-
     private :
         INT m_arrBoard[WIDTH + 2][HEIGHT + 1] ; 
         std::unique_ptr<CBlock> m_spCurBk ; 

@@ -7,11 +7,6 @@ class CCommand
 {
     private :
         std::unique_ptr<CTetrisGame> m_spTetrisGm ; 
-    protected :
-        void OnLeft(HDC hDC) ; 
-        void OnRight(HDC hDC) ; 
-        void OnRotate(HDC hDC) ; 
-        void OnDown(HDC hDC) ; 
     public :
         CCommand() ; 
         ~CCommand() ; 
@@ -19,6 +14,10 @@ class CCommand
         void InputKey(int nKey, HDC hDC) ;
         void Draw(HDC hDC) ; 
         void Erase(HDC hDC) ; 
+    public :
+        void Left(HDC hDC) ; 
+        void Right(HDC hDC) ; 
+        void Rotate(HDC hDC) ; 
         void Down(HDC hDC) ; 
 } ;
 

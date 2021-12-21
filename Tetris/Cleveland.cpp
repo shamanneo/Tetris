@@ -53,6 +53,7 @@ void CCleveland::Draw(HDC hDC)
 
 void CCleveland::Erase(HDC hDC)
 {
+    CBlock::Erase(hDC) ; 
     Gdiplus::Graphics grap { hDC } ; 
     Gdiplus::SolidBrush whiteBru { Gdiplus::Color { 255, 255, 255 } } ; 
     for(int i = 0 ; i < 9 ; i++)
