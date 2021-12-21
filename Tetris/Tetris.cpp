@@ -1,6 +1,7 @@
 #include "pch.h" 
 #include "Tetris.h"
 #include "MainWnd.h"
+#include "Paint.h"
 
 using namespace Gdiplus ; 
 
@@ -21,6 +22,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     MainWnd.Create(NULL, &rc, _T("Tetris"), WS_OVERLAPPEDWINDOW, 0) ;  
     MainWnd.ShowWindow(SW_SHOW) ; 
     MainWnd.UpdateWindow() ; 
+
+    CPaint::Assign(MainWnd.m_hWnd) ; 
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_TETRIS)) ;
     MSG msg ;

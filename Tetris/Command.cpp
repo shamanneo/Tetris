@@ -54,11 +54,6 @@ void CCommand::Draw(HDC hDC)
     m_spTetrisGm->Draw(hDC) ; 
 }
 
-void CCommand::Erase(HDC hDC)
-{
-    m_spTetrisGm->Erase(hDC) ; 
-}
-
 // ===========================
 
 void CCommand::Left(HDC hDC) 
@@ -78,6 +73,7 @@ void CCommand::Rotate(HDC hDC)
 
 void CCommand::Down(HDC hDC)
 {
+    m_spTetrisGm->Erase(hDC) ; 
     m_spTetrisGm->Down(hDC) ; 
 }
 

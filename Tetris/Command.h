@@ -13,7 +13,6 @@ class CCommand
     public :
         void InputKey(int nKey, HDC hDC) ;
         void Draw(HDC hDC) ; 
-        void Erase(HDC hDC) ; 
     public :
         void Left(HDC hDC) ; 
         void Right(HDC hDC) ; 

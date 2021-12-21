@@ -151,6 +151,7 @@
     <ClInclude Include="Block.h" />
     <ClInclude Include="Cleveland.h" />
     <ClInclude Include="Licky.h" />
+    <ClInclude Include="Paint.h" />
     <ClInclude Include="Phodeisland.h" />
     <ClInclude Include="Ricky.h" />
     <ClInclude Include="Smashboy.h" />
@@ -169,6 +170,7 @@
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Cleveland.cpp" />
     <ClCompile Include="Licky.cpp" />
+    <ClCompile Include="Paint.cpp" />
     <ClCompile Include="Phodeisland.cpp" />
     <ClCompile Include="Ricky.cpp" />
     <ClCompile Include="Smashboy.cpp" />
