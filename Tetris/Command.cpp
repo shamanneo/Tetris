@@ -73,7 +73,6 @@ void CCommand::Rotate()
 
 void CCommand::Down()
 {
-    m_spTetrisGm->Erase() ; 
     m_spTetrisGm->Down() ; 
 }
 

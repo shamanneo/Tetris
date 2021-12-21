@@ -53,6 +53,7 @@ void CTeewee::Erase()
 
 void CTeewee::Left() 
 {
+    Erase() ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
         m_spPosArr[nIndex].m_nX-- ;         
@@ -61,6 +62,7 @@ void CTeewee::Left()
 
 void CTeewee::Right()
 {
+    Erase() ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
         m_spPosArr[nIndex].m_nX++ ;         
@@ -69,6 +71,7 @@ void CTeewee::Right()
 
 void CTeewee::Rotate() 
 {
+    Erase() ; 
     bool bArr[9] { } ; 
     for(INT i = 0 ; i < 9 ; i++)
     {
@@ -91,6 +94,7 @@ void CTeewee::Rotate()
 
 void CTeewee::Down()
 {
+    Erase() ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
         m_spPosArr[nIndex].m_nY++ ; 

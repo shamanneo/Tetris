@@ -103,18 +103,12 @@ void CTetrisGame::Draw()
     m_spCurBk->Draw() ;
 }
 
-void CTetrisGame::Erase()
-{
-    m_spCurBk->Erase() ;
-}
-
 // ================================================
 
 void CTetrisGame::Left()
 {
     if(isMoveLeft())
     {
-        Erase() ; 
         m_spCurBk->Left() ; 
     }
 }
@@ -123,7 +117,6 @@ void CTetrisGame::Right()
 {   
     if(isMoveRight())
     {
-        Erase() ; 
         m_spCurBk->Right() ; 
     }
 }
@@ -132,7 +125,6 @@ void CTetrisGame::Rotate()
 {
     if(CanRotate())
     {
-        Erase() ; 
         m_spCurBk->Rotate() ; 
     }
 }
@@ -141,7 +133,6 @@ bool CTetrisGame::Down()
 {
     if(isMoveDown())
     {
-        Erase() ; 
         m_spCurBk->Down() ; 
         m_spCurBk->Draw() ; 
         return false ; 

@@ -33,7 +33,6 @@ class CTetrisGame
         void Reach() ; 
     public :
         void Draw() ; 
-        void Erase() ; 
     public :
         void Left() ; 
         void Right() ; 
