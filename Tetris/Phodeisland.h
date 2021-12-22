@@ -8,7 +8,7 @@ class CPhodeisland : public CBlock
     {
         ON = 1, 
         OFF = 0,
-        BLOCKSIZE = 9
+        ARRAYSIZE = 9
     } ; 
     public :   
         std::unique_ptr<CSpace[]> m_spPosArr ; 

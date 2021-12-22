@@ -2,20 +2,20 @@
 #include "Block.h"
 #include <memory>
 
-class CSmashboy : public CBlock
+class CHero : public CBlock
 {
     enum
     {
         ON = 1, 
         OFF = 0,
-        ARRAYSIZE = 9
+        ARRAYSIZE = 16
     } ; 
     public :   
         std::unique_ptr<CSpace[]> m_spPosArr ; 
         const INT m_nId ; 
     public :
-        CSmashboy() ;
-        ~CSmashboy() ; 
+        CHero() ;
+        ~CHero() ; 
     public :
         virtual bool GetPos(INT nIndex, INT &nX, INT &nY) const override ; 
         virtual INT GetId() const override ; 
@@ -26,5 +26,5 @@ class CSmashboy : public CBlock
         virtual void Right() override ; 
         virtual void Rotate() override ; 
         virtual void Down() override ; 
-} ;
+};
 

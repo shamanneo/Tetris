@@ -6,7 +6,7 @@
 CLicky::CLicky()
     :m_nId(30)
 {
-    m_spPosArr = std::make_unique<CSpace[]>(BLOCKSIZE) ; 
+    m_spPosArr = std::make_unique<CSpace[]>(ARRAYSIZE) ; 
     m_spPosArr[0].Set(4, 0, ON) ; 
     m_spPosArr[1].Set(5, 0, OFF) ; 
     m_spPosArr[2].Set(6, 0, OFF) ; 
@@ -54,7 +54,7 @@ void CLicky::Erase()
 void CLicky::Left() 
 {
     Erase() ; 
-    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
+    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
     {
         m_spPosArr[nIndex].m_nX-- ;         
     }
@@ -63,7 +63,7 @@ void CLicky::Left()
 void CLicky::Right()
 {
     Erase() ; 
-    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
+    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
     {
         m_spPosArr[nIndex].m_nX++ ;         
     }
@@ -72,8 +72,8 @@ void CLicky::Right()
 void CLicky::Rotate() 
 {
     Erase() ; 
-    bool bArr[9] { } ; 
-    for(INT i = 0 ; i < 9 ; i++)
+    bool bArr[ARRAYSIZE] { } ; 
+    for(INT i = 0 ; i < ARRAYSIZE ; i++)
     {
         if(m_spPosArr[i].m_bPres == true)
         {
@@ -95,7 +95,7 @@ void CLicky::Rotate()
 void CLicky::Down()
 {
     Erase() ; 
-    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
+    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
     {
         m_spPosArr[nIndex].m_nY++ ; 
     }

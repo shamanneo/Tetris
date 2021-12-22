@@ -6,7 +6,7 @@
 CSmashboy::CSmashboy()
     :m_nId(35)
 {
-    m_spPosArr = std::make_unique<CSpace[]>(BLOCKSIZE) ; 
+    m_spPosArr = std::make_unique<CSpace[]>(ARRAYSIZE) ; 
     m_spPosArr[0].Set(4, 0, OFF) ; 
     m_spPosArr[1].Set(5, 0, ON) ; 
     m_spPosArr[2].Set(6, 0, ON) ; 
@@ -54,7 +54,7 @@ void CSmashboy::Erase()
 void CSmashboy::Left() 
 {
     Erase() ; 
-    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
+    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
     {
         m_spPosArr[nIndex].m_nX-- ;         
     }
@@ -63,7 +63,7 @@ void CSmashboy::Left()
 void CSmashboy::Right()
 {
     Erase() ; 
-    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
+    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
     {
         m_spPosArr[nIndex].m_nX++ ;         
     }
@@ -77,7 +77,7 @@ void CSmashboy::Rotate()
 void CSmashboy::Down()
 {
     Erase() ; 
-    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
+    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
     {
         m_spPosArr[nIndex].m_nY++ ; 
     }

@@ -6,7 +6,7 @@
 CRicky::CRicky()
     :m_nId(31)
 {
-    m_spPosArr = std::make_unique<CSpace[]>(BLOCKSIZE) ; 
+    m_spPosArr = std::make_unique<CSpace[]>(ARRAYSIZE) ; 
     m_spPosArr[0].Set(4, 0, OFF) ; 
     m_spPosArr[1].Set(5, 0, OFF) ; 
     m_spPosArr[2].Set(6, 0, ON) ; 
@@ -54,7 +54,7 @@ void CRicky::Erase()
 void CRicky::Left() 
 {
     Erase() ; 
-    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
+    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
     {
         m_spPosArr[nIndex].m_nX-- ;         
     }
@@ -63,7 +63,7 @@ void CRicky::Left()
 void CRicky::Right()
 {
     Erase() ; 
-    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
+    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
     {
         m_spPosArr[nIndex].m_nX++ ;         
     }
@@ -72,8 +72,8 @@ void CRicky::Right()
 void CRicky::Rotate() 
 {
     Erase() ; 
-    bool bArr[9] { } ; 
-    for(INT i = 0 ; i < 9 ; i++)
+    bool bArr[ARRAYSIZE] { } ; 
+    for(INT i = 0 ; i < ARRAYSIZE ; i++)
     {
         if(m_spPosArr[i].m_bPres == true)
         {
@@ -95,7 +95,7 @@ void CRicky::Rotate()
 void CRicky::Down()
 {
     Erase() ; 
-    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
+    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
     {
         m_spPosArr[nIndex].m_nY++ ; 
     }

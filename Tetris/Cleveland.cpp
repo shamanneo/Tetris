@@ -6,7 +6,7 @@
 CCleveland::CCleveland()
     :m_nId(32)
 {
-    m_spPosArr = std::make_unique<CSpace[]>(BLOCKSIZE) ; 
+    m_spPosArr = std::make_unique<CSpace[]>(ARRAYSIZE) ; 
     m_spPosArr[0].Set(4, 0, ON) ; 
     m_spPosArr[1].Set(5, 0, ON) ; 
     m_spPosArr[2].Set(6, 0, OFF) ; 
