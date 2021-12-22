@@ -31,7 +31,7 @@ CTetrisGame::~CTetrisGame()
 void CTetrisGame::Create()
 {
     srand((unsigned int)time(NULL)) ; 
-    int nName = TEEWEE + (rand() % 2) ; 
+    int nName = LICKY + (rand() % 6) ; 
     switch(nName)
     {
         case LICKY :

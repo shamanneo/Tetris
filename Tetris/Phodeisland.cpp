@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Phodeisland.h"
 #include <math.h>
+#include "Paint.h"
 
 CPhodeisland::CPhodeisland()
     :m_nId(33)
@@ -40,36 +41,19 @@ INT CPhodeisland::GetId() const
 
 void CPhodeisland::Draw() 
 {   
-    /*
-    Gdiplus::Graphics grap { hDC } ; 
-    Gdiplus::SolidBrush blackBru { Gdiplus::Color { 0, 128, 0 } } ; 
-    for(int i = 0 ; i < 9 ; i++)
-    {
-        if(!m_spPosArr[i].IsEmpty())
-        {
-            grap.FillRectangle(&blackBru, 30 * (m_spPosArr[i].m_nX - 1) + 32, 30 * (m_spPosArr[i].m_nY - 0) + 32, 28, 28) ; 
-        }
-    }
-    */
+    CPaint paint ;
+    paint.PaintBlock(m_spPosArr, 0, 128, 0) ; 
 }
 
 void CPhodeisland::Erase()
 {
-    /*
-    Gdiplus::Graphics grap { hDC } ; 
-    Gdiplus::SolidBrush whiteBru { Gdiplus::Color { 255, 255, 255 } } ; 
-    for(int i = 0 ; i < 9 ; i++)
-    {
-        if(!m_spPosArr[i].IsEmpty())
-        {
-            grap.FillRectangle(&whiteBru, 30 * (m_spPosArr[i].m_nX - 1) + 32, 30 * (m_spPosArr[i].m_nY - 0) + 32, 28, 28) ; 
-        }
-    }
-    */
+    CPaint paint ; 
+    paint.EraseBlock(m_spPosArr) ; 
 }
 
 void CPhodeisland::Left() 
 {
+    Erase() ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
         m_spPosArr[nIndex].m_nX-- ;         
@@ -78,6 +62,7 @@ void CPhodeisland::Left()
 
 void CPhodeisland::Right()
 {
+    Erase() ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
         m_spPosArr[nIndex].m_nX++ ;         
@@ -86,6 +71,7 @@ void CPhodeisland::Right()
 
 void CPhodeisland::Rotate() 
 {
+    Erase() ; 
     bool bArr[9] { } ; 
     for(INT i = 0 ; i < 9 ; i++)
     {
@@ -108,6 +94,7 @@ void CPhodeisland::Rotate()
 
 void CPhodeisland::Down()
 {
+    Erase() ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
         m_spPosArr[nIndex].m_nY++ ; 

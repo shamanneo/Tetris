@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Ricky.h"
 #include <math.h>
+#include "Paint.h"
 
 CRicky::CRicky()
     :m_nId(31)
@@ -40,36 +41,19 @@ INT CRicky::GetId() const
 
 void CRicky::Draw() 
 {   
-    /*
-    Gdiplus::Graphics grap { hDC } ; 
-    Gdiplus::SolidBrush blackBru { Gdiplus::Color { 255, 127, 0 } } ; 
-    for(int i = 0 ; i < 9 ; i++)
-    {
-        if(!m_spPosArr[i].IsEmpty())
-        {
-            grap.FillRectangle(&blackBru, 30 * (m_spPosArr[i].m_nX - 1) + 32, 30 * (m_spPosArr[i].m_nY - 0) + 32, 28, 28) ; 
-        }
-    }
-    */
+    CPaint paint ; 
+    paint.PaintBlock(m_spPosArr, 255, 127, 0) ; 
 }
 
 void CRicky::Erase()
 {
-    /*
-    Gdiplus::Graphics grap { hDC } ; 
-    Gdiplus::SolidBrush whiteBru { Gdiplus::Color { 255, 255, 255 } } ; 
-    for(int i = 0 ; i < 9 ; i++)
-    {
-        if(!m_spPosArr[i].IsEmpty())
-        {
-            grap.FillRectangle(&whiteBru, 30 * (m_spPosArr[i].m_nX - 1) + 32, 30 * (m_spPosArr[i].m_nY - 0) + 32, 28, 28) ; 
-        }
-    }
-    */
+    CPaint paint ; 
+    paint.EraseBlock(m_spPosArr) ; 
 }
 
 void CRicky::Left() 
 {
+    Erase() ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
         m_spPosArr[nIndex].m_nX-- ;         
@@ -78,6 +62,7 @@ void CRicky::Left()
 
 void CRicky::Right()
 {
+    Erase() ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
         m_spPosArr[nIndex].m_nX++ ;         
@@ -86,6 +71,7 @@ void CRicky::Right()
 
 void CRicky::Rotate() 
 {
+    Erase() ; 
     bool bArr[9] { } ; 
     for(INT i = 0 ; i < 9 ; i++)
     {
@@ -108,6 +94,7 @@ void CRicky::Rotate()
 
 void CRicky::Down()
 {
+    Erase() ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
         m_spPosArr[nIndex].m_nY++ ; 
