@@ -31,6 +31,9 @@ class CTetrisGame
     public :
         void Create() ; 
         void Reach() ; 
+        bool IsFull(INT nLine) ; 
+        void Update(INT nLine) ; 
+
     public :
         void Draw() ; 
     public :

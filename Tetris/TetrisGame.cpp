@@ -71,6 +71,7 @@ void CTetrisGame::Create()
         }
         */
     }
+    /*
     INT nX = 0 ;
     INT nY = 0 ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
@@ -80,22 +81,60 @@ void CTetrisGame::Create()
             m_arrBoard[nX][nY] = CURRENT ; 
         }
     }
+    */
 }
 
 void CTetrisGame::Reach()
 {
     INT nX = 0 ;
     INT nY = 0 ; 
+    INT nLine = 100 ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
         if(m_spCurBk->GetPos(nIndex, nX, nY))
         {
             m_arrBoard[nX][nY] = m_spCurBk->GetId() ; 
+            if(nLine != nY)
+            {
+                if(IsFull(nY))
+                {
+                    Update(nY) ; 
+                }
+                nLine = nY ; 
+            }
         }
     }
     m_spCurBk.release() ; 
     m_spCurBk = nullptr ; 
     Create() ; 
+}
+
+bool CTetrisGame::IsFull(INT nLine) 
+{
+    for(INT nX = 1 ; nX <= WIDTH ; nX++)
+    {
+        if(m_arrBoard[nX][nLine] == OFF)
+        {
+            return false ; 
+        }
+    }
+    return true ; 
+}
+
+void CTetrisGame::Update(INT nLine)
+{   
+    for(INT nX = 1 ; nX <= WIDTH ; nX++)
+    {
+        m_arrBoard[nX][nLine] = OFF ;
+    }
+
+    for(INT nX = 1 ; nX <= WIDTH ; nX++)
+    {
+        for(INT nY = 0 ; nY < HEIGHT - 1 ; nY++)
+        {
+            m_arrBoard[nX][nY + 1] = m_arrBoard[nX][nY] ; 
+        }
+    }
 }
 
 void CTetrisGame::Draw()
@@ -155,7 +194,7 @@ bool CTetrisGame::isMoveLeft()
     {
         if(m_spCurBk->GetPos(nIndex, nX, nY))
         {
-            if((m_arrBoard[nX - 1][nY] != CURRENT) && (m_arrBoard[nX - 1][nY] != OFF)) 
+            if(m_arrBoard[nX - 1][nY] != OFF)
             {
                 return false ; 
             }
@@ -172,7 +211,7 @@ bool CTetrisGame::isMoveRight()
     {
         if(m_spCurBk->GetPos(nIndex, nX, nY))
         {
-            if((m_arrBoard[nX + 1][nY] != CURRENT) && (m_arrBoard[nX + 1][nY] != OFF)) 
+            if(m_arrBoard[nX + 1][nY] != OFF)
             {
                 return false ; 
             }
@@ -191,7 +230,7 @@ bool CTetrisGame::CanRotate()
     {
         if(m_spCurBk->GetPos(nIndex ,nX, nY))
         {   
-            if((m_arrBoard[nX - 1][nY] != CURRENT) && (m_arrBoard[nX - 1][nY] != OFF)) 
+            if(m_arrBoard[nX - 1][nY] != OFF)
             {
                 nLCount++ ; 
                 if(nLCount > 2) 
@@ -201,7 +240,7 @@ bool CTetrisGame::CanRotate()
                     return true ; 
                 }
             }
-            else if((m_arrBoard[nX + 1][nY] != CURRENT) && (m_arrBoard[nX + 1][nY] != OFF)) 
+            else if(m_arrBoard[nX + 1][nY] != OFF)
             {
                 nRCount++ ;
                 if(nRCount > 2) 
@@ -224,7 +263,7 @@ bool CTetrisGame::isMoveDown()
     {
         if(m_spCurBk->GetPos(nIndex, nX, nY))
         {
-            if((m_arrBoard[nX][nY + 1] != CURRENT) && (m_arrBoard[nX][nY + 1] != OFF)) 
+            if(m_arrBoard[nX][nY + 1] != OFF)
             {
                 return false ; 
             }
