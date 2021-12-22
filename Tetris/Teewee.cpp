@@ -4,7 +4,7 @@
 #include "Paint.h"
 
 CTeewee::CTeewee()
-    :m_nId(32)
+    :m_nId(34)
 {
     m_spPosArr = std::make_unique<CSpace[]>(BLOCKSIZE) ; 
     m_spPosArr[0].Set(4, 0, OFF) ; 

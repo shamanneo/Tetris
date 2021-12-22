@@ -12,7 +12,6 @@ class CTetrisGame
 
         OFF = 0, 
         BOUND = 1,
-        CURRENT = 2,
 
         LICKY = 30,
         RICKY = 31, 
@@ -32,8 +31,8 @@ class CTetrisGame
         void Create() ; 
         void Reach() ; 
         bool IsFull(INT nLine) ; 
-        void Update(INT nLine) ; 
-
+        void InUpdate(INT nLine) ; 
+        void OutUpdate() ; 
     public :
         void Draw() ; 
     public :

@@ -1,9 +1,10 @@
 #include "pch.h"
 #include "Smashboy.h"
 #include <math.h>
+#include "Paint.h"
 
 CSmashboy::CSmashboy()
-    :m_nId(36)
+    :m_nId(35)
 {
     m_spPosArr = std::make_unique<CSpace[]>(BLOCKSIZE) ; 
     m_spPosArr[0].Set(4, 0, OFF) ; 
@@ -40,36 +41,19 @@ INT CSmashboy::GetId() const
 
 void CSmashboy::Draw() 
 {   
-    /*
-    Gdiplus::Graphics grap { hDC } ; 
-    Gdiplus::SolidBrush blackBru { Gdiplus::Color { 255, 212, 0 } } ; 
-    for(int i = 0 ; i < 9 ; i++)
-    {
-        if(!m_spPosArr[i].IsEmpty())
-        {
-            grap.FillRectangle(&blackBru, 30 * (m_spPosArr[i].m_nX - 1) + 32, 30 * (m_spPosArr[i].m_nY - 0) + 32, 28, 28) ; 
-        }
-    }
-    */
+    CPaint paint ; 
+    paint.PaintBlock(m_spPosArr, 255, 212, 0) ; 
 }
 
 void CSmashboy::Erase()
 {
-    /*
-    Gdiplus::Graphics grap { hDC } ; 
-    Gdiplus::SolidBrush whiteBru { Gdiplus::Color { 255, 255, 255 } } ; 
-    for(int i = 0 ; i < 9 ; i++)
-    {
-        if(!m_spPosArr[i].IsEmpty())
-        {
-            grap.FillRectangle(&whiteBru, 30 * (m_spPosArr[i].m_nX - 1) + 32, 30 * (m_spPosArr[i].m_nY - 0) + 32, 28, 28) ; 
-        }
-    }
-    */
+    CPaint paint ; 
+    paint.EraseBlock(m_spPosArr) ; 
 }
 
 void CSmashboy::Left() 
 {
+    Erase() ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
         m_spPosArr[nIndex].m_nX-- ;         
@@ -78,6 +62,7 @@ void CSmashboy::Left()
 
 void CSmashboy::Right()
 {
+    Erase() ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
         m_spPosArr[nIndex].m_nX++ ;         
@@ -91,6 +76,7 @@ void CSmashboy::Rotate()
 
 void CSmashboy::Down()
 {
+    Erase() ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
         m_spPosArr[nIndex].m_nY++ ; 

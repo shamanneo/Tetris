@@ -7,6 +7,7 @@
 #include "Teewee.h" 
 #include "Smashboy.h" 
 #include <time.h>
+#include "Paint.h" 
 
 CTetrisGame::CTetrisGame()
 {
@@ -30,8 +31,8 @@ CTetrisGame::~CTetrisGame()
 void CTetrisGame::Create()
 {
     srand((unsigned int)time(NULL)) ; 
-    int nName = LICKY + (rand() % 6) ; 
-    switch(TEEWEE)
+    int nName = TEEWEE + (rand() % 2) ; 
+    switch(nName)
     {
         case LICKY :
         {
@@ -71,36 +72,22 @@ void CTetrisGame::Create()
         }
         */
     }
-    /*
-    INT nX = 0 ;
-    INT nY = 0 ; 
-    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
-    { 
-        if(m_spCurBk->GetPos(nIndex, nX, nY)) 
-        {
-            m_arrBoard[nX][nY] = CURRENT ; 
-        }
-    }
-    */
 }
 
 void CTetrisGame::Reach()
 {
     INT nX = 0 ;
     INT nY = 0 ; 
-    INT nLine = 100 ; 
+    // INT nLine = 100 ; 
     for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
     {
         if(m_spCurBk->GetPos(nIndex, nX, nY))
         {
             m_arrBoard[nX][nY] = m_spCurBk->GetId() ; 
-            if(nLine != nY)
+            if(IsFull(nY))
             {
-                if(IsFull(nY))
-                {
-                    Update(nY) ; 
-                }
-                nLine = nY ; 
+                InUpdate(nY) ; 
+                OutUpdate() ; 
             }
         }
     }
@@ -121,22 +108,30 @@ bool CTetrisGame::IsFull(INT nLine)
     return true ; 
 }
 
-void CTetrisGame::Update(INT nLine)
+void CTetrisGame::InUpdate(INT nLine)
 {   
     for(INT nX = 1 ; nX <= WIDTH ; nX++)
     {
-        m_arrBoard[nX][nLine] = OFF ;
+        m_arrBoard[nX][nLine] = OFF ; // Clear line. 
     }
-
     for(INT nX = 1 ; nX <= WIDTH ; nX++)
     {
-        for(INT nY = 0 ; nY < HEIGHT - 1 ; nY++)
+        for(INT nY = nLine - 1 ; nY >= 0  ; nY--)
         {
             m_arrBoard[nX][nY + 1] = m_arrBoard[nX][nY] ; 
         }
     }
 }
 
+void CTetrisGame::OutUpdate()
+{
+    CPaint paint ; 
+    paint.EraseBoard() ; 
+    paint.PaintBoard(m_arrBoard) ; 
+}
+
+// ================================================
+ 
 void CTetrisGame::Draw()
 {
     m_spCurBk->Draw() ;
@@ -220,7 +215,7 @@ bool CTetrisGame::isMoveRight()
     return true ; 
 }
 
-bool CTetrisGame::CanRotate()
+bool CTetrisGame::CanRotate() // Need Updating...
 {
     INT nX = 0 ; 
     INT nY = 0 ; 
@@ -259,7 +254,7 @@ bool CTetrisGame::isMoveDown()
 {
     INT nX = 0 ;
     INT nY = 0 ; 
-    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
+    for(INT nIndex = 0 ; nIndex < WIDTH - 1 ; nIndex++)
     {
         if(m_spCurBk->GetPos(nIndex, nX, nY))
         {
