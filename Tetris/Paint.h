@@ -10,6 +10,9 @@ class CPaint
     {
         WIDTH = 10,
         HEIGHT = 20,
+        
+        DEFAULT_ARRAY_SIZE = 9,
+        HERO_ARRAY_SIZE = 16,
          
         LICKY = 30,
         RICKY = 31, 
@@ -25,8 +28,8 @@ class CPaint
         CPaint() ;
         ~CPaint() ; 
     public :
-        void PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT nB) ; 
-        void EraseBlock(std::unique_ptr<CSpace[]> &spPosArr) ; 
+        void PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT nB, INT nArrSize = DEFAULT_ARRAY_SIZE) ; 
+        void EraseBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nArrSize = DEFAULT_ARRAY_SIZE) ; 
         void PaintBoard(INT arrTotalBoard[][21]) ; 
         void EraseBoard() ; 
     public :

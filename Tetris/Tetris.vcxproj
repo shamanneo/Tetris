@@ -150,6 +150,7 @@
     <ClInclude Include="atlsupport.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Cleveland.h" />
+    <ClInclude Include="Hero.h" />
     <ClInclude Include="Licky.h" />
     <ClInclude Include="Paint.h" />
     <ClInclude Include="Phodeisland.h" />
@@ -169,6 +170,7 @@
   <ItemGroup>
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Cleveland.cpp" />
+    <ClCompile Include="Hero.cpp" />
     <ClCompile Include="Licky.cpp" />
     <ClCompile Include="Paint.cpp" />
     <ClCompile Include="Phodeisland.cpp" />

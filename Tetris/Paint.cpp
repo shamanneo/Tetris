@@ -13,12 +13,12 @@ CPaint::~CPaint()
 
 }
 
-void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT nB) 
+void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT nB, INT nArrSize) 
 {
     HDC hDC = GetDC(m_hWnd) ; 
     Gdiplus::Graphics grap { hDC } ; 
     Gdiplus::SolidBrush bruBlack { Gdiplus::Color { (BYTE)nR, (BYTE)nG, (BYTE)nB } } ; 
-    for(INT nIndex = 0 ; nIndex < WIDTH - 1 ; nIndex++)
+    for(INT nIndex = 0 ; nIndex < nArrSize ; nIndex++)
     {
         if(!spPosArr[nIndex].IsEmpty())
         {
@@ -28,12 +28,12 @@ void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT
     ReleaseDC(m_hWnd, hDC) ; 
 }
 
-void CPaint::EraseBlock(std::unique_ptr<CSpace[]> &spPosArr)
+void CPaint::EraseBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nArrSize)
 {
     HDC hDC = GetDC(m_hWnd) ; 
     Gdiplus::Graphics grap { hDC } ; 
     Gdiplus::SolidBrush bruWhite { Gdiplus::Color { 255, 255, 255 } } ; 
-    for(INT nIndex = 0 ; nIndex < WIDTH - 1 ; nIndex++)
+    for(INT nIndex = 0 ; nIndex < nArrSize ; nIndex++)
     {
         if(!spPosArr[nIndex].IsEmpty())
         {
@@ -86,13 +86,11 @@ void CPaint::PaintBoard(INT arrTotalBoard[][21])
                     bru.SetColor(Gdiplus::Color { 255, 212, 0 }) ; 
                     break ;
                 }
-                /*
                 case HERO :
                 {
-                    bru.SetColor(Gdiplus::Color { 0, 64, 255 }) ; 
+                    bru.SetColor(Gdiplus::Color { 0, 163, 210 }) ; 
                     break ;
                 }
-                */
                 default :
                 {
                     continue ; 

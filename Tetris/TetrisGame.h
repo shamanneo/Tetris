@@ -13,6 +13,9 @@ class CTetrisGame
         OFF = 0, 
         BOUND = 1,
 
+        DEFAULT_ARRAY_SIZE = 9,
+        HERO_ARRAY_SIZE = 16,
+
         LICKY = 30,
         RICKY = 31, 
         CLEVELAND = 32, 
@@ -23,6 +26,7 @@ class CTetrisGame
     } ; 
     private :
         INT m_arrBoard[WIDTH + 2][HEIGHT + 1] ; 
+        INT m_nArrSize ; 
         std::unique_ptr<CBlock> m_spCurBk ; 
     public :
         CTetrisGame() ;

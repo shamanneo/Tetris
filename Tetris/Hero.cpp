@@ -52,13 +52,13 @@ INT CHero::GetId() const
 void CHero::Draw() 
 {   
     CPaint paint ;
-    paint.PaintBlock(m_spPosArr, 0, 163, 210) ; 
+    paint.PaintBlock(m_spPosArr, 0, 163, 210, ARRAYSIZE) ; 
 }
 
 void CHero::Erase()
 {
     CPaint paint ;
-    paint.EraseBlock(m_spPosArr) ; 
+    paint.EraseBlock(m_spPosArr, ARRAYSIZE) ; 
 }
 
 void CHero::Left() 
@@ -95,18 +95,22 @@ void CHero::Rotate()
     m_spPosArr[1].m_bPres = bArr[8] ; 
     m_spPosArr[2].m_bPres = bArr[4] ; 
     m_spPosArr[3].m_bPres = bArr[0] ; 
+
     m_spPosArr[4].m_bPres = bArr[13] ; 
     m_spPosArr[5].m_bPres = bArr[9] ; 
     m_spPosArr[6].m_bPres = bArr[5] ; 
     m_spPosArr[7].m_bPres = bArr[1] ; 
+
     m_spPosArr[8].m_bPres = bArr[14] ; 
     m_spPosArr[9].m_bPres = bArr[10] ; 
     m_spPosArr[10].m_bPres = bArr[6] ; 
     m_spPosArr[11].m_bPres = bArr[2] ; 
+
     m_spPosArr[12].m_bPres = bArr[15] ; 
     m_spPosArr[13].m_bPres = bArr[11] ; 
     m_spPosArr[14].m_bPres = bArr[7] ; 
     m_spPosArr[15].m_bPres = bArr[3] ; 
+
 }
 
 void CHero::Down()
