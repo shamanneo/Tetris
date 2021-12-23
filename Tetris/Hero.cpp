@@ -3,8 +3,8 @@
 #include <math.h>
 #include "Paint.h"
 
-CHero::CHero()
-    :m_nId(36)
+CHero::CHero(INT nArrSize)
+    : CBlock(nArrSize), m_nId(36)
 {
     m_spPosArr = std::make_unique<CSpace[]>(ARRAYSIZE) ; 
     m_spPosArr[0].Set(4, 0, OFF) ; 
@@ -33,17 +33,6 @@ CHero::~CHero()
 
 }
 
-bool CHero::GetPos(INT nIndex, INT &nX, INT &nY) const
-{
-    nX = m_spPosArr[nIndex].m_nX ;
-    nY = m_spPosArr[nIndex].m_nY ;
-    if(!m_spPosArr[nIndex].m_bPres)
-    {
-        return false ; 
-    }
-    return true ; 
-}
-
 INT CHero::GetId() const 
 {
     return m_nId ; 
@@ -53,30 +42,6 @@ void CHero::Draw()
 {   
     CPaint paint ;
     paint.PaintBlock(m_spPosArr, 0, 163, 210, ARRAYSIZE) ; 
-}
-
-void CHero::Erase()
-{
-    CPaint paint ;
-    paint.EraseBlock(m_spPosArr, ARRAYSIZE) ; 
-}
-
-void CHero::Left() 
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nX-- ;         
-    }
-}
-
-void CHero::Right()
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nX++ ;         
-    }
 }
 
 void CHero::Rotate() 
@@ -110,17 +75,9 @@ void CHero::Rotate()
     m_spPosArr[13].m_bPres = bArr[11] ; 
     m_spPosArr[14].m_bPres = bArr[7] ; 
     m_spPosArr[15].m_bPres = bArr[3] ; 
-
 }
 
-void CHero::Down()
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nY++ ; 
-    }
-}
+
 
 
 

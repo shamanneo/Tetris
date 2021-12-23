@@ -3,8 +3,8 @@
 #include <math.h>
 #include "Paint.h"
 
-CLicky::CLicky()
-    :m_nId(30)
+CLicky::CLicky(INT nArrSize)
+    :CBlock(nArrSize), m_nId(30)
 {
     m_spPosArr = std::make_unique<CSpace[]>(ARRAYSIZE) ; 
     m_spPosArr[0].Set(4, 0, ON) ; 
@@ -23,17 +23,6 @@ CLicky::~CLicky()
 
 }
 
-bool CLicky::GetPos(INT nIndex, INT &nX, INT &nY) const
-{
-    nX = m_spPosArr[nIndex].m_nX ;
-    nY = m_spPosArr[nIndex].m_nY ;
-    if(!m_spPosArr[nIndex].m_bPres)
-    {
-        return false ; 
-    }
-    return true ; 
-}
-
 INT CLicky::GetId() const 
 {
     return m_nId ; 
@@ -43,30 +32,6 @@ void CLicky::Draw()
 {   
     CPaint paint ;
     paint.PaintBlock(m_spPosArr, 0, 64, 255) ; 
-}
-
-void CLicky::Erase()
-{
-    CPaint paint ;
-    paint.EraseBlock(m_spPosArr) ; 
-}
-
-void CLicky::Left() 
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nX-- ;         
-    }
-}
-
-void CLicky::Right()
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nX++ ;         
-    }
 }
 
 void CLicky::Rotate() 
@@ -90,15 +55,6 @@ void CLicky::Rotate()
     m_spPosArr[6].m_bPres = bArr[8] ; 
     m_spPosArr[7].m_bPres = bArr[5] ; 
     m_spPosArr[8].m_bPres = bArr[2] ; 
-}
-
-void CLicky::Down()
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nY++ ; 
-    }
 }
 
 

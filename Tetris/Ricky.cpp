@@ -3,8 +3,8 @@
 #include <math.h>
 #include "Paint.h"
 
-CRicky::CRicky()
-    :m_nId(31)
+CRicky::CRicky(INT nArrSize)
+    : CBlock(nArrSize), m_nId(31)
 {
     m_spPosArr = std::make_unique<CSpace[]>(ARRAYSIZE) ; 
     m_spPosArr[0].Set(4, 0, OFF) ; 
@@ -23,17 +23,6 @@ CRicky::~CRicky()
 
 }
 
-bool CRicky::GetPos(INT nIndex, INT &nX, INT &nY) const
-{
-    nX = m_spPosArr[nIndex].m_nX ;
-    nY = m_spPosArr[nIndex].m_nY ;
-    if(!m_spPosArr[nIndex].m_bPres)
-    {
-        return false ; 
-    }
-    return true ; 
-}
-
 INT CRicky::GetId() const 
 {
     return m_nId ; 
@@ -43,30 +32,6 @@ void CRicky::Draw()
 {   
     CPaint paint ; 
     paint.PaintBlock(m_spPosArr, 255, 127, 0) ; 
-}
-
-void CRicky::Erase()
-{
-    CPaint paint ; 
-    paint.EraseBlock(m_spPosArr) ; 
-}
-
-void CRicky::Left() 
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nX-- ;         
-    }
-}
-
-void CRicky::Right()
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nX++ ;         
-    }
 }
 
 void CRicky::Rotate() 
@@ -92,14 +57,6 @@ void CRicky::Rotate()
     m_spPosArr[8].m_bPres = bArr[2] ; 
 }
 
-void CRicky::Down()
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nY++ ; 
-    }
-}
 
 
 

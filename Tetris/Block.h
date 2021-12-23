@@ -1,17 +1,36 @@
 #pragma once
 #include "Space.h"
+#include <memory>
 
 class CBlock
 {
+    enum
+    { 
+        LICKY = 30,
+        RICKY = 31, 
+        CLEVELAND = 32, 
+        PHODEISLAND = 33,
+        TEEWEE = 34, 
+        SMASHBOY = 35,
+        HERO = 36
+    } ; 
+    private :
+        INT m_nArrSize ; 
     public :
-        virtual bool GetPos(INT nIndex, INT &nX, INT &nY) const ; 
+        std::unique_ptr<CSpace[]> m_spPosArr ; 
+    public :
+        CBlock(INT nArrSize) ; 
+        virtual ~CBlock() ; 
+    public :
+        bool GetPos(INT nIndex, INT &nX, INT &nY) const ; 
         virtual INT GetId() const ; 
     public :
         virtual void Draw() ; 
-        virtual void Erase() ; 
-        virtual void Left() ; 
-        virtual void Right() ; 
+        void Erase() ; 
+        void Left() ; 
+        void Right() ; 
         virtual void Rotate() ; 
-        virtual void Down() ;
+        void Down() ;
+       
 } ;
 

@@ -3,8 +3,8 @@
 #include <math.h>
 #include "Paint.h"
 
-CTeewee::CTeewee()
-    :m_nId(34)
+CTeewee::CTeewee(INT nArrSize)
+    : CBlock(nArrSize), m_nId(34)
 {
     m_spPosArr = std::make_unique<CSpace[]>(ARRAYSIZE) ; 
     m_spPosArr[0].Set(4, 0, OFF) ; 
@@ -23,17 +23,6 @@ CTeewee::~CTeewee()
 
 }
 
-bool CTeewee::GetPos(INT nIndex, INT &nX, INT &nY) const
-{
-    nX = m_spPosArr[nIndex].m_nX ;
-    nY = m_spPosArr[nIndex].m_nY ;
-    if(!m_spPosArr[nIndex].m_bPres)
-    {
-        return false ; 
-    }
-    return true ; 
-}
-
 INT CTeewee::GetId() const 
 {
     return m_nId ; 
@@ -43,30 +32,6 @@ void CTeewee::Draw()
 {   
     CPaint paint ; 
     paint.PaintBlock(m_spPosArr, 102, 0, 153) ; 
-}
-
-void CTeewee::Erase()
-{
-    CPaint paint ; 
-    paint.EraseBlock(m_spPosArr) ; 
-}
-
-void CTeewee::Left() 
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nX-- ;         
-    }
-}
-
-void CTeewee::Right()
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nX++ ;         
-    }
 }
 
 void CTeewee::Rotate() 
@@ -92,14 +57,6 @@ void CTeewee::Rotate()
     m_spPosArr[8].m_bPres = bArr[2] ; 
 }
 
-void CTeewee::Down()
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nY++ ; 
-    }
-}
 
 
 

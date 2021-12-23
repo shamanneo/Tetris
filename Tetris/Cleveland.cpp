@@ -3,8 +3,8 @@
 #include <math.h>
 #include "Paint.h"
 
-CCleveland::CCleveland()
-    :m_nId(32)
+CCleveland::CCleveland(INT nArrSize)
+    : CBlock(nArrSize), m_nId(32)
 {
     m_spPosArr = std::make_unique<CSpace[]>(ARRAYSIZE) ; 
     m_spPosArr[0].Set(4, 0, ON) ; 
@@ -22,18 +22,6 @@ CCleveland::~CCleveland()
 {
 
 }
-
-bool CCleveland::GetPos(INT nIndex, INT &nX, INT &nY) const
-{
-    nX = m_spPosArr[nIndex].m_nX ;
-    nY = m_spPosArr[nIndex].m_nY ;
-    if(!m_spPosArr[nIndex].m_bPres)
-    {
-        return false ; 
-    }
-    return true ; 
-}
-
 INT CCleveland::GetId() const 
 {
     return m_nId ; 
@@ -43,30 +31,6 @@ void CCleveland::Draw()
 {   
     CPaint paint ;
     paint.PaintBlock(m_spPosArr, 255, 0, 0) ; 
-}
-
-void CCleveland::Erase()
-{
-    CPaint paint ;
-    paint.EraseBlock(m_spPosArr) ; 
-}
-
-void CCleveland::Left() 
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nX-- ;         
-    }
-}
-
-void CCleveland::Right()
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nX++ ;         
-    }
 }
 
 void CCleveland::Rotate() 
@@ -90,15 +54,6 @@ void CCleveland::Rotate()
     m_spPosArr[6].m_bPres = bArr[8] ; 
     m_spPosArr[7].m_bPres = bArr[5] ; 
     m_spPosArr[8].m_bPres = bArr[2] ; 
-}
-
-void CCleveland::Down()
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nY++ ; 
-    }
 }
 
 

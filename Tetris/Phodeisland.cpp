@@ -3,8 +3,8 @@
 #include <math.h>
 #include "Paint.h"
 
-CPhodeisland::CPhodeisland()
-    :m_nId(33)
+CPhodeisland::CPhodeisland(INT nArrSize)
+    : CBlock(nArrSize), m_nId(33)
 {
     m_spPosArr = std::make_unique<CSpace[]>(ARRAYSIZE) ; 
     m_spPosArr[0].Set(4, 0, OFF) ; 
@@ -23,17 +23,6 @@ CPhodeisland::~CPhodeisland()
 
 }
 
-bool CPhodeisland::GetPos(INT nIndex, INT &nX, INT &nY) const
-{
-    nX = m_spPosArr[nIndex].m_nX ;
-    nY = m_spPosArr[nIndex].m_nY ;
-    if(!m_spPosArr[nIndex].m_bPres)
-    {
-        return false ; 
-    }
-    return true ; 
-}
-
 INT CPhodeisland::GetId() const 
 {
     return m_nId ; 
@@ -43,30 +32,6 @@ void CPhodeisland::Draw()
 {   
     CPaint paint ;
     paint.PaintBlock(m_spPosArr, 0, 128, 0) ; 
-}
-
-void CPhodeisland::Erase()
-{
-    CPaint paint ; 
-    paint.EraseBlock(m_spPosArr) ; 
-}
-
-void CPhodeisland::Left() 
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nX-- ;         
-    }
-}
-
-void CPhodeisland::Right()
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nX++ ;         
-    }
 }
 
 void CPhodeisland::Rotate() 
@@ -92,14 +57,6 @@ void CPhodeisland::Rotate()
     m_spPosArr[8].m_bPres = bArr[2] ; 
 }
 
-void CPhodeisland::Down()
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nY++ ; 
-    }
-}
 
 
 

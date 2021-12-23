@@ -47,7 +47,6 @@ class CTetrisGame
     public :
         bool isMoveLeft() ; 
         bool isMoveRight() ; 
-        bool CanRotate() ; 
         bool isMoveDown() ; 
 } ;
 

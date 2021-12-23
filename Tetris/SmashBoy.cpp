@@ -3,8 +3,8 @@
 #include <math.h>
 #include "Paint.h"
 
-CSmashboy::CSmashboy()
-    :m_nId(35)
+CSmashboy::CSmashboy(INT nArrSize)
+    : CBlock(nArrSize), m_nId(35)
 {
     m_spPosArr = std::make_unique<CSpace[]>(ARRAYSIZE) ; 
     m_spPosArr[0].Set(4, 0, OFF) ; 
@@ -23,17 +23,6 @@ CSmashboy::~CSmashboy()
 
 }
 
-bool CSmashboy::GetPos(INT nIndex, INT &nX, INT &nY) const
-{
-    nX = m_spPosArr[nIndex].m_nX ;
-    nY = m_spPosArr[nIndex].m_nY ;
-    if(!m_spPosArr[nIndex].m_bPres)
-    {
-        return false ; 
-    }
-    return true ; 
-}
-
 INT CSmashboy::GetId() const 
 {
     return m_nId ; 
@@ -45,43 +34,11 @@ void CSmashboy::Draw()
     paint.PaintBlock(m_spPosArr, 255, 212, 0) ; 
 }
 
-void CSmashboy::Erase()
-{
-    CPaint paint ; 
-    paint.EraseBlock(m_spPosArr) ; 
-}
-
-void CSmashboy::Left() 
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nX-- ;         
-    }
-}
-
-void CSmashboy::Right()
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nX++ ;         
-    }
-}
-
 void CSmashboy::Rotate() 
 {
-    
+    return ; 
 }
 
-void CSmashboy::Down()
-{
-    Erase() ; 
-    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
-    {
-        m_spPosArr[nIndex].m_nY++ ; 
-    }
-}
 
 
 
