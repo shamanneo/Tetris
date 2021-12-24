@@ -89,7 +89,7 @@ void CTetrisGame::Reach()
     {
         if(m_spCurBk->GetPos(nIndex, nX, nY))
         {
-            m_arrBoard[nX][nY] = m_spCurBk->GetId() ; 
+            m_arrBoard[nX][nY] = m_spCurBk->GetId() ; // mark. 
             if(IsFull(nY))
             {
                 InUpdate(nY) ; 

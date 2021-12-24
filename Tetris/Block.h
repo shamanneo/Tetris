@@ -34,13 +34,14 @@ class CBlock
     public :
         bool GetPos(INT nIndex, INT &nX, INT &nY) const ; 
         virtual INT GetId() const ; 
+        bool IsOutOfBoundary(INT nIndex) const ; 
     public :
         virtual void Draw() ; 
         void Erase() ; 
         void Left() ; 
         void Right() ; 
         virtual void Rotate(INT m_arrBoard[][HEIGHT + 1]) ; 
+        void Up() ; 
         void Down() ;
-       
 } ;
 
