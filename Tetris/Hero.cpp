@@ -44,7 +44,7 @@ void CHero::Draw()
     paint.PaintBlock(m_spPosArr, 0, 163, 210, ARRAYSIZE) ; 
 }
 
-void CHero::Rotate() 
+void CHero::Rotate(INT m_arrBoard[][HEIGHT + 1]) 
 {
     Erase() ; 
     bool bArr[ARRAYSIZE] { } ; 

@@ -58,7 +58,7 @@ void CBlock::Right()
     }
 }
 
-void CBlock::Rotate()
+void CBlock::Rotate(INT m_arrBoard[][HEIGHT + 1])
 {
     return ; 
 }

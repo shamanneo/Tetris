@@ -34,7 +34,7 @@ void CLicky::Draw()
     paint.PaintBlock(m_spPosArr, 0, 64, 255) ; 
 }
 
-void CLicky::Rotate() 
+void CLicky::Rotate(INT m_arrBoard[][HEIGHT + 1]) 
 {
     Erase() ; 
     bool bArr[ARRAYSIZE] { } ; 

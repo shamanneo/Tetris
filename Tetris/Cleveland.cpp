@@ -33,7 +33,7 @@ void CCleveland::Draw()
     paint.PaintBlock(m_spPosArr, 255, 0, 0) ; 
 }
 
-void CCleveland::Rotate() 
+void CCleveland::Rotate(INT m_arrBoard[][HEIGHT + 1]) 
 {
     Erase() ; 
     bool bArr[9] { } ; 

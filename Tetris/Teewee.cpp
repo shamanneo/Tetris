@@ -34,7 +34,7 @@ void CTeewee::Draw()
     paint.PaintBlock(m_spPosArr, 102, 0, 153) ; 
 }
 
-void CTeewee::Rotate() 
+void CTeewee::Rotate(INT m_arrBoard[][HEIGHT + 1]) 
 {
     Erase() ; 
     bool bArr[ARRAYSIZE] { } ; 

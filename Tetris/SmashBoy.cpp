@@ -34,7 +34,7 @@ void CSmashboy::Draw()
     paint.PaintBlock(m_spPosArr, 255, 212, 0) ; 
 }
 
-void CSmashboy::Rotate() 
+void CSmashboy::Rotate(INT m_arrBoard[][HEIGHT + 1]) 
 {
     return ; 
 }

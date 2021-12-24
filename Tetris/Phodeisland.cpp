@@ -34,7 +34,7 @@ void CPhodeisland::Draw()
     paint.PaintBlock(m_spPosArr, 0, 128, 0) ; 
 }
 
-void CPhodeisland::Rotate() 
+void CPhodeisland::Rotate(INT m_arrBoard[][HEIGHT + 1]) 
 {
     Erase() ; 
     bool bArr[ARRAYSIZE] { } ; 

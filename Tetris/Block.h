@@ -14,6 +14,8 @@ class CBlock
         MIDPOS = 10,  
         RIGHTPOS = 11,
 
+        HEIGHT = 20,
+
         LICKY = 30,
         RICKY = 31, 
         CLEVELAND = 32, 
@@ -37,7 +39,7 @@ class CBlock
         void Erase() ; 
         void Left() ; 
         void Right() ; 
-        virtual void Rotate() ; 
+        virtual void Rotate(INT m_arrBoard[][HEIGHT + 1]) ; 
         void Down() ;
        
 } ;
