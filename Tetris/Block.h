@@ -4,8 +4,16 @@
 
 class CBlock
 {
+    public :
     enum
     { 
+        ON = 1, 
+        OFF = 0,
+
+        LEFTPOS = 9,
+        MIDPOS = 10,  
+        RIGHTPOS = 11,
+
         LICKY = 30,
         RICKY = 31, 
         CLEVELAND = 32, 

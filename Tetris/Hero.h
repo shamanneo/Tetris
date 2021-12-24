@@ -6,8 +6,6 @@ class CHero : public CBlock
 {
     enum
     {
-        ON = 1, 
-        OFF = 0,
         ARRAYSIZE = 16
     } ; 
     public :   

@@ -6,8 +6,6 @@ class CPhodeisland : public CBlock
 {
     enum
     {
-        ON = 1, 
-        OFF = 0,
         ARRAYSIZE = 9
     } ; 
     public :   

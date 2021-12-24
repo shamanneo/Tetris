@@ -7,25 +7,25 @@ CHero::CHero(INT nArrSize)
     : CBlock(nArrSize), m_nId(36)
 {
     m_spPosArr = std::make_unique<CSpace[]>(ARRAYSIZE) ; 
-    m_spPosArr[0].Set(4, 0, OFF) ; 
-    m_spPosArr[1].Set(5, 0, OFF) ; 
-    m_spPosArr[2].Set(6, 0, OFF) ; 
-    m_spPosArr[3].Set(7, 0, OFF) ; 
+    m_spPosArr[0].Set(4, 0, OFF, LEFTPOS) ; 
+    m_spPosArr[1].Set(5, 0, OFF, LEFTPOS) ; 
+    m_spPosArr[2].Set(6, 0, OFF, RIGHTPOS) ; 
+    m_spPosArr[3].Set(7, 0, OFF, RIGHTPOS) ; 
 
-    m_spPosArr[4].Set(4, 1, ON) ; 
-    m_spPosArr[5].Set(5, 1, ON) ; 
-    m_spPosArr[6].Set(6, 1, ON) ; 
-    m_spPosArr[7].Set(7, 1, ON) ; 
+    m_spPosArr[4].Set(4, 1, ON, LEFTPOS) ; 
+    m_spPosArr[5].Set(5, 1, ON, LEFTPOS) ; 
+    m_spPosArr[6].Set(6, 1, ON, RIGHTPOS) ; 
+    m_spPosArr[7].Set(7, 1, ON, RIGHTPOS) ; 
 
-    m_spPosArr[8].Set(4, 2, OFF) ; 
-    m_spPosArr[9].Set(5, 2, OFF) ; 
-    m_spPosArr[10].Set(6, 2, OFF) ; 
-    m_spPosArr[11].Set(7, 2, OFF) ; 
+    m_spPosArr[8].Set(4, 2, OFF, LEFTPOS) ; 
+    m_spPosArr[9].Set(5, 2, OFF, LEFTPOS) ; 
+    m_spPosArr[10].Set(6, 2, OFF, RIGHTPOS) ; 
+    m_spPosArr[11].Set(7, 2, OFF, RIGHTPOS) ; 
 
-    m_spPosArr[12].Set(4, 3, OFF) ; 
-    m_spPosArr[13].Set(5, 3, OFF) ; 
-    m_spPosArr[14].Set(6, 3, OFF) ; 
-    m_spPosArr[15].Set(7, 3, OFF) ; 
+    m_spPosArr[12].Set(4, 3, OFF, LEFTPOS) ; 
+    m_spPosArr[13].Set(5, 3, OFF, LEFTPOS) ; 
+    m_spPosArr[14].Set(6, 3, OFF, RIGHTPOS) ; 
+    m_spPosArr[15].Set(7, 3, OFF, RIGHTPOS) ; 
 }
 
 CHero::~CHero()
