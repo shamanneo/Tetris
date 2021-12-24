@@ -10,6 +10,8 @@ class CBlock
         ON = 1, 
         OFF = 0,
 
+        DEFAULT_ARRAY_SIZE = 9,
+
         LEFTPOS = 9,
         MIDPOS = 10,  
         RIGHTPOS = 11,

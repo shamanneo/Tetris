@@ -66,8 +66,8 @@ void CBlock::Right()
 void CBlock::Rotate(INT m_arrBoard[][HEIGHT + 1])
 {
     Erase() ; 
-    bool bArr[9] { } ; 
-    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
+    bool bArr[DEFAULT_ARRAY_SIZE] { } ; 
+    for(INT nIndex = 0 ; nIndex < DEFAULT_ARRAY_SIZE ; nIndex++)
     {
         if(m_spPosArr[nIndex].m_bPres == true)
         {
@@ -86,7 +86,7 @@ void CBlock::Rotate(INT m_arrBoard[][HEIGHT + 1])
     m_spPosArr[7].m_bPres = bArr[5] ; 
     m_spPosArr[8].m_bPres = bArr[2] ; 
 
-    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
+    for(INT nIndex = 0 ; nIndex < DEFAULT_ARRAY_SIZE ; nIndex++)
     {
         if((m_spPosArr[nIndex].m_bPres == true) && IsOutOfBoundary(nIndex))
         {

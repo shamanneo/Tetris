@@ -22,10 +22,10 @@ CHero::CHero(INT nArrSize)
     m_spPosArr[10].Set(6, 2, OFF, RIGHTPOS) ; 
     m_spPosArr[11].Set(7, 2, OFF, RIGHTPOS) ; 
 
-    m_spPosArr[12].Set(4, 3, OFF, LEFTPOS) ; 
-    m_spPosArr[13].Set(5, 3, OFF, LEFTPOS) ; 
-    m_spPosArr[14].Set(6, 3, OFF, RIGHTPOS) ; 
-    m_spPosArr[15].Set(7, 3, OFF, RIGHTPOS) ; 
+    m_spPosArr[12].Set(4, 3, OFF, MIDPOS) ; 
+    m_spPosArr[13].Set(5, 3, OFF, MIDPOS) ; 
+    m_spPosArr[14].Set(6, 3, OFF, MIDPOS) ; 
+    m_spPosArr[15].Set(7, 3, OFF, MIDPOS) ; 
 }
 
 CHero::~CHero()
@@ -56,6 +56,7 @@ void CHero::Rotate(INT m_arrBoard[][HEIGHT + 1])
         }
         m_spPosArr[i].m_bPres = OFF ; 
     }
+
     m_spPosArr[0].m_bPres = bArr[12] ; 
     m_spPosArr[1].m_bPres = bArr[8] ; 
     m_spPosArr[2].m_bPres = bArr[4] ; 
@@ -75,6 +76,28 @@ void CHero::Rotate(INT m_arrBoard[][HEIGHT + 1])
     m_spPosArr[13].m_bPres = bArr[11] ; 
     m_spPosArr[14].m_bPres = bArr[7] ; 
     m_spPosArr[15].m_bPres = bArr[3] ; 
+
+    for(INT nIndex = 0 ; nIndex < 16 ; nIndex++)
+    {
+        if((m_spPosArr[nIndex].m_bPres == true) && IsOutOfBoundary(nIndex))
+        {
+            if(m_spPosArr[nIndex].m_nPos == LEFTPOS)
+            {
+                Right() ; 
+                Right() ; 
+            }
+            else if(m_spPosArr[nIndex].m_nPos == RIGHTPOS)
+            {
+                Left() ; 
+                Left() ; 
+            }
+            else if(m_spPosArr[nIndex].m_nPos == MIDPOS)
+            {
+                Up() ; 
+                Up() ; 
+            }
+        }
+    }
 }
 
 

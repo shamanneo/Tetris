@@ -34,7 +34,7 @@ void CTetrisGame::Create()
 {
     srand((unsigned int)time(NULL)) ; 
     INT nId = LICKY + (rand() % 7) ; 
-    switch(nId)
+    switch(HERO)
     {
         case LICKY :
         {
@@ -136,14 +136,10 @@ void CTetrisGame::OutUpdate()
     paint.PaintBoard(m_arrBoard) ; 
 }
 
-// ================================================
- 
 void CTetrisGame::Draw()
 {
     m_spCurBk->Draw() ;
 }
-
-// ================================================
 
 void CTetrisGame::Left()
 {
@@ -181,8 +177,6 @@ bool CTetrisGame::Down()
         return true ;
     }
 }
-
-// ================================================
 
 bool CTetrisGame::isMoveLeft() 
 {
