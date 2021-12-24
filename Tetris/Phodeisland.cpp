@@ -34,28 +34,6 @@ void CPhodeisland::Draw()
     paint.PaintBlock(m_spPosArr, 0, 128, 0) ; 
 }
 
-void CPhodeisland::Rotate(INT m_arrBoard[][HEIGHT + 1]) 
-{
-    Erase() ; 
-    bool bArr[ARRAYSIZE] { } ; 
-    for(INT i = 0 ; i < ARRAYSIZE ; i++)
-    {
-        if(m_spPosArr[i].m_bPres == true)
-        {
-            bArr[i] = m_spPosArr[i].m_bPres ; 
-        }
-        m_spPosArr[i].m_bPres = OFF ; 
-    }
-    m_spPosArr[0].m_bPres = bArr[6] ; 
-    m_spPosArr[1].m_bPres = bArr[3] ; 
-    m_spPosArr[2].m_bPres = bArr[0] ; 
-    m_spPosArr[3].m_bPres = bArr[7] ; 
-    m_spPosArr[4].m_bPres = bArr[4] ; 
-    m_spPosArr[5].m_bPres = bArr[1] ; 
-    m_spPosArr[6].m_bPres = bArr[8] ; 
-    m_spPosArr[7].m_bPres = bArr[5] ; 
-    m_spPosArr[8].m_bPres = bArr[2] ; 
-}
 
 
 

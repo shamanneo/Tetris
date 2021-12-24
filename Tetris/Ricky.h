@@ -17,7 +17,6 @@ class CRicky : public CBlock
         virtual INT GetId() const override ; 
     public :
         virtual void Draw() override ; 
-        virtual void Rotate(INT m_arrBoard[][HEIGHT + 1]) override ; 
 } ;
 
 

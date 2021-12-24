@@ -65,7 +65,45 @@ void CBlock::Right()
 
 void CBlock::Rotate(INT m_arrBoard[][HEIGHT + 1])
 {
-    return ; 
+    Erase() ; 
+    bool bArr[9] { } ; 
+    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
+    {
+        if(m_spPosArr[nIndex].m_bPres == true)
+        {
+            bArr[nIndex] = m_spPosArr[nIndex].m_bPres ; 
+        }
+        m_spPosArr[nIndex].m_bPres = OFF ; 
+    }
+
+    m_spPosArr[0].m_bPres = bArr[6] ; 
+    m_spPosArr[1].m_bPres = bArr[3] ; 
+    m_spPosArr[2].m_bPres = bArr[0] ; 
+    m_spPosArr[3].m_bPres = bArr[7] ; 
+    m_spPosArr[4].m_bPres = bArr[4] ; 
+    m_spPosArr[5].m_bPres = bArr[1] ; 
+    m_spPosArr[6].m_bPres = bArr[8] ; 
+    m_spPosArr[7].m_bPres = bArr[5] ; 
+    m_spPosArr[8].m_bPres = bArr[2] ; 
+
+    for(INT nIndex = 0 ; nIndex < 9 ; nIndex++)
+    {
+        if((m_spPosArr[nIndex].m_bPres == true) && IsOutOfBoundary(nIndex))
+        {
+            if(m_spPosArr[nIndex].m_nPos == LEFTPOS)
+            {
+                Right() ; 
+            }
+            else if(m_spPosArr[nIndex].m_nPos == RIGHTPOS)
+            {
+                Left() ; 
+            }
+            else if(m_spPosArr[nIndex].m_nPos == MIDPOS)
+            {
+                Up() ; 
+            }
+        }
+    }
 }
 
 

@@ -28,16 +28,17 @@ INT CSmashboy::GetId() const
     return m_nId ; 
 }
 
+void CSmashboy::Rotate(INT m_arrBoard[][HEIGHT + 1]) 
+{
+    return ; 
+}
+
 void CSmashboy::Draw() 
 {   
     CPaint paint ; 
     paint.PaintBlock(m_spPosArr, 255, 212, 0) ; 
 }
 
-void CSmashboy::Rotate(INT m_arrBoard[][HEIGHT + 1]) 
-{
-    return ; 
-}
 
 
 
