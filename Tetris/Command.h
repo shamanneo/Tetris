@@ -18,5 +18,6 @@ class CCommand
         void Right() ; 
         void Rotate() ; 
         void Down() ; 
+        void FastDown() ;
 } ;
 

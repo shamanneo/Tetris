@@ -40,10 +40,8 @@ void CCommand::InputKey(int nKey)
         }
         case SPACE :
         {
-            while(!m_spTetrisGm->Down())
-            {
-
-            }
+            FastDown() ;
+            break ; 
         }
     }
     m_spTetrisGm->Draw() ;         
@@ -76,3 +74,10 @@ void CCommand::Down()
     m_spTetrisGm->Down() ; 
 }
 
+void CCommand::FastDown()
+{
+    while(!m_spTetrisGm->Down())
+    {
+
+    }
+}

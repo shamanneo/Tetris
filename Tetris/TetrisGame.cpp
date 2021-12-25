@@ -34,7 +34,7 @@ void CTetrisGame::Create()
 {
     srand((unsigned int)time(NULL)) ; 
     INT nId = LICKY + (rand() % 7) ; 
-    switch(HERO)
+    switch(nId)
     {
         case LICKY :
         {
