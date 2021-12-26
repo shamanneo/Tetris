@@ -17,5 +17,6 @@ class CTeewee : public CBlock
         virtual INT GetId() const override ; 
     public :
         virtual void Draw() override ; 
+        virtual void FutureDraw() override ; 
 } ;
 

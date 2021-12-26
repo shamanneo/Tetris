@@ -39,6 +39,12 @@ void CSmashboy::Draw()
     paint.PaintBlock(m_spPosArr, 255, 212, 0) ; 
 }
 
+void CSmashboy::FutureDraw() 
+{   
+    CPaint paint ; 
+    paint.PaintBlock(m_spPosArr, 255, 255, 153) ; 
+}
+
 
 
 

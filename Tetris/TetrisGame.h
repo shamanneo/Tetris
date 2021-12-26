@@ -27,6 +27,7 @@ class CTetrisGame
         INT m_arrBoard[WIDTH + 2][HEIGHT + 1] ; 
         INT m_nArrSize ; 
         std::unique_ptr<CBlock> m_spCurBk ; 
+        std::unique_ptr<CBlock> m_spFurBk ; 
     public :
         CTetrisGame() ;
         ~CTetrisGame() ; 
@@ -36,6 +37,7 @@ class CTetrisGame
         bool IsFull(INT nLine) ; 
         void InUpdate(INT nLine) ; 
         void OutUpdate() ; 
+        void FutureUpdate() ; 
     public :
         void Draw() ; 
     public :
@@ -44,8 +46,8 @@ class CTetrisGame
         void Rotate() ; 
         bool Down() ; 
     public :
-        bool isMoveLeft() ; 
-        bool isMoveRight() ; 
-        bool isMoveDown() ; 
+        bool IsMoveLeft() ; 
+        bool IsMoveRight() ; 
+        bool IsMoveDown(CBlock *pBk) ; 
 } ;
 

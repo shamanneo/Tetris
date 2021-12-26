@@ -34,6 +34,12 @@ void CRicky::Draw()
     paint.PaintBlock(m_spPosArr, 255, 127, 0) ; 
 }
 
+void CRicky::FutureDraw() 
+{   
+    CPaint paint ; 
+    paint.PaintBlock(m_spPosArr, 255, 204, 153) ; 
+}
+
 
 
 

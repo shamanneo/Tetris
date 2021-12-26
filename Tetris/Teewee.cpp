@@ -34,6 +34,12 @@ void CTeewee::Draw()
     paint.PaintBlock(m_spPosArr, 102, 0, 153) ; 
 }
 
+void CTeewee::FutureDraw() 
+{   
+    CPaint paint ; 
+    paint.PaintBlock(m_spPosArr, 137, 119, 173) ; 
+}
+
 
 
 

@@ -34,7 +34,11 @@ void CPhodeisland::Draw()
     paint.PaintBlock(m_spPosArr, 0, 128, 0) ; 
 }
 
-
+void CPhodeisland::FutureDraw() 
+{   
+    CPaint paint ;
+    paint.PaintBlock(m_spPosArr, 102, 255, 51) ; 
+}
 
 
 

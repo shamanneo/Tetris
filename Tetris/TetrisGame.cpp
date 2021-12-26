@@ -40,42 +40,49 @@ void CTetrisGame::Create()
         {
             m_nArrSize = DEFAULT_ARRAY_SIZE ; 
             m_spCurBk = std::make_unique<CLicky>(m_nArrSize) ; 
+            m_spFurBk = std::make_unique<CLicky>(m_nArrSize) ; 
             break ;
         }
         case RICKY :
         {
             m_nArrSize = DEFAULT_ARRAY_SIZE ; 
             m_spCurBk = std::make_unique<CRicky>(m_nArrSize) ; 
+            m_spFurBk = std::make_unique<CRicky>(m_nArrSize) ; 
             break ;
         }
         case CLEVELAND :
         {
             m_nArrSize = DEFAULT_ARRAY_SIZE ; 
             m_spCurBk = std::make_unique<CCleveland>(m_nArrSize) ; 
+            m_spFurBk = std::make_unique<CCleveland>(m_nArrSize) ; 
             break ;
         }
         case PHODEISLAND :
         {
             m_nArrSize = DEFAULT_ARRAY_SIZE ; 
-            m_spCurBk = std::make_unique<CPhodeisland>(m_nArrSize) ; 
+            m_spCurBk = std::make_unique<CPhodeisland>(m_nArrSize) ;
+            m_spFurBk = std::make_unique<CPhodeisland>(m_nArrSize) ; 
             break ;
         }
         case TEEWEE :
         {
             m_nArrSize = DEFAULT_ARRAY_SIZE ;
             m_spCurBk = std::make_unique<CTeewee>(m_nArrSize) ; 
+            m_spFurBk = std::make_unique<CTeewee>(m_nArrSize) ; 
             break ;
         }
         case SMASHBOY :
         {
             m_nArrSize = DEFAULT_ARRAY_SIZE ; 
             m_spCurBk = std::make_unique<CSmashboy>(m_nArrSize) ; 
+            m_spFurBk = std::make_unique<CSmashboy>(m_nArrSize) ; 
             break ;
         }
         case HERO :
         {
             m_nArrSize = HERO_ARRAY_SIZE ; 
             m_spCurBk = std::make_unique<CHero>(m_nArrSize) ; 
+            m_spFurBk = std::make_unique<CHero>(m_nArrSize) ; 
             break ;
         }
     }
@@ -136,6 +143,17 @@ void CTetrisGame::OutUpdate()
     paint.PaintBoard(m_arrBoard) ; 
 }
 
+void CTetrisGame::FutureUpdate() 
+{
+    m_spFurBk->Erase() ; 
+    *m_spFurBk = *m_spCurBk ; 
+    while(IsMoveDown(m_spFurBk.get()))
+    {
+        m_spFurBk->Down() ; 
+    }
+    m_spFurBk->FutureDraw() ;
+}
+
 void CTetrisGame::Draw()
 {
     m_spCurBk->Draw() ;
@@ -143,31 +161,35 @@ void CTetrisGame::Draw()
 
 void CTetrisGame::Left()
 {
-    if(isMoveLeft())
+    if(IsMoveLeft())
     {
         m_spCurBk->Left() ; 
+        FutureUpdate() ;
     }
 }
 
 void CTetrisGame::Right() 
 {   
-    if(isMoveRight())
+    if(IsMoveRight())
     {
         m_spCurBk->Right() ; 
+        FutureUpdate() ;
     }
 }
 
 void CTetrisGame::Rotate()
 {
     m_spCurBk->Rotate(m_arrBoard) ; 
+    FutureUpdate() ;
 }
 
 bool CTetrisGame::Down()
 {
-    if(isMoveDown())
+    if(IsMoveDown(m_spCurBk.get()))
     {
         m_spCurBk->Down() ; 
         m_spCurBk->Draw() ; 
+        FutureUpdate() ; 
         return false ; 
     }
     else
@@ -178,7 +200,7 @@ bool CTetrisGame::Down()
     }
 }
 
-bool CTetrisGame::isMoveLeft() 
+bool CTetrisGame::IsMoveLeft() 
 {
     INT nX = 0 ;
     INT nY = 0 ; 
@@ -195,7 +217,7 @@ bool CTetrisGame::isMoveLeft()
     return true ; 
 }
 
-bool CTetrisGame::isMoveRight() 
+bool CTetrisGame::IsMoveRight() 
 {
     INT nX = 0 ;
     INT nY = 0 ; 
@@ -212,13 +234,13 @@ bool CTetrisGame::isMoveRight()
     return true ; 
 }
 
-bool CTetrisGame::isMoveDown()
+bool CTetrisGame::IsMoveDown(CBlock *pBk)
 {
     INT nX = 0 ;
     INT nY = 0 ; 
     for(INT nIndex = 0 ; nIndex < m_nArrSize ; nIndex++)
     {
-        if(m_spCurBk->GetPos(nIndex, nX, nY))
+        if(pBk->GetPos(nIndex, nX, nY))
         {
             if(m_arrBoard[nX][nY + 1] != OFF)
             {

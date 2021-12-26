@@ -33,6 +33,12 @@ void CCleveland::Draw()
     paint.PaintBlock(m_spPosArr, 255, 0, 0) ; 
 }
 
+void CCleveland::FutureDraw() 
+{   
+    CPaint paint ;
+    paint.PaintBlock(m_spPosArr, 255, 102, 102) ; 
+}
+
 
 
 

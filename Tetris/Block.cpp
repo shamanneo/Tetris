@@ -13,6 +13,17 @@ CBlock::~CBlock()
 
 }
 
+CBlock &CBlock::operator = (const CBlock &rOth)
+{
+    this->m_nArrSize = rOth.m_nArrSize ; 
+    this->m_spPosArr = std::make_unique<CSpace[]>(this->m_nArrSize) ; 
+    CSpace *pTemp = rOth.m_spPosArr.get() ; 
+    CSpace *pDes = this->m_spPosArr.get() ;
+
+    std::memcpy(pDes, pTemp, sizeof(CSpace) * this->m_nArrSize) ; 
+    return *this ; 
+}
+
 bool CBlock::GetPos(INT nIndex, INT &nX, INT &nY) const 
 {
     nX = m_spPosArr[nIndex].m_nX ;
@@ -37,6 +48,11 @@ bool CBlock::IsOutOfBoundary(INT nIndex) const
 void CBlock::Draw() 
 {
     return ; 
+}
+
+void CBlock::FutureDraw()
+{
+    return ;
 }
 
 void CBlock::Erase()

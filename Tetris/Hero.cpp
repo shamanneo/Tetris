@@ -44,6 +44,12 @@ void CHero::Draw()
     paint.PaintBlock(m_spPosArr, 0, 163, 210, ARRAYSIZE) ; 
 }
 
+void CHero::FutureDraw() 
+{   
+    CPaint paint ;
+    paint.PaintBlock(m_spPosArr, 153, 255, 255, ARRAYSIZE) ; 
+}
+
 void CHero::Rotate(INT m_arrBoard[][HEIGHT + 1]) 
 {
     Erase() ; 
