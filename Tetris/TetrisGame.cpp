@@ -86,6 +86,7 @@ void CTetrisGame::Create()
             break ;
         }
     }
+    FutureUpdate() ;
 }
 
 void CTetrisGame::Reach()
@@ -104,8 +105,6 @@ void CTetrisGame::Reach()
             }
         }
     }
-    m_spCurBk.release() ; 
-    m_spCurBk = nullptr ; 
     Create() ; 
 }
 

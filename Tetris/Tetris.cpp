@@ -16,6 +16,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     _CrtMemState state ;
     _CrtMemCheckpoint(&state) ;
+    _CrtSetBreakAlloc(152) ; 
     
     RECT rc { 100, 100, 1000, 1000 } ;
     CMainWnd *MainWnd = new CMainWnd ; 
