@@ -9,14 +9,17 @@ CBlock::CBlock(INT nArrSize)
 }
 
 CBlock::~CBlock()
-{
+ {
 
 }
 
 CBlock &CBlock::operator = (const CBlock &rOth)
 {
     this->m_nArrSize = rOth.m_nArrSize ; 
+
     this->m_spPosArr = std::make_unique<CSpace[]>(this->m_nArrSize) ; 
+    this->m_spPosArr = std::make_unique<CSpace[]>(this->m_nArrSize) ; 
+
     CSpace *pTemp = rOth.m_spPosArr.get() ; 
     CSpace *pDes = this->m_spPosArr.get() ;
 

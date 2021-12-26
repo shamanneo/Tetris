@@ -19,10 +19,19 @@ class CMainWnd : public CWindowImpl<CMainWnd>
             MESSAGE_HANDLER(WM_DESTROY, OnDestroy) 
         END_MSG_MAP()
     public :    
+        virtual void OnFinalMessage(HWND) override ;
         LRESULT OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled) ;
         LRESULT OnKeyDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled) ; 
         LRESULT OnTimer(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled) ; 
         LRESULT OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled) ; 
 } ; 
+
+inline void CMainWnd::OnFinalMessage(HWND)
+{
+    delete this ;
+}
+   
+
+
 
 
