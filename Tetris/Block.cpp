@@ -16,14 +16,14 @@ CBlock::~CBlock()
 CBlock &CBlock::operator = (const CBlock &rOth)
 {
     this->m_nArrSize = rOth.m_nArrSize ; 
-
-    this->m_spPosArr = std::make_unique<CSpace[]>(this->m_nArrSize) ; 
-    this->m_spPosArr = std::make_unique<CSpace[]>(this->m_nArrSize) ; 
-
+    
     CSpace *pTemp = rOth.m_spPosArr.get() ; 
     CSpace *pDes = this->m_spPosArr.get() ;
 
-    std::memcpy(pDes, pTemp, sizeof(CSpace) * this->m_nArrSize) ; 
+    for(INT nIndex = 0 ; nIndex < m_nArrSize ; nIndex++)
+    {
+        pDes[nIndex] = pTemp[nIndex] ; 
+    }
     return *this ; 
 }
 
