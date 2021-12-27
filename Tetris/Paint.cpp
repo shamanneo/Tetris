@@ -2,10 +2,11 @@
 #include "Paint.h"
 
 HWND CPaint::m_hWnd = 0 ; 
+INT CPaint::m_nScore = 0 ; 
 
 CPaint::CPaint()
 {
-
+    
 }
 
 CPaint::~CPaint() 
@@ -115,6 +116,16 @@ void CPaint::EraseBoard()
             grap.FillRectangle(&bruWhite, 30 * (nX - 1) + 32, 30 * nY + 32, 28, 28) ; 
         }
     }
+    ReleaseDC(m_hWnd, hDC) ; 
+}
+
+void CPaint::DrawScores(INT nScore) 
+{
+    m_nScore += nScore ; 
+    HDC hDC = GetDC(m_hWnd) ; 
+    CString str ; 
+    str.Format(_T("SCORE : %d   "), m_nScore) ;
+	TextOut(hDC, 400, 50, str, str.GetLength()) ;
     ReleaseDC(m_hWnd, hDC) ; 
 }
 

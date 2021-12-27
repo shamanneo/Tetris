@@ -39,6 +39,8 @@ LRESULT CMainWnd::OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandle
     BeginPaint(&ps) ;
 
     HDC hDC = GetDC() ; 
+    CString strTot { "SCORE : 0 " } ;  
+	TextOut(hDC, 420, 50, strTot, strTot.GetLength()) ;
     DrawBoard(hDC) ; 
     ReleaseDC(hDC) ; 
 

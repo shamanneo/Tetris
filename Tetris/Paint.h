@@ -24,6 +24,7 @@ class CPaint
     } ; 
     private :
         static HWND m_hWnd ; 
+        static INT m_nScore ; 
     public :
         CPaint() ;
         ~CPaint() ; 
@@ -34,5 +35,6 @@ class CPaint
         void EraseBoard() ; 
     public :
         static void Assign(HWND hWnd) ; 
+        static void DrawScores(INT nScore) ; 
 } ;
 

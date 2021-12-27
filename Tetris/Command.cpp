@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Command.h"
-#include "Teewee.h"
+#include "Paint.h" 
 
 CCommand::CCommand()
 {
@@ -11,8 +11,6 @@ CCommand::~CCommand()
 {
 
 }
-
-// ===========================
 
 void CCommand::InputKey(int nKey)
 {
@@ -52,8 +50,6 @@ void CCommand::Draw()
     m_spTetrisGm->Draw() ; 
 }
 
-// ===========================
-
 void CCommand::Left() 
 {
     m_spTetrisGm->Left() ; 
@@ -80,4 +76,5 @@ void CCommand::FastDown()
     {
 
     }
+    CPaint::DrawScores(30) ; 
 }

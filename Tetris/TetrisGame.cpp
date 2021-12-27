@@ -102,6 +102,7 @@ void CTetrisGame::Reach()
             {
                 InUpdate(nY) ; 
                 OutUpdate() ; 
+                CPaint::DrawScores(100) ; 
             }
         }
     }
