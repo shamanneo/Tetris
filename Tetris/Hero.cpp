@@ -83,7 +83,7 @@ void CHero::Rotate(INT m_arrBoard[][HEIGHT + 1])
     m_spPosArr[14].m_bPres = bArr[7] ; 
     m_spPosArr[15].m_bPres = bArr[3] ; 
 
-    for(INT nIndex = 0 ; nIndex < 16 ; nIndex++)
+    for(INT nIndex = 0 ; nIndex < ARRAYSIZE ; nIndex++)
     {
         if((m_spPosArr[nIndex].m_bPres == true) && IsOutOfBoundary(nIndex))
         {

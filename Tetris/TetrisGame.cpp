@@ -9,6 +9,7 @@
 #include "Hero.h" 
 #include <time.h>
 #include "Paint.h" 
+#include <set>
 
 CTetrisGame::CTetrisGame()
 {
@@ -92,18 +93,25 @@ void CTetrisGame::Create()
 void CTetrisGame::Reach()
 {
     INT nX = 0 ;
-    INT nY = 0 ; 
+    INT nY = 0 ;
+    INT nLine = 0 ; 
+    std::set<INT> setYs ; 
     for(INT nIndex = 0 ; nIndex < m_nArrSize ; nIndex++)
     {
         if(m_spCurBk->GetPos(nIndex, nX, nY))
         {
             m_arrBoard[nX][nY] = m_spCurBk->GetId() ; // mark. 
-            if(IsFull(nY))
-            {
-                InUpdate(nY) ; 
-                OutUpdate() ; 
-                CPaint::DrawScores(100) ; 
-            }
+            setYs.insert(nY) ; 
+        }
+    }
+    for(auto it = setYs.begin() ; it != setYs.end() ; it++)
+    {
+        nLine = *it ; 
+        if(IsFull(nLine))
+        {
+            InUpdate(nLine) ; 
+            OutUpdate() ; 
+            CPaint::DrawScores(100) ; 
         }
     }
     Create() ; 
