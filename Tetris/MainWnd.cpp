@@ -3,6 +3,7 @@
 #include "resource.h" 
 #include <gdiplus.h>
 #pragma comment (lib, "Gdiplus.lib")
+#include "Paint.h"
 
 int nKey ; 
 void DrawBoard(HDC hDC)
@@ -39,8 +40,7 @@ LRESULT CMainWnd::OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandle
     BeginPaint(&ps) ;
 
     HDC hDC = GetDC() ; 
-    CString strTot { "SCORE : 0 " } ;  
-	TextOut(hDC, 420, 50, strTot, strTot.GetLength()) ;
+    CPaint::DrawScores(0) ; 
     DrawBoard(hDC) ; 
     ReleaseDC(hDC) ; 
 
