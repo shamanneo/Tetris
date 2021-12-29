@@ -27,8 +27,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     MainWnd->ShowWindow(SW_SHOW) ; 
     MainWnd->UpdateWindow() ; 
 
-    CPaint::Assign(MainWnd->m_hWnd) ; 
-
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_TETRIS)) ;
     MSG msg ;
 

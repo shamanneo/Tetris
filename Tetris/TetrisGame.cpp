@@ -104,6 +104,12 @@ void CTetrisGame::Reach()
             setYs.insert(nY) ; 
         }
     }
+
+    if(IsGameOver())
+    {
+        return ;  
+    }
+
     for(auto it = setYs.begin() ; it != setYs.end() ; it++)
     {
         nLine = *it ; 
@@ -127,6 +133,18 @@ bool CTetrisGame::IsFull(INT nLine)
         }
     }
     return true ; 
+}
+
+bool CTetrisGame::IsGameOver() 
+{
+    for(INT nX = 1 ; nX <= WIDTH ; nX++)
+    {
+        if(m_arrBoard[nX][0] != OFF)
+        {
+            return true ; 
+        }
+    }
+    return false ; 
 }
 
 void CTetrisGame::InUpdate(INT nLine)

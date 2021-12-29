@@ -35,6 +35,7 @@ class CTetrisGame
         void Create() ; 
         void Reach() ; 
         bool IsFull(INT nLine) ; 
+        bool IsGameOver() ; 
         void InUpdate(INT nLine) ; 
         void OutUpdate() ; 
         void FutureUpdate() ; 
@@ -49,5 +50,6 @@ class CTetrisGame
         bool IsMoveLeft() ; 
         bool IsMoveRight() ; 
         bool IsMoveDown(CBlock *pBk) ; 
+        
 } ;
 
