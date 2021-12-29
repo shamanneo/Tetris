@@ -19,5 +19,6 @@ class CCommand
         void Rotate() ; 
         void Down() ; 
         void FastDown() ;
+        void PaintBoard() ; 
 } ;
 

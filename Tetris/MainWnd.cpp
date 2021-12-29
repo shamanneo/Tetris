@@ -40,8 +40,11 @@ LRESULT CMainWnd::OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandle
     BeginPaint(&ps) ;
 
     HDC hDC = GetDC() ; 
+
     CPaint::DrawScores(0) ; 
     DrawBoard(hDC) ; 
+    m_spComm->PaintBoard() ; 
+
     ReleaseDC(hDC) ; 
 
     EndPaint(&ps) ; 

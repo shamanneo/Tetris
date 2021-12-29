@@ -78,3 +78,8 @@ void CCommand::FastDown()
     }
     CPaint::DrawScores(30) ; 
 }
+
+void CCommand::PaintBoard() 
+{
+    m_spTetrisGm->OutUpdate() ; 
+}
