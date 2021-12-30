@@ -100,7 +100,6 @@ void CPaint::PaintBoard(INT arrTotalBoard[][21])
             grap.FillRectangle(&bru, 30 * (nX - 1) + 32, 30 * nY + 32, 28, 28) ; 
         }
     }
-
     ReleaseDC(m_hWnd, hDC) ; 
 }
 
@@ -117,6 +116,55 @@ void CPaint::EraseBoard()
         }
     }
     ReleaseDC(m_hWnd, hDC) ; 
+}
+
+void CPaint::PrintNextBlock(INT nId) 
+{
+    const INT nX = 400 ;
+    const INT nY = 400 ;
+    HDC hDC = GetDC(m_hWnd) ; 
+    Gdiplus::Graphics grap { hDC } ;
+    CString str ; 
+    switch (nId)
+    {
+        case LICKY :
+        {
+            str = "LICKY.png" ;  
+            break ;
+        }
+        case RICKY :
+        {
+            str = "RICKY.png" ;  
+            break ;
+        }
+        case CLEVELAND :
+        {
+            str = "CLEVELAND.png" ;  
+            break ;
+        }
+        case PHODEISLAND :
+        {
+            str = "PHODEISLAND.png" ;  
+            break ;
+        }
+        case TEEWEE :
+        {
+            str = "TEEWEE.png" ;  
+            break ;
+        }
+        case SMASHBOY :
+        {
+            str = "SMASHBOY.png" ;  
+            break ;
+        }
+        case HERO :
+        {
+            str = "HERO.png" ;  
+            break ;
+        }
+    }
+    Gdiplus::Image Img { str } ; 
+    grap.DrawImage(&Img, nX, nY) ; 
 }
 
 void CPaint::DrawScores(INT nScore) 

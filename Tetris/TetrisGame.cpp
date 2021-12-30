@@ -14,6 +14,7 @@
 CTetrisGame::CTetrisGame()
 {
     m_nArrSize = DEFAULT_ARRAY_SIZE ; 
+    m_nNextId = 0 ;
     for(INT nY = 0 ; nY <= HEIGHT ; nY++)
     {
         m_arrBoard[0][nY] = BOUND ; 
@@ -33,8 +34,17 @@ CTetrisGame::~CTetrisGame()
 
 void CTetrisGame::Create()
 {
-    srand((unsigned int)time(NULL)) ; 
-    INT nId = LICKY + (rand() % 7) ; 
+    srand((unsigned int)time(NULL)) ;
+    INT nId = 0 ; 
+    if(m_nNextId == 0)
+    {
+        nId = LICKY + (rand() % 7) ; 
+    }
+    else
+    {
+        nId = m_nNextId ; 
+    }
+    m_nNextId = LICKY + (rand() % 7) ; 
     switch(nId)
     {
         case LICKY :
@@ -87,7 +97,9 @@ void CTetrisGame::Create()
             break ;
         }
     }
-    FutureUpdate() ;
+    CPaint paint ;
+    paint.PrintNextBlock(m_nNextId) ; 
+    FutureUpdate() ; 
 }
 
 void CTetrisGame::Reach()

@@ -25,7 +25,8 @@ class CTetrisGame
     } ; 
     private :
         INT m_arrBoard[WIDTH + 2][HEIGHT + 1] ; 
-        INT m_nArrSize ; 
+        INT m_nArrSize ;
+        INT m_nNextId ; 
         std::unique_ptr<CBlock> m_spCurBk ; 
         std::unique_ptr<CBlock> m_spFurBk ; 
     public :
@@ -50,6 +51,5 @@ class CTetrisGame
         bool IsMoveLeft() ; 
         bool IsMoveRight() ; 
         bool IsMoveDown(CBlock *pBk) ; 
-        
 } ;
 
