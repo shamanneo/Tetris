@@ -120,7 +120,7 @@ void CPaint::EraseBoard()
 
 void CPaint::PrintNextBlock(INT nId) 
 {
-    const INT nX = 400 ;
+    const INT nX = 360 ;
     const INT nY = 400 ;
     HDC hDC = GetDC(m_hWnd) ; 
     Gdiplus::Graphics grap { hDC } ;
@@ -164,7 +164,7 @@ void CPaint::PrintNextBlock(INT nId)
         }
     }
     Gdiplus::Image Img { str } ; 
-    grap.DrawImage(&Img, nX, nY) ; 
+    grap.DrawImage(&Img, nX, nY, 200, 200) ; 
 }
 
 void CPaint::DrawScores(INT nScore) 

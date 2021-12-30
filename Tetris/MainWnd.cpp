@@ -9,10 +9,12 @@ int nKey ;
 void DrawBoard(HDC hDC)
 {
     Gdiplus::Graphics grap { hDC } ; 
-    Gdiplus::Pen pen { Gdiplus::Color { 150, 204, 204, 204 }  } ; 
+    Gdiplus::Pen pen { Gdiplus::Color { 255, 0, 0, 0 }, 3.5 } ; 
 
+    grap.DrawRectangle(&pen, 30, 30, 302, 600) ; 
+    pen.SetColor( Gdiplus::Color { 50, 0, 0, 0 } ) ;  
+    pen.SetWidth(1) ; 
     
-    grap.DrawRectangle(&pen, 30, 30, 300, 600) ; 
     for(int i = 0 ; i < 10 ; i++)
     {
         grap.DrawLine(&pen, 30 + 30 * i, 30, 30 + 30 * i, 630) ; 
@@ -21,6 +23,7 @@ void DrawBoard(HDC hDC)
     {
         grap.DrawLine(&pen, 30, 30 + 30 * i, 330, 30 + 30 * i) ; 
     }
+    
 }
 
 CMainWnd::CMainWnd()
