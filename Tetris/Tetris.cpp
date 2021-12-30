@@ -31,7 +31,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     MSG msg ;
 
     SetTimer(MainWnd->m_hWnd, IDT_DRAW_TIMER, 0, NULL) ; 
-    SetTimer(MainWnd->m_hWnd, IDT_DOWN_TIMER, 10000, NULL) ;
+    SetTimer(MainWnd->m_hWnd, IDT_DOWN_TIMER, 300, NULL) ;
 
     while (GetMessage(&msg, nullptr, 0, 0)) // main message loop.
     {
