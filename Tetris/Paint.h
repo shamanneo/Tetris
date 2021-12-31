@@ -33,6 +33,7 @@ class CPaint
         void PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT nB, INT nArrSize = DEFAULT_ARRAY_SIZE) ; 
         void EraseBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nArrSize = DEFAULT_ARRAY_SIZE) ; 
         void PaintBoard(INT arrTotalBoard[][21]) ; 
+        void DrawBoard() ; 
         void EraseBoard() ; 
     public :
         static void Assign(HWND hWnd) ; 

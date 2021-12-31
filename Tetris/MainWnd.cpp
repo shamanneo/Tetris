@@ -6,24 +6,6 @@
 #include "Paint.h"
 
 int nKey ; 
-void DrawBoard(HDC hDC)
-{
-    Gdiplus::Graphics grap { hDC } ; 
-    Gdiplus::Pen pen { Gdiplus::Color { 255, 0, 0, 0 }, 3.5 } ; 
-
-    grap.DrawRectangle(&pen, 30, 30, 302, 600) ; 
-    pen.SetColor( Gdiplus::Color { 50, 0, 0, 0 } ) ;  
-    pen.SetWidth(1) ; 
-    
-    for(int i = 0 ; i < 10 ; i++)
-    {
-        grap.DrawLine(&pen, 30 + 30 * i, 30, 30 + 30 * i, 630) ; 
-    }
-    for(int i = 0 ; i < 20 ; i++)
-    {
-        grap.DrawLine(&pen, 30, 30 + 30 * i, 330, 30 + 30 * i) ; 
-    }
-}
 
 CMainWnd::CMainWnd()
 {
@@ -42,9 +24,10 @@ LRESULT CMainWnd::OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandle
     BeginPaint(&ps) ;
 
     HDC hDC = GetDC() ; 
-    CPaint::DrawScores(0) ; 
-    CPaint::PrintNextBlock(0) ; 
-    DrawBoard(hDC) ; 
+    CPaint paint ;
+    paint.DrawScores(0) ;
+    paint.DrawBoard() ; 
+    paint.PrintNextBlock(0) ; 
     m_spComm->PaintBoard() ; 
     ReleaseDC(hDC) ; 
 

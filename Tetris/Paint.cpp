@@ -104,6 +104,27 @@ void CPaint::PaintBoard(INT arrTotalBoard[][21])
     ReleaseDC(m_hWnd, hDC) ; 
 }
 
+void CPaint::DrawBoard() 
+{
+    HDC hDC = GetDC(m_hWnd) ; 
+    Gdiplus::Graphics grap { hDC } ; 
+    Gdiplus::Pen pen { Gdiplus::Color { 255, 0, 0, 0 }, 3.5 } ; 
+
+    grap.DrawRectangle(&pen, 30, 30, 302, 600) ; 
+    pen.SetColor( Gdiplus::Color { 50, 0, 0, 0 } ) ;  
+    pen.SetWidth(1) ; 
+    
+    for(INT i = 0 ; i < WIDTH ; i++)
+    {
+        grap.DrawLine(&pen, 30 + 30 * i, 30, 30 + 30 * i, 630) ; 
+    }
+    for(INT i = 0 ; i < HEIGHT ; i++)
+    {
+        grap.DrawLine(&pen, 30, 30 + 30 * i, 330, 30 + 30 * i) ; 
+    }
+    ReleaseDC(m_hWnd, hDC) ; 
+}
+
 void CPaint::EraseBoard()
 {
     HDC hDC = GetDC(m_hWnd) ; 
