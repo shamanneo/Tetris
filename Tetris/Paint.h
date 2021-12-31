@@ -25,6 +25,7 @@ class CPaint
     private :
         static HWND m_hWnd ; 
         static INT m_nScore ; 
+        static INT m_nId ; 
     public :
         CPaint() ;
         ~CPaint() ; 
@@ -33,9 +34,9 @@ class CPaint
         void EraseBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nArrSize = DEFAULT_ARRAY_SIZE) ; 
         void PaintBoard(INT arrTotalBoard[][21]) ; 
         void EraseBoard() ; 
-        void PrintNextBlock(INT nId) ; 
     public :
         static void Assign(HWND hWnd) ; 
         static void DrawScores(INT nScore) ; 
+        static void PrintNextBlock(INT nId = 0) ; 
 } ;
 

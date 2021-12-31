@@ -97,8 +97,7 @@ void CTetrisGame::Create()
             break ;
         }
     }
-    CPaint paint ;
-    paint.PrintNextBlock(m_nNextId) ; 
+    CPaint::PrintNextBlock(m_nNextId) ; 
     FutureUpdate() ; 
 }
 

@@ -23,7 +23,6 @@ void DrawBoard(HDC hDC)
     {
         grap.DrawLine(&pen, 30, 30 + 30 * i, 330, 30 + 30 * i) ; 
     }
-    
 }
 
 CMainWnd::CMainWnd()
@@ -44,6 +43,7 @@ LRESULT CMainWnd::OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandle
 
     HDC hDC = GetDC() ; 
     CPaint::DrawScores(0) ; 
+    CPaint::PrintNextBlock(0) ; 
     DrawBoard(hDC) ; 
     m_spComm->PaintBoard() ; 
     ReleaseDC(hDC) ; 

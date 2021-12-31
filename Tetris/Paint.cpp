@@ -3,6 +3,7 @@
 
 HWND CPaint::m_hWnd = 0 ; 
 INT CPaint::m_nScore = 0 ; 
+INT CPaint::m_nId = 0 ;
 
 CPaint::CPaint()
 {
@@ -23,7 +24,7 @@ void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT
     {
         if(!spPosArr[nIndex].IsEmpty())
         {
-            grap.FillRectangle(&bruBlack, 30 * (spPosArr[nIndex].m_nX - 1) + 32, 30 * spPosArr[nIndex].m_nY + 32, 28, 28) ; 
+            grap.FillRectangle(&bruBlack, 30 * (spPosArr[nIndex].m_nX - 1) + 32, 30 * spPosArr[nIndex].m_nY + 32, 27, 27) ; 
         }
     }
     ReleaseDC(m_hWnd, hDC) ; 
@@ -38,7 +39,7 @@ void CPaint::EraseBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nArrSize)
     {
         if(!spPosArr[nIndex].IsEmpty())
         {
-            grap.FillRectangle(&bruWhite, 30 * (spPosArr[nIndex].m_nX - 1) + 32, 30 * spPosArr[nIndex].m_nY + 32, 28, 28) ; 
+            grap.FillRectangle(&bruWhite, 30 * (spPosArr[nIndex].m_nX - 1) + 32, 30 * spPosArr[nIndex].m_nY + 32, 27, 27) ; 
         }
     }
     ReleaseDC(m_hWnd, hDC) ; 
@@ -97,7 +98,7 @@ void CPaint::PaintBoard(INT arrTotalBoard[][21])
                     continue ; 
                 }
             }
-            grap.FillRectangle(&bru, 30 * (nX - 1) + 32, 30 * nY + 32, 28, 28) ; 
+            grap.FillRectangle(&bru, 30 * (nX - 1) + 32, 30 * nY + 32, 27, 27) ; 
         }
     }
     ReleaseDC(m_hWnd, hDC) ; 
@@ -112,7 +113,7 @@ void CPaint::EraseBoard()
     {
         for(INT nY = 0 ; nY < HEIGHT ; nY++)
         {
-            grap.FillRectangle(&bruWhite, 30 * (nX - 1) + 32, 30 * nY + 32, 28, 28) ; 
+            grap.FillRectangle(&bruWhite, 30 * (nX - 1) + 32, 30 * nY + 32, 27, 27) ; 
         }
     }
     ReleaseDC(m_hWnd, hDC) ; 
@@ -120,12 +121,17 @@ void CPaint::EraseBoard()
 
 void CPaint::PrintNextBlock(INT nId) 
 {
+    if(nId != 0)
+    {
+        m_nId = nId ; 
+    }
+
     const INT nX = 360 ;
     const INT nY = 400 ;
     HDC hDC = GetDC(m_hWnd) ; 
     Gdiplus::Graphics grap { hDC } ;
     CString str ; 
-    switch (nId)
+    switch (m_nId)
     {
         case LICKY :
         {
