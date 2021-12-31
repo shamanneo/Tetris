@@ -22,12 +22,19 @@ LRESULT CMainWnd::OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandle
     CPaint::Assign(m_hWnd) ;
     PAINTSTRUCT ps ; 
     HDC hDC = BeginPaint(&ps) ;
-
+    
+    /*
+    Gdiplus::Graphics grap { hDC } ; 
+    Gdiplus::Image img { L"TetrisMain.png" } ; 
+    grap.DrawImage(&img, 0, 0, 1090, 721) ; 
+    */
+    
     CPaint paint ;
     paint.DrawScores(0) ;
     paint.DrawBoard() ; 
     paint.PrintNextBlock(0) ; 
     m_spComm->PaintBoard() ; 
+    paint.PrintCastle() ;
 
     EndPaint(&ps) ; 
     return 0 ;

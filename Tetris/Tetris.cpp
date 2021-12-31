@@ -23,7 +23,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     ULONG_PTR gdiplusToken ; 
     GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL) ; 
 
-    MainWnd->Create(NULL, &rc, _T("Tetris"), WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX, 0) ;  
+    MainWnd->Create(NULL, &rc, _T("Tetris"), WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX, 0) ;  
     MainWnd->ShowWindow(SW_SHOW) ; 
     MainWnd->UpdateWindow() ; 
 

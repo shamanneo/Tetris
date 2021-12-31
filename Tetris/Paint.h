@@ -37,6 +37,7 @@ class CPaint
         void PaintBoard(INT arrTotalBoard[][21]) ; 
         void DrawBoard() ; 
         void EraseBoard() ; 
+        void PrintCastle() ; 
     public :
         static void Assign(HWND hWnd) ; 
         static void DrawScores(INT nScore) ; 

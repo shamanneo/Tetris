@@ -10,7 +10,7 @@ class CMainWnd : public CWindowImpl<CMainWnd>
         CMainWnd() ; 
         ~CMainWnd() ;
     public :
-        DECLARE_WND_CLASS(_T("MainWnd")) ; 
+        DECLARE_WND_CLASS_EX(_T("MainWnd"), CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS, COLOR_WINDOW + 2) ; 
 
         BEGIN_MSG_MAP(CMainWnd) 
             MESSAGE_HANDLER(WM_PAINT, OnPaint) 

@@ -34,7 +34,7 @@ void CPaint::EraseBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nArrSize)
 {
     HDC hDC = GetDC(m_hWnd) ; 
     Gdiplus::Graphics grap { hDC } ; 
-    Gdiplus::SolidBrush bruWhite { Gdiplus::Color { 255, 255, 255 } } ; 
+    Gdiplus::SolidBrush bruWhite { Gdiplus::Color { 0, 0, 0 } } ; 
     for(INT nIndex = 0 ; nIndex < nArrSize ; nIndex++)
     {
         if(!spPosArr[nIndex].IsEmpty())
@@ -49,7 +49,7 @@ void CPaint::PaintBoard(INT arrTotalBoard[][21])
 {
     HDC hDC = GetDC(m_hWnd) ; 
     Gdiplus::Graphics grap { hDC } ; 
-    Gdiplus::SolidBrush bru { Gdiplus::Color { 255, 255, 255} } ;
+    Gdiplus::SolidBrush bru { Gdiplus::Color { 0, 0, 0} } ;
 
     for(INT nX = 1 ; nX <= WIDTH ; nX++)
     {
@@ -108,10 +108,10 @@ void CPaint::DrawBoard()
 {
     HDC hDC = GetDC(m_hWnd) ; 
     Gdiplus::Graphics grap { hDC } ; 
-    Gdiplus::Pen pen { Gdiplus::Color { 255, 0, 0, 0 }, 3.5 } ; 
+    Gdiplus::Pen pen { Gdiplus::Color { 255, 255, 255, 255 }, 3.5 } ; 
 
     grap.DrawRectangle(&pen, INTERVAL, INTERVAL, INTERVAL * 10, INTERVAL * 20) ; 
-    pen.SetColor( Gdiplus::Color { 50, 0, 0, 0 } ) ;  
+    pen.SetColor( Gdiplus::Color { 50, 255, 255, 255 } ) ;  
     pen.SetWidth(1) ; 
     
     for(INT i = 0 ; i < WIDTH ; i++)
@@ -129,7 +129,7 @@ void CPaint::EraseBoard()
 {
     HDC hDC = GetDC(m_hWnd) ; 
     Gdiplus::Graphics grap { hDC } ; 
-    Gdiplus::SolidBrush bruWhite { Gdiplus::Color { 255, 255, 255 } } ; 
+    Gdiplus::SolidBrush bruWhite { Gdiplus::Color { 0, 0, 0 } } ; 
     for(INT nX = 1 ; nX <= WIDTH ; nX++)
     {
         for(INT nY = 0 ; nY < HEIGHT ; nY++)
@@ -140,6 +140,17 @@ void CPaint::EraseBoard()
     ReleaseDC(m_hWnd, hDC) ; 
 }
 
+void CPaint::PrintCastle()
+{
+    /*
+    HDC hDC = GetDC(m_hWnd) ; 
+    Gdiplus::Graphics grap { m_hWnd } ; 
+    Gdiplus::Image img { L"Castle.png" } ;
+    grap.DrawImage(&img, 373, 180, 160 ,210) ; 
+    ReleaseDC(m_hWnd, hDC) ; 
+    */
+}
+
 void CPaint::PrintNextBlock(INT nId) 
 {
     if(nId != 0)
@@ -147,8 +158,8 @@ void CPaint::PrintNextBlock(INT nId)
         m_nId = nId ; 
     }
 
-    const INT nX = 360 ;
-    const INT nY = 400 ;
+    const INT nX = 357 ;
+    const INT nY = 431 ;
     HDC hDC = GetDC(m_hWnd) ; 
     Gdiplus::Graphics grap { hDC } ;
     CString str ; 
