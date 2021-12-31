@@ -13,6 +13,8 @@ class CPaint
         
         DEFAULT_ARRAY_SIZE = 9,
         HERO_ARRAY_SIZE = 16,
+
+        INTERVAL = 30,
          
         LICKY = 30,
         RICKY = 31, 

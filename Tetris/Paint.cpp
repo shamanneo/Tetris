@@ -24,7 +24,7 @@ void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT
     {
         if(!spPosArr[nIndex].IsEmpty())
         {
-            grap.FillRectangle(&bruBlack, 30 * (spPosArr[nIndex].m_nX - 1) + 32, 30 * spPosArr[nIndex].m_nY + 32, 27, 27) ; 
+            grap.FillRectangle(&bruBlack, INTERVAL * (spPosArr[nIndex].m_nX - 1) + INTERVAL + 2, INTERVAL * spPosArr[nIndex].m_nY + INTERVAL + 2, INTERVAL - 3, INTERVAL - 3) ; 
         }
     }
     ReleaseDC(m_hWnd, hDC) ; 
@@ -39,7 +39,7 @@ void CPaint::EraseBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nArrSize)
     {
         if(!spPosArr[nIndex].IsEmpty())
         {
-            grap.FillRectangle(&bruWhite, 30 * (spPosArr[nIndex].m_nX - 1) + 32, 30 * spPosArr[nIndex].m_nY + 32, 27, 27) ; 
+            grap.FillRectangle(&bruWhite, INTERVAL * (spPosArr[nIndex].m_nX - 1) + INTERVAL + 2, INTERVAL * spPosArr[nIndex].m_nY + INTERVAL + 2, INTERVAL - 3, INTERVAL - 3) ; 
         }
     }
     ReleaseDC(m_hWnd, hDC) ; 
@@ -98,7 +98,7 @@ void CPaint::PaintBoard(INT arrTotalBoard[][21])
                     continue ; 
                 }
             }
-            grap.FillRectangle(&bru, 30 * (nX - 1) + 32, 30 * nY + 32, 27, 27) ; 
+            grap.FillRectangle(&bru, INTERVAL * (nX - 1) + INTERVAL + 2, INTERVAL * nY + INTERVAL + 2, INTERVAL - 3, INTERVAL - 3) ; 
         }
     }
     ReleaseDC(m_hWnd, hDC) ; 
@@ -110,17 +110,17 @@ void CPaint::DrawBoard()
     Gdiplus::Graphics grap { hDC } ; 
     Gdiplus::Pen pen { Gdiplus::Color { 255, 0, 0, 0 }, 3.5 } ; 
 
-    grap.DrawRectangle(&pen, 30, 30, 302, 600) ; 
+    grap.DrawRectangle(&pen, INTERVAL, INTERVAL, INTERVAL * 10, INTERVAL * 20) ; 
     pen.SetColor( Gdiplus::Color { 50, 0, 0, 0 } ) ;  
     pen.SetWidth(1) ; 
     
     for(INT i = 0 ; i < WIDTH ; i++)
     {
-        grap.DrawLine(&pen, 30 + 30 * i, 30, 30 + 30 * i, 630) ; 
+        grap.DrawLine(&pen, INTERVAL + INTERVAL * i, INTERVAL, INTERVAL + INTERVAL * i, INTERVAL * 21) ; 
     }
     for(INT i = 0 ; i < HEIGHT ; i++)
     {
-        grap.DrawLine(&pen, 30, 30 + 30 * i, 330, 30 + 30 * i) ; 
+        grap.DrawLine(&pen, INTERVAL, INTERVAL + INTERVAL * i, INTERVAL * 11, INTERVAL + INTERVAL * i) ; 
     }
     ReleaseDC(m_hWnd, hDC) ; 
 }
@@ -134,7 +134,7 @@ void CPaint::EraseBoard()
     {
         for(INT nY = 0 ; nY < HEIGHT ; nY++)
         {
-            grap.FillRectangle(&bruWhite, 30 * (nX - 1) + 32, 30 * nY + 32, 27, 27) ; 
+            grap.FillRectangle(&bruWhite, INTERVAL * (nX - 1) + INTERVAL + 2, INTERVAL * nY + INTERVAL + 2, INTERVAL - 3, INTERVAL -3) ; 
         }
     }
     ReleaseDC(m_hWnd, hDC) ; 

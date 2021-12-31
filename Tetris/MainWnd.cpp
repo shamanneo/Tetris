@@ -21,15 +21,13 @@ LRESULT CMainWnd::OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandle
 {
     CPaint::Assign(m_hWnd) ;
     PAINTSTRUCT ps ; 
-    BeginPaint(&ps) ;
+    HDC hDC = BeginPaint(&ps) ;
 
-    HDC hDC = GetDC() ; 
     CPaint paint ;
     paint.DrawScores(0) ;
     paint.DrawBoard() ; 
     paint.PrintNextBlock(0) ; 
     m_spComm->PaintBoard() ; 
-    ReleaseDC(hDC) ; 
 
     EndPaint(&ps) ; 
     return 0 ;
