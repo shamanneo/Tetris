@@ -32,9 +32,9 @@ LRESULT CMainWnd::OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandle
     HDC hDC = BeginPaint(&ps) ;
     
     CPaint paint { m_hWnd, hDC } ;
-    paint.DrawScores(0) ;
+    //paint.DrawScores(0) ;
     paint.DrawBoard() ; 
-    paint.PrintNextBlock(0) ; 
+    paint.PrintNextBlock() ; 
     m_spComm->PaintBoard() ; 
     paint.PrintCastle() ;
 

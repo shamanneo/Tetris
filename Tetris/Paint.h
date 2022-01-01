@@ -2,35 +2,15 @@
 #include <memory>
 #include <gdiplus.h>
 #pragma comment (lib, "Gdiplus.lib")
+#include "MainApp.h"
 #include "Block.h"
 #include "Constants.h"
 
 class CPaint
 {   
-    enum
-    {
-        WIDTH = 10,
-        HEIGHT = 20,
-        
-        DEFAULT_ARRAY_SIZE = 9,
-        HERO_ARRAY_SIZE = 16,
-
-        INTERVAL = 30,
-         
-        LICKY = 30,
-        RICKY = 31, 
-        CLEVELAND = 32, 
-        PHODEISLAND = 33,
-        TEEWEE = 34, 
-        SMASHBOY = 35,
-        HERO = 36
-    } ; 
     private :
         HWND m_hWnd ; 
         HDC m_hDC ;
-        static INT m_nScore ; 
-        static INT m_nId ; 
-        BlockId m_eId ;
         bool m_bAutoRelease ;
     public :
         CPaint(HWND hWnd) ;
@@ -45,6 +25,6 @@ class CPaint
         void PrintCastle() ; 
     public :
         void DrawScores(INT nScore) ; 
-        void PrintNextBlock(INT nId = 0) ; 
+        void PrintNextBlock() ; 
 } ;
 

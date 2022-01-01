@@ -1,22 +1,20 @@
 #include "pch.h"
 #include "Paint.h"
 
-INT CPaint::m_nScore = 0 ; 
-INT CPaint::m_nId = 0 ;
-
 const int BLOCK_INTERVAL = 30 ;
 
 CPaint::CPaint(HWND hWnd)
 {
+    m_hWnd = hWnd ; 
+    m_hDC = GetDC(m_hWnd) ;
     m_bAutoRelease = true ;
-    m_hDC = GetDC(hWnd) ;
 }
 
 CPaint::CPaint(HWND hWnd, HDC hDC)
 {
-    m_bAutoRelease = false ;
-    m_hDC = hDC ;
     m_hWnd = hWnd ;
+    m_hDC = hDC ;
+    m_bAutoRelease = false ;
 }
 
 CPaint::~CPaint() 
@@ -35,7 +33,7 @@ void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT
     {
         if(!spPosArr[nIndex].IsEmpty())
         {
-            grap.FillRectangle(&bruBlack, INTERVAL * (spPosArr[nIndex].m_nX - 1) + INTERVAL + 2, INTERVAL * spPosArr[nIndex].m_nY + INTERVAL + 2, INTERVAL - 3, INTERVAL - 3) ; 
+            grap.FillRectangle(&bruBlack, BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 1) + BLOCK_INTERVAL + 2, BLOCK_INTERVAL * spPosArr[nIndex].m_nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
         }
     }
 }
@@ -48,7 +46,7 @@ void CPaint::EraseBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nArrSize)
     {
         if(!spPosArr[nIndex].IsEmpty())
         {
-            grap.FillRectangle(&bruWhite, INTERVAL * (spPosArr[nIndex].m_nX - 1) + INTERVAL + 2, INTERVAL * spPosArr[nIndex].m_nY + INTERVAL + 2, INTERVAL - 3, INTERVAL - 3) ; 
+            grap.FillRectangle(&bruWhite, BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 1) + BLOCK_INTERVAL + 2, BLOCK_INTERVAL * spPosArr[nIndex].m_nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
         }
     }
 }
@@ -58,44 +56,44 @@ void CPaint::PaintBoard(INT arrTotalBoard[][21])
     Gdiplus::Graphics grap { m_hDC } ; 
     Gdiplus::SolidBrush bru { Gdiplus::Color { 0, 0, 0} } ;
 
-    for(INT nX = 1 ; nX <= WIDTH ; nX++)
+    for(INT nX = 1 ; nX <= BLOCK_WIDTH_COUNT ; nX++)
     {
-        for(INT nY = 0 ; nY < HEIGHT ; nY++)
+        for(INT nY = 0 ; nY < BLOCK_HEIGHT_COUNT ; nY++)
         {
-            INT nId = arrTotalBoard[nX][nY] ; 
-            switch (nId)
+            BlockId eId = (BlockId)arrTotalBoard[nX][nY] ; 
+            switch (eId)
             {
-                case LICKY :
+                case ID_LICKY :
                 {
                     bru.SetColor(Gdiplus::Color { 0, 64, 255 }) ; 
                     break ;
                 }
-                case RICKY :
+                case ID_RICKY :
                 {
                     bru.SetColor(Gdiplus::Color { 255, 127, 0 }) ; 
                     break ;
                 }
-                case CLEVELAND :
+                case ID_CLEVELAND :
                 {
                     bru.SetColor(Gdiplus::Color { 255, 0, 0 }) ; 
                     break ;
                 }
-                case PHODEISLAND :
+                case ID_PHODEISLAND :
                 {
                     bru.SetColor(Gdiplus::Color { 0, 128, 0 }) ; 
                     break ;
                 }
-                case TEEWEE :
+                case ID_TEEWEE :
                 {
                     bru.SetColor(Gdiplus::Color { 102, 0, 153 }) ; 
                     break ;
                 }
-                case SMASHBOY :
+                case ID_SMASHBOY :
                 {
                     bru.SetColor(Gdiplus::Color { 255, 212, 0 }) ; 
                     break ;
                 }
-                case HERO :
+                case ID_HERO :
                 {
                     bru.SetColor(Gdiplus::Color { 0, 163, 210 }) ; 
                     break ;
@@ -105,7 +103,7 @@ void CPaint::PaintBoard(INT arrTotalBoard[][21])
                     continue ; 
                 }
             }
-            grap.FillRectangle(&bru, INTERVAL * (nX - 1) + INTERVAL + 2, INTERVAL * nY + INTERVAL + 2, INTERVAL - 3, INTERVAL - 3) ; 
+            grap.FillRectangle(&bru, BLOCK_INTERVAL * (nX - 1) + BLOCK_INTERVAL + 2, BLOCK_INTERVAL * nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
         }
     }
 }
@@ -115,17 +113,17 @@ void CPaint::DrawBoard()
     Gdiplus::Graphics grap { m_hDC } ; 
     Gdiplus::Pen pen { Gdiplus::Color { 255, 255, 255, 255 }, 3.5 } ; 
 
-    grap.DrawRectangle(&pen, INTERVAL, INTERVAL, INTERVAL * 10, INTERVAL * 20) ; 
+    grap.DrawRectangle(&pen, BLOCK_INTERVAL, BLOCK_INTERVAL, BLOCK_INTERVAL * 10, BLOCK_INTERVAL * 20) ; 
     pen.SetColor( Gdiplus::Color { 50, 255, 255, 255 } ) ;  
     pen.SetWidth(1) ; 
     
-    for(INT i = 0 ; i < WIDTH ; i++)
+    for(INT i = 0 ; i < BLOCK_WIDTH_COUNT ; i++)
     {
-        grap.DrawLine(&pen, INTERVAL + INTERVAL * i, INTERVAL, INTERVAL + INTERVAL * i, INTERVAL * 21) ; 
+        grap.DrawLine(&pen, BLOCK_INTERVAL + BLOCK_INTERVAL * i, BLOCK_INTERVAL, BLOCK_INTERVAL + BLOCK_INTERVAL * i, BLOCK_INTERVAL * 21) ; 
     }
-    for(INT i = 0 ; i < HEIGHT ; i++)
+    for(INT i = 0 ; i < BLOCK_HEIGHT_COUNT ; i++)
     {
-        grap.DrawLine(&pen, INTERVAL, INTERVAL + INTERVAL * i, INTERVAL * 11, INTERVAL + INTERVAL * i) ; 
+        grap.DrawLine(&pen, BLOCK_INTERVAL, BLOCK_INTERVAL + BLOCK_INTERVAL * i, BLOCK_INTERVAL * 11, BLOCK_INTERVAL + BLOCK_INTERVAL * i) ; 
     }
 }
 
@@ -133,11 +131,11 @@ void CPaint::EraseBoard()
 {
     Gdiplus::Graphics grap { m_hDC } ; 
     Gdiplus::SolidBrush bruWhite { Gdiplus::Color { 0, 0, 0 } } ; 
-    for(INT nX = 1 ; nX <= WIDTH ; nX++)
+    for(INT nX = 1 ; nX <= BLOCK_WIDTH_COUNT ; nX++)
     {
-        for(INT nY = 0 ; nY < HEIGHT ; nY++)
+        for(INT nY = 0 ; nY < BLOCK_HEIGHT_COUNT ; nY++)
         {
-            grap.FillRectangle(&bruWhite, INTERVAL * (nX - 1) + INTERVAL + 2, INTERVAL * nY + INTERVAL + 2, INTERVAL - 3, INTERVAL -3) ; 
+            grap.FillRectangle(&bruWhite, BLOCK_INTERVAL * (nX - 1) + BLOCK_INTERVAL + 2, BLOCK_INTERVAL * nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL -3) ; 
         }
     }
 }
@@ -149,49 +147,46 @@ void CPaint::PrintCastle()
     grap.DrawImage(&img, 373, 180, 160 ,210) ; 
 }
 
-void CPaint::PrintNextBlock(INT nId) 
+void CPaint::PrintNextBlock() 
 {
-    if(nId != 0)
-    {
-        m_nId = nId ; 
-    }
+    BlockId eId = CMainApp::GetInstance().GetBlockId() ; 
     const INT nX = 357 ;
     const INT nY = 431 ;
     Gdiplus::Graphics grap { m_hDC } ;
     CString str ; 
-    switch (m_nId)
+    switch (eId)
     {
-        case LICKY :
+        case ID_LICKY :
         {
             str = "LICKY.png" ;  
             break ;
         }
-        case RICKY :
+        case ID_RICKY :
         {
             str = "RICKY.png" ;  
             break ;
         }
-        case CLEVELAND :
+        case ID_CLEVELAND :
         {
             str = "CLEVELAND.png" ;  
             break ;
         }
-        case PHODEISLAND :
+        case ID_PHODEISLAND :
         {
             str = "PHODEISLAND.png" ;  
             break ;
         }
-        case TEEWEE :
+        case ID_TEEWEE :
         {
             str = "TEEWEE.png" ;  
             break ;
         }
-        case SMASHBOY :
+        case ID_SMASHBOY :
         {
             str = "SMASHBOY.png" ;  
             break ;
         }
-        case HERO :
+        case ID_HERO :
         {
             str = "HERO.png" ;  
             break ;

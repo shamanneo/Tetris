@@ -100,7 +100,9 @@ void CTetrisGame::Create()
             break ;
         }
     }
-    //CPaint::PrintNextBlock(m_nNextId) ; 
+    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
+    CMainApp::GetInstance().SetBlockId(m_eNextId) ; 
+    paint.PrintNextBlock() ; 
     FutureUpdate() ; 
 }
 

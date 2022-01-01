@@ -13,9 +13,19 @@ CMainApp::~CMainApp()
 
 }
 
-HWND CMainApp::GetMainWnd()
+HWND CMainApp::GetMainWnd() const 
 {
     return m_hWnd ;
+}
+
+BlockId CMainApp::GetBlockId() const 
+{
+    return m_eId ;
+}
+
+void CMainApp::SetBlockId(BlockId eId)  
+{
+    m_eId = eId ; 
 }
 
 //      static
