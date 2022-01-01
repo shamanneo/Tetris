@@ -1,7 +1,8 @@
 #include "pch.h"
-#include "Phodeisland.h"
 #include <math.h>
+#include "MainApp.h"
 #include "Paint.h"
+#include "Phodeisland.h"
 
 CPhodeisland::CPhodeisland(INT nArrSize)
     : CBlock(nArrSize), m_nId(33)
@@ -30,13 +31,13 @@ INT CPhodeisland::GetId() const
 
 void CPhodeisland::Draw() 
 {   
-    CPaint paint ;
+    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
     paint.PaintBlock(m_spPosArr, 0, 128, 0) ; 
 }
 
 void CPhodeisland::FutureDraw() 
 {   
-    CPaint paint ;
+    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
     paint.PaintBlock(m_spPosArr, 102, 255, 51) ; 
 }
 

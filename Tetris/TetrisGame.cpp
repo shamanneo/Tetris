@@ -1,5 +1,7 @@
 #include "pch.h"
-#include "TetrisGame.h"
+#include <time.h>
+#include <set>
+#include "MainApp.h"
 #include "Licky.h"
 #include "Ricky.h"
 #include "Cleveland.h"
@@ -7,9 +9,8 @@
 #include "Teewee.h" 
 #include "Smashboy.h" 
 #include "Hero.h" 
-#include <time.h>
 #include "Paint.h" 
-#include <set>
+#include "TetrisGame.h"
 
 CTetrisGame::CTetrisGame()
 {
@@ -97,7 +98,7 @@ void CTetrisGame::Create()
             break ;
         }
     }
-    CPaint::PrintNextBlock(m_nNextId) ; 
+    //CPaint::PrintNextBlock(m_nNextId) ; 
     FutureUpdate() ; 
 }
 
@@ -128,7 +129,7 @@ void CTetrisGame::Reach()
         {
             InUpdate(nLine) ; 
             OutUpdate() ; 
-            CPaint::DrawScores(100) ; 
+            //CPaint::DrawScores(100) ; 
         }
     }
     Create() ; 
@@ -175,7 +176,7 @@ void CTetrisGame::InUpdate(INT nLine)
 
 void CTetrisGame::OutUpdate()
 {
-    CPaint paint ; 
+    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
     paint.EraseBoard() ; 
     paint.PaintBoard(m_arrBoard) ; 
 }

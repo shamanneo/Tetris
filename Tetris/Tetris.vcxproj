@@ -150,8 +150,10 @@
     <ClInclude Include="atlsupport.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Cleveland.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="Hero.h" />
     <ClInclude Include="Licky.h" />
+    <ClInclude Include="MainApp.h" />
     <ClInclude Include="Paint.h" />
     <ClInclude Include="Phodeisland.h" />
     <ClInclude Include="Ricky.h" />
@@ -172,6 +174,7 @@
     <ClCompile Include="Cleveland.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="Licky.cpp" />
+    <ClCompile Include="MainApp.cpp" />
     <ClCompile Include="Paint.cpp" />
     <ClCompile Include="Phodeisland.cpp" />
     <ClCompile Include="Ricky.cpp" />

@@ -1,6 +1,7 @@
 #include "pch.h"
-#include "Block.h"
+#include "MainApp.h"
 #include "Paint.h"
+#include "Block.h"
 
 CBlock::CBlock(INT nArrSize)
 {
@@ -60,7 +61,7 @@ void CBlock::FutureDraw()
 
 void CBlock::Erase()
 {
-    CPaint paint ; 
+    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
     paint.EraseBlock(m_spPosArr, m_nArrSize) ; 
 }
 

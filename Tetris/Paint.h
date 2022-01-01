@@ -3,6 +3,7 @@
 #include <gdiplus.h>
 #pragma comment (lib, "Gdiplus.lib")
 #include "Block.h"
+#include "Constants.h"
 
 class CPaint
 {   
@@ -25,11 +26,15 @@ class CPaint
         HERO = 36
     } ; 
     private :
-        static HWND m_hWnd ; 
+        HWND m_hWnd ; 
+        HDC m_hDC ;
         static INT m_nScore ; 
         static INT m_nId ; 
+        BlockId m_eId ;
+        bool m_bAutoRelease ;
     public :
-        CPaint() ;
+        CPaint(HWND hWnd) ;
+        CPaint(HWND hWnd, HDC hDC) ;
         ~CPaint() ; 
     public :
         void PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT nB, INT nArrSize = DEFAULT_ARRAY_SIZE) ; 
@@ -39,8 +44,7 @@ class CPaint
         void EraseBoard() ; 
         void PrintCastle() ; 
     public :
-        static void Assign(HWND hWnd) ; 
-        static void DrawScores(INT nScore) ; 
-        static void PrintNextBlock(INT nId = 0) ; 
+        void DrawScores(INT nScore) ; 
+        void PrintNextBlock(INT nId = 0) ; 
 } ;
 

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Cleveland.h"
 #include <math.h>
+#include "MainApp.h"
 #include "Paint.h"
 
 CCleveland::CCleveland(INT nArrSize)
@@ -29,13 +30,14 @@ INT CCleveland::GetId() const
 
 void CCleveland::Draw() 
 {   
-    CPaint paint ;
+    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
     paint.PaintBlock(m_spPosArr, 255, 0, 0) ; 
 }
 
 void CCleveland::FutureDraw() 
 {   
-    CPaint paint ;
+    HWND hWnd = CMainApp::GetInstance().GetMainWnd() ;
+    CPaint paint { hWnd } ;
     paint.PaintBlock(m_spPosArr, 255, 102, 102) ; 
 }
 

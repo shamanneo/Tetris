@@ -1,7 +1,8 @@
 #include "pch.h"
-#include "Hero.h"
 #include <math.h>
+#include "MainApp.h"
 #include "Paint.h"
+#include "Hero.h"
 
 CHero::CHero(INT nArrSize)
     : CBlock(nArrSize), m_nId(36)
@@ -40,13 +41,13 @@ INT CHero::GetId() const
 
 void CHero::Draw() 
 {   
-    CPaint paint ;
+    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
     paint.PaintBlock(m_spPosArr, 0, 163, 210, ARRAYSIZE) ; 
 }
 
 void CHero::FutureDraw() 
 {   
-    CPaint paint ;
+    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
     paint.PaintBlock(m_spPosArr, 153, 255, 255, ARRAYSIZE) ; 
 }
 

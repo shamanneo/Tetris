@@ -1,7 +1,8 @@
 #include "pch.h"
-#include "Ricky.h"
 #include <math.h>
+#include "MainApp.h"
 #include "Paint.h"
+#include "Ricky.h"
 
 CRicky::CRicky(INT nArrSize)
     : CBlock(nArrSize), m_nId(31)
@@ -30,13 +31,13 @@ INT CRicky::GetId() const
 
 void CRicky::Draw() 
 {   
-    CPaint paint ; 
+    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
     paint.PaintBlock(m_spPosArr, 255, 127, 0) ; 
 }
 
 void CRicky::FutureDraw() 
 {   
-    CPaint paint ; 
+    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
     paint.PaintBlock(m_spPosArr, 255, 204, 153) ; 
 }
 

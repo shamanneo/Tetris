@@ -1,7 +1,8 @@
 #include "pch.h"
-#include "Teewee.h"
 #include <math.h>
+#include "MainApp.h"
 #include "Paint.h"
+#include "Teewee.h"
 
 CTeewee::CTeewee(INT nArrSize)
     : CBlock(nArrSize), m_nId(34)
@@ -30,13 +31,13 @@ INT CTeewee::GetId() const
 
 void CTeewee::Draw() 
 {   
-    CPaint paint ; 
+    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
     paint.PaintBlock(m_spPosArr, 102, 0, 153) ; 
 }
 
 void CTeewee::FutureDraw() 
 {   
-    CPaint paint ; 
+    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
     paint.PaintBlock(m_spPosArr, 137, 119, 173) ; 
 }
 

@@ -1,15 +1,16 @@
 #include "pch.h"
-#include "MainWnd.h"
-#include "resource.h" 
 #include <gdiplus.h>
+#include "resource.h" 
 #pragma comment (lib, "Gdiplus.lib")
 #include "Paint.h"
+#include "MainApp.h"
+#include "MainWnd.h"
 
 int nKey ; 
 
 CMainWnd::CMainWnd()
 {
-    m_spComm = std::make_unique<CCommand>() ;
+
 } 
 
 CMainWnd::~CMainWnd()
@@ -17,19 +18,20 @@ CMainWnd::~CMainWnd()
 
 }
 
+LRESULT CMainWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled)
+{
+    bHandled = FALSE ;
+    CMainApp &MainApp = CMainApp::GetInstance(m_hWnd) ;   
+    m_spComm = std::make_unique<CCommand>() ;
+    return 0 ;
+}
+
 LRESULT CMainWnd::OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled)
 {
-    CPaint::Assign(m_hWnd) ;
     PAINTSTRUCT ps ; 
     HDC hDC = BeginPaint(&ps) ;
     
-    /*
-    Gdiplus::Graphics grap { hDC } ; 
-    Gdiplus::Image img { L"TetrisMain.png" } ; 
-    grap.DrawImage(&img, 0, 0, 1090, 721) ; 
-    */
-    
-    CPaint paint ;
+    CPaint paint { m_hWnd, hDC } ;
     paint.DrawScores(0) ;
     paint.DrawBoard() ; 
     paint.PrintNextBlock(0) ; 

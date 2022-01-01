@@ -1,7 +1,8 @@
 #include "pch.h"
-#include "Smashboy.h"
 #include <math.h>
+#include "MainApp.h" 
 #include "Paint.h"
+#include "SmashBoy.h"
 
 CSmashboy::CSmashboy(INT nArrSize)
     : CBlock(nArrSize), m_nId(35)
@@ -35,13 +36,13 @@ void CSmashboy::Rotate(INT m_arrBoard[][HEIGHT + 1])
 
 void CSmashboy::Draw() 
 {   
-    CPaint paint ; 
+    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
     paint.PaintBlock(m_spPosArr, 255, 212, 0) ; 
 }
 
 void CSmashboy::FutureDraw() 
 {   
-    CPaint paint ; 
+    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
     paint.PaintBlock(m_spPosArr, 255, 255, 153) ; 
 }
 

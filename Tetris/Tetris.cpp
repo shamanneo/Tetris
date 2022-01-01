@@ -1,8 +1,9 @@
 #include "pch.h" 
+#include <crtdbg.h>
 #include "Tetris.h"
 #include "MainWnd.h"
 #include "Paint.h"
-#include <crtdbg.h>
+#include "MainApp.h"
 
 using namespace Gdiplus ; 
 
@@ -41,6 +42,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             DispatchMessage(&msg) ;
         }
     }
+    CMainApp::Release() ;
 
     KillTimer(MainWnd->m_hWnd, IDT_DRAW_TIMER) ;
     KillTimer(MainWnd->m_hWnd, IDT_DOWN_TIMER) ;

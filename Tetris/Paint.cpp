@@ -1,24 +1,35 @@
 #include "pch.h"
 #include "Paint.h"
 
-HWND CPaint::m_hWnd = 0 ; 
 INT CPaint::m_nScore = 0 ; 
 INT CPaint::m_nId = 0 ;
 
-CPaint::CPaint()
+const int BLOCK_INTERVAL = 30 ;
+
+CPaint::CPaint(HWND hWnd)
 {
-    
+    m_bAutoRelease = true ;
+    m_hDC = GetDC(hWnd) ;
+}
+
+CPaint::CPaint(HWND hWnd, HDC hDC)
+{
+    m_bAutoRelease = false ;
+    m_hDC = hDC ;
+    m_hWnd = hWnd ;
 }
 
 CPaint::~CPaint() 
 {
-
+    if(m_bAutoRelease)
+    {
+        ReleaseDC(m_hWnd, m_hDC) ;
+    }
 }
 
 void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT nB, INT nArrSize) 
 {
-    HDC hDC = GetDC(m_hWnd) ; 
-    Gdiplus::Graphics grap { hDC } ; 
+    Gdiplus::Graphics grap { m_hDC } ; 
     Gdiplus::SolidBrush bruBlack { Gdiplus::Color { (BYTE)nR, (BYTE)nG, (BYTE)nB } } ; 
     for(INT nIndex = 0 ; nIndex < nArrSize ; nIndex++)
     {
@@ -27,13 +38,11 @@ void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT
             grap.FillRectangle(&bruBlack, INTERVAL * (spPosArr[nIndex].m_nX - 1) + INTERVAL + 2, INTERVAL * spPosArr[nIndex].m_nY + INTERVAL + 2, INTERVAL - 3, INTERVAL - 3) ; 
         }
     }
-    ReleaseDC(m_hWnd, hDC) ; 
 }
 
 void CPaint::EraseBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nArrSize)
 {
-    HDC hDC = GetDC(m_hWnd) ; 
-    Gdiplus::Graphics grap { hDC } ; 
+    Gdiplus::Graphics grap { m_hDC } ; 
     Gdiplus::SolidBrush bruWhite { Gdiplus::Color { 0, 0, 0 } } ; 
     for(INT nIndex = 0 ; nIndex < nArrSize ; nIndex++)
     {
@@ -42,13 +51,11 @@ void CPaint::EraseBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nArrSize)
             grap.FillRectangle(&bruWhite, INTERVAL * (spPosArr[nIndex].m_nX - 1) + INTERVAL + 2, INTERVAL * spPosArr[nIndex].m_nY + INTERVAL + 2, INTERVAL - 3, INTERVAL - 3) ; 
         }
     }
-    ReleaseDC(m_hWnd, hDC) ; 
 }
 
 void CPaint::PaintBoard(INT arrTotalBoard[][21]) 
 {
-    HDC hDC = GetDC(m_hWnd) ; 
-    Gdiplus::Graphics grap { hDC } ; 
+    Gdiplus::Graphics grap { m_hDC } ; 
     Gdiplus::SolidBrush bru { Gdiplus::Color { 0, 0, 0} } ;
 
     for(INT nX = 1 ; nX <= WIDTH ; nX++)
@@ -101,13 +108,11 @@ void CPaint::PaintBoard(INT arrTotalBoard[][21])
             grap.FillRectangle(&bru, INTERVAL * (nX - 1) + INTERVAL + 2, INTERVAL * nY + INTERVAL + 2, INTERVAL - 3, INTERVAL - 3) ; 
         }
     }
-    ReleaseDC(m_hWnd, hDC) ; 
 }
 
 void CPaint::DrawBoard() 
 {
-    HDC hDC = GetDC(m_hWnd) ; 
-    Gdiplus::Graphics grap { hDC } ; 
+    Gdiplus::Graphics grap { m_hDC } ; 
     Gdiplus::Pen pen { Gdiplus::Color { 255, 255, 255, 255 }, 3.5 } ; 
 
     grap.DrawRectangle(&pen, INTERVAL, INTERVAL, INTERVAL * 10, INTERVAL * 20) ; 
@@ -122,13 +127,11 @@ void CPaint::DrawBoard()
     {
         grap.DrawLine(&pen, INTERVAL, INTERVAL + INTERVAL * i, INTERVAL * 11, INTERVAL + INTERVAL * i) ; 
     }
-    ReleaseDC(m_hWnd, hDC) ; 
 }
 
 void CPaint::EraseBoard()
 {
-    HDC hDC = GetDC(m_hWnd) ; 
-    Gdiplus::Graphics grap { hDC } ; 
+    Gdiplus::Graphics grap { m_hDC } ; 
     Gdiplus::SolidBrush bruWhite { Gdiplus::Color { 0, 0, 0 } } ; 
     for(INT nX = 1 ; nX <= WIDTH ; nX++)
     {
@@ -137,18 +140,13 @@ void CPaint::EraseBoard()
             grap.FillRectangle(&bruWhite, INTERVAL * (nX - 1) + INTERVAL + 2, INTERVAL * nY + INTERVAL + 2, INTERVAL - 3, INTERVAL -3) ; 
         }
     }
-    ReleaseDC(m_hWnd, hDC) ; 
 }
 
 void CPaint::PrintCastle()
 {
-    /*
-    HDC hDC = GetDC(m_hWnd) ; 
-    Gdiplus::Graphics grap { m_hWnd } ; 
+    Gdiplus::Graphics grap { m_hDC } ; 
     Gdiplus::Image img { L"Castle.png" } ;
     grap.DrawImage(&img, 373, 180, 160 ,210) ; 
-    ReleaseDC(m_hWnd, hDC) ; 
-    */
 }
 
 void CPaint::PrintNextBlock(INT nId) 
@@ -157,11 +155,9 @@ void CPaint::PrintNextBlock(INT nId)
     {
         m_nId = nId ; 
     }
-
     const INT nX = 357 ;
     const INT nY = 431 ;
-    HDC hDC = GetDC(m_hWnd) ; 
-    Gdiplus::Graphics grap { hDC } ;
+    Gdiplus::Graphics grap { m_hDC } ;
     CString str ; 
     switch (m_nId)
     {
@@ -207,15 +203,12 @@ void CPaint::PrintNextBlock(INT nId)
 
 void CPaint::DrawScores(INT nScore) 
 {
+    /*
     m_nScore += nScore ; 
     HDC hDC = GetDC(m_hWnd) ; 
     CString str ; 
     str.Format(_T("SCORE : %d   "), m_nScore) ;
 	TextOut(hDC, 400, 50, str, str.GetLength()) ;
     ReleaseDC(m_hWnd, hDC) ; 
-}
-
-void CPaint::Assign(HWND hWnd) 
-{
-    m_hWnd = hWnd ; 
+    */
 }

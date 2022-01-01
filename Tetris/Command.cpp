@@ -1,6 +1,6 @@
 #include "pch.h"
-#include "Command.h"
 #include "Paint.h" 
+#include "Command.h"
 
 CCommand::CCommand()
 {
@@ -76,7 +76,7 @@ void CCommand::FastDown()
     {
 
     }
-    CPaint::DrawScores(30) ; 
+    //CPaint::DrawScores(30) ; 
 }
 
 void CCommand::PaintBoard() 

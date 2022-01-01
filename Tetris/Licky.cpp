@@ -1,7 +1,8 @@
 #include "pch.h"
-#include "Licky.h"
 #include <math.h>
+#include "MainApp.h"
 #include "Paint.h"
+#include "Licky.h"
 
 CLicky::CLicky(INT nArrSize)
     :CBlock(nArrSize), m_nId(30)
@@ -30,13 +31,13 @@ INT CLicky::GetId() const
 
 void CLicky::Draw() 
 {   
-    CPaint paint ;
+    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
     paint.PaintBlock(m_spPosArr, 0, 64, 255) ; 
 }
 
 void CLicky::FutureDraw() 
 {   
-    CPaint paint ;
+    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
     paint.PaintBlock(m_spPosArr, 153, 204, 255) ; 
 }
 
