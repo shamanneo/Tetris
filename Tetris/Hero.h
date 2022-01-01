@@ -1,15 +1,12 @@
 #pragma once
-#include "Block.h"
 #include <memory>
+#include "Block.h"
+#include "Constants.h"
 
 class CHero : public CBlock
 {
-    enum
-    {
-        ARRAYSIZE = 16
-    } ; 
     public :   
-        const INT m_nId ; 
+        const BlockId m_eId ; 
     public :
         CHero(INT nArrSize) ;
         ~CHero() ; 
@@ -18,6 +15,6 @@ class CHero : public CBlock
     public :
         virtual void Draw() override ; 
         virtual void FutureDraw() override ; 
-        virtual void Rotate(INT m_arrBoard[][HEIGHT + 1]) override ; 
+        virtual void Rotate(INT m_arrBoard[][BLOCK_HEIGHT_COUNT + 1]) override ; 
 };
 

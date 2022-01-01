@@ -1,32 +1,14 @@
 #pragma once
 #include <memory>
+#include "Constants.h"
 #include "Block.h"
 
 class CTetrisGame 
 {
-    enum
-    {
-        WIDTH = 10,
-        HEIGHT = 20,
-
-        OFF = 0, 
-        BOUND = 1,
-
-        DEFAULT_ARRAY_SIZE = 9,
-        HERO_ARRAY_SIZE = 16,
-
-        LICKY = 30,
-        RICKY = 31, 
-        CLEVELAND = 32, 
-        PHODEISLAND = 33,
-        TEEWEE = 34, 
-        SMASHBOY = 35,
-        HERO = 36
-    } ; 
     private :
-        INT m_arrBoard[WIDTH + 2][HEIGHT + 1] ; 
+        INT m_arrBoard[BLOCK_WIDTH_COUNT + 2][BLOCK_HEIGHT_COUNT + 1] ; 
         INT m_nArrSize ;
-        INT m_nNextId ; 
+        BlockId m_eNextId ; 
         std::unique_ptr<CBlock> m_spCurBk ; 
         std::unique_ptr<CBlock> m_spFurBk ; 
     public :

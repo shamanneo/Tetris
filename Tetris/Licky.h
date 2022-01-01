@@ -1,15 +1,12 @@
 #pragma once
 #include "Block.h"
+#include "Constants.h"
 #include <memory>
 
 class CLicky : public CBlock
 {
-    enum
-    {
-        ARRAYSIZE = 9
-    } ; 
     public :   
-        const INT m_nId ; 
+        const BlockId m_eId ; 
     public :
         CLicky(INT nArrSize) ;
         ~CLicky() ; 

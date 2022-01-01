@@ -83,7 +83,7 @@ void CBlock::Right()
     }
 }
 
-void CBlock::Rotate(INT m_arrBoard[][HEIGHT + 1])
+void CBlock::Rotate(INT m_arrBoard[][BLOCK_HEIGHT_COUNT + 1])
 {
     Erase() ; 
     bool bArr[DEFAULT_ARRAY_SIZE] { } ; 
@@ -93,7 +93,7 @@ void CBlock::Rotate(INT m_arrBoard[][HEIGHT + 1])
         {
             bArr[nIndex] = m_spPosArr[nIndex].m_bPres ; 
         }
-        m_spPosArr[nIndex].m_bPres = OFF ; 
+        m_spPosArr[nIndex].m_bPres = BLOCK_ARRAY_SPACE_OFF ; 
     }
 
     m_spPosArr[0].m_bPres = bArr[6] ; 
@@ -110,22 +110,21 @@ void CBlock::Rotate(INT m_arrBoard[][HEIGHT + 1])
     {
         if((m_spPosArr[nIndex].m_bPres == true) && IsOutOfBoundary(nIndex))
         {
-            if(m_spPosArr[nIndex].m_nPos == LEFTPOS)
+            if(m_spPosArr[nIndex].m_nPos == BLOCK_ARRAY_LEFT_POS)
             {
                 Right() ; 
             }
-            else if(m_spPosArr[nIndex].m_nPos == RIGHTPOS)
+            else if(m_spPosArr[nIndex].m_nPos == BLOCK_ARRAY_RIGHT_POS)
             {
-                Left() ; 
+                Left() ;
             }
-            else if(m_spPosArr[nIndex].m_nPos == MIDPOS)
+            else if(m_spPosArr[nIndex].m_nPos == BLOCK_ARRAY_MID_POS)
             {
                 Up() ; 
             }
         }
     }
 }
-
 
 void CBlock::Up() // Only for rotating when the block is out of boundary.
 {

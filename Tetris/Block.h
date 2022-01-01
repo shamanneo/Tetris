@@ -1,31 +1,10 @@
 #pragma once
-#include "Space.h"
 #include <memory>
+#include "Space.h"
+#include "Constants.h"
 
 class CBlock
 {
-    public :
-    enum
-    { 
-        ON = 1, 
-        OFF = 0,
-
-        DEFAULT_ARRAY_SIZE = 9,
-
-        LEFTPOS = 9,
-        MIDPOS = 10,  
-        RIGHTPOS = 11,
-
-        HEIGHT = 20,
-
-        LICKY = 30,
-        RICKY = 31, 
-        CLEVELAND = 32, 
-        PHODEISLAND = 33,
-        TEEWEE = 34, 
-        SMASHBOY = 35,
-        HERO = 36
-    } ; 
     private :
         INT m_nArrSize ; 
     public :
@@ -44,7 +23,7 @@ class CBlock
         void Erase() ; 
         void Left() ; 
         void Right() ; 
-        virtual void Rotate(INT m_arrBoard[][HEIGHT + 1]) ; 
+        virtual void Rotate(INT m_arrBoard[][BLOCK_HEIGHT_COUNT + 1]) ; 
         void Up() ; 
         void Down() ;
 } ;

@@ -1,15 +1,12 @@
 #pragma once
 #include "Block.h"
+#include "Constants.h"
 #include <memory>
 
 class CSmashboy : public CBlock
 {
-    enum
-    {
-        ARRAYSIZE = 9
-    } ; 
     public :   
-        const INT m_nId ; 
+        const BlockId m_eId ; 
     public :
         CSmashboy(INT nArrSize) ;
         ~CSmashboy() ; 
@@ -17,7 +14,7 @@ class CSmashboy : public CBlock
         virtual INT GetId() const override ; 
     public :
         virtual void Draw() override ; 
-        virtual void Rotate(INT m_arrBoard[][HEIGHT + 1]) ; 
+        virtual void Rotate(INT m_arrBoard[][BLOCK_HEIGHT_COUNT + 1]) ; 
         virtual void FutureDraw() override ; 
 } ;
 

@@ -1,15 +1,12 @@
 #pragma once
 #include "Block.h"
+#include "Constants.h"
 #include <memory>
 
 class CPhodeisland : public CBlock
 {
-    enum
-    {
-        ARRAYSIZE = 9
-    } ; 
     public :   
-        const INT m_nId ; 
+        const BlockId m_eId ; 
     public :
         CPhodeisland(INT nArrSize) ;
         ~CPhodeisland() ; 
