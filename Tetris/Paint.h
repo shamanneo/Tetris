@@ -25,7 +25,7 @@ class CPaint
         void EraseBoard() ; 
         void PrintMain() ; 
     public :
-        void DrawScores(INT nScore) ; 
+        void DrawScores() ; 
         void PrintNextBlock() ; 
 } ;
 

@@ -51,7 +51,7 @@ void CHero::FutureDraw()
     paint.PaintBlock(m_spPosArr, 153, 255, 255, HERO_ARRAY_SIZE) ; 
 }
 
-void CHero::Rotate(INT m_arrBoard[][BLOCK_HEIGHT_COUNT + 1]) 
+void CHero::Rotate(INT /*arrBoard*/[][BLOCK_HEIGHT_COUNT + 1]) 
 {
     Erase() ; 
     bool bArr[HERO_ARRAY_SIZE] { } ; 

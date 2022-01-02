@@ -11,10 +11,9 @@
 #include "framework.h"
 #include "atlsupport.h" 
 
-#define LEFT 1 
-#define RIGHT 2 
-#define UP 3 
-#define DOWN 4 
-#define SPACE 5
+#pragma warning(disable: 4458)
+#include <gdiplus.h>
+#pragma warning(default: 4458)
+#pragma comment (lib, "Gdiplus.lib")
 
 #endif //PCH_H

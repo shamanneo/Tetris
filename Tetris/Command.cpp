@@ -12,35 +12,43 @@ CCommand::~CCommand()
 
 }
 
-void CCommand::InputKey(int nKey)
+void CCommand::InputKey(INT nKey)
 {
     switch (nKey)
     {
-        case LEFT :
+        case VK_RETURN :
+        {
+            break ; 
+        }
+        case VK_LEFT :
         {
             Left() ; 
             break ; 
         }
-        case RIGHT :
+        case VK_RIGHT :
         {
             Right() ; 
             break ; 
         }
-        case UP :
+        case VK_UP :
         {
             Rotate() ;
             break ; 
         }
-        case DOWN :
+        case VK_DOWN :
         {
             Down() ; 
             break ; 
         }
-        case SPACE :
+        case VK_SPACE :
         {
             FastDown() ;
             break ; 
         }
+        default :
+        {
+            break ; 
+        } 
     }
     m_spTetrisGm->Draw() ;         
 }

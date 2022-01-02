@@ -23,7 +23,7 @@ class CBlock
         void Erase() ; 
         void Left() ; 
         void Right() ; 
-        virtual void Rotate(INT m_arrBoard[][BLOCK_HEIGHT_COUNT + 1]) ; 
+        virtual void Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1]) ; 
         void Up() ; 
         void Down() ;
 } ;

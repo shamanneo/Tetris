@@ -59,7 +59,7 @@ void CPaint::PaintBoard(INT arrTotalBoard[][21])
 {
     INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
     Gdiplus::Graphics grap { m_hDC } ; 
-    Gdiplus::SolidBrush bru { Gdiplus::Color { 0, 0, 0} } ;
+    Gdiplus::SolidBrush bru { Gdiplus::Color { 0, 0, 0 } } ;
 
     for(INT nX = 1 ; nX <= BLOCK_WIDTH_COUNT ; nX++)
     {
@@ -213,7 +213,7 @@ void CPaint::PrintNextBlock()
     grap.DrawImage(&Img, nX, nY, 200, 200) ; 
 }
 
-void CPaint::DrawScores(INT nScore) 
+void CPaint::DrawScores() 
 {
     /*
     m_nScore += nScore ; 

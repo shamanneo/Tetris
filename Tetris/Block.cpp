@@ -83,7 +83,7 @@ void CBlock::Right()
     }
 }
 
-void CBlock::Rotate(INT m_arrBoard[][BLOCK_HEIGHT_COUNT + 1])
+void CBlock::Rotate(INT /*arrBoard*/[][BLOCK_HEIGHT_COUNT + 1])
 {
     Erase() ; 
     bool bArr[DEFAULT_ARRAY_SIZE] { } ; 

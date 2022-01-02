@@ -14,7 +14,7 @@ class CSmashboy : public CBlock
         virtual INT GetId() const override ; 
     public :
         virtual void Draw() override ; 
-        virtual void Rotate(INT m_arrBoard[][BLOCK_HEIGHT_COUNT + 1]) ; 
+        virtual void Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1]) ; 
         virtual void FutureDraw() override ; 
 } ;
 

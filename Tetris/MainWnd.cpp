@@ -4,13 +4,13 @@
 #pragma comment (lib, "Gdiplus.lib")
 #include "Paint.h"
 #include "MainApp.h"
+#include "OptionsDlg.h"
 #include "MainWnd.h"
-
-int nKey ; 
 
 CMainWnd::CMainWnd()
 {
     m_IsEntered = false ; 
+    m_nCurkey = 0 ;
 } 
 
 CMainWnd::~CMainWnd()
@@ -18,15 +18,15 @@ CMainWnd::~CMainWnd()
 
 }
 
-LRESULT CMainWnd::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled)
+LRESULT CMainWnd::OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL &bHandled)
 {
     bHandled = FALSE ;
-    CMainApp &MainApp = CMainApp::GetInstance(m_hWnd) ;   
+    CMainApp::GetInstance().SetMainWnd(m_hWnd) ; 
     m_spComm = std::make_unique<CCommand>() ;
     return 0 ;
 }
 
-LRESULT CMainWnd::OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled)
+LRESULT CMainWnd::OnPaint(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL & /*bHandled*/)
 {
     PAINTSTRUCT ps ; 
     HDC hDC = BeginPaint(&ps) ;
@@ -43,12 +43,11 @@ LRESULT CMainWnd::OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandle
     {
         paint.PrintMain() ;
     }
-    
     EndPaint(&ps) ; 
     return 0 ;
 }
 
-LRESULT CMainWnd::OnKeyDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled) 
+LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL &/*bHandled*/) 
 {
     switch(wParam)
     {
@@ -66,30 +65,24 @@ LRESULT CMainWnd::OnKeyDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHand
             }
             break ; 
         }
+        case VK_ESCAPE :
+        {
+            COptionsDlg dlg ;
+            if (dlg.DoModal(m_hWnd) == IDCANCEL)
+            {
+                return 0 ;
+            }
+            dlg.IsDlgButtonChecked(IDC_CHECK_GUIDE) ;
+            break  ;
+        }
         case VK_LEFT : // Move left.
-        {
-            nKey = LEFT ; 
-            break ;
-        }
         case VK_RIGHT : // Move right.
-        {
-            nKey = RIGHT ; 
-            break ;
-        }
         case VK_UP : // Rotate clock-wise.
-        {
-            nKey = UP ; 
-            break ;
-        }
         case VK_DOWN : // Slow Down.
-        {
-            nKey = DOWN ; 
-            break ;
-        }
         case VK_SPACE : // Fast Down
         {
-            nKey = SPACE ;
-            break ; 
+            m_nCurkey = (INT)wParam ; 
+            break ;
         }
         default :
         {
@@ -99,7 +92,7 @@ LRESULT CMainWnd::OnKeyDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHand
     return 0 ; 
 }
 
-LRESULT CMainWnd::OnTimer(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled) 
+LRESULT CMainWnd::OnTimer(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL &/*bHandled*/) 
 {
     HDC hDC = GetDC() ;
     switch(wParam)
@@ -112,8 +105,8 @@ LRESULT CMainWnd::OnTimer(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandle
         }
         case IDT_DRAW_TIMER :
         {
-            m_spComm->InputKey(nKey) ; 
-            nKey = 0 ; 
+            m_spComm->InputKey(m_nCurkey) ; 
+            m_nCurkey = 0 ; 
             break ; 
         }
         case IDT_DOWN_TIMER :
@@ -126,7 +119,7 @@ LRESULT CMainWnd::OnTimer(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandle
     return 0 ; 
 }
 
-LRESULT CMainWnd::OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled)
+LRESULT CMainWnd::OnDestroy(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL &/*bHandled*/)
 {
     PostQuitMessage(0) ;
     return 0 ; 

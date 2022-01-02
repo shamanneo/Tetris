@@ -11,6 +11,7 @@ class CMainApp
         ~CMainApp() ;
     public :
         HWND GetMainWnd() const ; 
+        void SetMainWnd(HWND hWnd) ; 
         BlockId GetBlockId() const ; 
         void SetBlockId(BlockId eId) ; 
     public :

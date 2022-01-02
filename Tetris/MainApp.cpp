@@ -5,6 +5,7 @@ static CMainApp *g_pMainApp = nullptr;
 
 CMainApp::CMainApp(HWND hWnd)
 {
+    m_eId = ID_VOID ; 
     m_hWnd = hWnd ;
 }
 
@@ -16,6 +17,11 @@ CMainApp::~CMainApp()
 HWND CMainApp::GetMainWnd() const 
 {
     return m_hWnd ;
+}
+
+void CMainApp::SetMainWnd(HWND hWnd) 
+{
+    m_hWnd = hWnd ; 
 }
 
 BlockId CMainApp::GetBlockId() const 
@@ -34,7 +40,6 @@ CMainApp &CMainApp::GetInstance(HWND hWnd)
 {
     if (g_pMainApp == nullptr)
     {
-        ATLASSERT(hWnd != NULL) ;
         g_pMainApp = new CMainApp { hWnd } ;
     }
     return *g_pMainApp ;
