@@ -38,16 +38,17 @@ CTetrisGame::~CTetrisGame()
 void CTetrisGame::Create()
 {
     srand((unsigned int)time(NULL)) ;
+    BlockId arrBlockId[7] { ID_LICKY, ID_RICKY, ID_CLEVELAND, ID_PHODEISLAND, ID_TEEWEE, ID_SMASHBOY, ID_HERO } ; 
     BlockId eId ;
     if(m_eNextId == ID_VOID)
     {
-        eId = BlockId((int)ID_LICKY + (rand() % 7)) ; 
+        eId = arrBlockId[(rand() % 7)] ; 
     }
     else
     {
         eId = m_eNextId ; 
     }
-    m_eNextId = BlockId((int)ID_LICKY + (rand() % 7)) ; 
+    m_eNextId = arrBlockId[(rand() % 7)] ; 
     switch(eId)
     {
         case ID_LICKY :
