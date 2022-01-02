@@ -11,6 +11,7 @@ class CPaint
     private :
         HWND m_hWnd ; 
         HDC m_hDC ;
+        RECT m_rcClient ; 
         bool m_bAutoRelease ;
     public :
         CPaint(HWND hWnd) ;
@@ -22,7 +23,7 @@ class CPaint
         void PaintBoard(INT arrTotalBoard[][21]) ; 
         void DrawBoard() ; 
         void EraseBoard() ; 
-        void PrintCastle() ; 
+        void PrintMain() ; 
     public :
         void DrawScores(INT nScore) ; 
         void PrintNextBlock() ; 

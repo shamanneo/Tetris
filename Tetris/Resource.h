@@ -13,6 +13,7 @@
 #define IDC_TETRIS                      109
 #define IDT_DRAW_TIMER                  110
 #define IDT_DOWN_TIMER                  111
+#define IDT_MAIN_DRAWING_TIMER          112
 #define IDR_MAINFRAME                   128
 #define IDC_STATIC                      -1
 
@@ -24,6 +25,6 @@
 #define _APS_NEXT_RESOURCE_VALUE        129
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
-#define _APS_NEXT_SYMED_VALUE           112
+#define _APS_NEXT_SYMED_VALUE           113
 #endif
 #endif

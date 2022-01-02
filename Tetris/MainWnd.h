@@ -6,6 +6,7 @@ class CMainWnd : public CWindowImpl<CMainWnd>
 {
     private :
         std::unique_ptr<CCommand> m_spComm ; 
+        bool m_IsEntered ; 
     public :
         CMainWnd() ; 
         ~CMainWnd() ;

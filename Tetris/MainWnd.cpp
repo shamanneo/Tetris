@@ -10,7 +10,7 @@ int nKey ;
 
 CMainWnd::CMainWnd()
 {
-
+    m_IsEntered = false ; 
 } 
 
 CMainWnd::~CMainWnd()
@@ -32,12 +32,18 @@ LRESULT CMainWnd::OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandle
     HDC hDC = BeginPaint(&ps) ;
     
     CPaint paint { m_hWnd, hDC } ;
-    //paint.DrawScores(0) ;
-    paint.DrawBoard() ; 
-    paint.PrintNextBlock() ; 
-    m_spComm->PaintBoard() ; 
-    paint.PrintCastle() ;
-
+    if(m_IsEntered == true)
+    {
+        //paint.DrawScores(0) ;
+        paint.DrawBoard() ; 
+        m_spComm->PaintBoard() ; 
+        paint.PrintNextBlock() ; 
+    }
+    else 
+    {
+        paint.PrintMain() ;
+    }
+    
     EndPaint(&ps) ; 
     return 0 ;
 }
@@ -46,6 +52,20 @@ LRESULT CMainWnd::OnKeyDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHand
 {
     switch(wParam)
     {
+        case VK_RETURN :
+        {
+            if(m_IsEntered == false)
+            {
+                m_IsEntered = true ;
+                KillTimer(IDT_MAIN_DRAWING_TIMER) ; 
+                SetTimer(IDT_DRAW_TIMER, 0, NULL) ; 
+                SetTimer(IDT_DOWN_TIMER, 300, NULL) ;
+                
+                InvalidateRect(nullptr) ; 
+                UpdateWindow() ;
+            }
+            break ; 
+        }
         case VK_LEFT : // Move left.
         {
             nKey = LEFT ; 
@@ -84,6 +104,12 @@ LRESULT CMainWnd::OnTimer(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandle
     HDC hDC = GetDC() ;
     switch(wParam)
     {
+        case IDT_MAIN_DRAWING_TIMER :
+        {
+            CPaint paint { m_hWnd, hDC } ;
+            paint.PrintMain() ; 
+            break ; 
+        }
         case IDT_DRAW_TIMER :
         {
             m_spComm->InputKey(nKey) ; 
