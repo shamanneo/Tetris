@@ -23,6 +23,7 @@ class CMainWnd : public CWindowImpl<CMainWnd>
         END_MSG_MAP()
     public :    
         virtual void OnFinalMessage(HWND) override ;
+
         LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled) ;
         LRESULT OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled) ;
         LRESULT OnKeyDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled) ; 

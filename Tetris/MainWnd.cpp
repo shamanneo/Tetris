@@ -65,13 +65,15 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
         }
         case VK_ESCAPE :
         {
+            /*
             COptionsDlg dlg ;
             if (dlg.DoModal(m_hWnd) == IDCANCEL)
             {
                 return 0 ;
             }
             dlg.IsDlgButtonChecked(IDC_CHECK_GUIDE) ;
-            break  ;
+            */
+            break ;
         }
         case VK_LEFT : // Move left.
         case VK_RIGHT : // Move right.

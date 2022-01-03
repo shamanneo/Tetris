@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "MainApp.h"
 
-static CMainApp *g_pMainApp = nullptr; 
+static CMainApp *g_pMainApp = nullptr ; 
 
 CMainApp::CMainApp(HWND hWnd)
 {
