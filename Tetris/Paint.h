@@ -1,7 +1,5 @@
 #pragma once
 #include <memory>
-#include <gdiplus.h>
-#pragma comment (lib, "Gdiplus.lib")
 #include "MainApp.h"
 #include "Block.h"
 #include "Constants.h"

@@ -1,7 +1,5 @@
 #include "pch.h"
-#include <gdiplus.h>
 #include "resource.h" 
-#pragma comment (lib, "Gdiplus.lib")
 #include "Paint.h"
 #include "MainApp.h"
 #include "OptionsDlg.h"
@@ -58,7 +56,7 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
                 m_IsEntered = true ;
                 KillTimer(IDT_MAIN_DRAWING_TIMER) ; 
                 SetTimer(IDT_DRAW_TIMER, 0, NULL) ; 
-                SetTimer(IDT_DOWN_TIMER, 300, NULL) ;
+                SetTimer(IDT_DOWN_TIMER, 250, NULL) ;
                 
                 InvalidateRect(nullptr) ; 
                 UpdateWindow() ;
