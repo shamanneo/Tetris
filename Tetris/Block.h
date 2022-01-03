@@ -15,7 +15,7 @@ class CBlock
         CBlock &operator = (const CBlock &rOth) ;
     public :
         bool GetPos(INT nIndex, INT &nX, INT &nY) const ; 
-        virtual INT GetId() const ; 
+        virtual BlockId GetId() const ; 
         bool IsOutOfBoundary(INT nIndex) const ; 
     public :
         virtual void Draw() ; 

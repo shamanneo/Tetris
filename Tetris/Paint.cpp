@@ -68,37 +68,37 @@ void CPaint::PaintBoard(INT arrTotalBoard[][21])
             BlockId eId = (BlockId)arrTotalBoard[nX][nY] ; 
             switch (eId)
             {
-                case ID_LICKY :
+                case BlockId::ID_LICKY :
                 {
                     bru.SetColor(Gdiplus::Color { 0, 64, 255 }) ; 
                     break ;
                 }
-                case ID_RICKY :
+                case BlockId::ID_RICKY :
                 {
                     bru.SetColor(Gdiplus::Color { 255, 127, 0 }) ; 
                     break ;
                 }
-                case ID_CLEVELAND :
+                case BlockId::ID_CLEVELAND :
                 {
                     bru.SetColor(Gdiplus::Color { 255, 0, 0 }) ; 
                     break ;
                 }
-                case ID_PHODEISLAND :
+                case BlockId::ID_PHODEISLAND :
                 {
                     bru.SetColor(Gdiplus::Color { 0, 128, 0 }) ; 
                     break ;
                 }
-                case ID_TEEWEE :
+                case BlockId::ID_TEEWEE :
                 {
                     bru.SetColor(Gdiplus::Color { 102, 0, 153 }) ; 
                     break ;
                 }
-                case ID_SMASHBOY :
+                case BlockId::ID_SMASHBOY :
                 {
                     bru.SetColor(Gdiplus::Color { 255, 212, 0 }) ; 
                     break ;
                 }
-                case ID_HERO :
+                case BlockId::ID_HERO :
                 {
                     bru.SetColor(Gdiplus::Color { 0, 163, 210 }) ; 
                     break ;
@@ -173,37 +173,37 @@ void CPaint::PrintNextBlock()
     CString str ; 
     switch (eId)
     {
-        case ID_LICKY :
+        case BlockId::ID_LICKY :
         {
             str = "LICKY.png" ;  
             break ;
         }
-        case ID_RICKY :
+        case BlockId::ID_RICKY :
         {
             str = "RICKY.png" ;  
             break ;
         }
-        case ID_CLEVELAND :
+        case BlockId::ID_CLEVELAND :
         {
             str = "CLEVELAND.png" ;  
             break ;
         }
-        case ID_PHODEISLAND :
+        case BlockId::ID_PHODEISLAND :
         {
             str = "PHODEISLAND.png" ;  
             break ;
         }
-        case ID_TEEWEE :
+        case BlockId::ID_TEEWEE :
         {
             str = "TEEWEE.png" ;  
             break ;
         }
-        case ID_SMASHBOY :
+        case BlockId::ID_SMASHBOY :
         {
             str = "SMASHBOY.png" ;  
             break ;
         }
-        case ID_HERO :
+        case BlockId::ID_HERO :
         {
             str = "HERO.png" ;  
             break ;

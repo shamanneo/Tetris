@@ -6,7 +6,7 @@
 #include "Cleveland.h"
 
 CCleveland::CCleveland(INT nArrSize)
-    : CBlock(nArrSize), m_eId(ID_CLEVELAND)
+    : CBlock(nArrSize), m_eId(BlockId::ID_CLEVELAND)
 {
     m_spPosArr = std::make_unique<CSpace[]>(DEFAULT_ARRAY_SIZE) ; 
     m_spPosArr[0].Set(4, 0, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_LEFT_POS) ; 
@@ -24,7 +24,7 @@ CCleveland::~CCleveland()
 {
 
 }
-INT CCleveland::GetId() const 
+BlockId CCleveland::GetId() const 
 {
     return m_eId ; 
 }

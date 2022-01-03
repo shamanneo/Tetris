@@ -5,7 +5,7 @@
 #include "Phodeisland.h"
 
 CPhodeisland::CPhodeisland(INT nArrSize)
-    : CBlock(nArrSize), m_eId(ID_PHODEISLAND)
+    : CBlock(nArrSize), m_eId(BlockId::ID_PHODEISLAND)
 {
     m_spPosArr = std::make_unique<CSpace[]>(DEFAULT_ARRAY_SIZE) ; 
     m_spPosArr[0].Set(4, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
@@ -24,7 +24,7 @@ CPhodeisland::~CPhodeisland()
 
 }
 
-INT CPhodeisland::GetId() const 
+BlockId CPhodeisland::GetId() const 
 {
     return m_eId ; 
 }

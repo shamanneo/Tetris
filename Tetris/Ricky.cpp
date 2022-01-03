@@ -5,7 +5,7 @@
 #include "Ricky.h"
 
 CRicky::CRicky(INT nArrSize)
-    : CBlock(nArrSize), m_eId(ID_RICKY)
+    : CBlock(nArrSize), m_eId(BlockId::ID_RICKY)
 {
     m_spPosArr = std::make_unique<CSpace[]>(DEFAULT_ARRAY_SIZE) ; 
     m_spPosArr[0].Set(4, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
@@ -24,7 +24,7 @@ CRicky::~CRicky()
 
 }
 
-INT CRicky::GetId() const 
+BlockId CRicky::GetId() const 
 {
     return m_eId ; 
 }

@@ -5,7 +5,7 @@
 #include "Hero.h" 
 
 CHero::CHero(INT nArrSize)
-    : CBlock(nArrSize), m_eId(ID_HERO)
+    : CBlock(nArrSize), m_eId(BlockId::ID_HERO)
 {
     m_spPosArr = std::make_unique<CSpace[]>(HERO_ARRAY_SIZE) ; 
     m_spPosArr[0].Set(4, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
@@ -34,7 +34,7 @@ CHero::~CHero()
 
 }
 
-INT CHero::GetId() const 
+BlockId CHero::GetId() const 
 {
     return m_eId ; 
 }

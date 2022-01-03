@@ -5,7 +5,7 @@
 #include "Licky.h"
 
 CLicky::CLicky(INT nArrSize)
-    :CBlock(nArrSize), m_eId(ID_LICKY)
+    :CBlock(nArrSize), m_eId(BlockId::ID_LICKY)
 {
     m_spPosArr = std::make_unique<CSpace[]>(DEFAULT_ARRAY_SIZE) ; 
     m_spPosArr[0].Set(4, 0, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_LEFT_POS) ; 
@@ -24,7 +24,7 @@ CLicky::~CLicky()
 
 }
 
-INT CLicky::GetId() const 
+BlockId CLicky::GetId() const 
 {
     return m_eId ; 
 }

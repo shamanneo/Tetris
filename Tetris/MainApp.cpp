@@ -5,7 +5,7 @@ static CMainApp *g_pMainApp = nullptr;
 
 CMainApp::CMainApp(HWND hWnd)
 {
-    m_eId = ID_VOID ; 
+    m_eId = BlockId::ID_VOID ; 
     m_hWnd = hWnd ;
 }
 

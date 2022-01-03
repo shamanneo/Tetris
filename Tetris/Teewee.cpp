@@ -5,7 +5,7 @@
 #include "Teewee.h"
 
 CTeewee::CTeewee(INT nArrSize)
-    : CBlock(nArrSize), m_eId(ID_TEEWEE)
+    : CBlock(nArrSize), m_eId(BlockId::ID_TEEWEE)
 {
     m_spPosArr = std::make_unique<CSpace[]>(DEFAULT_ARRAY_SIZE) ; 
     m_spPosArr[0].Set(4, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
@@ -24,7 +24,7 @@ CTeewee::~CTeewee()
 
 }
 
-INT CTeewee::GetId() const 
+BlockId CTeewee::GetId() const 
 {
     return m_eId ; 
 }

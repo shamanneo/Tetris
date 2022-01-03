@@ -39,9 +39,9 @@ bool CBlock::GetPos(INT nIndex, INT &nX, INT &nY) const
     return true ; 
 }
 
-INT CBlock::GetId() const 
+BlockId CBlock::GetId() const 
 {
-    return 0 ; 
+    return BlockId::ID_VOID ; 
 }
 
 bool CBlock::IsOutOfBoundary(INT nIndex) const 

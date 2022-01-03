@@ -11,7 +11,7 @@ class CCleveland : public CBlock
         CCleveland(INT nArrSize) ;
         ~CCleveland() ; 
     public :
-        virtual INT GetId() const override ; 
+        virtual BlockId GetId() const override ; 
     public :
         virtual void Draw() override ; 
         virtual void FutureDraw() override ; 

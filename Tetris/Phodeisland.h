@@ -11,7 +11,7 @@ class CPhodeisland : public CBlock
         CPhodeisland(INT nArrSize) ;
         ~CPhodeisland() ; 
     public :
-        virtual INT GetId() const override ; 
+        virtual BlockId GetId() const override ; 
     public :
         virtual void Draw() override ; 
         virtual void FutureDraw() override ; 

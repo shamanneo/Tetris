@@ -11,7 +11,7 @@ class CRicky : public CBlock
         CRicky(INT nArrSize) ;
         ~CRicky() ; 
     public :
-        virtual INT GetId() const override ; 
+        virtual BlockId GetId() const override ; 
     public :
         virtual void Draw() override ; 
         virtual void FutureDraw() override ; 

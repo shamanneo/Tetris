@@ -5,7 +5,7 @@
 #include "SmashBoy.h"
 
 CSmashboy::CSmashboy(INT nArrSize)
-    : CBlock(nArrSize), m_eId(ID_SMASHBOY)
+    : CBlock(nArrSize), m_eId(BlockId::ID_SMASHBOY)
 {
     m_spPosArr = std::make_unique<CSpace[]>(DEFAULT_ARRAY_SIZE) ; 
     m_spPosArr[0].Set(4, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
@@ -24,7 +24,7 @@ CSmashboy::~CSmashboy()
 
 }
 
-INT CSmashboy::GetId() const 
+BlockId CSmashboy::GetId() const 
 {
     return m_eId ; 
 }
