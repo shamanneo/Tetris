@@ -19,7 +19,9 @@ CTetrisGame::CTetrisGame()
     for(INT nY = 0 ; nY <= BLOCK_HEIGHT_COUNT ; nY++)
     {
         m_arrBoard[0][nY] = BOARD_BOUND ; 
-        m_arrBoard[11][nY] = BOARD_BOUND ; 
+        m_arrBoard[1][nY] = BOARD_BOUND ; 
+        m_arrBoard[12][nY] = BOARD_BOUND ;
+        m_arrBoard[13][nY] = BOARD_BOUND ;
         if(nY < 12)
         {
             m_arrBoard[nY][BLOCK_HEIGHT_COUNT] = BOARD_BOUND ; 
@@ -47,7 +49,7 @@ void CTetrisGame::Create()
         eId = m_eNextId ; 
     }
     m_eNextId = arrBlockId[(rand() % 7)] ; 
-    switch(BlockId::ID_TEEWEE)
+    switch(eId)
     {
         case BlockId::ID_LICKY :
         {

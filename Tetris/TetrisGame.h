@@ -6,7 +6,7 @@
 class CTetrisGame 
 {
     private :
-        INT m_arrBoard[BLOCK_WIDTH_COUNT + 2][BLOCK_HEIGHT_COUNT + 1] ; 
+        INT m_arrBoard[BLOCK_WIDTH_COUNT + 4][BLOCK_HEIGHT_COUNT + 1] ; 
         INT m_nArrSize ;
         BlockId m_eNextId ; 
         std::unique_ptr<CBlock> m_spCurBk ; 

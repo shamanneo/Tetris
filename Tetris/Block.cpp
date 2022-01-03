@@ -49,10 +49,9 @@ bool CBlock::IsOutOfBoundary(INT nIndex) const
     return (m_spPosArr[nIndex].m_nX == 0) || (m_spPosArr[nIndex].m_nX == 11) || (m_spPosArr[nIndex].m_nY == 20) ? true : false ; 
 }
 
-bool CBlock::CanRotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1])
+bool CBlock::CanRotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1], INT nArrSize)
 {
-    ClockWise() ; 
-    for(INT nIndex = 0 ; nIndex < DEFAULT_ARRAY_SIZE ; nIndex++)
+    for(INT nIndex = 0 ; nIndex < nArrSize ; nIndex++)
     {
         if(m_spPosArr[nIndex].m_bPres == true)
         {
@@ -103,6 +102,7 @@ void CBlock::Right()
 void CBlock::Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1])
 {
     Erase() ; 
+    ClockWise() ; 
     if(CanRotate(arrBoard))
     {
         SideRotate() ; 
@@ -153,9 +153,9 @@ void CBlock::Down()
     }
 }
 
-void CBlock::GetTempArray(bool *bArr) 
+void CBlock::GetTempArray(bool *bArr, INT nArrSize) 
 {
-    for(INT nIndex = 0 ; nIndex < DEFAULT_ARRAY_SIZE ; nIndex++)
+    for(INT nIndex = 0 ; nIndex < nArrSize ; nIndex++)
     {
         if(m_spPosArr[nIndex].m_bPres == true)
         {

@@ -56,40 +56,23 @@ void CHero::FutureDraw()
     paint.PaintBlock(m_spPosArr, 153, 255, 255, HERO_ARRAY_SIZE) ; 
 }
 
-void CHero::Rotate(INT /*arrBoard*/[][BLOCK_HEIGHT_COUNT + 1]) 
+void CHero::Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1]) 
 {
     Erase() ; 
-    (!m_bIsRotated) ? m_bIsRotated = true : m_bIsRotated = false ; 
-    bool bArr[HERO_ARRAY_SIZE] { } ; 
-    for(INT i = 0 ; i < HERO_ARRAY_SIZE ; i++)
+    ClockWise() ; 
+    if(CanRotate(arrBoard, HERO_ARRAY_SIZE))
     {
-        if(m_spPosArr[i].m_bPres == true)
-        {
-            bArr[i] = m_spPosArr[i].m_bPres ; 
-        }
-        m_spPosArr[i].m_bPres = BLOCK_ARRAY_SPACE_OFF ; 
+        (!m_bIsRotated) ? m_bIsRotated = true : m_bIsRotated = false ; 
+        SideRotate() ; 
     }
+    else 
+    {
+        CounterClockWise() ; // 회전 실패
+    }
+}
 
-    m_spPosArr[0].m_bPres = bArr[12] ; 
-    m_spPosArr[1].m_bPres = bArr[8] ; 
-    m_spPosArr[2].m_bPres = bArr[4] ; 
-    m_spPosArr[3].m_bPres = bArr[0] ; 
-
-    m_spPosArr[4].m_bPres = bArr[13] ; 
-    m_spPosArr[5].m_bPres = bArr[9] ; 
-    m_spPosArr[6].m_bPres = bArr[5] ; 
-    m_spPosArr[7].m_bPres = bArr[1] ; 
-
-    m_spPosArr[8].m_bPres = bArr[14] ; 
-    m_spPosArr[9].m_bPres = bArr[10] ; 
-    m_spPosArr[10].m_bPres = bArr[6] ; 
-    m_spPosArr[11].m_bPres = bArr[2] ; 
-
-    m_spPosArr[12].m_bPres = bArr[15] ; 
-    m_spPosArr[13].m_bPres = bArr[11] ; 
-    m_spPosArr[14].m_bPres = bArr[7] ; 
-    m_spPosArr[15].m_bPres = bArr[3] ; 
-
+void CHero::SideRotate() // 블럭이 벽에서 회전할 때 옆으로 평행이동
+{
     for(INT nIndex = 0 ; nIndex < HERO_ARRAY_SIZE ; nIndex++)
     {
         if((m_spPosArr[nIndex].m_bPres == true) && IsOutOfBoundary(nIndex))
@@ -161,6 +144,49 @@ void CHero::Rotate(INT /*arrBoard*/[][BLOCK_HEIGHT_COUNT + 1])
     }
 }
 
+void CHero::ClockWise() 
+{
+    bool bArr[HERO_ARRAY_SIZE] { } ; 
+    GetTempArray(bArr, HERO_ARRAY_SIZE) ;
+    m_spPosArr[0].m_bPres = bArr[12] ; 
+    m_spPosArr[1].m_bPres = bArr[8] ; 
+    m_spPosArr[2].m_bPres = bArr[4] ; 
+    m_spPosArr[3].m_bPres = bArr[0] ; 
+    m_spPosArr[4].m_bPres = bArr[13] ; 
+    m_spPosArr[5].m_bPres = bArr[9] ; 
+    m_spPosArr[6].m_bPres = bArr[5] ; 
+    m_spPosArr[7].m_bPres = bArr[1] ; 
+    m_spPosArr[8].m_bPres = bArr[14] ; 
+    m_spPosArr[9].m_bPres = bArr[10] ; 
+    m_spPosArr[10].m_bPres = bArr[6] ; 
+    m_spPosArr[11].m_bPres = bArr[2] ; 
+    m_spPosArr[12].m_bPres = bArr[15] ; 
+    m_spPosArr[13].m_bPres = bArr[11] ; 
+    m_spPosArr[14].m_bPres = bArr[7] ; 
+    m_spPosArr[15].m_bPres = bArr[3] ; 
+}
+
+void CHero::CounterClockWise() 
+{
+    bool bArr[HERO_ARRAY_SIZE] { } ; 
+    GetTempArray(bArr, HERO_ARRAY_SIZE) ;
+    m_spPosArr[12].m_bPres = bArr[0] ; 
+    m_spPosArr[8].m_bPres = bArr[1] ; 
+    m_spPosArr[4].m_bPres = bArr[2] ; 
+    m_spPosArr[0].m_bPres = bArr[3] ; 
+    m_spPosArr[13].m_bPres = bArr[4] ; 
+    m_spPosArr[9].m_bPres = bArr[5] ; 
+    m_spPosArr[5].m_bPres = bArr[6] ; 
+    m_spPosArr[1].m_bPres = bArr[7] ; 
+    m_spPosArr[14].m_bPres = bArr[8] ; 
+    m_spPosArr[10].m_bPres = bArr[9] ; 
+    m_spPosArr[6].m_bPres = bArr[10] ; 
+    m_spPosArr[2].m_bPres = bArr[11] ; 
+    m_spPosArr[15].m_bPres = bArr[12] ; 
+    m_spPosArr[11].m_bPres = bArr[13] ; 
+    m_spPosArr[7].m_bPres = bArr[14] ; 
+    m_spPosArr[3].m_bPres = bArr[15] ; 
+}
 
 
 
