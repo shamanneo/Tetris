@@ -49,7 +49,7 @@ void CTetrisGame::Create()
         eId = m_eNextId ; 
     }
     m_eNextId = arrBlockId[(rand() % 7)] ; 
-    switch(eId)
+    switch(BlockId::ID_HERO)
     {
         case BlockId::ID_LICKY :
         {

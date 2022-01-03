@@ -4,8 +4,13 @@
 #include "Paint.h"
 #include "Hero.h" 
 
+const INT BLOCK_ARRAY_DOUBLE_LEFT_POS = 3 ;  
+const INT BLOCK_ARRAY_DOUBLE_RIGHT_POS = 4 ;  
+const INT BLOCK_ARRAY_DOUBLE_UP_POS = 5 ;  
+const INT BLOCK_ARRAY_TYPE = 6 ; 
+
 CHero::CHero(INT nArrSize)
-    : CBlock(nArrSize), m_eId(BlockId::ID_HERO)
+    : CBlock(nArrSize), m_eId(BlockId::ID_HERO), m_bIsRotated(false) 
 {
     m_spPosArr = std::make_unique<CSpace[]>(HERO_ARRAY_SIZE) ; 
     m_spPosArr[0].Set(4, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
@@ -14,13 +19,13 @@ CHero::CHero(INT nArrSize)
     m_spPosArr[3].Set(7, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_RIGHT_POS) ; 
 
     m_spPosArr[4].Set(4, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_LEFT_POS) ; 
-    m_spPosArr[5].Set(5, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_LEFT_POS) ; 
-    m_spPosArr[6].Set(6, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_RIGHT_POS) ; 
+    m_spPosArr[5].Set(5, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_DOUBLE_LEFT_POS) ; 
+    m_spPosArr[6].Set(6, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_DOUBLE_RIGHT_POS) ; 
     m_spPosArr[7].Set(7, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_RIGHT_POS) ; 
 
     m_spPosArr[8].Set(4, 2, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
-    m_spPosArr[9].Set(5, 2, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
-    m_spPosArr[10].Set(6, 2, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_RIGHT_POS) ; 
+    m_spPosArr[9].Set(5, 2, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_TYPE) ; // Change statement. 
+    m_spPosArr[10].Set(6, 2, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_TYPE) ; // Change statement.
     m_spPosArr[11].Set(7, 2, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_RIGHT_POS) ; 
 
     m_spPosArr[12].Set(4, 3, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
@@ -54,6 +59,7 @@ void CHero::FutureDraw()
 void CHero::Rotate(INT /*arrBoard*/[][BLOCK_HEIGHT_COUNT + 1]) 
 {
     Erase() ; 
+    (!m_bIsRotated) ? m_bIsRotated = true : m_bIsRotated = false ; 
     bool bArr[HERO_ARRAY_SIZE] { } ; 
     for(INT i = 0 ; i < HERO_ARRAY_SIZE ; i++)
     {
@@ -88,20 +94,68 @@ void CHero::Rotate(INT /*arrBoard*/[][BLOCK_HEIGHT_COUNT + 1])
     {
         if((m_spPosArr[nIndex].m_bPres == true) && IsOutOfBoundary(nIndex))
         {
-            if(m_spPosArr[nIndex].m_nPos == BLOCK_ARRAY_LEFT_POS)
+            switch(m_spPosArr[nIndex].m_nPos)
             {
-                Right() ; 
-                Right() ; 
-            }
-            else if(m_spPosArr[nIndex].m_nPos == BLOCK_ARRAY_RIGHT_POS)
-            {
-                Left() ; 
-                Left() ; 
-            }
-            else if(m_spPosArr[nIndex].m_nPos == BLOCK_ARRAY_MID_POS)
-            {
-                Up() ; 
-                Up() ; 
+                case BLOCK_ARRAY_LEFT_POS :
+                {
+                    Right() ; 
+                    break ; 
+                }
+                case BLOCK_ARRAY_RIGHT_POS :
+                {
+                    Left() ; 
+                    break ; 
+                }
+                case BLOCK_ARRAY_MID_POS :
+                {
+                    Up() ; 
+                    break ; 
+                }
+                case BLOCK_ARRAY_DOUBLE_LEFT_POS :
+                {
+                    Right() ; 
+                    Right() ; 
+                    break ; 
+                }
+                case BLOCK_ARRAY_DOUBLE_RIGHT_POS :
+                {
+                    Left() ; 
+                    Left() ; 
+                    break ; 
+                }
+                case BLOCK_ARRAY_DOUBLE_UP_POS :
+                {
+                    Up() ; 
+                    Up() ; 
+                    break ;
+                }
+                case BLOCK_ARRAY_TYPE :
+                {
+                    if(m_bIsRotated)
+                    {
+                        Up() ; 
+                        Up() ; 
+                    }
+                    else
+                    {
+                        if(nIndex == 9) // 9 is index of arr represents Change Statement.
+                        {
+                            Right() ; 
+                            Right() ; 
+                        }
+                        else 
+                        {
+                            Left() ; 
+                            Left() ; 
+                        }
+                    }
+                    break ; 
+                }
+                default :
+                {
+                   ATLASSERT(0) ; 
+                   break ;
+                }
             }
         }
     }

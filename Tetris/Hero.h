@@ -7,6 +7,7 @@ class CHero : public CBlock
 {
     public :   
         const BlockId m_eId ; 
+        bool m_bIsRotated ;
     public :
         CHero(INT nArrSize) ;
         ~CHero() ; 
