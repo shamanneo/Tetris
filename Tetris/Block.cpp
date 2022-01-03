@@ -46,7 +46,11 @@ BlockId CBlock::GetId() const
 
 bool CBlock::IsOutOfBoundary(INT nIndex) const 
 {
-    return (m_spPosArr[nIndex].m_nX == 0) || (m_spPosArr[nIndex].m_nX == 11) || (m_spPosArr[nIndex].m_nY == 20) ? true : false ; 
+    return (m_spPosArr[nIndex].m_nX == 0) \
+        || (m_spPosArr[nIndex].m_nX == 1) \
+        || (m_spPosArr[nIndex].m_nX == 12) \
+        || (m_spPosArr[nIndex].m_nX == 13) \
+        || (m_spPosArr[nIndex].m_nY == 20) ? true : false ; 
 }
 
 bool CBlock::CanRotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1], INT nArrSize)

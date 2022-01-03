@@ -28,7 +28,7 @@ enum
 
 enum 
 {
-    BLOCK_ARRAY_LEFT_POS,
+    BLOCK_ARRAY_LEFT_POS = 0,
     BLOCK_ARRAY_MID_POS,
     BLOCK_ARRAY_RIGHT_POS 
 } ; 

@@ -36,7 +36,7 @@ void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT
     {
         if(!spPosArr[nIndex].IsEmpty())
         {
-            grap.FillRectangle(&bruBlack, BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 1) + nInitX + 2, BLOCK_INTERVAL * spPosArr[nIndex].m_nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+            grap.FillRectangle(&bruBlack, BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 2) + nInitX + 2, BLOCK_INTERVAL * spPosArr[nIndex].m_nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
         }
     }
 }
@@ -50,7 +50,7 @@ void CPaint::EraseBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nArrSize)
     {
         if(!spPosArr[nIndex].IsEmpty())
         {
-            grap.FillRectangle(&bruWhite, BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 1) + nInitX + 2, BLOCK_INTERVAL * spPosArr[nIndex].m_nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+            grap.FillRectangle(&bruWhite, BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 2) + nInitX + 2, BLOCK_INTERVAL * spPosArr[nIndex].m_nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
         }
     }
 }
@@ -61,7 +61,7 @@ void CPaint::PaintBoard(INT arrTotalBoard[][21])
     Gdiplus::Graphics grap { m_hDC } ; 
     Gdiplus::SolidBrush bru { Gdiplus::Color { 0, 0, 0 } } ;
 
-    for(INT nX = 1 ; nX <= BLOCK_WIDTH_COUNT ; nX++)
+    for(INT nX = 2 ; nX <= BLOCK_WIDTH_COUNT + 1 ; nX++)
     {
         for(INT nY = 0 ; nY < BLOCK_HEIGHT_COUNT ; nY++)
         {
@@ -108,7 +108,7 @@ void CPaint::PaintBoard(INT arrTotalBoard[][21])
                     continue ; 
                 }
             }
-            grap.FillRectangle(&bru, BLOCK_INTERVAL * (nX - 1) + nInitX + 2, BLOCK_INTERVAL * nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+            grap.FillRectangle(&bru, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
         }
     }
 }
@@ -138,11 +138,11 @@ void CPaint::EraseBoard()
     INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
     Gdiplus::Graphics grap { m_hDC } ; 
     Gdiplus::SolidBrush bruWhite { Gdiplus::Color { 0, 0, 0 } } ; 
-    for(INT nX = 1 ; nX <= BLOCK_WIDTH_COUNT ; nX++)
+    for(INT nX = 2 ; nX <= BLOCK_WIDTH_COUNT + 1 ; nX++)
     {
         for(INT nY = 0 ; nY < BLOCK_HEIGHT_COUNT ; nY++)
         {
-            grap.FillRectangle(&bruWhite, BLOCK_INTERVAL * (nX - 1) + nInitX + 2, BLOCK_INTERVAL * nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL -3) ; 
+            grap.FillRectangle(&bruWhite, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL -3) ; 
         }
     }
 }

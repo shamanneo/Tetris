@@ -142,7 +142,7 @@ void CTetrisGame::Reach()
 
 bool CTetrisGame::IsFull(INT nLine) 
 {
-    for(INT nX = 1 ; nX <= BLOCK_WIDTH_COUNT ; nX++)
+    for(INT nX = 2 ; nX <= BLOCK_WIDTH_COUNT + 1 ; nX++)
     {
         if(m_arrBoard[nX][nLine] == BLOCK_ARRAY_SPACE_OFF)
         {
@@ -154,7 +154,7 @@ bool CTetrisGame::IsFull(INT nLine)
 
 bool CTetrisGame::IsGameOver() 
 {
-    for(INT nX = 1 ; nX <= BLOCK_WIDTH_COUNT ; nX++)
+    for(INT nX = 2 ; nX <= BLOCK_WIDTH_COUNT + 1 ; nX++)
     {
         if(m_arrBoard[nX][0] != BLOCK_ARRAY_SPACE_OFF)
         {
@@ -166,11 +166,11 @@ bool CTetrisGame::IsGameOver()
 
 void CTetrisGame::InUpdate(INT nLine)
 {   
-    for(INT nX = 1 ; nX <= BLOCK_WIDTH_COUNT ; nX++)
+    for(INT nX = 2 ; nX <= BLOCK_WIDTH_COUNT + 1 ; nX++)
     {
         m_arrBoard[nX][nLine] = BLOCK_ARRAY_SPACE_OFF ; // Clear line. 
     }
-    for(INT nX = 1 ; nX <= BLOCK_WIDTH_COUNT ; nX++)
+    for(INT nX = 2 ; nX <= BLOCK_WIDTH_COUNT + 1 ; nX++)
     {
         for(INT nY = nLine - 1 ; nY >= 0  ; nY--)
         {

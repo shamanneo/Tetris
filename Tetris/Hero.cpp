@@ -4,34 +4,29 @@
 #include "Paint.h"
 #include "Hero.h" 
 
-const INT BLOCK_ARRAY_DOUBLE_LEFT_POS = 3 ;  
-const INT BLOCK_ARRAY_DOUBLE_RIGHT_POS = 4 ;  
-const INT BLOCK_ARRAY_DOUBLE_UP_POS = 5 ;  
-const INT BLOCK_ARRAY_TYPE = 6 ; 
-
 CHero::CHero(INT nArrSize)
     : CBlock(nArrSize), m_eId(BlockId::ID_HERO), m_bIsRotated(false) 
 {
     m_spPosArr = std::make_unique<CSpace[]>(HERO_ARRAY_SIZE) ; 
-    m_spPosArr[0].Set(4, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
-    m_spPosArr[1].Set(5, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
-    m_spPosArr[2].Set(6, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_RIGHT_POS) ; 
-    m_spPosArr[3].Set(7, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_RIGHT_POS) ; 
+    m_spPosArr[0].Set(5, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
+    m_spPosArr[1].Set(6, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
+    m_spPosArr[2].Set(7, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_RIGHT_POS) ; 
+    m_spPosArr[3].Set(8, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_RIGHT_POS) ; 
 
-    m_spPosArr[4].Set(4, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_LEFT_POS) ; 
-    m_spPosArr[5].Set(5, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_DOUBLE_LEFT_POS) ; 
-    m_spPosArr[6].Set(6, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_DOUBLE_RIGHT_POS) ; 
-    m_spPosArr[7].Set(7, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_RIGHT_POS) ; 
+    m_spPosArr[4].Set(5, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_LEFT_POS) ; 
+    m_spPosArr[5].Set(6, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_LEFT_POS) ; 
+    m_spPosArr[6].Set(7, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_RIGHT_POS) ; 
+    m_spPosArr[7].Set(8, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_RIGHT_POS) ; 
 
-    m_spPosArr[8].Set(4, 2, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
-    m_spPosArr[9].Set(5, 2, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_TYPE) ; // Change statement. 
-    m_spPosArr[10].Set(6, 2, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_TYPE) ; // Change statement.
-    m_spPosArr[11].Set(7, 2, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_RIGHT_POS) ; 
+    m_spPosArr[8].Set(5, 2, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
+    m_spPosArr[9].Set(6, 2, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
+    m_spPosArr[10].Set(7, 2, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
+    m_spPosArr[11].Set(8, 2, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_RIGHT_POS) ; 
 
-    m_spPosArr[12].Set(4, 3, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
-    m_spPosArr[13].Set(5, 3, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
-    m_spPosArr[14].Set(6, 3, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
-    m_spPosArr[15].Set(7, 3, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
+    m_spPosArr[12].Set(5, 3, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
+    m_spPosArr[13].Set(6, 3, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
+    m_spPosArr[14].Set(7, 3, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
+    m_spPosArr[15].Set(8, 3, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
 }
 
 CHero::~CHero()
@@ -82,55 +77,21 @@ void CHero::SideRotate() // 블럭이 벽에서 회전할 때 옆으로 평행이동
                 case BLOCK_ARRAY_LEFT_POS :
                 {
                     Right() ; 
+                    Right() ; 
                     break ; 
                 }
                 case BLOCK_ARRAY_RIGHT_POS :
                 {
                     Left() ; 
+                    Left() ; 
                     break ; 
                 }
                 case BLOCK_ARRAY_MID_POS :
-                {
-                    Up() ; 
-                    break ; 
-                }
-                case BLOCK_ARRAY_DOUBLE_LEFT_POS :
-                {
-                    Right() ; 
-                    Right() ; 
-                    break ; 
-                }
-                case BLOCK_ARRAY_DOUBLE_RIGHT_POS :
-                {
-                    Left() ; 
-                    Left() ; 
-                    break ; 
-                }
-                case BLOCK_ARRAY_DOUBLE_UP_POS :
-                {
-                    Up() ; 
-                    Up() ; 
-                    break ;
-                }
-                case BLOCK_ARRAY_TYPE :
                 {
                     if(m_bIsRotated)
                     {
                         Up() ; 
                         Up() ; 
-                    }
-                    else
-                    {
-                        if(nIndex == 9) // 9 is index of arr represents Change Statement.
-                        {
-                            Right() ; 
-                            Right() ; 
-                        }
-                        else 
-                        {
-                            Left() ; 
-                            Left() ; 
-                        }
                     }
                     break ; 
                 }
