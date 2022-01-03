@@ -17,6 +17,7 @@ class CBlock
         bool GetPos(INT nIndex, INT &nX, INT &nY) const ; 
         virtual BlockId GetId() const ; 
         bool IsOutOfBoundary(INT nIndex) const ; 
+        bool CanRotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1]) ;
     public :
         virtual void Draw() ; 
         virtual void FutureDraw() ; 
@@ -24,7 +25,13 @@ class CBlock
         void Left() ; 
         void Right() ; 
         virtual void Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1]) ; 
+        void SideRotate() ; 
         void Up() ; 
         void Down() ;
+    public :
+        void GetTempArray(bool *bArr) ; 
+        void ClockWise() ; 
+        void CounterClockWise() ; 
+
 } ;
 

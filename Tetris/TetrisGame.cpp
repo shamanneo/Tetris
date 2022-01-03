@@ -12,8 +12,6 @@
 #include "Paint.h" 
 #include "TetrisGame.h"
 
-const INT BOARD_BOUND = 1 ; 
-
 CTetrisGame::CTetrisGame()
 {
     m_nArrSize = DEFAULT_ARRAY_SIZE ; 
@@ -49,7 +47,7 @@ void CTetrisGame::Create()
         eId = m_eNextId ; 
     }
     m_eNextId = arrBlockId[(rand() % 7)] ; 
-    switch(BlockId::ID_HERO)
+    switch(BlockId::ID_TEEWEE)
     {
         case BlockId::ID_LICKY :
         {

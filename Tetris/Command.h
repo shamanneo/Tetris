@@ -11,7 +11,7 @@ class CCommand
         CCommand() ; 
         ~CCommand() ; 
     public :
-        void InputKey(int nKey) ;
+        void InputKey(INT nKey) ;
         void Draw() ; 
     public :
         void Left() ; 

@@ -6,6 +6,8 @@ const INT BLOCK_HEIGHT_COUNT = 20 ;
 const INT DEFAULT_ARRAY_SIZE = 9 ; 
 const INT HERO_ARRAY_SIZE = 16 ; 
 
+const INT BOARD_BOUND = 99 ;
+
 enum class BlockId
 {
     ID_VOID = 0,
