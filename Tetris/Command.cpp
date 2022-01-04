@@ -84,7 +84,7 @@ void CCommand::FastDown()
     {
 
     }
-    //CPaint::DrawScores(30) ; 
+    CMainApp::GetInstance().SetScore(30) ; 
 }
 
 void CCommand::PaintBoard() 

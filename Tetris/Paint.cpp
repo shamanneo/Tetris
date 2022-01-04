@@ -61,7 +61,7 @@ void CPaint::PaintBoard(INT arrTotalBoard[][21])
 {
     INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
     Graphics grfx { m_hDC } ; 
-    SolidBrush bru { Gdiplus::Color { 0, 0, 0 } } ;
+    SolidBrush brushBlack { Gdiplus::Color { 0, 0, 0 } } ;
 
     for(INT nX = 2 ; nX <= BLOCK_WIDTH_COUNT + 1 ; nX++)
     {
@@ -72,37 +72,37 @@ void CPaint::PaintBoard(INT arrTotalBoard[][21])
             {
                 case BlockId::ID_LICKY :
                 {
-                    bru.SetColor(Gdiplus::Color { 0, 64, 255 }) ; 
+                    brushBlack.SetColor(Gdiplus::Color { 0, 64, 255 }) ; 
                     break ;
                 }
                 case BlockId::ID_RICKY :
                 {
-                    bru.SetColor(Gdiplus::Color { 255, 127, 0 }) ; 
+                    brushBlack.SetColor(Gdiplus::Color { 255, 127, 0 }) ; 
                     break ;
                 }
                 case BlockId::ID_CLEVELAND :
                 {
-                    bru.SetColor(Gdiplus::Color { 255, 0, 0 }) ; 
+                    brushBlack.SetColor(Gdiplus::Color { 255, 0, 0 }) ; 
                     break ;
                 }
                 case BlockId::ID_PHODEISLAND :
                 {
-                    bru.SetColor(Gdiplus::Color { 0, 128, 0 }) ; 
+                    brushBlack.SetColor(Gdiplus::Color { 0, 128, 0 }) ; 
                     break ;
                 }
                 case BlockId::ID_TEEWEE :
                 {
-                    bru.SetColor(Gdiplus::Color { 102, 0, 153 }) ; 
+                    brushBlack.SetColor(Gdiplus::Color { 102, 0, 153 }) ; 
                     break ;
                 }
                 case BlockId::ID_SMASHBOY :
                 {
-                    bru.SetColor(Gdiplus::Color { 255, 212, 0 }) ; 
+                    brushBlack.SetColor(Gdiplus::Color { 255, 212, 0 }) ; 
                     break ;
                 }
                 case BlockId::ID_HERO :
                 {
-                    bru.SetColor(Gdiplus::Color { 0, 163, 210 }) ; 
+                    brushBlack.SetColor(Gdiplus::Color { 0, 163, 210 }) ; 
                     break ;
                 }
                 default :
@@ -110,7 +110,7 @@ void CPaint::PaintBoard(INT arrTotalBoard[][21])
                     continue ; 
                 }
             }
-            grfx.FillRectangle(&bru, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+            grfx.FillRectangle(&brushBlack, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
         }
     }
 }
@@ -215,19 +215,28 @@ void CPaint::PrintNextBlock()
     grfx.DrawImage(&Img, nX, nY, 200, 200) ; 
 }
 
-void CPaint::DrawScores() 
+void CPaint::DrawInfo(INT nScore, INT nLevel, INT nLine) 
 {
-   Graphics grfx { m_hDC } ;
-   Rect rc { (m_rcClient.right / 2) + BLOCK_INTERVAL * 6, 200, 197, 200 } ; 
-   Pen pen { Gdiplus::Color { 255, 255, 255 }, 2.8 } ; 
+    const INT nY = 215 ; 
+    const INT nWidth = 197 ; 
+    const INT nHeight = 200 ; 
+    Graphics grfx { m_hDC } ;
+    SolidBrush brushBlack { Gdiplus::Color { 0, 0, 0 } } ;
+    Rect rc { (m_rcClient.right / 2) + BLOCK_INTERVAL * 6, nY, nWidth, nHeight } ; 
+    Pen pen { Gdiplus::Color { 255, 255, 255 }, 2.8 } ; 
 
-   CString strText { "2000" }  ;
+    grfx.FillRectangle(&brushBlack, rc) ;
+
+    CString strText ;
+    strText.Format(_T("SCORE \n%d\nLEVEL \n%d\nLINE \n%d\n"), nScore, nLevel, nLine) ;  
    
-   FontFamily fontFamily { L"Arial" } ; 
-   Font font { &fontFamily, 20, Gdiplus::FontStyleBold } ; 
-   RectF rectF { (Gdiplus::REAL)(m_rcClient.right / 2) + BLOCK_INTERVAL * 6, (Gdiplus::REAL)200, (Gdiplus::REAL)197, (Gdiplus::REAL)200 } ; 
-   SolidBrush solidBrush { Gdiplus::Color { 255, 255 ,255 } } ; 
+    StringFormat stringFormat ;
+    stringFormat.SetAlignment(StringAlignmentNear) ; 
 
-   grfx.DrawString(strText, -1, &font, rectF, NULL, &solidBrush) ; 
+    FontFamily fontFamily { L"Arial" } ; 
+    Font font { &fontFamily, 22, Gdiplus::FontStyleBold } ; 
+    RectF rectF { (Gdiplus::REAL)(m_rcClient.right / 2) + BLOCK_INTERVAL * 6, (REAL)nY, (REAL)nWidth, (REAL)nHeight } ; 
+    SolidBrush solidBrush { Gdiplus::Color { 255, 255 ,255 } } ; 
 
+    grfx.DrawString(strText, -1, &font, rectF, &stringFormat, &solidBrush) ; 
 }

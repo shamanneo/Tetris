@@ -32,7 +32,7 @@ LRESULT CMainWnd::OnPaint(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, B
     CPaint paint { m_hWnd, hDC } ;
     if(m_IsEntered == true)
     {
-        paint.DrawScores() ;
+        CMainApp::GetInstance().SetScore(0) ; 
         paint.DrawBoard() ; 
         m_spComm->PaintBoard() ; 
         paint.PrintNextBlock() ; 
@@ -56,7 +56,7 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
                 m_IsEntered = true ;
                 KillTimer(IDT_MAIN_DRAWING_TIMER) ; 
                 SetTimer(IDT_DRAW_TIMER, 0, NULL) ; 
-                SetTimer(IDT_DOWN_TIMER, 200, NULL) ;
+                SetTimer(IDT_DOWN_TIMER, DEFAULT_VELOCITY, NULL) ;
                 
                 InvalidateRect(nullptr) ; 
                 UpdateWindow() ;

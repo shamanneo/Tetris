@@ -42,6 +42,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     KillTimer(MainWnd->m_hWnd, IDT_DRAW_TIMER) ;
     KillTimer(MainWnd->m_hWnd, IDT_DOWN_TIMER) ;
     GdiplusShutdown(gdiplusToken) ; 
+
     _CrtMemDumpAllObjectsSince(&state) ;
     return (int) msg.wParam ;
 }

@@ -1,12 +1,16 @@
 #include "pch.h"
+#include "Paint.h"
 #include "MainApp.h"
 
 static CMainApp *g_pMainApp = nullptr ; 
 
 CMainApp::CMainApp(HWND hWnd)
 {
-    m_eId = BlockId::ID_VOID ; 
     m_hWnd = hWnd ;
+    m_eId = BlockId::ID_VOID ; 
+    m_nScore = 0 ; 
+    m_nLevel = 1 ; 
+    m_nLine = 0 ;
 }
 
 CMainApp::~CMainApp()
@@ -14,14 +18,11 @@ CMainApp::~CMainApp()
 
 }
 
+//      Getter
+
 HWND CMainApp::GetMainWnd() const 
 {
     return m_hWnd ;
-}
-
-void CMainApp::SetMainWnd(HWND hWnd) 
-{
-    m_hWnd = hWnd ; 
 }
 
 BlockId CMainApp::GetBlockId() const 
@@ -29,9 +30,52 @@ BlockId CMainApp::GetBlockId() const
     return m_eId ;
 }
 
+INT CMainApp::GetScore() const 
+{
+    return m_nScore ; 
+}
+
+INT CMainApp::GetLevel() const 
+{
+    return m_nLevel ; 
+}
+
+INT CMainApp::GetLine() const 
+{
+    return m_nLine ; 
+}
+
+//      Setter
+
+void CMainApp::SetMainWnd(HWND hWnd) 
+{
+    m_hWnd = hWnd ; 
+}
+
 void CMainApp::SetBlockId(BlockId eId)  
 {
     m_eId = eId ; 
+}
+
+void CMainApp::SetScore(INT nScore)  
+{
+    m_nScore += nScore ; 
+    CPaint paint { m_hWnd } ; 
+    paint.DrawInfo(m_nScore, m_nLevel, m_nLine) ; 
+}
+
+void CMainApp::SetLevel(INT nLevel)  
+{
+    m_nLevel += nLevel ; 
+    CPaint paint { m_hWnd } ; 
+    paint.DrawInfo(m_nScore, m_nLevel, m_nLine) ; 
+}
+
+void CMainApp::SetLine(INT nLine)  
+{
+    m_nLine += nLine ; 
+    CPaint paint { m_hWnd } ; 
+    paint.DrawInfo(m_nScore, m_nLevel, m_nLine) ; 
 }
 
 //      static

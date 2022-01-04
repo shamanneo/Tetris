@@ -8,6 +8,8 @@ class CTetrisGame
     private :
         INT m_arrBoard[BLOCK_WIDTH_COUNT + 4][BLOCK_HEIGHT_COUNT + 1] ; 
         INT m_nArrSize ;
+        INT m_nScore ; 
+        INT m_nVelocity ;
         BlockId m_eNextId ; 
         std::unique_ptr<CBlock> m_spCurBk ; 
         std::unique_ptr<CBlock> m_spFurBk ; 
@@ -22,6 +24,7 @@ class CTetrisGame
         void InUpdate(INT nLine) ; 
         void OutUpdate() ; 
         void FutureUpdate() ; 
+        void SetLevel() ; 
     public :
         void Draw() ; 
     public :

@@ -2,6 +2,7 @@
 #include <time.h>
 #include <set>
 #include "MainApp.h"
+#include "Resource.h"
 #include "Licky.h"
 #include "Ricky.h"
 #include "Cleveland.h"
@@ -16,6 +17,8 @@ CTetrisGame::CTetrisGame()
 {
     m_nArrSize = DEFAULT_ARRAY_SIZE ; 
     m_eNextId = BlockId::ID_VOID ;  
+    m_nScore = 0 ; 
+    m_nVelocity = DEFAULT_VELOCITY ; 
     for(INT nY = 0 ; nY <= BLOCK_HEIGHT_COUNT ; nY++)
     {
         m_arrBoard[0][nY] = BOARD_BOUND ; 
@@ -37,6 +40,7 @@ CTetrisGame::~CTetrisGame()
 
 void CTetrisGame::Create()
 {
+    SetLevel() ; 
     srand((unsigned int)time(NULL)) ;
     BlockId arrBlockId[7] { BlockId::ID_LICKY, BlockId::ID_RICKY, BlockId::ID_CLEVELAND, BlockId::ID_PHODEISLAND, BlockId::ID_TEEWEE, BlockId::ID_SMASHBOY, BlockId::ID_HERO } ; 
     BlockId eId ;
@@ -134,7 +138,8 @@ void CTetrisGame::Reach()
         {
             InUpdate(nLine) ; 
             OutUpdate() ; 
-            //CPaint::DrawScores(100) ; 
+            CMainApp::GetInstance().SetScore(100) ; 
+            CMainApp::GetInstance().SetLine(1) ; 
         }
     }
     Create() ; 
@@ -195,6 +200,23 @@ void CTetrisGame::FutureUpdate()
         m_spFurBk->Down() ; 
     }
     m_spFurBk->FutureDraw() ;
+}
+
+void CTetrisGame::SetLevel() 
+{
+    CMainApp pMainApp = CMainApp::GetInstance() ; 
+    INT nCurScore = pMainApp.GetScore() ;
+    if(nCurScore - m_nScore >= 950)
+    {
+        CMainApp::GetInstance().SetLevel(1) ; 
+        KillTimer(pMainApp.GetMainWnd(), IDT_DOWN_TIMER) ; 
+        if(m_nVelocity != 1)
+        {
+            m_nVelocity -= 5 ;
+        }
+        SetTimer(pMainApp.GetMainWnd(), IDT_DOWN_TIMER, m_nVelocity, NULL) ; 
+        m_nScore += 1000 ; 
+    }
 }
 
 void CTetrisGame::Draw()
