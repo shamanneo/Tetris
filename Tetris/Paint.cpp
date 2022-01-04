@@ -3,6 +3,8 @@
 
 const int BLOCK_INTERVAL = 30 ;
 
+using namespace Gdiplus ; 
+
 CPaint::CPaint(HWND hWnd)
     : m_bAutoRelease(true)
 {
@@ -30,13 +32,13 @@ CPaint::~CPaint()
 void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT nB, INT nArrSize) 
 {
     INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
-    Gdiplus::Graphics grap { m_hDC } ; 
-    Gdiplus::SolidBrush bruBlack { Gdiplus::Color { (BYTE)nR, (BYTE)nG, (BYTE)nB } } ; 
+    Graphics grfx { m_hDC } ; 
+    SolidBrush bruBlack { Gdiplus::Color { (BYTE)nR, (BYTE)nG, (BYTE)nB } } ; 
     for(INT nIndex = 0 ; nIndex < nArrSize ; nIndex++)
     {
         if(!spPosArr[nIndex].IsEmpty())
         {
-            grap.FillRectangle(&bruBlack, BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 2) + nInitX + 2, BLOCK_INTERVAL * spPosArr[nIndex].m_nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+            grfx.FillRectangle(&bruBlack, BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 2) + nInitX + 2, BLOCK_INTERVAL * spPosArr[nIndex].m_nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
         }
     }
 }
@@ -44,13 +46,13 @@ void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT
 void CPaint::EraseBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nArrSize)
 {
     INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
-    Gdiplus::Graphics grap { m_hDC } ; 
-    Gdiplus::SolidBrush bruWhite { Gdiplus::Color { 0, 0, 0 } } ; 
+    Graphics grfx { m_hDC } ; 
+    SolidBrush bruWhite { Gdiplus::Color { 0, 0, 0 } } ; 
     for(INT nIndex = 0 ; nIndex < nArrSize ; nIndex++)
     {
         if(!spPosArr[nIndex].IsEmpty())
         {
-            grap.FillRectangle(&bruWhite, BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 2) + nInitX + 2, BLOCK_INTERVAL * spPosArr[nIndex].m_nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+            grfx.FillRectangle(&bruWhite, BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 2) + nInitX + 2, BLOCK_INTERVAL * spPosArr[nIndex].m_nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
         }
     }
 }
@@ -58,8 +60,8 @@ void CPaint::EraseBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nArrSize)
 void CPaint::PaintBoard(INT arrTotalBoard[][21]) 
 {
     INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
-    Gdiplus::Graphics grap { m_hDC } ; 
-    Gdiplus::SolidBrush bru { Gdiplus::Color { 0, 0, 0 } } ;
+    Graphics grfx { m_hDC } ; 
+    SolidBrush bru { Gdiplus::Color { 0, 0, 0 } } ;
 
     for(INT nX = 2 ; nX <= BLOCK_WIDTH_COUNT + 1 ; nX++)
     {
@@ -108,7 +110,7 @@ void CPaint::PaintBoard(INT arrTotalBoard[][21])
                     continue ; 
                 }
             }
-            grap.FillRectangle(&bru, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+            grfx.FillRectangle(&bru, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
         }
     }
 }
@@ -116,33 +118,33 @@ void CPaint::PaintBoard(INT arrTotalBoard[][21])
 void CPaint::DrawBoard() 
 {
     INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
-    Gdiplus::Graphics grap { m_hDC } ; 
-    Gdiplus::Pen pen { Gdiplus::Color { 255, 255, 255, 255 }, 3.5 } ; 
+    Graphics grfx { m_hDC } ; 
+    Pen pen { Gdiplus::Color { 255, 255, 255, 255 }, 3.5 } ; 
 
-    grap.DrawRectangle(&pen, nInitX, BLOCK_INTERVAL, BLOCK_INTERVAL * 10, BLOCK_INTERVAL * 20) ; 
+    grfx.DrawRectangle(&pen, nInitX, BLOCK_INTERVAL, BLOCK_INTERVAL * 10, BLOCK_INTERVAL * 20) ; 
     pen.SetColor( Gdiplus::Color { 50, 255, 255, 255 } ) ;  
     pen.SetWidth(1) ; 
     
     for(INT i = 0 ; i < BLOCK_WIDTH_COUNT ; i++)
     {
-        grap.DrawLine(&pen, nInitX + BLOCK_INTERVAL * i, BLOCK_INTERVAL, nInitX + BLOCK_INTERVAL * i, BLOCK_INTERVAL * 21) ; 
+        grfx.DrawLine(&pen, nInitX + BLOCK_INTERVAL * i, BLOCK_INTERVAL, nInitX + BLOCK_INTERVAL * i, BLOCK_INTERVAL * 21) ; 
     }
     for(INT i = 0 ; i < BLOCK_HEIGHT_COUNT ; i++)
     {
-        grap.DrawLine(&pen, nInitX, BLOCK_INTERVAL + BLOCK_INTERVAL * i, nInitX + BLOCK_INTERVAL * BLOCK_WIDTH_COUNT, BLOCK_INTERVAL + BLOCK_INTERVAL * i) ; 
+        grfx.DrawLine(&pen, nInitX, BLOCK_INTERVAL + BLOCK_INTERVAL * i, nInitX + BLOCK_INTERVAL * BLOCK_WIDTH_COUNT, BLOCK_INTERVAL + BLOCK_INTERVAL * i) ; 
     }
 }
 
 void CPaint::EraseBoard()
 {
     INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
-    Gdiplus::Graphics grap { m_hDC } ; 
-    Gdiplus::SolidBrush bruWhite { Gdiplus::Color { 0, 0, 0 } } ; 
+    Graphics grfx { m_hDC } ; 
+    SolidBrush bruWhite { Gdiplus::Color { 0, 0, 0 } } ; 
     for(INT nX = 2 ; nX <= BLOCK_WIDTH_COUNT + 1 ; nX++)
     {
         for(INT nY = 0 ; nY < BLOCK_HEIGHT_COUNT ; nY++)
         {
-            grap.FillRectangle(&bruWhite, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL -3) ; 
+            grfx.FillRectangle(&bruWhite, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL -3) ; 
         }
     }
 }
@@ -150,7 +152,7 @@ void CPaint::EraseBoard()
 void CPaint::PrintMain()
 {
     static INT nCount = 1 ;
-    Gdiplus::Graphics grap { m_hDC } ; 
+    Graphics grfx { m_hDC } ; 
     CString str ; 
     if(nCount++ % 2 == 1)
     {
@@ -160,8 +162,8 @@ void CPaint::PrintMain()
     { 
         str = "TetrisMainPress.png" ;
     }
-    Gdiplus::Image Img { str } ; 
-    grap.DrawImage(&Img, -1, 0, Img.GetWidth(), Img.GetHeight()) ;    
+    Image Img { str } ; 
+    grfx.DrawImage(&Img, -1, 0, Img.GetWidth(), Img.GetHeight()) ;    
 }
 
 void CPaint::PrintNextBlock() 
@@ -169,7 +171,7 @@ void CPaint::PrintNextBlock()
     BlockId eId = CMainApp::GetInstance().GetBlockId() ; 
     const INT nX = (m_rcClient.right / 2) + BLOCK_INTERVAL * 6 ; 
     const INT nY = 431 ; 
-    Gdiplus::Graphics grap { m_hDC } ;
+    Graphics grfx { m_hDC } ;
     CString str ; 
     switch (eId)
     {
@@ -209,18 +211,23 @@ void CPaint::PrintNextBlock()
             break ;
         }
     }
-    Gdiplus::Image Img { str } ; 
-    grap.DrawImage(&Img, nX, nY, 200, 200) ; 
+    Image Img { str } ; 
+    grfx.DrawImage(&Img, nX, nY, 200, 200) ; 
 }
 
 void CPaint::DrawScores() 
 {
-    /*
-    m_nScore += nScore ; 
-    HDC hDC = GetDC(m_hWnd) ; 
-    CString str ; 
-    str.Format(_T("SCORE : %d   "), m_nScore) ;
-	TextOut(hDC, 400, 50, str, str.GetLength()) ;
-    ReleaseDC(m_hWnd, hDC) ; 
-    */
+   Graphics grfx { m_hDC } ;
+   Rect rc { (m_rcClient.right / 2) + BLOCK_INTERVAL * 6, 200, 197, 200 } ; 
+   Pen pen { Gdiplus::Color { 255, 255, 255 }, 2.8 } ; 
+
+   CString strText { "2000" }  ;
+   
+   FontFamily fontFamily { L"Arial" } ; 
+   Font font { &fontFamily, 20, Gdiplus::FontStyleBold } ; 
+   RectF rectF { (Gdiplus::REAL)(m_rcClient.right / 2) + BLOCK_INTERVAL * 6, (Gdiplus::REAL)200, (Gdiplus::REAL)197, (Gdiplus::REAL)200 } ; 
+   SolidBrush solidBrush { Gdiplus::Color { 255, 255 ,255 } } ; 
+
+   grfx.DrawString(strText, -1, &font, rectF, NULL, &solidBrush) ; 
+
 }
