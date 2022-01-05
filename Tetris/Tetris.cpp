@@ -38,9 +38,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
     }
     CMainApp::Release() ;
-
-    KillTimer(MainWnd->m_hWnd, IDT_DRAW_TIMER) ;
-    KillTimer(MainWnd->m_hWnd, IDT_DOWN_TIMER) ;
     GdiplusShutdown(gdiplusToken) ; 
 
     _CrtMemDumpAllObjectsSince(&state) ;

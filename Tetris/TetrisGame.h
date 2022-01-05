@@ -27,6 +27,7 @@ class CTetrisGame
         void OutUpdate() ; 
         void FutureUpdate() ; 
         void SetLevel() ; 
+        void GameOver() ; 
     public :
         void Draw() ; 
         void Erase() ; 

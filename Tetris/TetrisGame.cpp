@@ -137,6 +137,7 @@ void CTetrisGame::Reach()
 
     if(m_IsGameOver)
     {
+        GameOver() ; 
         return ; 
     }
 
@@ -172,7 +173,8 @@ bool CTetrisGame::CanArrangeBlock(INT &nUp)
     {
         if(m_arrBoard[nX][2] != BLOCK_ARRAY_SPACE_OFF)
         {
-            nUp += 3 ; 
+            nUp += 2
+                ; 
             return false ; 
         }
         else if(m_arrBoard[nX][3] != BLOCK_ARRAY_SPACE_OFF)
@@ -232,6 +234,18 @@ void CTetrisGame::SetLevel()
         SetTimer(pMainApp.GetMainWnd(), IDT_DOWN_TIMER, m_nVelocity, NULL) ; 
         m_nScore += 1000 ; 
     }
+}
+
+void CTetrisGame::GameOver() 
+{
+    HWND hWnd = CMainApp::GetInstance().GetMainWnd() ;
+    CPaint paint { hWnd } ;
+    paint.PrintGameOver(m_arrBoard) ;
+
+    KillTimer(hWnd, IDT_DRAW_TIMER) ;
+    KillTimer(hWnd, IDT_DOWN_TIMER) ;
+
+    return ; 
 }
 
 void CTetrisGame::Draw()

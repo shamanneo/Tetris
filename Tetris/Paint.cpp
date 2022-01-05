@@ -61,7 +61,7 @@ void CPaint::PaintBoard(INT arrTotalBoard[][BLOCK_HEIGHT_COUNT])
 {
     INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
     Graphics grfx { m_hDC } ; 
-    SolidBrush brushBlack { Gdiplus::Color { 0, 0, 0 } } ;
+    SolidBrush brush { Gdiplus::Color { 0, 0, 0 } } ;
 
     for(INT nX = 2 ; nX <= 11 ; nX++)
     {
@@ -72,37 +72,37 @@ void CPaint::PaintBoard(INT arrTotalBoard[][BLOCK_HEIGHT_COUNT])
             {
                 case BlockId::ID_LICKY :
                 {
-                    brushBlack.SetColor(Gdiplus::Color { 0, 64, 255 }) ; 
+                    brush.SetColor(Gdiplus::Color { 0, 64, 255 }) ; 
                     break ;
                 }
                 case BlockId::ID_RICKY :
                 {
-                    brushBlack.SetColor(Gdiplus::Color { 255, 127, 0 }) ; 
+                    brush.SetColor(Gdiplus::Color { 255, 127, 0 }) ; 
                     break ;
                 }
                 case BlockId::ID_CLEVELAND :
                 {
-                    brushBlack.SetColor(Gdiplus::Color { 255, 0, 0 }) ; 
+                    brush.SetColor(Gdiplus::Color { 255, 0, 0 }) ; 
                     break ;
                 }
                 case BlockId::ID_PHODEISLAND :
                 {
-                    brushBlack.SetColor(Gdiplus::Color { 0, 128, 0 }) ; 
+                    brush.SetColor(Gdiplus::Color { 0, 128, 0 }) ; 
                     break ;
                 }
                 case BlockId::ID_TEEWEE :
                 {
-                    brushBlack.SetColor(Gdiplus::Color { 102, 0, 153 }) ; 
+                    brush.SetColor(Gdiplus::Color { 102, 0, 153 }) ; 
                     break ;
                 }
                 case BlockId::ID_SMASHBOY :
                 {
-                    brushBlack.SetColor(Gdiplus::Color { 255, 212, 0 }) ; 
+                    brush.SetColor(Gdiplus::Color { 255, 212, 0 }) ; 
                     break ;
                 }
                 case BlockId::ID_HERO :
                 {
-                    brushBlack.SetColor(Gdiplus::Color { 0, 163, 210 }) ; 
+                    brush.SetColor(Gdiplus::Color { 0, 163, 210 }) ; 
                     break ;
                 }
                 default :
@@ -110,7 +110,7 @@ void CPaint::PaintBoard(INT arrTotalBoard[][BLOCK_HEIGHT_COUNT])
                     continue ; 
                 }
             }
-            grfx.FillRectangle(&brushBlack, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * (nY - 2) + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+            grfx.FillRectangle(&brush, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * (nY - 2) + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
         }
     }
 }
@@ -164,6 +164,26 @@ void CPaint::PrintMain()
     }
     Image Img { str } ; 
     grfx.DrawImage(&Img, -1, 0, Img.GetWidth(), Img.GetHeight()) ;    
+}
+
+void CPaint::PrintGameOver(INT arrTotalBoard[][BLOCK_HEIGHT_COUNT])
+{
+    INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
+    Graphics grfx { m_hDC } ; 
+    SolidBrush brush { Gdiplus::Color { 0, 0, 0 } } ;
+
+    for(INT nX = 2 ; nX <= 11 ; nX++)
+    {
+        for(INT nY = 1 ; nY <= 21 ; nY++)
+        {
+            INT nElem = arrTotalBoard[nX][nY] ; 
+            if((nElem != 0) && (nElem != BOARD_BOUND)) 
+            {
+                brush.SetColor(Color { 255, 255, 255 } ) ;
+                grfx.FillRectangle(&brush, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * (nY - 2) + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+            }
+        }
+    }
 }
 
 void CPaint::PrintNextBlock() 
