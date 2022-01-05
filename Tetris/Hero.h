@@ -16,7 +16,7 @@ class CHero : public CBlock
     public :
         virtual void Draw() override ; 
         virtual void FutureDraw() override ; 
-        virtual void Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1]) override ; 
+        virtual void Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT]) override ; 
     public :    
         void ClockWise() ; 
         void CounterClockWise() ; 

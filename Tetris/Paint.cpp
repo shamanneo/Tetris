@@ -38,7 +38,7 @@ void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT
     {
         if(!spPosArr[nIndex].IsEmpty())
         {
-            grfx.FillRectangle(&bruBlack, BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 2) + nInitX + 2, BLOCK_INTERVAL * spPosArr[nIndex].m_nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+            grfx.FillRectangle(&bruBlack, (BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 2) + nInitX + 2), (BLOCK_INTERVAL * (spPosArr[nIndex].m_nY - 2) + BLOCK_INTERVAL + 2), BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
         }
     }
 }
@@ -52,20 +52,20 @@ void CPaint::EraseBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nArrSize)
     {
         if(!spPosArr[nIndex].IsEmpty())
         {
-            grfx.FillRectangle(&bruWhite, BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 2) + nInitX + 2, BLOCK_INTERVAL * spPosArr[nIndex].m_nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+            grfx.FillRectangle(&bruWhite, (BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 2) + nInitX + 2), (BLOCK_INTERVAL * (spPosArr[nIndex].m_nY - 2) + BLOCK_INTERVAL + 2), BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
         }
     }
 }
 
-void CPaint::PaintBoard(INT arrTotalBoard[][21]) 
+void CPaint::PaintBoard(INT arrTotalBoard[][BLOCK_HEIGHT_COUNT]) 
 {
     INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
     Graphics grfx { m_hDC } ; 
     SolidBrush brushBlack { Gdiplus::Color { 0, 0, 0 } } ;
 
-    for(INT nX = 2 ; nX <= BLOCK_WIDTH_COUNT + 1 ; nX++)
+    for(INT nX = 2 ; nX <= 11 ; nX++)
     {
-        for(INT nY = 0 ; nY < BLOCK_HEIGHT_COUNT ; nY++)
+        for(INT nY = 2 ; nY <= 21 ; nY++)
         {
             BlockId eId = (BlockId)arrTotalBoard[nX][nY] ; 
             switch (eId)
@@ -110,7 +110,7 @@ void CPaint::PaintBoard(INT arrTotalBoard[][21])
                     continue ; 
                 }
             }
-            grfx.FillRectangle(&brushBlack, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+            grfx.FillRectangle(&brushBlack, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * (nY - 2) + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
         }
     }
 }
@@ -125,13 +125,13 @@ void CPaint::DrawBoard()
     pen.SetColor( Gdiplus::Color { 50, 255, 255, 255 } ) ;  
     pen.SetWidth(1) ; 
     
-    for(INT i = 0 ; i < BLOCK_WIDTH_COUNT ; i++)
+    for(INT i = 0 ; i < 10 ; i++)
     {
         grfx.DrawLine(&pen, nInitX + BLOCK_INTERVAL * i, BLOCK_INTERVAL, nInitX + BLOCK_INTERVAL * i, BLOCK_INTERVAL * 21) ; 
     }
-    for(INT i = 0 ; i < BLOCK_HEIGHT_COUNT ; i++)
+    for(INT i = 0 ; i < 20 ; i++)
     {
-        grfx.DrawLine(&pen, nInitX, BLOCK_INTERVAL + BLOCK_INTERVAL * i, nInitX + BLOCK_INTERVAL * BLOCK_WIDTH_COUNT, BLOCK_INTERVAL + BLOCK_INTERVAL * i) ; 
+        grfx.DrawLine(&pen, nInitX, BLOCK_INTERVAL + BLOCK_INTERVAL * i, nInitX + BLOCK_INTERVAL * 10, BLOCK_INTERVAL + BLOCK_INTERVAL * i) ; 
     }
 }
 
@@ -140,11 +140,11 @@ void CPaint::EraseBoard()
     INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
     Graphics grfx { m_hDC } ; 
     SolidBrush bruWhite { Gdiplus::Color { 0, 0, 0 } } ; 
-    for(INT nX = 2 ; nX <= BLOCK_WIDTH_COUNT + 1 ; nX++)
+    for(INT nX = 2 ; nX < 12 ; nX++)
     {
-        for(INT nY = 0 ; nY < BLOCK_HEIGHT_COUNT ; nY++)
+        for(INT nY = 0 ; nY < 20 ; nY++)
         {
-            grfx.FillRectangle(&bruWhite, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL -3) ; 
+            grfx.FillRectangle(&bruWhite, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
         }
     }
 }

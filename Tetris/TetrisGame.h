@@ -6,7 +6,7 @@
 class CTetrisGame 
 {
     private :
-        INT m_arrBoard[BLOCK_WIDTH_COUNT + 4][BLOCK_HEIGHT_COUNT + 1] ; 
+        INT m_arrBoard[BLOCK_WIDTH_COUNT][BLOCK_HEIGHT_COUNT] ; 
         INT m_nArrSize ;
         INT m_nScore ; 
         INT m_nVelocity ;

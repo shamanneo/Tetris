@@ -22,7 +22,7 @@ CTetrisGame::CTetrisGame()
     m_nScore = 0 ; 
     m_nVelocity = DEFAULT_VELOCITY ; 
     m_nWaitTime = 0 ;
-    for(INT nY = 0 ; nY <= BLOCK_HEIGHT_COUNT ; nY++)
+    for(INT nY = 0 ; nY < BLOCK_HEIGHT_COUNT ; nY++)
     {
         m_arrBoard[0][nY] = BOARD_BOUND ; 
         m_arrBoard[1][nY] = BOARD_BOUND ; 
@@ -30,7 +30,9 @@ CTetrisGame::CTetrisGame()
         m_arrBoard[13][nY] = BOARD_BOUND ;
         if(nY < 12)
         {
-            m_arrBoard[nY][BLOCK_HEIGHT_COUNT] = BOARD_BOUND ; 
+            m_arrBoard[nY][0] = BOARD_BOUND ; 
+            m_arrBoard[nY][1] = BOARD_BOUND ; 
+            m_arrBoard[nY][BLOCK_HEIGHT_COUNT - 1] = BOARD_BOUND ; 
         }
     }
     Create() ; 
@@ -45,10 +47,12 @@ void CTetrisGame::Create()
 {
     SetLevel() ; 
     INT nUp = 0 ; 
+    /*
     if(!CanArrangeBlock())
     {
         nUp = 1 ;         
     }
+    */
     srand((unsigned int)time(NULL)) ;
     BlockId arrBlockId[7] { BlockId::ID_LICKY, BlockId::ID_RICKY, BlockId::ID_CLEVELAND, BlockId::ID_PHODEISLAND, BlockId::ID_TEEWEE, BlockId::ID_SMASHBOY, BlockId::ID_HERO } ; 
     BlockId eId ;
@@ -153,7 +157,7 @@ void CTetrisGame::Reach()
 
 bool CTetrisGame::IsFull(INT nLine) 
 {
-    for(INT nX = 2 ; nX <= BLOCK_WIDTH_COUNT + 1 ; nX++)
+    for(INT nX = 2 ; nX <= 11 ; nX++)
     {
         if(m_arrBoard[nX][nLine] == BLOCK_ARRAY_SPACE_OFF)
         {
@@ -165,13 +169,16 @@ bool CTetrisGame::IsFull(INT nLine)
 
 bool CTetrisGame::IsGameOver() 
 {
-    for(INT nX = 2 ; nX <= BLOCK_WIDTH_COUNT + 1 ; nX++)
+    /*
+    for(INT nX = 2 ; nX <= 11 ; nX++)
     {
         if(m_arrBoard[nX][0] != BLOCK_ARRAY_SPACE_OFF)
         {
             return true ; 
         }
     }
+    return false ; 
+    */
     return false ; 
 }
 
@@ -189,13 +196,13 @@ bool CTetrisGame::CanArrangeBlock()
 
 void CTetrisGame::InUpdate(INT nLine)
 {   
-    for(INT nX = 2 ; nX <= BLOCK_WIDTH_COUNT + 1 ; nX++)
+    for(INT nX = 2 ; nX <= 11 ; nX++)
     {
         m_arrBoard[nX][nLine] = BLOCK_ARRAY_SPACE_OFF ; // Clear line. 
     }
-    for(INT nX = 2 ; nX <= BLOCK_WIDTH_COUNT + 1 ; nX++)
+    for(INT nX = 2 ; nX <= 11 ; nX++)
     {
-        for(INT nY = nLine - 1 ; nY >= 0  ; nY--)
+        for(INT nY = nLine - 1 ; nY > 1 ; nY--)
         {
             m_arrBoard[nX][nY + 1] = m_arrBoard[nX][nY] ; 
         }

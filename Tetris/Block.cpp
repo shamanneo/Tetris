@@ -53,7 +53,7 @@ bool CBlock::IsOutOfBoundary(INT nIndex) const
         || (m_spPosArr[nIndex].m_nY == 20) ? true : false ; 
 }
 
-bool CBlock::CanRotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1], INT nArrSize)
+bool CBlock::CanRotate(INT arrBoard[][BLOCK_HEIGHT_COUNT], INT nArrSize)
 {
     static INT nCount = 0 ; 
     bool bCanRotate = true ; 
@@ -146,7 +146,7 @@ void CBlock::Down()
     }
 }
 
-void CBlock::Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1])
+void CBlock::Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT])
 {
     ClockWise() ; 
     if(!CanRotate(arrBoard))

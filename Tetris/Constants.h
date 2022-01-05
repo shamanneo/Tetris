@@ -1,12 +1,12 @@
 #pragma once
 
-const INT BLOCK_WIDTH_COUNT = 10 ;
-const INT BLOCK_HEIGHT_COUNT = 20 ;
+const INT BLOCK_WIDTH_COUNT = 14 ;
+const INT BLOCK_HEIGHT_COUNT = 23 ;
 
 const INT DEFAULT_ARRAY_SIZE = 9 ; 
 const INT HERO_ARRAY_SIZE = 16 ; 
 
-const INT BOARD_BOUND = 99 ;
+const INT BOARD_BOUND = 9 ;
 
 const INT DEFAULT_VELOCITY = 300 ; 
 
