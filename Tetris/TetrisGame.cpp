@@ -13,12 +13,15 @@
 #include "Paint.h" 
 #include "TetrisGame.h"
 
+const INT DEFAULT_WAIT_TIME_ON_BLOCK = 1 ; 
+
 CTetrisGame::CTetrisGame()
 {
     m_nArrSize = DEFAULT_ARRAY_SIZE ; 
     m_eNextId = BlockId::ID_VOID ;  
     m_nScore = 0 ; 
     m_nVelocity = DEFAULT_VELOCITY ; 
+    m_nWaitTime = 0 ;
     for(INT nY = 0 ; nY <= BLOCK_HEIGHT_COUNT ; nY++)
     {
         m_arrBoard[0][nY] = BOARD_BOUND ; 
@@ -257,11 +260,17 @@ bool CTetrisGame::Down()
         FutureUpdate() ; 
         return false ; 
     }
-    else
+    else // 맨 밑의 층에 도달
     {
+        if(m_nWaitTime == DEFAULT_WAIT_TIME_ON_BLOCK) // 블럭 위에서도 움직이 가능해야함 
+        {
+            Reach() ; 
+            m_nWaitTime = 0 ; 
+            return true ; 
+        }
         m_spCurBk->Draw() ; 
-        Reach() ; 
-        return true ;
+        m_nWaitTime += 1 ; 
+        return false ; 
     }
 }
 

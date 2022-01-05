@@ -10,6 +10,7 @@ class CTetrisGame
         INT m_nArrSize ;
         INT m_nScore ; 
         INT m_nVelocity ;
+        INT m_nWaitTime ;
         BlockId m_eNextId ; 
         std::unique_ptr<CBlock> m_spCurBk ; 
         std::unique_ptr<CBlock> m_spFurBk ; 
