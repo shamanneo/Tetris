@@ -9,13 +9,13 @@ CHero::CHero(INT nArrSize)
 {
     m_spPosArr = std::make_unique<CSpace[]>(HERO_ARRAY_SIZE) ; 
     m_spPosArr[0].Set(5, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
-    m_spPosArr[1].Set(6, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
-    m_spPosArr[2].Set(7, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_RIGHT_POS) ; 
+    m_spPosArr[1].Set(6, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
+    m_spPosArr[2].Set(7, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
     m_spPosArr[3].Set(8, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_RIGHT_POS) ; 
 
     m_spPosArr[4].Set(5, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_LEFT_POS) ; 
-    m_spPosArr[5].Set(6, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_LEFT_POS) ; 
-    m_spPosArr[6].Set(7, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_RIGHT_POS) ; 
+    m_spPosArr[5].Set(6, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_MID_POS) ; 
+    m_spPosArr[6].Set(7, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_MID_POS) ; 
     m_spPosArr[7].Set(8, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_RIGHT_POS) ; 
 
     m_spPosArr[8].Set(5, 2, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
@@ -53,15 +53,10 @@ void CHero::FutureDraw()
 
 void CHero::Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1]) 
 {
-    Erase() ; 
     ClockWise() ; 
-    if(CanRotate(arrBoard, HERO_ARRAY_SIZE))
+    if(!CanRotate(arrBoard, HERO_ARRAY_SIZE))
     {
         (!m_bIsRotated) ? m_bIsRotated = true : m_bIsRotated = false ; 
-        SideRotate() ; 
-    }
-    else 
-    {
         CounterClockWise() ; // 회전 실패
     }
 }

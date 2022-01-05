@@ -49,13 +49,13 @@ void CTetrisGame::Create()
     BlockId eId ;
     if(m_eNextId == BlockId::ID_VOID)
     {
-        eId = arrBlockId[(rand() % 6)] ; 
+        eId = arrBlockId[(rand() % 7)] ; 
     }
     else
     {
         eId = m_eNextId ; 
     }
-    m_eNextId = arrBlockId[(rand() % 6)] ; 
+    m_eNextId = arrBlockId[(rand() % 7)] ; 
     switch(eId)
     {
         case BlockId::ID_LICKY :

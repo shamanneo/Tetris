@@ -57,7 +57,7 @@ bool CBlock::CanRotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1], INT nArrSize)
 {
     static INT nCount = 0 ; 
     bool bCanRotate = true ; 
-    if(nCount == 3)
+    if(nCount == 4)
     {
         nCount = 0 ; 
         return false ; 
