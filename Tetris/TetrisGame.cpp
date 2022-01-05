@@ -44,6 +44,11 @@ CTetrisGame::~CTetrisGame()
 void CTetrisGame::Create()
 {
     SetLevel() ; 
+    INT nUp = 0 ; 
+    if(!CanArrangeBlock())
+    {
+        nUp = 1 ;         
+    }
     srand((unsigned int)time(NULL)) ;
     BlockId arrBlockId[7] { BlockId::ID_LICKY, BlockId::ID_RICKY, BlockId::ID_CLEVELAND, BlockId::ID_PHODEISLAND, BlockId::ID_TEEWEE, BlockId::ID_SMASHBOY, BlockId::ID_HERO } ; 
     BlockId eId ;
@@ -161,6 +166,18 @@ bool CTetrisGame::IsFull(INT nLine)
 bool CTetrisGame::IsGameOver() 
 {
     for(INT nX = 2 ; nX <= BLOCK_WIDTH_COUNT + 1 ; nX++)
+    {
+        if(m_arrBoard[nX][0] != BLOCK_ARRAY_SPACE_OFF)
+        {
+            return true ; 
+        }
+    }
+    return false ; 
+}
+
+bool CTetrisGame::CanArrangeBlock() 
+{
+    for(INT nX = 5 ; nX <= 8 ; nX++)
     {
         if(m_arrBoard[nX][0] != BLOCK_ARRAY_SPACE_OFF)
         {

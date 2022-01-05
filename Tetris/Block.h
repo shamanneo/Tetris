@@ -27,7 +27,6 @@ class CBlock
         void Down() ; 
         virtual void Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1]) ; 
         bool CanRotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1], INT nArrSize = DEFAULT_ARRAY_SIZE) ;
-        void SideRotate() ; 
     public :
         void GetTempArray(bool *bArr, INT nArrSize = DEFAULT_ARRAY_SIZE) ; 
         void ClockWise() ; 

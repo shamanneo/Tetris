@@ -22,6 +22,7 @@ class CTetrisGame
         void Reach() ; 
         bool IsFull(INT nLine) ; 
         bool IsGameOver() ; 
+        bool CanArrangeBlock() ; 
         void InUpdate(INT nLine) ; 
         void OutUpdate() ; 
         void FutureUpdate() ; 

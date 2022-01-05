@@ -61,45 +61,6 @@ void CHero::Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1])
     }
 }
 
-void CHero::SideRotate() // 블럭이 벽에서 회전할 때 옆으로 평행이동
-{
-    for(INT nIndex = 0 ; nIndex < HERO_ARRAY_SIZE ; nIndex++)
-    {
-        if((m_spPosArr[nIndex].m_bPres == true) && IsOutOfBoundary(nIndex))
-        {
-            switch(m_spPosArr[nIndex].m_nPos)
-            {
-                case BLOCK_ARRAY_LEFT_POS :
-                {
-                    Right() ; 
-                    Right() ; 
-                    break ; 
-                }
-                case BLOCK_ARRAY_RIGHT_POS :
-                {
-                    Left() ; 
-                    Left() ; 
-                    break ; 
-                }
-                case BLOCK_ARRAY_MID_POS :
-                {
-                    if(m_bIsRotated)
-                    {
-                        Up() ; 
-                        Up() ; 
-                    }
-                    break ; 
-                }
-                default :
-                {
-                   ATLASSERT(0) ; 
-                   break ;
-                }
-            }
-        }
-    }
-}
-
 void CHero::ClockWise() 
 {
     bool bArr[HERO_ARRAY_SIZE] { } ; 
