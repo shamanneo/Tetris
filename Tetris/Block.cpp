@@ -57,7 +57,7 @@ bool CBlock::CanRotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1], INT nArrSize)
 {
     static INT nCount = 0 ; 
     bool bCanRotate = true ; 
-    if(nCount == 4)
+    if(nCount == 5)
     {
         nCount = 0 ; 
         return false ; 
@@ -81,7 +81,11 @@ bool CBlock::CanRotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1], INT nArrSize)
                 Left() ; 
                 bCanRotate = false ; 
             }
-            Up() ; 
+            BlockId eId = this->GetId() ; 
+            if(eId != BlockId::ID_HERO) 
+            {
+                Up() ; 
+            }
         }
     }
     if(bCanRotate == true)

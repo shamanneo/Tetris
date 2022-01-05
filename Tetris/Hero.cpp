@@ -48,7 +48,7 @@ void CHero::Draw()
 void CHero::FutureDraw()  
 {
     CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
-    paint.PaintBlock(m_spPosArr, 214, 214, 214, HERO_ARRAY_SIZE) ; 
+    paint.PaintBlock(m_spPosArr, 255, 255, 255, HERO_ARRAY_SIZE) ; 
 }
 
 void CHero::Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1]) 
