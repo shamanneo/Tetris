@@ -9,7 +9,7 @@ class CHero : public CBlock
         const BlockId m_eId ; 
         bool m_bIsRotated ;
     public :
-        CHero(INT nArrSize) ;
+        CHero(INT nArrSize, INT nUp) ;
         ~CHero() ; 
     public :
         virtual BlockId GetId() const override ; 

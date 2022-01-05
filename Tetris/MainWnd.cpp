@@ -58,6 +58,8 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
                 SetTimer(IDT_DRAW_TIMER, 0, NULL) ; 
                 SetTimer(IDT_DOWN_TIMER, DEFAULT_VELOCITY, NULL) ;
                 
+                m_spComm->Begin() ; 
+
                 InvalidateRect(nullptr) ; 
                 UpdateWindow() ;
             }

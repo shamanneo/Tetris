@@ -8,7 +8,7 @@ class CTeewee : public CBlock
     public :   
         const BlockId m_eId ; 
     public :
-        CTeewee(INT nArrSize) ;
+        CTeewee(INT nArrSize, INT nUp) ;
         ~CTeewee() ; 
     public :
         virtual BlockId GetId() const override ; 

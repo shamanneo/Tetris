@@ -63,6 +63,11 @@ void CCommand::Erase()
     m_spTetrisGm->Erase() ; 
 }
 
+void CCommand::Begin() 
+{
+    m_spTetrisGm->Create() ; 
+}
+
 void CCommand::Left() 
 {
     m_spTetrisGm->Left() ; 

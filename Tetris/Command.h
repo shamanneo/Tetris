@@ -14,6 +14,7 @@ class CCommand
         void InputKey(INT nKey) ;
         void Draw() ; 
         void Erase() ; 
+        void Begin() ; 
     public :
         void Left() ; 
         void Right() ; 

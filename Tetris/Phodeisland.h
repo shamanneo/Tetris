@@ -8,7 +8,7 @@ class CPhodeisland : public CBlock
     public :   
         const BlockId m_eId ; 
     public :
-        CPhodeisland(INT nArrSize) ;
+        CPhodeisland(INT nArrSize, INT nUp) ;
         ~CPhodeisland() ; 
     public :
         virtual BlockId GetId() const override ; 

@@ -223,7 +223,7 @@ void CPaint::DrawInfo(INT nScore, INT nLevel, INT nLine)
     Graphics grfx { m_hDC } ;
     SolidBrush brushBlack { Gdiplus::Color { 0, 0, 0 } } ;
     Rect rc { (m_rcClient.right / 2) + BLOCK_INTERVAL * 6, nY, nWidth, nHeight } ; 
-    Pen pen { Gdiplus::Color { 255, 255, 255 }, 2.8 } ; 
+    Pen pen { Gdiplus::Color { 255, 255, 255 }, 2.8f } ; 
 
     grfx.FillRectangle(&brushBlack, rc) ;
 
