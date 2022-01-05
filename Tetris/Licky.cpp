@@ -35,11 +35,7 @@ void CLicky::Draw()
     paint.PaintBlock(m_spPosArr, 0, 64, 255) ; 
 }
 
-void CLicky::FutureDraw() 
-{   
-    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
-    paint.PaintBlock(m_spPosArr, 153, 204, 255) ; 
-}
+
 
 
 

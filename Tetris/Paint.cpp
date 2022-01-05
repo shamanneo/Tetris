@@ -119,7 +119,7 @@ void CPaint::DrawBoard()
 {
     INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
     Graphics grfx { m_hDC } ; 
-    Pen pen { Gdiplus::Color { 255, 255, 255, 255 }, 3.5 } ; 
+    Pen pen { Gdiplus::Color { 255, 255, 255 }, 3.5 } ; 
 
     grfx.DrawRectangle(&pen, nInitX, BLOCK_INTERVAL, BLOCK_INTERVAL * 10, BLOCK_INTERVAL * 20) ; 
     pen.SetColor( Gdiplus::Color { 50, 255, 255, 255 } ) ;  

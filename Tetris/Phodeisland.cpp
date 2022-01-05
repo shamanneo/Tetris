@@ -35,11 +35,7 @@ void CPhodeisland::Draw()
     paint.PaintBlock(m_spPosArr, 0, 128, 0) ; 
 }
 
-void CPhodeisland::FutureDraw() 
-{   
-    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
-    paint.PaintBlock(m_spPosArr, 102, 255, 51) ; 
-}
+
 
 
 

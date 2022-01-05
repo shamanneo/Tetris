@@ -35,12 +35,7 @@ void CCleveland::Draw()
     paint.PaintBlock(m_spPosArr, 255, 0, 0) ; 
 }
 
-void CCleveland::FutureDraw() 
-{   
-    HWND hWnd = CMainApp::GetInstance().GetMainWnd() ;
-    CPaint paint { hWnd } ;
-    paint.PaintBlock(m_spPosArr, 255, 102, 102) ; 
-}
+
 
 
 

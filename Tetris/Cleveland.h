@@ -14,6 +14,5 @@ class CCleveland : public CBlock
         virtual BlockId GetId() const override ; 
     public :
         virtual void Draw() override ; 
-        virtual void FutureDraw() override ; 
 } ;
 
