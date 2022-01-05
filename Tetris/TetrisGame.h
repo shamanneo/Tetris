@@ -28,6 +28,7 @@ class CTetrisGame
         void SetLevel() ; 
     public :
         void Draw() ; 
+        void Erase() ; 
     public :
         void Left() ; 
         void Right() ; 

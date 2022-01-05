@@ -13,7 +13,7 @@
 #include "Paint.h" 
 #include "TetrisGame.h"
 
-const INT DEFAULT_WAIT_TIME_ON_BLOCK = 1 ; 
+const INT DEFAULT_WAIT_TIME_ON_BLOCK = 2 ; 
 
 CTetrisGame::CTetrisGame()
 {
@@ -49,13 +49,13 @@ void CTetrisGame::Create()
     BlockId eId ;
     if(m_eNextId == BlockId::ID_VOID)
     {
-        eId = arrBlockId[(rand() % 7)] ; 
+        eId = arrBlockId[(rand() % 6)] ; 
     }
     else
     {
         eId = m_eNextId ; 
     }
-    m_eNextId = arrBlockId[(rand() % 7)] ; 
+    m_eNextId = arrBlockId[(rand() % 6)] ; 
     switch(eId)
     {
         case BlockId::ID_LICKY :
@@ -128,12 +128,10 @@ void CTetrisGame::Reach()
             setYs.insert(nY) ; 
         }
     }
-
     if(IsGameOver())
     {
         return ;  
     }
-
     for(auto it = setYs.begin() ; it != setYs.end() ; it++)
     {
         nLine = *it ; 
@@ -227,10 +225,16 @@ void CTetrisGame::Draw()
     m_spCurBk->Draw() ;
 }
 
+void CTetrisGame::Erase()
+{
+    m_spCurBk->Erase() ;
+}
+
 void CTetrisGame::Left()
 {
     if(IsMoveLeft())
     {
+        Erase() ; 
         m_spCurBk->Left() ; 
         FutureUpdate() ;
     }
@@ -240,6 +244,7 @@ void CTetrisGame::Right()
 {   
     if(IsMoveRight())
     {
+        Erase() ; 
         m_spCurBk->Right() ; 
         FutureUpdate() ;
     }
@@ -247,6 +252,7 @@ void CTetrisGame::Right()
 
 void CTetrisGame::Rotate()
 {
+    Erase() ; 
     m_spCurBk->Rotate(m_arrBoard) ; 
     FutureUpdate() ;
 }
@@ -255,6 +261,7 @@ bool CTetrisGame::Down()
 {
     if(IsMoveDown(m_spCurBk.get()))
     {
+        Erase() ; 
         m_spCurBk->Down() ; 
         m_spCurBk->Draw() ; 
         FutureUpdate() ; 

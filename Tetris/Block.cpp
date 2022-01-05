@@ -55,18 +55,42 @@ bool CBlock::IsOutOfBoundary(INT nIndex) const
 
 bool CBlock::CanRotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1], INT nArrSize)
 {
+    static INT nCount = 0 ; 
+    bool bCanRotate = true ; 
+    if(nCount == 3)
+    {
+        nCount = 0 ; 
+        return false ; 
+    }
     for(INT nIndex = 0 ; nIndex < nArrSize ; nIndex++)
     {
-        if(m_spPosArr[nIndex].m_bPres == true)
+        INT nInfo = arrBoard[m_spPosArr[nIndex].m_nX][m_spPosArr[nIndex].m_nY] ; 
+        if((m_spPosArr[nIndex].m_bPres == true) && (nInfo != BLOCK_ARRAY_SPACE_OFF))
         {
-            INT nInfo = arrBoard[m_spPosArr[nIndex].m_nX][m_spPosArr[nIndex].m_nY] ; 
-            if((nInfo != BLOCK_ARRAY_SPACE_OFF) && (nInfo != BOARD_BOUND))
+            if(m_spPosArr[nIndex].m_nPos == BLOCK_ARRAY_MID_POS)
             {
-                return false ; 
+                bCanRotate = false ; 
             }
+            else if(m_spPosArr[nIndex].m_nPos == BLOCK_ARRAY_LEFT_POS)
+            {
+                Right() ;
+                bCanRotate = false ; 
+            }
+            else if(m_spPosArr[nIndex].m_nPos == BLOCK_ARRAY_RIGHT_POS)
+            {
+                Left() ; 
+                bCanRotate = false ; 
+            }
+            Up() ; 
         }
     }
-    return true ; 
+    if(bCanRotate == true)
+    {
+        nCount = 0 ; 
+        return bCanRotate ; 
+    }
+    nCount++ ; 
+    return CanRotate(arrBoard, nArrSize) ;   
 }
 
 void CBlock::Draw() 
@@ -77,7 +101,7 @@ void CBlock::Draw()
 void CBlock::FutureDraw()
 {
     CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
-    paint.PaintBlock(m_spPosArr, 204, 204, 204) ; 
+    paint.PaintBlock(m_spPosArr, 255, 255, 255) ; 
 }
 
 void CBlock::Erase()
@@ -88,7 +112,6 @@ void CBlock::Erase()
 
 void CBlock::Left() 
 {
-    Erase() ; 
     for(INT nIndex = 0 ; nIndex < m_nArrSize ; nIndex++)
     {
         m_spPosArr[nIndex].m_nX-- ;         
@@ -97,52 +120,14 @@ void CBlock::Left()
 
 void CBlock::Right() 
 {
-    Erase() ; 
     for(INT nIndex = 0 ; nIndex < m_nArrSize ; nIndex++)
     {
         m_spPosArr[nIndex].m_nX++ ;         
     }
 }
 
-void CBlock::Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1])
-{
-    Erase() ; 
-    ClockWise() ; 
-    if(CanRotate(arrBoard))
-    {
-        SideRotate() ; 
-    }
-    else 
-    {
-        CounterClockWise() ; // 회전 실패
-    }
-}
-
-void CBlock::SideRotate() // 블럭이 벽에서 회전할 때 옆으로 평행이동
-{
-    for(INT nIndex = 0 ; nIndex < DEFAULT_ARRAY_SIZE ; nIndex++) 
-    {
-        if((m_spPosArr[nIndex].m_bPres == true) && IsOutOfBoundary(nIndex)) 
-        {
-            if(m_spPosArr[nIndex].m_nPos == BLOCK_ARRAY_LEFT_POS)
-            {
-                Right() ; 
-            }
-            else if(m_spPosArr[nIndex].m_nPos == BLOCK_ARRAY_RIGHT_POS)
-            {
-                Left() ;
-            }
-            else if(m_spPosArr[nIndex].m_nPos == BLOCK_ARRAY_MID_POS)
-            {
-                Up() ; 
-            }
-        }
-    }
-}
-
 void CBlock::Up() // Only for rotating when the block is out of boundary.
 {
-    Erase() ; 
     for(INT nIndex = 0 ; nIndex < m_nArrSize ; nIndex++)
     {
         m_spPosArr[nIndex].m_nY-- ; 
@@ -151,10 +136,18 @@ void CBlock::Up() // Only for rotating when the block is out of boundary.
 
 void CBlock::Down()
 {
-    Erase() ; 
     for(INT nIndex = 0 ; nIndex < m_nArrSize ; nIndex++)
     {
         m_spPosArr[nIndex].m_nY++ ; 
+    }
+}
+
+void CBlock::Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT + 1])
+{
+    ClockWise() ; 
+    if(!CanRotate(arrBoard))
+    {
+        CounterClockWise() ; 
     }
 }
 

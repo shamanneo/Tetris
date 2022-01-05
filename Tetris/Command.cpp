@@ -58,6 +58,11 @@ void CCommand::Draw()
     m_spTetrisGm->Draw() ; 
 }
 
+void CCommand::Erase() 
+{
+    m_spTetrisGm->Erase() ; 
+}
+
 void CCommand::Left() 
 {
     m_spTetrisGm->Left() ; 
