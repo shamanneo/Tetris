@@ -8,7 +8,7 @@ class CSmashboy : public CBlock
     public :   
         const BlockId m_eId ; 
     public :
-        CSmashboy(INT nArrSize, INT nUp) ;
+        CSmashboy(INT nArrSize) ;
         ~CSmashboy() ; 
     public :
         virtual BlockId GetId() const override ; 

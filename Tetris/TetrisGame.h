@@ -11,7 +11,6 @@ class CTetrisGame
         INT m_nScore ; 
         INT m_nVelocity ;
         INT m_nWaitTime ;
-        bool m_IsGameOver ; 
         BlockId m_eNextId ; 
         std::unique_ptr<CBlock> m_spCurBk ; 
         std::unique_ptr<CBlock> m_spFurBk ; 
@@ -22,11 +21,11 @@ class CTetrisGame
         void Create() ; 
         void Reach() ; 
         bool IsFull(INT nLine) ; 
-        bool CanArrangeBlock(INT &nUp) ; 
         void InUpdate(INT nLine) ; 
         void OutUpdate() ; 
         void FutureUpdate() ; 
         void SetLevel() ; 
+        bool IsGameOver() ; 
         void GameOver() ; 
     public :
         void Draw() ; 

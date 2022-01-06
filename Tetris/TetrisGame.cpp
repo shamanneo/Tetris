@@ -22,7 +22,6 @@ CTetrisGame::CTetrisGame()
     m_nScore = 0 ; 
     m_nVelocity = DEFAULT_VELOCITY ; 
     m_nWaitTime = 0 ;
-    m_IsGameOver = false ; 
     for(INT nY = 0 ; nY < BLOCK_HEIGHT_COUNT ; nY++)
     {
         m_arrBoard[0][nY] = BOARD_BOUND ; 
@@ -31,8 +30,6 @@ CTetrisGame::CTetrisGame()
         m_arrBoard[13][nY] = BOARD_BOUND ;
         if(nY < 12)
         {
-            m_arrBoard[nY][0] = BOARD_BOUND ; 
-            m_arrBoard[nY][1] = BOARD_BOUND ; 
             m_arrBoard[nY][BLOCK_HEIGHT_COUNT - 1] = BOARD_BOUND ; 
         }
     }
@@ -46,11 +43,6 @@ CTetrisGame::~CTetrisGame()
 void CTetrisGame::Create()
 {
     SetLevel() ; 
-    INT nUp = 0 ;
-    if(!CanArrangeBlock(nUp))
-    {
-        m_IsGameOver = true ;
-    }
     srand((unsigned int)time(NULL)) ;
     BlockId arrBlockId[7] { BlockId::ID_LICKY, BlockId::ID_RICKY, BlockId::ID_CLEVELAND, BlockId::ID_PHODEISLAND, BlockId::ID_TEEWEE, BlockId::ID_SMASHBOY, BlockId::ID_HERO } ; 
     BlockId eId ;
@@ -68,54 +60,55 @@ void CTetrisGame::Create()
         case BlockId::ID_LICKY :
         {
             m_nArrSize = DEFAULT_ARRAY_SIZE ; 
-            m_spCurBk = std::make_unique<CLicky>(m_nArrSize, nUp) ; 
-            m_spFurBk = std::make_unique<CLicky>(m_nArrSize, nUp) ; 
+            m_spCurBk = std::make_unique<CLicky>(m_nArrSize) ; 
+            m_spFurBk = std::make_unique<CLicky>(m_nArrSize) ; 
             break ;
         }
         case BlockId::ID_RICKY :
         {
             m_nArrSize = DEFAULT_ARRAY_SIZE ; 
-            m_spCurBk = std::make_unique<CRicky>(m_nArrSize, nUp) ; 
-            m_spFurBk = std::make_unique<CRicky>(m_nArrSize, nUp) ; 
+            m_spCurBk = std::make_unique<CRicky>(m_nArrSize) ; 
+            m_spFurBk = std::make_unique<CRicky>(m_nArrSize) ; 
             break ;
         }
         case BlockId::ID_CLEVELAND :
         {
             m_nArrSize = DEFAULT_ARRAY_SIZE ; 
-            m_spCurBk = std::make_unique<CCleveland>(m_nArrSize, nUp) ; 
-            m_spFurBk = std::make_unique<CCleveland>(m_nArrSize, nUp) ; 
+            m_spCurBk = std::make_unique<CCleveland>(m_nArrSize) ; 
+            m_spFurBk = std::make_unique<CCleveland>(m_nArrSize) ; 
             break ;
         }
         case BlockId::ID_PHODEISLAND :
         {
             m_nArrSize = DEFAULT_ARRAY_SIZE ; 
-            m_spCurBk = std::make_unique<CPhodeisland>(m_nArrSize, nUp) ;
-            m_spFurBk = std::make_unique<CPhodeisland>(m_nArrSize, nUp) ; 
+            m_spCurBk = std::make_unique<CPhodeisland>(m_nArrSize) ;
+            m_spFurBk = std::make_unique<CPhodeisland>(m_nArrSize) ; 
             break ;
         }
         case BlockId::ID_TEEWEE :
         {
             m_nArrSize = DEFAULT_ARRAY_SIZE ;
-            m_spCurBk = std::make_unique<CTeewee>(m_nArrSize, nUp) ; 
-            m_spFurBk = std::make_unique<CTeewee>(m_nArrSize, nUp) ; 
+            m_spCurBk = std::make_unique<CTeewee>(m_nArrSize) ; 
+            m_spFurBk = std::make_unique<CTeewee>(m_nArrSize) ; 
             break ;
         }
         case BlockId::ID_SMASHBOY :
         {
             m_nArrSize = DEFAULT_ARRAY_SIZE ; 
-            m_spCurBk = std::make_unique<CSmashboy>(m_nArrSize, nUp) ; 
-            m_spFurBk = std::make_unique<CSmashboy>(m_nArrSize, nUp) ; 
+            m_spCurBk = std::make_unique<CSmashboy>(m_nArrSize) ; 
+            m_spFurBk = std::make_unique<CSmashboy>(m_nArrSize) ; 
             break ;
         }
         case BlockId::ID_HERO :
         {
             m_nArrSize = HERO_ARRAY_SIZE ; 
-            m_spCurBk = std::make_unique<CHero>(m_nArrSize, nUp) ; 
-            m_spFurBk = std::make_unique<CHero>(m_nArrSize, nUp) ; 
+            m_spCurBk = std::make_unique<CHero>(m_nArrSize) ; 
+            m_spFurBk = std::make_unique<CHero>(m_nArrSize) ; 
             break ;
         }
     }
     CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
+    CMainApp::GetInstance().SetBlockId(m_eNextId) ; 
     paint.PrintNextBlock() ; 
     FutureUpdate() ; 
 }
@@ -135,7 +128,7 @@ void CTetrisGame::Reach()
         }
     }
 
-    if(m_IsGameOver)
+    if(IsGameOver())
     {
         GameOver() ; 
         return ; 
@@ -161,25 +154,6 @@ bool CTetrisGame::IsFull(INT nLine)
     {
         if(m_arrBoard[nX][nLine] == BLOCK_ARRAY_SPACE_OFF)
         {
-            return false ; 
-        }
-    }
-    return true ; 
-}
-
-bool CTetrisGame::CanArrangeBlock(INT &nUp) 
-{
-    for(INT nX = 5 ; nX <= 8 ; nX++)
-    {
-        if(m_arrBoard[nX][2] != BLOCK_ARRAY_SPACE_OFF)
-        {
-            nUp += 2
-                ; 
-            return false ; 
-        }
-        else if(m_arrBoard[nX][3] != BLOCK_ARRAY_SPACE_OFF)
-        {
-            nUp++ ; 
             return false ; 
         }
     }
@@ -234,6 +208,18 @@ void CTetrisGame::SetLevel()
         SetTimer(pMainApp.GetMainWnd(), IDT_DOWN_TIMER, m_nVelocity, NULL) ; 
         m_nScore += 1000 ; 
     }
+}
+
+bool CTetrisGame::IsGameOver()
+{
+     for(INT nX = 2 ; nX <= 11 ; nX++)
+    {
+        if(m_arrBoard[nX][1] != BLOCK_ARRAY_SPACE_OFF)
+        {
+            return true ; 
+        }
+    }
+    return false ; 
 }
 
 void CTetrisGame::GameOver() 

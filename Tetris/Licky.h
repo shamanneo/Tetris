@@ -8,7 +8,7 @@ class CLicky : public CBlock
     public :   
         const BlockId m_eId ; 
     public :
-        CLicky(INT nArrSize, INT nUp) ;
+        CLicky(INT nArrSize) ;
         ~CLicky() ; 
     public :
         virtual BlockId GetId() const override ; 

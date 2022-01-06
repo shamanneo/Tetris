@@ -121,7 +121,7 @@ void CPaint::DrawBoard()
     Graphics grfx { m_hDC } ; 
     Pen pen { Gdiplus::Color { 255, 255, 255 }, 3.5 } ; 
 
-    grfx.DrawRectangle(&pen, nInitX, BLOCK_INTERVAL, BLOCK_INTERVAL * 10, BLOCK_INTERVAL * 20) ; 
+    grfx.DrawRectangle(&pen, nInitX, 0, BLOCK_INTERVAL * 10, BLOCK_INTERVAL * 21) ; 
     pen.SetColor( Gdiplus::Color { 50, 255, 255, 255 } ) ;  
     pen.SetWidth(1) ; 
     

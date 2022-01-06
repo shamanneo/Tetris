@@ -8,7 +8,7 @@ class CCleveland : public CBlock
     public :   
         const BlockId m_eId ; 
     public :
-        CCleveland(INT nArrSize, INT nUp) ;
+        CCleveland(INT nArrSize) ;
         ~CCleveland() ; 
     public :
         virtual BlockId GetId() const override ; 

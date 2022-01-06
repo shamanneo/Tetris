@@ -4,29 +4,29 @@
 #include "Paint.h"
 #include "Hero.h" 
 
-CHero::CHero(INT nArrSize, INT nUp)
+CHero::CHero(INT nArrSize)
     : CBlock(nArrSize), m_eId(BlockId::ID_HERO), m_bIsRotated(false) 
 {
     m_spPosArr = std::make_unique<CSpace[]>(HERO_ARRAY_SIZE) ; 
-    m_spPosArr[0].Set(5, 2 - nUp, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
-    m_spPosArr[1].Set(6, 2 - nUp, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
-    m_spPosArr[2].Set(7, 2 - nUp, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
-    m_spPosArr[3].Set(8, 2 - nUp, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_RIGHT_POS) ; 
+    m_spPosArr[0].Set(5, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
+    m_spPosArr[1].Set(6, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
+    m_spPosArr[2].Set(7, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
+    m_spPosArr[3].Set(8, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_RIGHT_POS) ; 
 
-    m_spPosArr[4].Set(5, 3 - nUp, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_LEFT_POS) ; 
-    m_spPosArr[5].Set(6, 3 - nUp, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_MID_POS) ; 
-    m_spPosArr[6].Set(7, 3 - nUp, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_MID_POS) ; 
-    m_spPosArr[7].Set(8, 3 - nUp, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_RIGHT_POS) ; 
+    m_spPosArr[4].Set(5, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_LEFT_POS) ; 
+    m_spPosArr[5].Set(6, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_MID_POS) ; 
+    m_spPosArr[6].Set(7, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_MID_POS) ; 
+    m_spPosArr[7].Set(8, 1, BLOCK_ARRAY_SPACE_ON, BLOCK_ARRAY_RIGHT_POS) ; 
 
-    m_spPosArr[8].Set(5, 4 - nUp, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
-    m_spPosArr[9].Set(6, 4 - nUp, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
-    m_spPosArr[10].Set(7, 4 - nUp, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
-    m_spPosArr[11].Set(8, 4 - nUp, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_RIGHT_POS) ; 
+    m_spPosArr[8].Set(5, 2, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
+    m_spPosArr[9].Set(6, 2, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
+    m_spPosArr[10].Set(7,2, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
+    m_spPosArr[11].Set(8, 2, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_RIGHT_POS) ; 
 
-    m_spPosArr[12].Set(5, 5 - nUp, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
-    m_spPosArr[13].Set(6, 5 - nUp, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
-    m_spPosArr[14].Set(7, 5 - nUp, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
-    m_spPosArr[15].Set(8, 5 - nUp, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
+    m_spPosArr[12].Set(5, 3, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
+    m_spPosArr[13].Set(6, 3, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
+    m_spPosArr[14].Set(7, 3, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
+    m_spPosArr[15].Set(8, 3, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_MID_POS) ; 
 }
 
 CHero::~CHero()
