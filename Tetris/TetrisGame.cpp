@@ -13,7 +13,7 @@
 #include "Paint.h" 
 #include "TetrisGame.h"
 
-const INT DEFAULT_WAIT_TIME_ON_BLOCK = 3 ; 
+const INT DEFAULT_WAIT_TIME_ON_BLOCK = 7 ; 
 
 CTetrisGame::CTetrisGame()
 {
