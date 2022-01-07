@@ -22,6 +22,7 @@ class CPaint
         void DrawBoard() ; 
         void EraseBoard() ; 
         void PrintMain() ; 
+        void PrintGameOver() ; 
     public :
         void DrawInfo(INT nScore = 0, INT nLevel = 0, INT nLine = 0) ; 
         void PrintNextBlock() ; 

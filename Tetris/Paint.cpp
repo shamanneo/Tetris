@@ -228,6 +228,15 @@ void CPaint::PrintNextBlock()
     grfx.DrawImage(&Img, nX, nY, 200, 200) ; 
 }
 
+void CPaint::PrintGameOver()
+{
+    const INT nX = (m_rcClient.right / 2) + BLOCK_INTERVAL * 6 ; 
+    const INT nY = 431 ; 
+    Graphics grfx { m_hDC } ;
+    Image img { L"TetrisGameOver.png" } ; 
+    grfx.DrawImage(&img, nX, nY, 200, 200) ; 
+}
+
 void CPaint::DrawInfo(INT nScore, INT nLevel, INT nLine) 
 {
     const INT nY = 215 ; 

@@ -118,6 +118,7 @@ void CTetrisGame::Reach()
     INT nX = 0 ;
     INT nY = 0 ;
     INT nLine = 0 ; 
+    INT nCount = 0 ; 
     std::set<INT> setYs ; 
     for(INT nIndex = 0 ; nIndex < m_nArrSize ; nIndex++) // 가상의 보드에 블럭 각각의 ID값을 저장함
     {
@@ -137,9 +138,10 @@ void CTetrisGame::Reach()
         nLine = *it ; 
         if(IsFull(nLine))
         {
+            nCount++ ; 
             InUpdate(nLine) ; 
             OutUpdate() ; 
-            CMainApp::GetInstance().SetScore(100) ; 
+            CMainApp::GetInstance().SetScore(100 * nCount) ; 
             CMainApp::GetInstance().SetLine(1) ; 
         }
     }
@@ -225,7 +227,8 @@ void CTetrisGame::GameOver()
     HWND hWnd = CMainApp::GetInstance().GetMainWnd() ;
     CMainApp::GetInstance().SetIsGameOver(true) ; 
     CPaint paint { hWnd } ;
-    paint.PaintBoard(m_arrBoard) ;
+    paint.PaintBoard(m_arrBoard) ; 
+    paint.PrintGameOver() ;
     KillTimer(hWnd, IDT_DRAW_TIMER) ;
     KillTimer(hWnd, IDT_DOWN_TIMER) ;
     return ; 
