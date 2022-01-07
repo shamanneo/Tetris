@@ -27,6 +27,7 @@ class CTetrisGame
         void SetLevel() ; 
         bool IsGameOver() ; 
         void GameOver() ; 
+        bool IsLastBlock() ; 
     public :
         void Draw() ; 
         void Erase() ; 

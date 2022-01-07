@@ -50,7 +50,10 @@ void CCommand::InputKey(INT nKey)
             break ; 
         } 
     }
-    m_spTetrisGm->Draw() ;         
+    if(!CMainApp::GetInstance().GetIsGameOver()) // 만약 게임오버라면, 다음 블럭을 그릴 필요가 없음
+    {
+        m_spTetrisGm->Draw() ; // 블럭이 밑 바닥에 도착한 후, 바로 다음 블럭을 그림         
+    }
 }
 
 void CCommand::Draw() 

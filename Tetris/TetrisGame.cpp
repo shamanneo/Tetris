@@ -13,7 +13,7 @@
 #include "Paint.h" 
 #include "TetrisGame.h"
 
-const INT DEFAULT_WAIT_TIME_ON_BLOCK = 2 ; 
+const INT DEFAULT_WAIT_TIME_ON_BLOCK = 3 ; 
 
 CTetrisGame::CTetrisGame()
 {
@@ -119,22 +119,20 @@ void CTetrisGame::Reach()
     INT nY = 0 ;
     INT nLine = 0 ; 
     std::set<INT> setYs ; 
-    for(INT nIndex = 0 ; nIndex < m_nArrSize ; nIndex++)
+    for(INT nIndex = 0 ; nIndex < m_nArrSize ; nIndex++) // 가상의 보드에 블럭 각각의 ID값을 저장함
     {
         if(m_spCurBk->GetPos(nIndex, nX, nY))
         {
-            m_arrBoard[nX][nY] = (INT)m_spCurBk->GetId() ; // mark. 
-            setYs.insert(nY) ; 
+            m_arrBoard[nX][nY] = (INT)m_spCurBk->GetId() ; 
+            setYs.insert(nY) ; // 블럭의 층을 세트에 저장
         }
     }
-
     if(IsGameOver())
     {
         GameOver() ; 
         return ; 
     }
-
-    for(auto it = setYs.begin() ; it != setYs.end() ; it++)
+    for(auto it = setYs.begin() ; it != setYs.end() ; it++) // 떨어진 블럭의 층 들을 검사함
     {
         nLine = *it ; 
         if(IsFull(nLine))
@@ -164,7 +162,7 @@ void CTetrisGame::InUpdate(INT nLine)
 {   
     for(INT nX = 2 ; nX <= 11 ; nX++)
     {
-        m_arrBoard[nX][nLine] = BLOCK_ARRAY_SPACE_OFF ; // Clear line. 
+        m_arrBoard[nX][nLine] = BLOCK_ARRAY_SPACE_OFF ; 
     }
     for(INT nX = 2 ; nX <= 11 ; nX++)
     {
@@ -228,11 +226,26 @@ void CTetrisGame::GameOver()
     CMainApp::GetInstance().SetIsGameOver(true) ; 
     CPaint paint { hWnd } ;
     paint.PaintBoard(m_arrBoard) ;
-
     KillTimer(hWnd, IDT_DRAW_TIMER) ;
     KillTimer(hWnd, IDT_DOWN_TIMER) ;
-
     return ; 
+}
+
+bool CTetrisGame::IsLastBlock() 
+{
+    INT nX = 0 ;
+    INT nY = 0 ; 
+    for(INT nIndex = m_nArrSize - 1 ; nIndex >= 0 ; nIndex--)
+    {
+        if(m_spCurBk->GetPos(nIndex, nX, nY))
+        {
+            if(nY == 1)
+            {
+                return true ; 
+            }
+        }
+    }
+    return false ; 
 }
 
 void CTetrisGame::Draw()
@@ -284,14 +297,14 @@ bool CTetrisGame::Down()
     }
     else // 맨 밑의 층에 도달
     {
-        if(m_nWaitTime == DEFAULT_WAIT_TIME_ON_BLOCK) // 블럭 위에서도 움직이 가능해야함 
-        {
+        if((m_nWaitTime == DEFAULT_WAIT_TIME_ON_BLOCK) || IsLastBlock()) // 블럭 위에서도 움직이 가능해야함 
+        {                                                                // 단 마지막 블럭일 때는 시간을 주지 않음
             Reach() ; 
             m_nWaitTime = 0 ; 
             return true ; 
         }
         m_spCurBk->Draw() ; 
-        m_nWaitTime += 1 ; 
+        m_nWaitTime++ ; 
         return false ; 
     }
 }
