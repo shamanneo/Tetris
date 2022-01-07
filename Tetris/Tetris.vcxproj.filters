@@ -150,5 +150,26 @@
     <Image Include="..\..\..\Users\shama\OneDrive\바탕 화면\TetrisGameOver.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\..\..\Users\shama\OneDrive\바탕 화면\CLEVELAND.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\Users\shama\OneDrive\바탕 화면\HERO.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\Users\shama\OneDrive\바탕 화면\LICKY.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\Users\shama\OneDrive\바탕 화면\PHODEISLAND.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RICKY.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="SMASHBOY.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TEEWEE.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

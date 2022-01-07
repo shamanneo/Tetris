@@ -202,8 +202,15 @@
     <ResourceCompile Include="Tetris.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\Users\shama\OneDrive\바탕 화면\CLEVELAND.png" />
+    <Image Include="..\..\..\Users\shama\OneDrive\바탕 화면\HERO.png" />
+    <Image Include="..\..\..\Users\shama\OneDrive\바탕 화면\LICKY.png" />
+    <Image Include="..\..\..\Users\shama\OneDrive\바탕 화면\PHODEISLAND.png" />
     <Image Include="..\..\..\Users\shama\OneDrive\바탕 화면\TetrisGameOver.png" />
+    <Image Include="RICKY.png" />
     <Image Include="small.ico" />
+    <Image Include="SMASHBOY.png" />
+    <Image Include="TEEWEE.png" />
     <Image Include="Tetris.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -205,47 +205,46 @@ void CPaint::PrintNextBlock()
     const INT nX = (m_rcClient.right / 2) + BLOCK_INTERVAL * 6 ; 
     const INT nY = 431 ; 
     Graphics grfx { m_hDC } ;
-    CString str ; 
+    Image *pImg = nullptr ; 
     switch (eId)
     {
         case BlockId::ID_LICKY :
         {
-            str = "LICKY.png" ;  
+            pImg = LoadPNG(g_hInstance, MAKEINTRESOURCE(IDP_TETRIS_BLOCK_LICKY)) ;  
             break ;
         }
         case BlockId::ID_RICKY :
         {
-            str = "RICKY.png" ;  
+            pImg = LoadPNG(g_hInstance, MAKEINTRESOURCE(IDP_TETRIS_BLOCK_RICKY)) ;  
             break ;
         }
         case BlockId::ID_CLEVELAND :
         {
-            str = "CLEVELAND.png" ;  
+            pImg = LoadPNG(g_hInstance, MAKEINTRESOURCE(IDP_TETRIS_BLOCK_CLEVELAND)) ;  
             break ;
         }
         case BlockId::ID_PHODEISLAND :
         {
-            str = "PHODEISLAND.png" ;  
+            pImg = LoadPNG(g_hInstance, MAKEINTRESOURCE(IDP_TETRIS_BLOCK_PHODEISLAND)) ;  
             break ;
         }
         case BlockId::ID_TEEWEE :
         {
-            str = "TEEWEE.png" ;  
+            pImg = LoadPNG(g_hInstance, MAKEINTRESOURCE(IDP_TETRIS_BLOCK_TEEWEE)) ;  
             break ;
         }
         case BlockId::ID_SMASHBOY :
         {
-            str = "SMASHBOY.png" ;  
+            pImg = LoadPNG(g_hInstance, MAKEINTRESOURCE(IDP_TETRIS_BLOCK_SMASHBOY)) ;  
             break ;
         }
         case BlockId::ID_HERO :
         {
-            str = "HERO.png" ;  
+            pImg = LoadPNG(g_hInstance, MAKEINTRESOURCE(IDP_TETRIS_BLOCK_HERO)) ;  
             break ;
         }
     }
-    Image Img { str } ; 
-    grfx.DrawImage(&Img, nX, nY, 200, 200) ; 
+    grfx.DrawImage(pImg, nX, nY, 200, 200) ; 
 }
 
 void CPaint::PrintGameOver()
