@@ -83,7 +83,10 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
         case VK_DOWN : // Slow Down.
         case VK_SPACE : // Fast Down
         {
-            m_nCurkey = (INT)wParam ; 
+            if(m_IsEntered != false)
+            {
+                m_nCurkey = (INT)wParam ; 
+            }
             break ;
         }
         default :

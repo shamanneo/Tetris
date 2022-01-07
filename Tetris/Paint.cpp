@@ -6,7 +6,7 @@ const int BLOCK_INTERVAL = 30 ;
 using namespace Gdiplus ; 
 
 CPaint::CPaint(HWND hWnd)
-    : m_bAutoRelease(true)
+    : m_bAutoRelease(true) 
 {
     m_hWnd = hWnd ; 
     m_hDC = GetDC(m_hWnd) ;
@@ -62,55 +62,68 @@ void CPaint::PaintBoard(INT arrTotalBoard[][BLOCK_HEIGHT_COUNT])
     INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
     Graphics grfx { m_hDC } ; 
     SolidBrush brush { Gdiplus::Color { 0, 0, 0 } } ;
-
-    for(INT nX = 2 ; nX <= 11 ; nX++)
+    bool IsGameOver = CMainApp::GetInstance().GetIsGameOver() ; 
+    BlockId eId = BlockId::ID_VOID ; 
+    for(INT nX = 1 ; nX <= 11 ; nX++)
     {
-        for(INT nY = 2 ; nY <= 21 ; nY++)
+        for(INT nY = 1 ; nY <= 21 ; nY++)
         {
-            BlockId eId = (BlockId)arrTotalBoard[nX][nY] ; 
-            switch (eId)
+            if(!IsGameOver)
             {
-                case BlockId::ID_LICKY :
+                eId = (BlockId)arrTotalBoard[nX][nY] ; 
+                switch (eId)
                 {
-                    brush.SetColor(Gdiplus::Color { 0, 64, 255 }) ; 
-                    break ;
+                    case BlockId::ID_LICKY :
+                    {
+                        brush.SetColor(Gdiplus::Color { 0, 64, 255 }) ; 
+                        break ;
+                    }
+                    case BlockId::ID_RICKY :
+                    {
+                        brush.SetColor(Gdiplus::Color { 255, 127, 0 }) ; 
+                        break ;
+                    }
+                    case BlockId::ID_CLEVELAND :
+                    {
+                        brush.SetColor(Gdiplus::Color { 255, 0, 0 }) ; 
+                        break ;
+                    }
+                    case BlockId::ID_PHODEISLAND :
+                    {
+                        brush.SetColor(Gdiplus::Color { 0, 128, 0 }) ; 
+                        break ;
+                    }
+                    case BlockId::ID_TEEWEE :
+                    {
+                        brush.SetColor(Gdiplus::Color { 102, 0, 153 }) ; 
+                        break ;
+                    }
+                    case BlockId::ID_SMASHBOY :
+                    {
+                        brush.SetColor(Gdiplus::Color { 255, 212, 0 }) ; 
+                        break ;
+                    }
+                    case BlockId::ID_HERO :
+                    {
+                        brush.SetColor(Gdiplus::Color { 0, 163, 210 }) ; 
+                        break ;
+                    }
+                    default :
+                    {
+                        continue ; 
+                    }
                 }
-                case BlockId::ID_RICKY :
+                grfx.FillRectangle(&brush, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * (nY - 2) + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+            }
+            else // When game over
+            {
+                eId = (BlockId)arrTotalBoard[nX][nY] ; 
+                if(((INT)eId != 0) && ((INT)eId != BOARD_BOUND)) 
                 {
-                    brush.SetColor(Gdiplus::Color { 255, 127, 0 }) ; 
-                    break ;
-                }
-                case BlockId::ID_CLEVELAND :
-                {
-                    brush.SetColor(Gdiplus::Color { 255, 0, 0 }) ; 
-                    break ;
-                }
-                case BlockId::ID_PHODEISLAND :
-                {
-                    brush.SetColor(Gdiplus::Color { 0, 128, 0 }) ; 
-                    break ;
-                }
-                case BlockId::ID_TEEWEE :
-                {
-                    brush.SetColor(Gdiplus::Color { 102, 0, 153 }) ; 
-                    break ;
-                }
-                case BlockId::ID_SMASHBOY :
-                {
-                    brush.SetColor(Gdiplus::Color { 255, 212, 0 }) ; 
-                    break ;
-                }
-                case BlockId::ID_HERO :
-                {
-                    brush.SetColor(Gdiplus::Color { 0, 163, 210 }) ; 
-                    break ;
-                }
-                default :
-                {
-                    continue ; 
+                    brush.SetColor(Color { 255, 255, 255 } ) ;
+                    grfx.FillRectangle(&brush, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * (nY - 2) + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
                 }
             }
-            grfx.FillRectangle(&brush, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * (nY - 2) + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
         }
     }
 }
@@ -164,26 +177,6 @@ void CPaint::PrintMain()
     }
     Image Img { str } ; 
     grfx.DrawImage(&Img, -1, 0, Img.GetWidth(), Img.GetHeight()) ;    
-}
-
-void CPaint::PrintGameOver(INT arrTotalBoard[][BLOCK_HEIGHT_COUNT])
-{
-    INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
-    Graphics grfx { m_hDC } ; 
-    SolidBrush brush { Gdiplus::Color { 0, 0, 0 } } ;
-
-    for(INT nX = 2 ; nX <= 11 ; nX++)
-    {
-        for(INT nY = 1 ; nY <= 21 ; nY++)
-        {
-            INT nElem = arrTotalBoard[nX][nY] ; 
-            if((nElem != 0) && (nElem != BOARD_BOUND)) 
-            {
-                brush.SetColor(Color { 255, 255, 255 } ) ;
-                grfx.FillRectangle(&brush, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * (nY - 2) + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
-            }
-        }
-    }
 }
 
 void CPaint::PrintNextBlock() 

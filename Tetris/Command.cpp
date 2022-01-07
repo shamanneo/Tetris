@@ -22,7 +22,7 @@ void CCommand::InputKey(INT nKey)
         }
         case VK_LEFT :
         {
-            Left() ; 
+            Left() ;
             break ; 
         }
         case VK_RIGHT :

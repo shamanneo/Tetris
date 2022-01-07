@@ -45,6 +45,11 @@ INT CMainApp::GetLine() const
     return m_nLine ; 
 }
 
+bool CMainApp::GetIsGameOver() const
+{
+    return m_IsGameOver ; 
+}
+
 //      Setter
 
 void CMainApp::SetMainWnd(HWND hWnd) 
@@ -76,6 +81,11 @@ void CMainApp::SetLine(INT nLine)
     m_nLine += nLine ; 
     CPaint paint { m_hWnd } ; 
     paint.DrawInfo(m_nScore, m_nLevel, m_nLine) ; 
+}
+
+void CMainApp::SetIsGameOver(bool IsGameOver)
+{
+    m_IsGameOver = IsGameOver ; 
 }
 
 //      static
