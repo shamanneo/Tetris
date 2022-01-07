@@ -16,7 +16,7 @@ class CPaint
         CPaint(HWND hWnd, HDC hDC) ;
         ~CPaint() ; 
     public :
-        Gdiplus::Image *LoadImage(HMODULE hModule, LPCWSTR lp) ;
+        Gdiplus::Image *LoadPNG(HMODULE hModule, LPCWSTR lp) ;
     public :
         void PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT nB, INT nArrSize = DEFAULT_ARRAY_SIZE) ; 
         void EraseBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nArrSize = DEFAULT_ARRAY_SIZE) ; 

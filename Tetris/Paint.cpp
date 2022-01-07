@@ -1,7 +1,9 @@
 #include "pch.h"
+#include "resource.h"
 #include "Paint.h"
 
 const int BLOCK_INTERVAL = 30 ;
+extern HINSTANCE g_hInstance ;
 
 using namespace Gdiplus ; 
 
@@ -29,7 +31,7 @@ CPaint::~CPaint()
     }
 }
 
-Gdiplus::Image *CPaint::LoadImage(HMODULE hModule, LPCWSTR lp)
+Gdiplus::Image *CPaint::LoadPNG(HMODULE hModule, LPCWSTR lp)
 {
     Image *pImg = nullptr ; 
     IStream *pStream = nullptr ; 
@@ -251,8 +253,8 @@ void CPaint::PrintGameOver()
     const INT nX = (m_rcClient.right / 2) + BLOCK_INTERVAL * 6 ; 
     const INT nY = 431 ; 
     Graphics grfx { m_hDC } ;
-    Image img { L"TetrisGameOver.png" } ; 
-    grfx.DrawImage(&img, nX, nY, 200, 200) ; 
+    Image *img = LoadPNG(g_hInstance, MAKEINTRESOURCE(IDP_TETRIS_GAMEOVER)) ; 
+    grfx.DrawImage(img, nX, nY, 200, 200) ; 
 }
 
 void CPaint::DrawInfo(INT nScore, INT nLevel, INT nLine) 
