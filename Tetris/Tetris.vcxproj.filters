@@ -147,5 +147,8 @@
     <Image Include="Tetris.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\..\..\Users\shama\OneDrive\바탕 화면\TetrisGameOver.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

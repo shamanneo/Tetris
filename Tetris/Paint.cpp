@@ -29,6 +29,24 @@ CPaint::~CPaint()
     }
 }
 
+Gdiplus::Image *CPaint::LoadImage(HMODULE hModule, LPCWSTR lp)
+{
+    Image *pImg = nullptr ; 
+    IStream *pStream = nullptr ; 
+
+    HRSRC hResource = ::FindResource(hModule, lp, L"PNG") ; 
+    if(::CreateStreamOnHGlobal(NULL, NULL, &pStream) == S_OK)
+    {
+        PVOID pResource = ::LockResource(LoadResource(hModule, hResource)) ; 
+        DWORD dwImageSize = ::SizeofResource(hModule, hResource) ; 
+        DWORD dwReadWrite = 0 ; 
+        pStream->Write(pResource, dwImageSize, &dwReadWrite) ; 
+        pImg = pImg->FromStream(pStream) ; 
+        pStream->Release() ; 
+    }
+    return pImg ; 
+}
+
 void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT nB, INT nArrSize) 
 {
     INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
