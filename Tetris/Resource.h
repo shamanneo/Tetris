@@ -22,9 +22,13 @@
 #define IDP_TETRIS_BLOCK_RICKY          118
 #define IDP_TETRIS_BLOCK_SMASHBOY       119
 #define IDP_TETRIS_BLOCK_TEEWEE         120
+#define IDP_TETRIS_MAIN                 121
+#define IDP_TETRIS_MAIN_PRESS           122
 #define IDR_MAINFRAME                   128
 #define IDD_OPTIONS                     129
 #define IDB_PNG1                        136
+#define IDB_PNG2                        138
+#define IDB_PNG4                        140
 #define IDC_CHECK_GUIDE                 1000
 #define IDC_SLIDER1                     1001
 #define IDC_HOTKEY1                     1002
@@ -37,9 +41,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        138
+#define _APS_NEXT_RESOURCE_VALUE        141
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1005
-#define _APS_NEXT_SYMED_VALUE           121
+#define _APS_NEXT_SYMED_VALUE           123
 #endif
 #endif

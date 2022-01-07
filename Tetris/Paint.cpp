@@ -186,17 +186,16 @@ void CPaint::PrintMain()
 {
     static INT nCount = 1 ;
     Graphics grfx { m_hDC } ; 
-    CString str ; 
+    Image *pImg = nullptr ; 
     if(nCount++ % 2 == 1)
     {
-        str = "TetrisMain.png" ;
+        pImg = LoadPNG(g_hInstance, MAKEINTRESOURCE(IDP_TETRIS_MAIN)) ; 
     }
     else
     { 
-        str = "TetrisMainPress.png" ;
+        pImg = LoadPNG(g_hInstance, MAKEINTRESOURCE(IDP_TETRIS_MAIN_PRESS)) ; 
     }
-    Image Img { str } ; 
-    grfx.DrawImage(&Img, -1, 0, Img.GetWidth(), Img.GetHeight()) ;    
+    grfx.DrawImage(pImg, -1, 0, pImg->GetWidth(), pImg->GetHeight()) ;    
 }
 
 void CPaint::PrintNextBlock() 
