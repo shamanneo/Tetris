@@ -11,6 +11,7 @@ CMainApp::CMainApp(HWND hWnd)
     m_nScore = 0 ; 
     m_nLevel = 1 ; 
     m_nLine = 0 ;
+    m_IsGameOver = false ; 
 }
 
 CMainApp::~CMainApp()

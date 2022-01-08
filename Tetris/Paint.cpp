@@ -175,11 +175,11 @@ void CPaint::EraseBoard()
     SolidBrush bruWhite { Gdiplus::Color { 0, 0, 0 } } ; 
     for(INT nX = 2 ; nX < 12 ; nX++)
     {
-        for(INT nY = 0 ; nY < 20 ; nY++)
+        for(INT nY = 0 ; nY < 20 ; nY++) // -2 : 가상의 공간까지 지워져야함
         {
             grfx.FillRectangle(&bruWhite, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * nY + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
         }
-    }
+    } 
 }
 
 void CPaint::PrintMain()

@@ -51,15 +51,24 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
     {
         case VK_RETURN :
         {
+            if(CMainApp::GetInstance().GetIsGameOver()) // 리스타트, 혹시 게임오버 인 후 다시 접근하는가?
+            {
+                CMainApp::GetInstance().Release() ; 
+                CMainApp::GetInstance(m_hWnd) ; 
+                SetTimer(IDT_DRAW_TIMER, 0, NULL) ; 
+                SetTimer(IDT_DOWN_TIMER, DEFAULT_VELOCITY, NULL) ;
+                m_spComm = std::make_unique<CCommand>() ;
+                InvalidateRect(nullptr) ; 
+                UpdateWindow() ;
+                m_spComm->Begin() ; 
+            }
             if(m_IsEntered == false)
             {
                 m_IsEntered = true ;
                 KillTimer(IDT_MAIN_DRAWING_TIMER) ; 
                 SetTimer(IDT_DRAW_TIMER, 0, NULL) ; 
                 SetTimer(IDT_DOWN_TIMER, DEFAULT_VELOCITY, NULL) ;
-                
                 m_spComm->Begin() ; 
-
                 InvalidateRect(nullptr) ; 
                 UpdateWindow() ;
             }
@@ -83,7 +92,7 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
         case VK_DOWN : // Slow Down.
         case VK_SPACE : // Fast Down
         {
-            if(m_IsEntered != false)
+            if((m_IsEntered != false) && !CMainApp::GetInstance().GetIsGameOver())
             {
                 m_nCurkey = (INT)wParam ; 
             }

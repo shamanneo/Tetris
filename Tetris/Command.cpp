@@ -104,3 +104,4 @@ void CCommand::PaintBoard()
 {
     m_spTetrisGm->OutUpdate() ; 
 }
+

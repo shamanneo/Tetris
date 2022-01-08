@@ -16,11 +16,9 @@
 const INT DEFAULT_WAIT_TIME_ON_BLOCK = 7 ; 
 
 CTetrisGame::CTetrisGame()
+    : m_nArrSize(DEFAULT_ARRAY_SIZE), m_eNextId(BlockId::ID_VOID), m_nVelocity(DEFAULT_VELOCITY)
 {
-    m_nArrSize = DEFAULT_ARRAY_SIZE ; 
-    m_eNextId = BlockId::ID_VOID ;  
     m_nScore = 0 ; 
-    m_nVelocity = DEFAULT_VELOCITY ; 
     m_nWaitTime = 0 ;
     for(INT nY = 0 ; nY < BLOCK_HEIGHT_COUNT ; nY++)
     {
@@ -212,7 +210,11 @@ void CTetrisGame::SetLevel()
 
 bool CTetrisGame::IsGameOver()
 {
-     for(INT nX = 2 ; nX <= 11 ; nX++)
+    if(CMainApp::GetInstance().GetIsGameOver()) // Gameover된 후 다시 시작하기 위한 변수
+    {
+        return true ; 
+    }
+    for(INT nX = 2 ; nX <= 11 ; nX++)
     {
         if(m_arrBoard[nX][1] != BLOCK_ARRAY_SPACE_OFF)
         {
