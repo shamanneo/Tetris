@@ -13,7 +13,7 @@
 #include "Paint.h" 
 #include "TetrisGame.h"
 
-const FLOAT DEFAULT_WAIT_TIME_ON_BLOCK = 0.5f ;  
+const FLOAT DEFAULT_WAIT_TIME_ON_BLOCK = 0.4f ;  
 
 CTetrisGame::CTetrisGame()
     : m_nArrSize(DEFAULT_ARRAY_SIZE), m_eNextId(BlockId::ID_VOID), m_nVelocity(DEFAULT_VELOCITY)
@@ -338,9 +338,10 @@ bool CTetrisGame::SlowDown()
 
 void CTetrisGame::FastDown() 
 {
+    Erase() ; 
     while(IsMoveDown(m_spCurBk.get()))
     {
-        Down() ;
+        m_spCurBk->Down() ; 
     }
     m_spCurBk->Draw() ; 
     Reach() ; 
