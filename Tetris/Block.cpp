@@ -81,11 +81,7 @@ bool CBlock::CanRotate(INT arrBoard[][BLOCK_HEIGHT_COUNT], INT nArrSize)
                 Left() ; 
                 bCanRotate = false ; 
             }
-            BlockId eId = this->GetId() ; 
-            if(eId != BlockId::ID_HERO) 
-            {
-                Up() ; 
-            }
+            Up() ; 
         }
     }
     if(bCanRotate == true)

@@ -5,7 +5,7 @@
 #include "Hero.h" 
 
 CHero::CHero(INT nArrSize)
-    : CBlock(nArrSize), m_eId(BlockId::ID_HERO), m_bIsRotated(false) 
+    : CBlock(nArrSize), m_eId(BlockId::ID_HERO)
 {
     m_spPosArr = std::make_unique<CSpace[]>(HERO_ARRAY_SIZE) ; 
     m_spPosArr[0].Set(5, 0, BLOCK_ARRAY_SPACE_OFF, BLOCK_ARRAY_LEFT_POS) ; 
@@ -56,8 +56,7 @@ void CHero::Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT])
     ClockWise() ; 
     if(!CanRotate(arrBoard, HERO_ARRAY_SIZE))
     {
-        (!m_bIsRotated) ? m_bIsRotated = true : m_bIsRotated = false ; 
-        CounterClockWise() ; // 회전 실패
+        CounterClockWise() ; 
     }
 }
 
