@@ -5,8 +5,9 @@
 #include "OptionsDlg.h"
 #include "MainWnd.h"
 
-CMainWnd::CMainWnd()
+CMainWnd::CMainWnd(HINSTANCE hInstance)
 {
+    m_hInstance = hInstance ; 
     m_IsEntered = false ; 
     m_nCurkey = 0 ;
 } 
@@ -130,6 +131,7 @@ LRESULT CMainWnd::OnDestroy(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/,
 void CMainWnd::Start()
 {
     CMainApp::GetInstance().SetMainWnd(m_hWnd) ; 
+    CMainApp::GetInstance().SetMainInstance(m_hInstance) ; 
     SetTimer(IDT_DRAW_TIMER, 0, NULL) ; 
     SetTimer(IDT_DOWN_TIMER, DEFAULT_VELOCITY, NULL) ;
     m_spComm = std::make_unique<CCommand>() ;

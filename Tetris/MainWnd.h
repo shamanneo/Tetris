@@ -6,10 +6,11 @@ class CMainWnd : public CWindowImpl<CMainWnd>
 {
     private :
         std::unique_ptr<CCommand> m_spComm ; 
+        HINSTANCE m_hInstance ;
         bool m_IsEntered ; 
         INT m_nCurkey ; 
     public :
-        CMainWnd() ; 
+        CMainWnd(HINSTANCE hInstance) ; 
         ~CMainWnd() ;
     public :
         DECLARE_WND_CLASS_EX(_T("MainWnd"), CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS, COLOR_WINDOW + 2) ; 

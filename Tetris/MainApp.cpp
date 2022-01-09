@@ -4,9 +4,10 @@
 
 static CMainApp *g_pMainApp = nullptr ; 
 
-CMainApp::CMainApp(HWND hWnd)
+CMainApp::CMainApp(HWND hWnd, HINSTANCE hInstance)
 {
     m_hWnd = hWnd ;
+    m_hInstance = hInstance ; 
     m_eId = BlockId::ID_VOID ; 
     m_nScore = 0 ; 
     m_nLevel = 1 ; 
@@ -24,6 +25,11 @@ CMainApp::~CMainApp()
 HWND CMainApp::GetMainWnd() const 
 {
     return m_hWnd ;
+}
+
+HINSTANCE CMainApp::GetMainInStance() const 
+{
+    return m_hInstance ;
 }
 
 BlockId CMainApp::GetBlockId() const 
@@ -56,6 +62,11 @@ bool CMainApp::GetIsGameOver() const
 void CMainApp::SetMainWnd(HWND hWnd) 
 {
     m_hWnd = hWnd ; 
+}
+
+void CMainApp::SetMainInstance(HINSTANCE hInstance)
+{
+    m_hInstance = hInstance ; 
 }
 
 void CMainApp::SetBlockId(BlockId eId)  
@@ -91,11 +102,11 @@ void CMainApp::SetIsGameOver(bool IsGameOver)
 
 //      static
 
-CMainApp &CMainApp::GetInstance(HWND hWnd)
+CMainApp &CMainApp::GetInstance(HWND hWnd, HINSTANCE hInstance)
 {
     if (g_pMainApp == nullptr)
     {
-        g_pMainApp = new CMainApp { hWnd } ;
+        g_pMainApp = new CMainApp { hWnd, hInstance } ;
     }
     return *g_pMainApp ;
 }

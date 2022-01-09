@@ -6,19 +6,17 @@
 #include "MainApp.h"
 
 using namespace Gdiplus ; 
-HINSTANCE g_hInstance ;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE /*hPrevInstance*/,
                      _In_ LPWSTR    /*lpCmdLine*/,
                      _In_ int       /*nCmdShow*/)
 {
-    g_hInstance = hInstance ; 
     _CrtMemState state ;
     _CrtMemCheckpoint(&state) ;
     
     RECT rc { 100, 100, 1209, 806 } ;
-    CMainWnd *MainWnd = new CMainWnd ; 
+    CMainWnd *MainWnd = new CMainWnd { hInstance } ; 
     GdiplusStartupInput gdiplusStartupInput ; 
     ULONG_PTR gdiplusToken ; 
     GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL) ; 
