@@ -39,7 +39,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
     CMainApp::Release() ;
     GdiplusShutdown(gdiplusToken) ; 
-
     _CrtMemDumpAllObjectsSince(&state) ;
     return (int) msg.wParam ;
 }

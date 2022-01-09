@@ -13,13 +13,14 @@
 #include "Paint.h" 
 #include "TetrisGame.h"
 
-const INT DEFAULT_WAIT_TIME_ON_BLOCK = 7 ; 
+const FLOAT DEFAULT_WAIT_TIME_ON_BLOCK = 0.5f ;  
 
 CTetrisGame::CTetrisGame()
     : m_nArrSize(DEFAULT_ARRAY_SIZE), m_eNextId(BlockId::ID_VOID), m_nVelocity(DEFAULT_VELOCITY)
 {
     m_nScore = 0 ; 
-    m_nWaitTime = 0 ;
+    m_fWaitTime = 0.0f ;
+    m_CanSetTimer = true ; 
     for(INT nY = 0 ; nY < BLOCK_HEIGHT_COUNT ; nY++)
     {
         m_arrBoard[0][nY] = BOARD_BOUND ; 
@@ -144,6 +145,11 @@ void CTetrisGame::Reach()
         }
     }
     Create() ; 
+}
+
+void CTetrisGame::Stay()
+{
+    m_fWaitTime += 0.1f ; 
 }
 
 bool CTetrisGame::IsFull(INT nLine) 
@@ -290,28 +296,54 @@ void CTetrisGame::Rotate()
     FutureUpdate() ;
 }
 
-bool CTetrisGame::Down()
+void CTetrisGame::Down() 
+{
+    Erase() ; 
+    m_spCurBk->Down() ; 
+    m_spCurBk->Draw() ; 
+    FutureUpdate() ; 
+}
+
+bool CTetrisGame::SlowDown()
 {
     if(IsMoveDown(m_spCurBk.get()))
     {
-        Erase() ; 
-        m_spCurBk->Down() ; 
-        m_spCurBk->Draw() ; 
-        FutureUpdate() ; 
+        Down() ; 
         return false ; 
     }
-    else // 맨 밑의 층에 도달
+    else // 맨 밑의 층에 도달, 블럭 위에서도 움직임이 가능해야함
     {
-        if((m_nWaitTime == DEFAULT_WAIT_TIME_ON_BLOCK) || IsLastBlock()) // 블럭 위에서도 움직이 가능해야함 
-        {                                                                // 단 마지막 블럭일 때는 시간을 주지 않음
+        if(IsLastBlock()) // 마지막 블럭일 때는 시간을 주지 않음
+        {
             Reach() ; 
-            m_nWaitTime = 0 ; 
+            return true ; 
+        }
+        if(m_CanSetTimer) // 타이머는 단 한번만 설정
+        {
+            SetTimer(CMainApp::GetInstance().GetMainWnd(), IDT_STAY_TIMER, 300, NULL) ;  
+            m_CanSetTimer = false ; 
+        }
+        if(m_fWaitTime >= DEFAULT_WAIT_TIME_ON_BLOCK) 
+        {                                             
+            KillTimer(CMainApp::GetInstance().GetMainWnd(), IDT_STAY_TIMER) ;
+            m_CanSetTimer = true ; 
+            Reach() ; 
+            m_fWaitTime = 0.0f ; 
             return true ; 
         }
         m_spCurBk->Draw() ; 
-        m_nWaitTime++ ; 
         return false ; 
     }
+}
+
+void CTetrisGame::FastDown() 
+{
+    while(IsMoveDown(m_spCurBk.get()))
+    {
+        Down() ;
+    }
+    m_spCurBk->Draw() ; 
+    Reach() ; 
 }
 
 bool CTetrisGame::IsMoveLeft() 

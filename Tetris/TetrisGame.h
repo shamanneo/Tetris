@@ -10,7 +10,8 @@ class CTetrisGame
         INT m_nArrSize ;
         INT m_nScore ; 
         INT m_nVelocity ;
-        INT m_nWaitTime ;
+        FLOAT m_fWaitTime ;
+        bool m_CanSetTimer ; 
         BlockId m_eNextId ; 
         std::unique_ptr<CBlock> m_spCurBk ; 
         std::unique_ptr<CBlock> m_spFurBk ; 
@@ -18,7 +19,8 @@ class CTetrisGame
         CTetrisGame() ;
         ~CTetrisGame() ; 
     public :
-        void Create() ; 
+        void Create() ;
+        void Stay() ; 
         void Reach() ; 
         bool IsFull(INT nLine) ; 
         void InUpdate(INT nLine) ; 
@@ -35,7 +37,9 @@ class CTetrisGame
         void Left() ; 
         void Right() ; 
         void Rotate() ; 
-        bool Down() ; 
+        void Down() ; 
+        bool SlowDown() ; 
+        void FastDown() ; 
     public :
         bool IsMoveLeft() ; 
         bool IsMoveRight() ; 

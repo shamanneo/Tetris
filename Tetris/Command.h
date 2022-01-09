@@ -22,5 +22,6 @@ class CCommand
         void Down() ; 
         void FastDown() ;
         void PaintBoard() ; 
+        void Stay() ; 
 } ;
 

@@ -88,20 +88,22 @@ void CCommand::Rotate()
 
 void CCommand::Down()
 {
-    m_spTetrisGm->Down() ; 
+    m_spTetrisGm->SlowDown() ; 
 }
 
 void CCommand::FastDown()
 {
-    while(!m_spTetrisGm->Down())
-    {
-
-    }
+    m_spTetrisGm->FastDown() ; 
     CMainApp::GetInstance().SetScore(30) ; 
 }
 
 void CCommand::PaintBoard() 
 {
     m_spTetrisGm->OutUpdate() ; 
+}
+
+void CCommand::Stay()
+{
+    m_spTetrisGm->Stay() ; 
 }
 

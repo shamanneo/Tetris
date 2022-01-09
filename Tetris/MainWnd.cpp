@@ -117,6 +117,16 @@ LRESULT CMainWnd::OnTimer(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL 
             m_spComm->Down() ; 
             break ; 
         }
+        case IDT_STAY_TIMER :
+        {
+            m_spComm->Stay() ; 
+            break ; 
+        }
+        default :
+        {
+            ATLASSERT(0) ; 
+            break ; 
+        }
     }
     ReleaseDC(hDC) ;
     return 0 ; 

@@ -8,7 +8,7 @@ const INT HERO_ARRAY_SIZE = 16 ;
 
 const INT BOARD_BOUND = 9 ;
 
-const INT DEFAULT_VELOCITY = 200    ; 
+const INT DEFAULT_VELOCITY = 300 ; 
 
 enum class BlockId
 {

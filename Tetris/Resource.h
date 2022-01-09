@@ -24,6 +24,7 @@
 #define IDP_TETRIS_BLOCK_TEEWEE         120
 #define IDP_TETRIS_MAIN                 121
 #define IDP_TETRIS_MAIN_PRESS           122
+#define IDT_STAY_TIMER                  123
 #define IDR_MAINFRAME                   128
 #define IDD_OPTIONS                     129
 #define IDB_PNG1                        136
@@ -44,6 +45,6 @@
 #define _APS_NEXT_RESOURCE_VALUE        141
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1005
-#define _APS_NEXT_SYMED_VALUE           123
+#define _APS_NEXT_SYMED_VALUE           124
 #endif
 #endif
