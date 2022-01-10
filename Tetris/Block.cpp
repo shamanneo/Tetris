@@ -107,7 +107,7 @@ void CBlock::FutureDraw()
 void CBlock::Erase()
 {
     CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
-    paint.EraseBlock(m_spPosArr, m_nArrSize) ; 
+    paint.PaintBlock(m_spPosArr, 0, 0, 0, m_nArrSize) ; 
 }
 
 void CBlock::Left() 
