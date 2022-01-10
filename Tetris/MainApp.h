@@ -1,5 +1,6 @@
 #pragma once
 #include "Constants.h"
+#include "MainOption.h"
 
 class CMainApp
 {
@@ -11,6 +12,7 @@ class CMainApp
         INT m_nLevel ; 
         INT m_nLine ; 
         bool m_IsGameOver ;
+        CMainOption m_MainOption ; 
     public :
         CMainApp(HWND hWnd, HINSTANCE hInstance) ;
         ~CMainApp() ;
@@ -22,6 +24,7 @@ class CMainApp
         INT GetLevel() const ; 
         INT GetLine() const ; 
         bool GetIsGameOver() const ; 
+        CMainOption &GetMainOption() ;
     public :
         void SetMainWnd(HWND hWnd) ; 
         void SetMainInstance(HINSTANCE hInstance) ; 

@@ -9,7 +9,7 @@ CMainWnd::CMainWnd(HINSTANCE hInstance)
 {
     m_hInstance = hInstance ; 
     m_IsEntered = false ; 
-    m_nCurkey = 0 ;
+    m_spOptDlg.Attach(new COptionsDlg) ; 
 } 
 
 CMainWnd::~CMainWnd()
@@ -33,7 +33,7 @@ LRESULT CMainWnd::OnPaint(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, B
     {
         CMainApp::GetInstance().SetScore(0) ; 
         paint.DrawBoard() ; 
-        m_spComm->PaintBoard() ; 
+        m_spTetrisGm->OutUpdate() ; 
         paint.PrintNextBlock() ; 
     }
     else 
@@ -65,30 +65,22 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
         }
         case VK_ESCAPE :
         {
-            /*
-            COptionsDlg dlg ;
-            if (dlg.DoModal(m_hWnd) == IDCANCEL)
+            if(m_spOptDlg->DoModal() == IDOK)
             {
-                return 0 ;
-            }
-            dlg.IsDlgButtonChecked(IDC_CHECK_GUIDE) ;
-            */
-            break ;
-        }
-        case VK_LEFT : // Move left.
-        case VK_RIGHT : // Move right.
-        case VK_UP : // Rotate clock-wise.
-        case VK_DOWN : // Slow Down.
-        case VK_SPACE : // Fast Down
-        {
-            if((m_IsEntered != false) && !CMainApp::GetInstance().GetIsGameOver())
-            {
-                m_nCurkey = (INT)wParam ; 
+                if(::IsDlgButtonChecked(m_hWnd, IDC_CHECK_GHOST))
+                {
+                    m_spTetrisGm->DrawGhost() ;
+                }
+                return 0 ; 
             }
             break ;
         }
         default :
         {
+            if((m_IsEntered == true) && !CMainApp::GetInstance().GetIsGameOver())
+            {
+                ControlKey(wParam) ;
+            }
             break ;
         }
     }
@@ -106,20 +98,14 @@ LRESULT CMainWnd::OnTimer(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL 
             paint.PrintMain() ; 
             break ; 
         }
-        case IDT_DRAW_TIMER :
-        {
-            m_spComm->InputKey(m_nCurkey) ; 
-            m_nCurkey = 0 ; 
-            break ; 
-        }
         case IDT_DOWN_TIMER :
         {
-            m_spComm->Down() ; 
+            m_spTetrisGm->SlowDown() ; 
             break ; 
         }
         case IDT_STAY_TIMER :
         {
-            m_spComm->Stay() ; 
+            m_spTetrisGm->Stay() ; 
             break ; 
         }
         default :
@@ -138,14 +124,59 @@ LRESULT CMainWnd::OnDestroy(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/,
     return 0 ; 
 }
 
+//      Custom
+
 void CMainWnd::Start()
 {
     CMainApp::GetInstance().SetMainWnd(m_hWnd) ; 
     CMainApp::GetInstance().SetMainInstance(m_hInstance) ; 
-    SetTimer(IDT_DRAW_TIMER, 0, NULL) ; 
     SetTimer(IDT_DOWN_TIMER, DEFAULT_VELOCITY, NULL) ;
-    m_spComm = std::make_unique<CCommand>() ;
+    m_spTetrisGm = std::make_unique<CTetrisGame>() ;
     InvalidateRect(nullptr) ; 
     UpdateWindow() ;
-    m_spComm->Begin() ; 
+    m_spTetrisGm->Create() ; 
+}
+
+void CMainWnd::ControlKey(WPARAM wParam)
+{
+    switch(wParam)
+    {
+        case VK_RETURN :
+        {
+            break ; 
+        }
+        case VK_LEFT :
+        {
+            m_spTetrisGm->Left() ; 
+            break ; 
+        }
+        case VK_RIGHT :
+        {
+            m_spTetrisGm->Right() ; 
+            break ; 
+        }
+        case VK_UP :
+        {
+            m_spTetrisGm->Rotate() ; 
+            break ; 
+        }
+        case VK_DOWN :
+        {
+            m_spTetrisGm->Down() ; 
+            break ; 
+        }
+        case VK_SPACE :
+        {
+            m_spTetrisGm->FastDown() ; 
+            break ; 
+        }
+        default :
+        {
+            break ; 
+        } 
+    }
+    if(!CMainApp::GetInstance().GetIsGameOver()) // 만약 게임오버라면, 다음 블럭을 그릴 필요가 없음
+    {
+        m_spTetrisGm->Draw() ; // 블럭이 밑 바닥에 도착한 후, 바로 다음 블럭을 그림         
+    }
 }

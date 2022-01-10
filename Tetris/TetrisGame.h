@@ -25,7 +25,6 @@ class CTetrisGame
         bool IsFull(INT nLine) ; 
         void InUpdate(INT nLine) ; 
         void OutUpdate() ; 
-        void FutureUpdate() ; 
         void SetLevel() ; 
         bool IsGameOver() ; 
         void GameOver() ; 
@@ -33,6 +32,7 @@ class CTetrisGame
     public :
         void Draw() ; 
         void Erase() ; 
+        void DrawGhost() ;
     public :
         void Left() ; 
         void Right() ; 

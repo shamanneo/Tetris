@@ -42,9 +42,6 @@
     <ClInclude Include="Teewee.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Command.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Block.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -81,6 +78,9 @@
     <ClInclude Include="OptionsDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MainOption.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tetris.cpp">
@@ -96,9 +96,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Space.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Command.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Block.cpp">
@@ -132,6 +129,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="OptionsDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainOption.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

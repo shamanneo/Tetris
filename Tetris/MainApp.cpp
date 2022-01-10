@@ -57,6 +57,11 @@ bool CMainApp::GetIsGameOver() const
     return m_IsGameOver ; 
 }
 
+CMainOption &CMainApp::GetMainOption()  
+{
+    return m_MainOption ; 
+}
+
 //      Setter
 
 void CMainApp::SetMainWnd(HWND hWnd) 

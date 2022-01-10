@@ -158,6 +158,7 @@
     <ClInclude Include="Hero.h" />
     <ClInclude Include="Licky.h" />
     <ClInclude Include="MainApp.h" />
+    <ClInclude Include="MainOption.h" />
     <ClInclude Include="OptionsDlg.h" />
     <ClInclude Include="Paint.h" />
     <ClInclude Include="Phodeisland.h" />
@@ -172,7 +173,6 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Tetris.h" />
-    <ClInclude Include="Command.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp" />
@@ -180,6 +180,7 @@
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="Licky.cpp" />
     <ClCompile Include="MainApp.cpp" />
+    <ClCompile Include="MainOption.cpp" />
     <ClCompile Include="OptionsDlg.cpp" />
     <ClCompile Include="Paint.cpp" />
     <ClCompile Include="Phodeisland.cpp" />
@@ -196,7 +197,6 @@
     </ClCompile>
     <ClCompile Include="Space.cpp" />
     <ClCompile Include="Tetris.cpp" />
-    <ClCompile Include="Command.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Tetris.rc" />

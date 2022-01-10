@@ -47,30 +47,16 @@ Gdiplus::Image *CPaint::LoadPNG(HMODULE hModule, LPCWSTR lp)
     return pImg ; 
 }
 
-void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT nB, INT nArrSize) 
+void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nA, INT nR, INT nG, INT nB, INT nArrSize) 
 {
     INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
     Graphics grfx { m_hDC } ; 
-    SolidBrush bruBlack { Gdiplus::Color { (BYTE)nR, (BYTE)nG, (BYTE)nB } } ; 
+    SolidBrush brush { Gdiplus::Color { (BYTE)nA, (BYTE)nR, (BYTE)nG, (BYTE)nB } } ; 
     for(INT nIndex = 0 ; nIndex < nArrSize ; nIndex++)
     {
         if(!spPosArr[nIndex].IsEmpty())
         {
-            grfx.FillRectangle(&bruBlack, (BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 2) + nInitX + 2), (BLOCK_INTERVAL * (spPosArr[nIndex].m_nY - 2) + BLOCK_INTERVAL + 2), BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
-        }
-    }
-}
-
-void CPaint::EraseBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nArrSize)
-{
-    INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
-    Graphics grfx { m_hDC } ; 
-    SolidBrush bruWhite { Gdiplus::Color { 0, 0, 0 } } ; 
-    for(INT nIndex = 0 ; nIndex < nArrSize ; nIndex++)
-    {
-        if(!spPosArr[nIndex].IsEmpty())
-        {
-            grfx.FillRectangle(&bruWhite, (BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 2) + nInitX + 2), (BLOCK_INTERVAL * (spPosArr[nIndex].m_nY - 2) + BLOCK_INTERVAL + 2), BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+            grfx.FillRectangle(&brush, (BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 2) + nInitX + 2), (BLOCK_INTERVAL * (spPosArr[nIndex].m_nY - 2) + BLOCK_INTERVAL + 2), BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
         }
     }
 }
@@ -138,7 +124,7 @@ void CPaint::PaintBoard(INT arrTotalBoard[][BLOCK_HEIGHT_COUNT])
                 eId = (BlockId)arrTotalBoard[nX][nY] ; 
                 if(((INT)eId != 0) && ((INT)eId != BOARD_BOUND)) 
                 {
-                    brush.SetColor(Color { 255, 255, 255 } ) ;
+                    brush.SetColor(Gdiplus::Color { 255, 255, 255 } ) ;
                     grfx.FillRectangle(&brush, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * (nY - 2) + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
                 }
             }

@@ -13,7 +13,7 @@ class CRicky : public CBlock
     public :
         virtual BlockId GetId() const override ; 
     public :
-        virtual void Draw() override ; 
+        virtual void Draw(INT nGhost) override ; 
 } ;
 
 
