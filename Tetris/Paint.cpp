@@ -124,7 +124,7 @@ void CPaint::PaintBoard(INT arrTotalBoard[][BLOCK_HEIGHT_COUNT])
                 eId = (BlockId)arrTotalBoard[nX][nY] ; 
                 if(((INT)eId != 0) && ((INT)eId != BOARD_BOUND)) 
                 {
-                    brush.SetColor(Color { 255, 255, 255 } ) ;
+                    brush.SetColor(Gdiplus::Color { 255, 255, 255 } ) ;
                     grfx.FillRectangle(&brush, BLOCK_INTERVAL * (nX - 2) + nInitX + 2, BLOCK_INTERVAL * (nY - 2) + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
                 }
             }

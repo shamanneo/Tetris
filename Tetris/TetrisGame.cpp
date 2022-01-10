@@ -14,7 +14,7 @@
 #include "TetrisGame.h"
 
 const FLOAT DEFAULT_WAIT_TIME_ON_BLOCK = 0.6f ;  
-const INT GHOST_BLOCK = 100 ; 
+const INT GHOST_BLOCK = 255 ; 
 
 CTetrisGame::CTetrisGame()
     : m_nArrSize(DEFAULT_ARRAY_SIZE), m_eNextId(BlockId::ID_VOID), m_nVelocity(DEFAULT_VELOCITY)
@@ -133,7 +133,7 @@ void CTetrisGame::Reach()
         GameOver() ; 
         return ; 
     }
-    for(auto it = setYs.begin() ; it != setYs.end() ; it++) // 떨어진 블럭의 층 들을 검사함
+    for(auto it = setYs.begin() ; it != setYs.end() ; it++) // 떨어진 블럭의 층들을 검사함
     {
         nLine = *it ; 
         if(IsFull(nLine))

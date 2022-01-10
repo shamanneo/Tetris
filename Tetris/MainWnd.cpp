@@ -67,7 +67,10 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
         {
             if(m_spOptDlg->DoModal() == IDOK)
             {
-                m_spTetrisGm->OutUpdate() ; 
+                if(::IsDlgButtonChecked(m_hWnd, IDC_CHECK_GHOST))
+                {
+                    m_spTetrisGm->DrawGhost() ;
+                }
                 return 0 ; 
             }
             break ;
