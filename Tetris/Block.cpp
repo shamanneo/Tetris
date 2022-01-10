@@ -93,7 +93,7 @@ bool CBlock::CanRotate(INT arrBoard[][BLOCK_HEIGHT_COUNT], INT nArrSize)
     return CanRotate(arrBoard, nArrSize) ;   
 }
 
-void CBlock::Draw(INT nGhost) 
+void CBlock::Draw(INT /*nGhost*/) 
 {
     return ; 
 }

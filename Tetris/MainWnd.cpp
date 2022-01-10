@@ -9,6 +9,7 @@ CMainWnd::CMainWnd(HINSTANCE hInstance)
 {
     m_hInstance = hInstance ; 
     m_IsEntered = false ; 
+    m_spOptDlg.Attach(new COptionsDlg) ; 
 } 
 
 CMainWnd::~CMainWnd()
@@ -64,9 +65,9 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
         }
         case VK_ESCAPE :
         {
-            COptionsDlg dlg ; 
-            if(dlg.DoModal() == IDCANCEL)
+            if(m_spOptDlg->DoModal() == IDOK)
             {
+                m_spTetrisGm->OutUpdate() ; 
                 return 0 ; 
             }
             break ;

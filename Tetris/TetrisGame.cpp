@@ -13,8 +13,8 @@
 #include "Paint.h" 
 #include "TetrisGame.h"
 
-const FLOAT DEFAULT_WAIT_TIME_ON_BLOCK = 0.5f ;  
-const INT GHOST_BLOCK = 125 ; 
+const FLOAT DEFAULT_WAIT_TIME_ON_BLOCK = 0.6f ;  
+const INT GHOST_BLOCK = 100 ; 
 
 CTetrisGame::CTetrisGame()
     : m_nArrSize(DEFAULT_ARRAY_SIZE), m_eNextId(BlockId::ID_VOID), m_nVelocity(DEFAULT_VELOCITY)
@@ -187,17 +187,6 @@ void CTetrisGame::OutUpdate()
     paint.PaintBoard(m_arrBoard) ; 
 }
 
-void CTetrisGame::DrawGhost() 
-{
-    m_spFurBk->Erase() ; 
-    *m_spFurBk = *m_spCurBk ; 
-    while(IsMoveDown(m_spFurBk.get()))
-    {
-        m_spFurBk->Down() ; 
-    }
-    m_spFurBk->Draw(GHOST_BLOCK) ; 
-}
-
 void CTetrisGame::SetLevel() 
 {
     CMainApp pMainApp = CMainApp::GetInstance() ; 
@@ -267,6 +256,20 @@ void CTetrisGame::Draw()
 void CTetrisGame::Erase()
 {
     m_spCurBk->Erase() ;
+}
+
+void CTetrisGame::DrawGhost() 
+{
+    m_spFurBk->Erase() ; 
+    if(CMainApp::GetInstance().GetMainOption().IsCheckedGhost())
+    {
+        *m_spFurBk = *m_spCurBk ; 
+        while(IsMoveDown(m_spFurBk.get()))
+        {
+            m_spFurBk->Down() ; 
+        }
+        m_spFurBk->Draw(GHOST_BLOCK) ; 
+    }
 }
 
 void CTetrisGame::Left()

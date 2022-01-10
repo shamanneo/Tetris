@@ -4,6 +4,10 @@
 class COptionsDlg : public CDialogImpl<COptionsDlg>
 {
     private :
+        
+    public :
+        COptionsDlg() ; 
+        ~COptionsDlg() ; 
     public :
         enum { IDD = IDD_OPTIONS } ;
 
@@ -17,6 +21,6 @@ class COptionsDlg : public CDialogImpl<COptionsDlg>
         LRESULT OnInitDialog(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled) ;
         LRESULT OnOK(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/) ;
         LRESULT OnCancel(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/) ;
-        LRESULT OnCheckGhost(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
-};
+        LRESULT OnCheckGhost(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/) ;
+} ;
 
