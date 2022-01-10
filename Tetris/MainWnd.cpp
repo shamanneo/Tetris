@@ -5,7 +5,6 @@
 #include "OptionsDlg.h"
 #include "MainWnd.h"
 
-
 CMainWnd::CMainWnd(HINSTANCE hInstance)
 {
     m_hInstance = hInstance ; 
@@ -65,6 +64,11 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
         }
         case VK_ESCAPE :
         {
+            COptionsDlg dlg ; 
+            if(dlg.DoModal() == IDCANCEL)
+            {
+                return 0 ; 
+            }
             break ;
         }
         default :

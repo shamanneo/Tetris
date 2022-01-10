@@ -3,8 +3,6 @@
 
 LRESULT COptionsDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL &/*bHandled*/)
 {
-    CheckDlgButton(IDC_CHECK_GUIDE, BST_CHECKED) ;
-    SetDlgItemText(IDC_EDIT1, _T("Hello, World")) ;
     CenterWindow() ;
     return 0 ;
 }
@@ -18,5 +16,10 @@ LRESULT COptionsDlg::OnOK(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, 
 LRESULT COptionsDlg::OnCancel(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
 {
     EndDialog(IDCANCEL) ;
+    return 0 ;
+}
+
+LRESULT COptionsDlg::OnCheckGhost(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
+{
     return 0 ;
 }
