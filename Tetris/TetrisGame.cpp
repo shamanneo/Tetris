@@ -14,6 +14,7 @@
 #include "TetrisGame.h"
 
 const FLOAT DEFAULT_WAIT_TIME_ON_BLOCK = 0.5f ;  
+const INT GHOST_BLOCK = 125 ; 
 
 CTetrisGame::CTetrisGame()
     : m_nArrSize(DEFAULT_ARRAY_SIZE), m_eNextId(BlockId::ID_VOID), m_nVelocity(DEFAULT_VELOCITY)
@@ -194,7 +195,7 @@ void CTetrisGame::DrawGhost()
     {
         m_spFurBk->Down() ; 
     }
-    
+    m_spFurBk->Draw(GHOST_BLOCK) ; 
 }
 
 void CTetrisGame::SetLevel() 

@@ -29,10 +29,10 @@ BlockId CPhodeisland::GetId() const
     return m_eId ; 
 }
 
-void CPhodeisland::Draw() 
+void CPhodeisland::Draw(INT nGhost) 
 {   
     CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
-    paint.PaintBlock(m_spPosArr, 0, 128, 0) ; 
+    paint.PaintBlock(m_spPosArr, nGhost, 0, 128, 0) ; 
 }
 
 

@@ -93,7 +93,7 @@ bool CBlock::CanRotate(INT arrBoard[][BLOCK_HEIGHT_COUNT], INT nArrSize)
     return CanRotate(arrBoard, nArrSize) ;   
 }
 
-void CBlock::Draw() 
+void CBlock::Draw(INT nGhost) 
 {
     return ; 
 }
@@ -101,7 +101,7 @@ void CBlock::Draw()
 void CBlock::Erase()
 {
     CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
-    paint.PaintBlock(m_spPosArr, 0, 0, 0, m_nArrSize) ; 
+    paint.PaintBlock(m_spPosArr, 255, 0, 0, 0, m_nArrSize) ; 
 }
 
 void CBlock::Left() 

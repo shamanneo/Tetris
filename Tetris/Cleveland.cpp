@@ -29,10 +29,10 @@ BlockId CCleveland::GetId() const
     return m_eId ; 
 }
 
-void CCleveland::Draw() 
+void CCleveland::Draw(INT nGhost) 
 {   
     CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
-    paint.PaintBlock(m_spPosArr, 255, 0, 0) ; 
+    paint.PaintBlock(m_spPosArr, nGhost, 255, 0, 0) ; 
 }
 
 

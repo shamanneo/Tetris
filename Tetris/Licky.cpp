@@ -29,10 +29,10 @@ BlockId CLicky::GetId() const
     return m_eId ; 
 }
 
-void CLicky::Draw() 
+void CLicky::Draw(INT nGhost) 
 {   
     CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
-    paint.PaintBlock(m_spPosArr, 0, 64, 255) ; 
+    paint.PaintBlock(m_spPosArr, nGhost, 0, 64, 255) ; 
 }
 
 
