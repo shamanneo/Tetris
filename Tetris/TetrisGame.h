@@ -25,7 +25,7 @@ class CTetrisGame
         bool IsFull(INT nLine) ; 
         void InUpdate(INT nLine) ; 
         void OutUpdate() ; 
-        void FutureUpdate() ; 
+        void DrawGhost() ; 
         void SetLevel() ; 
         bool IsGameOver() ; 
         void GameOver() ; 

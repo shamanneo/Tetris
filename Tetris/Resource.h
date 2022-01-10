@@ -11,7 +11,6 @@
 #define IDI_TETRIS                      107
 #define IDI_SMALL                       108
 #define IDC_TETRIS                      109
-#define IDT_DRAW_TIMER                  110
 #define IDT_DOWN_TIMER                  111
 #define IDT_MAIN_DRAWING_TIMER          112
 #define IDP_TETRIS_GAMEOVER             113

@@ -19,7 +19,6 @@ class CBlock
         bool IsOutOfBoundary(INT nIndex) const ; 
     public :
         virtual void Draw() ; 
-        virtual void FutureDraw() ; 
         void Erase() ; 
         void Left() ; 
         void Right() ; 

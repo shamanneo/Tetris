@@ -1,14 +1,14 @@
 #pragma once
 #include <memory>
-#include "Command.h"
+#include "TetrisGame.h"
+
 
 class CMainWnd : public CWindowImpl<CMainWnd>
 {
     private :
-        std::unique_ptr<CCommand> m_spComm ; 
+        std::unique_ptr<CTetrisGame> m_spTetrisGm ; 
         HINSTANCE m_hInstance ;
         bool m_IsEntered ; 
-        INT m_nCurkey ; 
     public :
         CMainWnd(HINSTANCE hInstance) ; 
         ~CMainWnd() ;
@@ -31,7 +31,8 @@ class CMainWnd : public CWindowImpl<CMainWnd>
         LRESULT OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled) ; 
     public :
         void Start() ; 
-} ; 
+        void ControlKey(WPARAM wParam) ; // 오직 방향키와 스페이스만을 담당함 
+} ;  
 
 inline void CMainWnd::OnFinalMessage(HWND)
 {

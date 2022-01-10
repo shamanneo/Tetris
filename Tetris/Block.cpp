@@ -98,12 +98,6 @@ void CBlock::Draw()
     return ; 
 }
 
-void CBlock::FutureDraw()
-{
-    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
-    paint.PaintBlock(m_spPosArr, 255, 255, 255) ; 
-}
-
 void CBlock::Erase()
 {
     CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;

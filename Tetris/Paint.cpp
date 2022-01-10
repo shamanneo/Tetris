@@ -47,11 +47,11 @@ Gdiplus::Image *CPaint::LoadPNG(HMODULE hModule, LPCWSTR lp)
     return pImg ; 
 }
 
-void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT nB, INT nArrSize) 
+void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nA, INT nR, INT nG, INT nB, INT nArrSize) 
 {
     INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
     Graphics grfx { m_hDC } ; 
-    SolidBrush brush { Gdiplus::Color { (BYTE)nR, (BYTE)nG, (BYTE)nB } } ; 
+    SolidBrush brush { Gdiplus::Color { (BYTE)nA, (BYTE)nR, (BYTE)nG, (BYTE)nB } } ; 
     for(INT nIndex = 0 ; nIndex < nArrSize ; nIndex++)
     {
         if(!spPosArr[nIndex].IsEmpty())

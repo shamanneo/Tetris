@@ -13,7 +13,7 @@
 #include "Paint.h" 
 #include "TetrisGame.h"
 
-const FLOAT DEFAULT_WAIT_TIME_ON_BLOCK = 0.4f ;  
+const FLOAT DEFAULT_WAIT_TIME_ON_BLOCK = 0.5f ;  
 
 CTetrisGame::CTetrisGame()
     : m_nArrSize(DEFAULT_ARRAY_SIZE), m_eNextId(BlockId::ID_VOID), m_nVelocity(DEFAULT_VELOCITY)
@@ -109,7 +109,7 @@ void CTetrisGame::Create()
     CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
     CMainApp::GetInstance().SetBlockId(m_eNextId) ; 
     paint.PrintNextBlock() ; 
-    FutureUpdate() ; 
+    DrawGhost() ; 
 }
 
 void CTetrisGame::Reach()
@@ -186,7 +186,7 @@ void CTetrisGame::OutUpdate()
     paint.PaintBoard(m_arrBoard) ; 
 }
 
-void CTetrisGame::FutureUpdate() 
+void CTetrisGame::DrawGhost() 
 {
     m_spFurBk->Erase() ; 
     *m_spFurBk = *m_spCurBk ; 
@@ -194,7 +194,7 @@ void CTetrisGame::FutureUpdate()
     {
         m_spFurBk->Down() ; 
     }
-    m_spFurBk->FutureDraw() ;
+    
 }
 
 void CTetrisGame::SetLevel() 
@@ -237,7 +237,6 @@ void CTetrisGame::GameOver()
     CPaint paint { hWnd } ;
     paint.PaintBoard(m_arrBoard) ; 
     paint.PrintGameOver() ;
-    KillTimer(hWnd, IDT_DRAW_TIMER) ;
     KillTimer(hWnd, IDT_DOWN_TIMER) ;
     return ; 
 }
@@ -275,7 +274,7 @@ void CTetrisGame::Left()
     {
         Erase() ; 
         m_spCurBk->Left() ; 
-        FutureUpdate() ;
+        DrawGhost() ;
     }
 }
 
@@ -285,7 +284,7 @@ void CTetrisGame::Right()
     {
         Erase() ; 
         m_spCurBk->Right() ; 
-        FutureUpdate() ;
+        DrawGhost() ;
     }
 }
 
@@ -293,7 +292,7 @@ void CTetrisGame::Rotate()
 {
     Erase() ; 
     m_spCurBk->Rotate(m_arrBoard) ; 
-    FutureUpdate() ;
+    DrawGhost() ;
 }
 
 void CTetrisGame::Down() 
@@ -301,7 +300,6 @@ void CTetrisGame::Down()
     Erase() ; 
     m_spCurBk->Down() ; 
     m_spCurBk->Draw() ; 
-    FutureUpdate() ; 
 }
 
 bool CTetrisGame::SlowDown()
@@ -345,6 +343,7 @@ void CTetrisGame::FastDown()
     }
     m_spCurBk->Draw() ; 
     Reach() ; 
+    CMainApp::GetInstance().SetScore(30) ; 
 }
 
 bool CTetrisGame::IsMoveLeft() 
