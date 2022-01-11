@@ -261,8 +261,9 @@ void CTetrisGame::Erase()
 
 void CTetrisGame::DrawGhost() 
 {
+    CMainOption *MainOption = CMainApp::GetInstance().GetMainOption() ; 
     m_spFurBk->Erase() ; 
-    //if(/*CMainApp::GetInstance().GetMainOption().IsCheckedGhost()*/)
+    if(MainOption->m_bGhostCheck)
     {
         *m_spFurBk = *m_spCurBk ; 
         while(IsMoveDown(m_spFurBk.get()))

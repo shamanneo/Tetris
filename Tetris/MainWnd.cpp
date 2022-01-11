@@ -7,6 +7,7 @@
 
 CMainWnd::CMainWnd(HINSTANCE hInstance)
 {
+    _AtlBaseModule.GetModuleInstance() ;
     m_hInstance = hInstance ; 
     m_IsEntered = false ; 
 } 
@@ -20,7 +21,6 @@ LRESULT CMainWnd::OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, 
 {
     CMainApp::GetInstance().SetMainWnd(m_hWnd) ; 
     CMainApp::GetInstance().SetMainInstance(m_hInstance) ; 
-    m_spOptDlg.Attach(new COptionsDlg) ;  
     bHandled = FALSE ;
     return 0 ;
 }
@@ -66,15 +66,8 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
         }
         case VK_ESCAPE :
         {
-            if(m_spOptDlg->DoModal() == IDOK)
-            {
-                m_spOptDlg->Save() ; 
-                return 0 ; 
-            }
-            else // Cancel  
-            {
-                return 0 ; 
-            }
+            COptionsDlg OptionDlg ; 
+            OptionDlg.DoModal() ; 
             break ;
         }
         default :

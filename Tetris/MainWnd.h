@@ -7,7 +7,6 @@ class CMainWnd : public CWindowImpl<CMainWnd>
 {
     private :
         std::unique_ptr<CTetrisGame> m_spTetrisGm ; 
-        CAutoPtr<COptionsDlg> m_spOptDlg ;
         HINSTANCE m_hInstance ;
         bool m_IsEntered ; 
     public :

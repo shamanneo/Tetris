@@ -21,6 +21,7 @@ LRESULT COptionsDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lPa
 
 LRESULT COptionsDlg::OnOK(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
 {
+    Save() ; 
     EndDialog(IDOK) ;
     return 0 ;
 }
@@ -39,16 +40,7 @@ LRESULT COptionsDlg::OnCheckGhost(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWn
 void COptionsDlg::Save()
 {
     CMainOption *MainOption = CMainApp::GetInstance().GetMainOption() ; 
-    if(IsDlgButtonChecked(IDC_CHECK_GHOST))
-    {
-        MainOption->m_bGhostCheck = true ; 
-    }
-    else
-    {
-        MainOption->m_bGhostCheck = false ; 
-    }
-    return ; 
-    //(::IsDlgButtonChecked(hWnd, IDC_CHECK_GHOST)) ? MainOption->m_bGhostCheck = true : MainOption->m_bGhostCheck = false ; // 고스트 블럭 설정 관리
+    (IsDlgButtonChecked(IDC_CHECK_GHOST)) ? MainOption->m_bGhostCheck = true : MainOption->m_bGhostCheck = false ; // 고스트 블럭 설정 관리
 }
 
 void COptionsDlg::Load()
