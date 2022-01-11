@@ -34,6 +34,8 @@ class CMainApp
         void SetLine(INT nScore) ; 
         void SetIsGameOver(bool IsGameOver) ;
     public :
+        void Reset() ;
+    public :
         static CMainApp &GetInstance(HWND hWnd = nullptr, HINSTANCE hInstance = nullptr) ;
         static void Release() ;
 } ;
