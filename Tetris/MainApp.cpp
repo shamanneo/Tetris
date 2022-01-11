@@ -57,9 +57,9 @@ bool CMainApp::GetIsGameOver() const
     return m_IsGameOver ; 
 }
 
-CMainOption &CMainApp::GetMainOption()  
+CMainOption *CMainApp::GetMainOption() 
 {
-    return m_MainOption ; 
+    return &m_MainOption ; 
 }
 
 //      Setter

@@ -9,7 +9,6 @@ CMainWnd::CMainWnd(HINSTANCE hInstance)
 {
     m_hInstance = hInstance ; 
     m_IsEntered = false ; 
-    m_spOptDlg.Attach(new COptionsDlg) ; 
 } 
 
 CMainWnd::~CMainWnd()
@@ -21,6 +20,7 @@ LRESULT CMainWnd::OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, 
 {
     CMainApp::GetInstance().SetMainWnd(m_hWnd) ; 
     CMainApp::GetInstance().SetMainInstance(m_hInstance) ; 
+    m_spOptDlg.Attach(new COptionsDlg) ;  
     bHandled = FALSE ;
     return 0 ;
 }
@@ -68,10 +68,11 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
         {
             if(m_spOptDlg->DoModal() == IDOK)
             {
-                if(::IsDlgButtonChecked(m_hWnd, IDC_CHECK_GHOST))
-                {
-                    m_spTetrisGm->DrawGhost() ;
-                }
+                m_spOptDlg->Save() ; 
+                return 0 ; 
+            }
+            else // Cancel  
+            {
                 return 0 ; 
             }
             break ;

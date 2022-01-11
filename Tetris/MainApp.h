@@ -24,7 +24,7 @@ class CMainApp
         INT GetLevel() const ; 
         INT GetLine() const ; 
         bool GetIsGameOver() const ; 
-        CMainOption &GetMainOption() ;
+        CMainOption *GetMainOption() ; 
     public :
         void SetMainWnd(HWND hWnd) ; 
         void SetMainInstance(HINSTANCE hInstance) ; 
