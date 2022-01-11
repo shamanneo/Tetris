@@ -5,10 +5,8 @@
 #include "OptionsDlg.h"
 #include "MainWnd.h"
 
-CMainWnd::CMainWnd(HINSTANCE hInstance)
+CMainWnd::CMainWnd()
 {
-    _AtlBaseModule.GetModuleInstance() ;
-    m_hInstance = hInstance ; 
     m_IsEntered = false ; 
 } 
 
@@ -20,7 +18,6 @@ CMainWnd::~CMainWnd()
 LRESULT CMainWnd::OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL &bHandled)
 {
     CMainApp::GetInstance().SetMainWnd(m_hWnd) ; 
-    CMainApp::GetInstance().SetMainInstance(m_hInstance) ; 
     bHandled = FALSE ;
     return 0 ;
 }

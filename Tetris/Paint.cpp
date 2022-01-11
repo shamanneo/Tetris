@@ -178,15 +178,16 @@ void CPaint::EraseBoard()
 void CPaint::PrintMain()
 {
     static INT nCount = 1 ;
+    HINSTANCE hInstance = _AtlBaseModule.GetModuleInstance() ;
     Graphics grfx { m_hDC } ; 
     Image *pImg = nullptr ; 
     if(nCount++ % 2 == 1)
     {
-        pImg = LoadPNG(CMainApp::GetInstance().GetMainInStance(), MAKEINTRESOURCE(IDP_TETRIS_MAIN)) ; 
+        pImg = LoadPNG(hInstance, MAKEINTRESOURCE(IDP_TETRIS_MAIN)) ; 
     }
     else
     { 
-        pImg = LoadPNG(CMainApp::GetInstance().GetMainInStance(), MAKEINTRESOURCE(IDP_TETRIS_MAIN_PRESS)) ; 
+        pImg = LoadPNG(hInstance, MAKEINTRESOURCE(IDP_TETRIS_MAIN_PRESS)) ; 
     }
     grfx.DrawImage(pImg, -1, 0, pImg->GetWidth(), pImg->GetHeight()) ;    
 }
@@ -194,6 +195,7 @@ void CPaint::PrintMain()
 void CPaint::PrintNextBlock() 
 {
     BlockId eId = CMainApp::GetInstance().GetBlockId() ; 
+    HINSTANCE hInstance = _AtlBaseModule.GetModuleInstance() ;
     const INT nX = (m_rcClient.right / 2) + BLOCK_INTERVAL * 6 ; 
     const INT nY = 431 ; 
     Graphics grfx { m_hDC } ;
@@ -202,37 +204,37 @@ void CPaint::PrintNextBlock()
     {
         case BlockId::ID_LICKY :
         {
-            pImg = LoadPNG(CMainApp::GetInstance().GetMainInStance(), MAKEINTRESOURCE(IDP_TETRIS_BLOCK_LICKY)) ;  
+            pImg = LoadPNG(hInstance, MAKEINTRESOURCE(IDP_TETRIS_BLOCK_LICKY)) ;  
             break ;
         }
         case BlockId::ID_RICKY :
         {
-            pImg = LoadPNG(CMainApp::GetInstance().GetMainInStance(), MAKEINTRESOURCE(IDP_TETRIS_BLOCK_RICKY)) ;  
+            pImg = LoadPNG(hInstance, MAKEINTRESOURCE(IDP_TETRIS_BLOCK_RICKY)) ;  
             break ;
         }
         case BlockId::ID_CLEVELAND :
         {
-            pImg = LoadPNG(CMainApp::GetInstance().GetMainInStance(), MAKEINTRESOURCE(IDP_TETRIS_BLOCK_CLEVELAND)) ;  
+            pImg = LoadPNG(hInstance, MAKEINTRESOURCE(IDP_TETRIS_BLOCK_CLEVELAND)) ;  
             break ;
         }
         case BlockId::ID_PHODEISLAND :
         {
-            pImg = LoadPNG(CMainApp::GetInstance().GetMainInStance(), MAKEINTRESOURCE(IDP_TETRIS_BLOCK_PHODEISLAND)) ;  
+            pImg = LoadPNG(hInstance, MAKEINTRESOURCE(IDP_TETRIS_BLOCK_PHODEISLAND)) ;  
             break ;
         }
         case BlockId::ID_TEEWEE :
         {
-            pImg = LoadPNG(CMainApp::GetInstance().GetMainInStance(), MAKEINTRESOURCE(IDP_TETRIS_BLOCK_TEEWEE)) ;  
+            pImg = LoadPNG(hInstance, MAKEINTRESOURCE(IDP_TETRIS_BLOCK_TEEWEE)) ;  
             break ;
         }
         case BlockId::ID_SMASHBOY :
         {
-            pImg = LoadPNG(CMainApp::GetInstance().GetMainInStance(), MAKEINTRESOURCE(IDP_TETRIS_BLOCK_SMASHBOY)) ;  
+            pImg = LoadPNG(hInstance, MAKEINTRESOURCE(IDP_TETRIS_BLOCK_SMASHBOY)) ;  
             break ;
         }
         case BlockId::ID_HERO :
         {
-            pImg = LoadPNG(CMainApp::GetInstance().GetMainInStance(), MAKEINTRESOURCE(IDP_TETRIS_BLOCK_HERO)) ;  
+            pImg = LoadPNG(hInstance, MAKEINTRESOURCE(IDP_TETRIS_BLOCK_HERO)) ;  
             break ;
         }
     }
@@ -241,10 +243,11 @@ void CPaint::PrintNextBlock()
 
 void CPaint::PrintGameOver()
 {
+    HINSTANCE hInstance = _AtlBaseModule.GetModuleInstance() ;
     const INT nX = (m_rcClient.right / 2) + BLOCK_INTERVAL * 6 ; 
     const INT nY = 431 ; 
     Graphics grfx { m_hDC } ;
-    Image *img = LoadPNG(CMainApp::GetInstance().GetMainInStance(), MAKEINTRESOURCE(IDP_TETRIS_GAMEOVER)) ; 
+    Image *img = LoadPNG(hInstance, MAKEINTRESOURCE(IDP_TETRIS_GAMEOVER)) ; 
     grfx.DrawImage(img, nX, nY, 200, 200) ; 
 }
 

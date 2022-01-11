@@ -4,10 +4,9 @@
 
 static CMainApp *g_pMainApp = nullptr ; 
 
-CMainApp::CMainApp(HWND hWnd, HINSTANCE hInstance)
+CMainApp::CMainApp(HWND hWnd)
 {
     m_hWnd = hWnd ;
-    m_hInstance = hInstance ; 
     m_eId = BlockId::ID_VOID ; 
     m_nScore = 0 ; 
     m_nLevel = 1 ; 
@@ -25,11 +24,6 @@ CMainApp::~CMainApp()
 HWND CMainApp::GetMainWnd() const 
 {
     return m_hWnd ;
-}
-
-HINSTANCE CMainApp::GetMainInStance() const 
-{
-    return m_hInstance ;
 }
 
 BlockId CMainApp::GetBlockId() const 
@@ -67,11 +61,6 @@ CMainOption *CMainApp::GetMainOption()
 void CMainApp::SetMainWnd(HWND hWnd) 
 {
     m_hWnd = hWnd ; 
-}
-
-void CMainApp::SetMainInstance(HINSTANCE hInstance)
-{
-    m_hInstance = hInstance ; 
 }
 
 void CMainApp::SetBlockId(BlockId eId)  
@@ -116,11 +105,11 @@ void CMainApp::Reset()
 
 //      static
 
-CMainApp &CMainApp::GetInstance(HWND hWnd, HINSTANCE hInstance)
+CMainApp &CMainApp::GetInstance(HWND hWnd)
 {
     if (g_pMainApp == nullptr)
     {
-        g_pMainApp = new CMainApp { hWnd, hInstance } ;
+        g_pMainApp = new CMainApp { hWnd } ;
     }
     return *g_pMainApp ;
 }

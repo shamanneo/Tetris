@@ -6,7 +6,6 @@ class CMainApp
 {
     private :
         HWND m_hWnd ;
-        HINSTANCE m_hInstance ; 
         BlockId m_eId ; 
         INT m_nScore ; 
         INT m_nLevel ; 
@@ -14,11 +13,10 @@ class CMainApp
         bool m_IsGameOver ;
         CMainOption m_MainOption ; 
     public :
-        CMainApp(HWND hWnd, HINSTANCE hInstance) ;
+        CMainApp(HWND hWnd) ;
         ~CMainApp() ;
     public :
         HWND GetMainWnd() const ; 
-        HINSTANCE GetMainInStance() const ; 
         BlockId GetBlockId() const ; 
         INT GetScore() const ; 
         INT GetLevel() const ; 
@@ -27,7 +25,6 @@ class CMainApp
         CMainOption *GetMainOption() ; 
     public :
         void SetMainWnd(HWND hWnd) ; 
-        void SetMainInstance(HINSTANCE hInstance) ; 
         void SetBlockId(BlockId eId) ; 
         void SetScore(INT nScore) ; 
         void SetLevel(INT nScore) ; 
@@ -36,7 +33,7 @@ class CMainApp
     public :
         void Reset() ;
     public :
-        static CMainApp &GetInstance(HWND hWnd = nullptr, HINSTANCE hInstance = nullptr) ;
+        static CMainApp &GetInstance(HWND hWnd = nullptr) ;
         static void Release() ;
 } ;
 

@@ -7,10 +7,9 @@ class CMainWnd : public CWindowImpl<CMainWnd>
 {
     private :
         std::unique_ptr<CTetrisGame> m_spTetrisGm ; 
-        HINSTANCE m_hInstance ;
         bool m_IsEntered ; 
     public :
-        CMainWnd(HINSTANCE hInstance) ; 
+        CMainWnd() ; 
         ~CMainWnd() ;
     public :
         DECLARE_WND_CLASS_EX(_T("MainWnd"), CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS, COLOR_WINDOW + 2) ; 
