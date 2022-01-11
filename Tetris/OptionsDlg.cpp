@@ -14,14 +14,7 @@ COptionsDlg::~COptionsDlg()
 
 LRESULT COptionsDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL &/*bHandled*/)
 {
-    if(CMainApp::GetInstance().GetMainOption().IsCheckedGhost())
-    {
-        CheckDlgButton(IDC_CHECK_GHOST, BST_CHECKED) ;
-    }
-    else
-    {
-        CheckDlgButton(IDC_CHECK_GHOST, BST_UNCHECKED) ;
-    }
+    Load() ; 
     CenterWindow() ;
     return 0 ;
 }
@@ -40,11 +33,26 @@ LRESULT COptionsDlg::OnCancel(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl
 
 LRESULT COptionsDlg::OnCheckGhost(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
 {
+    return 0 ;
+}
+
+void COptionsDlg::Save()
+{
+    CMainOption *MainOption = CMainApp::GetInstance().GetMainOption() ; 
     if(IsDlgButtonChecked(IDC_CHECK_GHOST))
     {
-        CMainApp::GetInstance().GetMainOption().SetCheckGhost(true) ;
-        return 0 ;
+        MainOption->m_bGhostCheck = true ; 
     }
-    CMainApp::GetInstance().GetMainOption().SetCheckGhost(false) ;
-    return 0 ;
+    else
+    {
+        MainOption->m_bGhostCheck = false ; 
+    }
+    return ; 
+    //(::IsDlgButtonChecked(hWnd, IDC_CHECK_GHOST)) ? MainOption->m_bGhostCheck = true : MainOption->m_bGhostCheck = false ; // 고스트 블럭 설정 관리
+}
+
+void COptionsDlg::Load()
+{
+    CMainOption *MainOption = CMainApp::GetInstance().GetMainOption() ; 
+    (MainOption->m_bGhostCheck) ? CheckDlgButton(IDC_CHECK_GHOST, BST_CHECKED) : CheckDlgButton(IDC_CHECK_GHOST, BST_UNCHECKED) ; 
 }

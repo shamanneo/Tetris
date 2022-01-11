@@ -24,7 +24,7 @@ class CMainApp
         INT GetLevel() const ; 
         INT GetLine() const ; 
         bool GetIsGameOver() const ; 
-        CMainOption &GetMainOption() ;
+        CMainOption *GetMainOption() ; 
     public :
         void SetMainWnd(HWND hWnd) ; 
         void SetMainInstance(HINSTANCE hInstance) ; 
@@ -33,6 +33,8 @@ class CMainApp
         void SetLevel(INT nScore) ; 
         void SetLine(INT nScore) ; 
         void SetIsGameOver(bool IsGameOver) ;
+    public :
+        void Reset() ;
     public :
         static CMainApp &GetInstance(HWND hWnd = nullptr, HINSTANCE hInstance = nullptr) ;
         static void Release() ;

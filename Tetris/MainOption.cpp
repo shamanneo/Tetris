@@ -11,12 +11,3 @@ CMainOption::~CMainOption()
 
 }
 
-bool CMainOption::IsCheckedGhost() const
-{
-    return m_bGhostCheck ; 
-}
-
-void CMainOption::SetCheckGhost(bool bChecked)
-{
-    m_bGhostCheck = bChecked ; 
-}

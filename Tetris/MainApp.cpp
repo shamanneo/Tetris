@@ -57,9 +57,9 @@ bool CMainApp::GetIsGameOver() const
     return m_IsGameOver ; 
 }
 
-CMainOption &CMainApp::GetMainOption()  
+CMainOption *CMainApp::GetMainOption() 
 {
-    return m_MainOption ; 
+    return &m_MainOption ; 
 }
 
 //      Setter
@@ -103,6 +103,15 @@ void CMainApp::SetLine(INT nLine)
 void CMainApp::SetIsGameOver(bool IsGameOver)
 {
     m_IsGameOver = IsGameOver ; 
+}
+
+void CMainApp::Reset()
+{
+    m_eId = BlockId::ID_VOID ; 
+    m_nScore = 0 ; 
+    m_nLevel = 1 ; 
+    m_nLine = 0 ;
+    m_IsGameOver = false ; 
 }
 
 //      static

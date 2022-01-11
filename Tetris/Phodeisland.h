@@ -13,5 +13,5 @@ class CPhodeisland : public CBlock
     public :
         virtual BlockId GetId() const override ; 
     public :
-        virtual void Draw(INT nGhost) override ; 
+        virtual void Draw(INT nGhost = 255) override ; 
 } ;

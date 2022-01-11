@@ -9,7 +9,6 @@ CMainWnd::CMainWnd(HINSTANCE hInstance)
 {
     m_hInstance = hInstance ; 
     m_IsEntered = false ; 
-    m_spOptDlg.Attach(new COptionsDlg) ; 
 } 
 
 CMainWnd::~CMainWnd()
@@ -19,6 +18,9 @@ CMainWnd::~CMainWnd()
 
 LRESULT CMainWnd::OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL &bHandled)
 {
+    CMainApp::GetInstance().SetMainWnd(m_hWnd) ; 
+    CMainApp::GetInstance().SetMainInstance(m_hInstance) ; 
+    m_spOptDlg.Attach(new COptionsDlg) ;  
     bHandled = FALSE ;
     return 0 ;
 }
@@ -52,7 +54,6 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
         {
             if(CMainApp::GetInstance().GetIsGameOver()) // 리스타트, 혹시 게임오버 인 후 다시 접근하는가?
             {
-                CMainApp::GetInstance().Release() ; 
                 Start() ; 
             }
             if(m_IsEntered == false)
@@ -67,10 +68,11 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
         {
             if(m_spOptDlg->DoModal() == IDOK)
             {
-                if(::IsDlgButtonChecked(m_hWnd, IDC_CHECK_GHOST))
-                {
-                    m_spTetrisGm->DrawGhost() ;
-                }
+                m_spOptDlg->Save() ; 
+                return 0 ; 
+            }
+            else // Cancel  
+            {
                 return 0 ; 
             }
             break ;
@@ -128,8 +130,7 @@ LRESULT CMainWnd::OnDestroy(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/,
 
 void CMainWnd::Start()
 {
-    CMainApp::GetInstance().SetMainWnd(m_hWnd) ; 
-    CMainApp::GetInstance().SetMainInstance(m_hInstance) ; 
+    CMainApp::GetInstance().Reset() ; 
     SetTimer(IDT_DOWN_TIMER, DEFAULT_VELOCITY, NULL) ;
     m_spTetrisGm = std::make_unique<CTetrisGame>() ;
     InvalidateRect(nullptr) ; 
