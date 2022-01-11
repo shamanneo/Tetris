@@ -16,7 +16,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     _CrtMemCheckpoint(&state) ;
     
     RECT rc { 100, 100, 1209, 806 } ;
-    CMainWnd *MainWnd = new CMainWnd { hInstance } ; 
+    CMainWnd *MainWnd = new CMainWnd ;
     GdiplusStartupInput gdiplusStartupInput ; 
     ULONG_PTR gdiplusToken ; 
     GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL) ; 

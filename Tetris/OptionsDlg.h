@@ -4,6 +4,7 @@
 class COptionsDlg : public CDialogImpl<COptionsDlg>
 {
     private :
+
     public :
         COptionsDlg() ; 
         ~COptionsDlg() ; 
