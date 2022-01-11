@@ -51,12 +51,21 @@ void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nA, INT nR, INT
 {
     INT nInitX = (m_rcClient.right / 2) - BLOCK_INTERVAL * 5 ; 
     Graphics grfx { m_hDC } ; 
-    SolidBrush brush { Gdiplus::Color { (BYTE)nA, (BYTE)nR, (BYTE)nG, (BYTE)nB } } ; 
+    SolidBrush brush { Gdiplus::Color { 255, (BYTE)nR, (BYTE)nG, (BYTE)nB } } ; 
     for(INT nIndex = 0 ; nIndex < nArrSize ; nIndex++)
     {
         if(!spPosArr[nIndex].IsEmpty())
         {
-            grfx.FillRectangle(&brush, (BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 2) + nInitX + 2), (BLOCK_INTERVAL * (spPosArr[nIndex].m_nY - 2) + BLOCK_INTERVAL + 2), BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+            if(nA == 100)
+            {
+                SolidBrush brushW { Gdiplus::Color { 255, (BYTE)255, (BYTE)255, (BYTE)255 } } ; 
+                grfx.FillRectangle(&brushW, (BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 2) + nInitX + 2), (BLOCK_INTERVAL * (spPosArr[nIndex].m_nY - 2) + BLOCK_INTERVAL + 2), BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+
+            }
+            else 
+            {
+                grfx.FillRectangle(&brush, (BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 2) + nInitX + 2), (BLOCK_INTERVAL * (spPosArr[nIndex].m_nY - 2) + BLOCK_INTERVAL + 2), BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+            }
         }
     }
 }
@@ -139,7 +148,7 @@ void CPaint::DrawBoard()
     Pen pen { Gdiplus::Color { 255, 255, 255 }, 3.5 } ; 
 
     grfx.DrawRectangle(&pen, nInitX, 0, BLOCK_INTERVAL * 10, BLOCK_INTERVAL * 21) ; 
-    pen.SetColor( Gdiplus::Color { 50, 255, 255, 255 } ) ;  
+    pen.SetColor( Gdiplus::Color { 30, 255, 255, 255 } ) ;  
     pen.SetWidth(1) ; 
     
     for(INT i = 0 ; i < 10 ; i++)
@@ -242,7 +251,7 @@ void CPaint::PrintGameOver()
 void CPaint::DrawInfo(INT nScore, INT nLevel, INT nLine) 
 {
     const INT nY = 215 ; 
-    const INT nWidth = 197 ; 
+    const INT nWidth = 200 ; 
     const INT nHeight = 200 ; 
     Graphics grfx { m_hDC } ;
     SolidBrush brushBlack { Gdiplus::Color { 0, 0, 0 } } ;

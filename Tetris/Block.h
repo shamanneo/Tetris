@@ -18,7 +18,7 @@ class CBlock
         virtual BlockId GetId() const ; 
         bool IsOutOfBoundary(INT nIndex) const ; 
     public :
-        virtual void Draw(INT nGhost = 255) ; 
+        virtual void Draw(INT nGhost) ; 
         void Erase() ; 
         void Left() ; 
         void Right() ; 

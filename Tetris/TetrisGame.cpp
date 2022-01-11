@@ -13,8 +13,9 @@
 #include "Paint.h" 
 #include "TetrisGame.h"
 
-const FLOAT DEFAULT_WAIT_TIME_ON_BLOCK = 0.6f ;  
-const INT GHOST_BLOCK = 255 ; 
+const FLOAT DEFAULT_WAIT_TIME_ON_BLOCK = 0.7f ;  
+const BYTE GHOST_BLOCK = 100 ; 
+const BYTE ALIVE_BLOCK = 255 ; 
 
 CTetrisGame::CTetrisGame()
     : m_nArrSize(DEFAULT_ARRAY_SIZE), m_eNextId(BlockId::ID_VOID), m_nVelocity(DEFAULT_VELOCITY)
@@ -250,7 +251,7 @@ bool CTetrisGame::IsLastBlock()
 
 void CTetrisGame::Draw()
 {
-    m_spCurBk->Draw() ;
+    m_spCurBk->Draw(ALIVE_BLOCK) ;
 }
 
 void CTetrisGame::Erase()
@@ -302,8 +303,11 @@ void CTetrisGame::Rotate()
 void CTetrisGame::Down() 
 {
     Erase() ; 
-    m_spCurBk->Down() ; 
-    m_spCurBk->Draw() ; 
+    if(IsMoveDown(m_spCurBk.get()))
+    {
+        m_spCurBk->Down() ; 
+        m_spCurBk->Draw(ALIVE_BLOCK) ; 
+    }
 }
 
 bool CTetrisGame::SlowDown()
@@ -333,7 +337,7 @@ bool CTetrisGame::SlowDown()
             m_fWaitTime = 0.0f ; 
             return true ; 
         }
-        m_spCurBk->Draw() ; 
+        m_spCurBk->Draw(ALIVE_BLOCK) ; 
         return false ; 
     }
 }
@@ -345,7 +349,7 @@ void CTetrisGame::FastDown()
     {
         m_spCurBk->Down() ; 
     }
-    m_spCurBk->Draw() ; 
+    m_spCurBk->Draw(ALIVE_BLOCK) ; 
     Reach() ; 
     CMainApp::GetInstance().SetScore(30) ; 
 }
