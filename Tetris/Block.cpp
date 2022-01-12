@@ -136,12 +136,23 @@ void CBlock::Down()
     }
 }
 
-void CBlock::Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT])
+void CBlock::Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT], INT nDirect)
 {
-    ClockWise() ; 
-    if(!CanRotate(arrBoard))
+    if(nDirect == CLOCKWISE_ROTATE) // 시계방향 회전
+    {
+        ClockWise() ; 
+        if(!CanRotate(arrBoard))
+        {
+            CounterClockWise() ; 
+        }
+    }
+    else // 반시계방향 회전 
     {
         CounterClockWise() ; 
+        if(!CanRotate(arrBoard))
+        {
+            ClockWise() ; 
+        }
     }
 }
 

@@ -1,5 +1,8 @@
 #pragma once
 
+const INT CLOCKWISE_ROTATE = 1 ; 
+const INT COUNTER_CLOCKWISE_ROTATE = 2 ; 
+
 const INT BLOCK_WIDTH_COUNT = 14 ;
 const INT BLOCK_HEIGHT_COUNT = 23 ;
 

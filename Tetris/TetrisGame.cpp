@@ -294,10 +294,10 @@ void CTetrisGame::Right()
     }
 }
 
-void CTetrisGame::Rotate()
+void CTetrisGame::Rotate(INT nDirect)
 {
     Erase() ; 
-    m_spCurBk->Rotate(m_arrBoard) ; 
+    m_spCurBk->Rotate(m_arrBoard, nDirect) ; 
     DrawGhost() ;
 }
 

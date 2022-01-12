@@ -146,9 +146,9 @@ void CMainWnd::ControlKey(WPARAM wParam)
             m_spTetrisGm->Right() ; 
             break ; 
         }
-        case VK_UP :
+        case VK_UP : // 시계방향 회전 
         {
-            m_spTetrisGm->Rotate() ; 
+            m_spTetrisGm->Rotate(CLOCKWISE_ROTATE) ; 
             break ; 
         }
         case VK_DOWN :
@@ -160,6 +160,11 @@ void CMainWnd::ControlKey(WPARAM wParam)
         {
             m_spTetrisGm->FastDown() ; 
             break ; 
+        }
+        case 'Z' : // 반시계방향 회전
+        {
+            m_spTetrisGm->Rotate(COUNTER_CLOCKWISE_ROTATE) ; 
+            break ;
         }
         default :
         {

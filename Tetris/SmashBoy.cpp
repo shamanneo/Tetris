@@ -29,7 +29,7 @@ BlockId CSmashboy::GetId() const
     return m_eId ; 
 }
 
-void CSmashboy::Rotate(INT /*arrBoard*/[][BLOCK_HEIGHT_COUNT])
+void CSmashboy::Rotate(INT /*arrBoard*/[][BLOCK_HEIGHT_COUNT], INT /*nDirect*/)
 {
     return ; 
 }

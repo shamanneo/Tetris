@@ -24,7 +24,7 @@ class CBlock
         void Right() ; 
         void Up() ; 
         void Down() ; 
-        virtual void Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT]) ; 
+        virtual void Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT], INT nDirect) ; 
         bool CanRotate(INT arrBoard[][BLOCK_HEIGHT_COUNT], INT nArrSize = DEFAULT_ARRAY_SIZE) ;
     public :
         void GetTempArray(bool *bArr, INT nArrSize = DEFAULT_ARRAY_SIZE) ; 
