@@ -138,8 +138,12 @@ void CTetrisGame::Reach()
         if(IsFull(nLine))
         {
             nCount++ ; 
-            CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
-            paint.EraseAnimation(m_arrBoard, nLine) ; 
+            CMainOption *MainOption = CMainApp::GetInstance().GetMainOption() ; 
+            if(MainOption->m_bAnimationCheck)
+            {
+                CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
+                paint.EraseAnimation(m_arrBoard, nLine) ; 
+            }
             InUpdate(nLine) ; // 외부 UI 갱신
             OutUpdate() ; // 내부 로직 갱신
             CMainApp::GetInstance().SetScore(100 * nCount) ; 

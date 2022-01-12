@@ -24,6 +24,7 @@
 #define IDP_TETRIS_MAIN_PRESS           122
 #define IDT_STAY_TIMER                  123
 #define IDC_CHECK_GHOST                 124
+#define IDC_CHECK_ANIMATION             125
 #define IDR_MAINFRAME                   128
 #define IDD_OPTIONS                     129
 #define IDC_BUTTON1                     1004
@@ -37,6 +38,6 @@
 #define _APS_NEXT_RESOURCE_VALUE        141
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1006
-#define _APS_NEXT_SYMED_VALUE           125
+#define _APS_NEXT_SYMED_VALUE           126
 #endif
 #endif

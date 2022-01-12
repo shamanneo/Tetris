@@ -16,12 +16,14 @@ class COptionsDlg : public CDialogImpl<COptionsDlg>
             COMMAND_ID_HANDLER(IDOK, OnOK)
             COMMAND_ID_HANDLER(IDCANCEL, OnCancel)
             COMMAND_HANDLER(IDC_CHECK_GHOST, BN_CLICKED, OnCheckGhost)
+            COMMAND_HANDLER(IDC_CHECK_ANIMATION, BN_CLICKED, OnCheckAnimation)
         END_MSG_MAP()
 
         LRESULT OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL &/*bHandled*/) ;
         LRESULT OnOK(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/) ;
         LRESULT OnCancel(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/) ;
         LRESULT OnCheckGhost(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/) ;
+        LRESULT OnCheckAnimation(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/) ;
     public :
         void Save() ; 
         void Load() ; 
