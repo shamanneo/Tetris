@@ -51,7 +51,6 @@ Gdiplus::Image *CPaint::LoadPNG(HMODULE hModule, LPCWSTR lp)
 
 void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nA, INT nR, INT nG, INT nB, INT nArrSize) 
 {
-    Graphics grfx { m_hDC } ; 
     SolidBrush brush { Gdiplus::Color { 255, (BYTE)nR, (BYTE)nG, (BYTE)nB } } ; 
     for(INT nIndex = 0 ; nIndex < nArrSize ; nIndex++)
     {
@@ -60,12 +59,12 @@ void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nA, INT nR, INT
             if(nA == 100)
             {
                 SolidBrush brushW { Gdiplus::Color { 255, (BYTE)255, (BYTE)255, (BYTE)255 } } ; 
-                grfx.FillRectangle(&brushW, (BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 2) + m_nInitX + 2), (BLOCK_INTERVAL * (spPosArr[nIndex].m_nY - 2) + BLOCK_INTERVAL + 2), BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+                FillRect(brushW, spPosArr[nIndex].m_nX, spPosArr[nIndex].m_nY) ; 
 
             }
             else 
             {
-                grfx.FillRectangle(&brush, (BLOCK_INTERVAL * (spPosArr[nIndex].m_nX - 2) + m_nInitX + 2), (BLOCK_INTERVAL * (spPosArr[nIndex].m_nY - 2) + BLOCK_INTERVAL + 2), BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+                FillRect(brush, spPosArr[nIndex].m_nX, spPosArr[nIndex].m_nY) ; 
             }
         }
     }
@@ -73,13 +72,12 @@ void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nA, INT nR, INT
 
 void CPaint::PaintBoard(INT arrTotalBoard[][BLOCK_HEIGHT_COUNT]) 
 {
-    Graphics grfx { m_hDC } ; 
     SolidBrush brush { Gdiplus::Color { 0, 0, 0 } } ;
     bool IsGameOver = CMainApp::GetInstance().GetIsGameOver() ; 
     BlockId eId = BlockId::ID_VOID ; 
-    for(INT nX = 1 ; nX <= 11 ; nX++)
+    for(INT nX = 1 ; nX < 12 ; nX++)
     {
-        for(INT nY = 1 ; nY <= 21 ; nY++)
+        for(INT nY = 1 ; nY < 22 ; nY++)
         {
             if(!IsGameOver)
             {
@@ -126,7 +124,7 @@ void CPaint::PaintBoard(INT arrTotalBoard[][BLOCK_HEIGHT_COUNT])
                         continue ; 
                     }
                 }
-                grfx.FillRectangle(&brush, BLOCK_INTERVAL * (nX - 2) + m_nInitX + 2, BLOCK_INTERVAL * (nY - 2) + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+                FillRect(brush, nX, nY) ; 
             }
             else // When game over
             {
@@ -134,7 +132,7 @@ void CPaint::PaintBoard(INT arrTotalBoard[][BLOCK_HEIGHT_COUNT])
                 if(((INT)eId != 0) && ((INT)eId != BOARD_BOUND)) 
                 {
                     brush.SetColor(Gdiplus::Color { 255, 255, 255 } ) ;
-                    grfx.FillRectangle(&brush, BLOCK_INTERVAL * (nX - 2) + m_nInitX + 2, BLOCK_INTERVAL * (nY - 2) + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+                    FillRect(brush, nX, nY) ; 
                 }
             }
         }
@@ -163,12 +161,12 @@ void CPaint::DrawBoard()
 void CPaint::EraseBoard()
 {
     Graphics grfx { m_hDC } ; 
-    SolidBrush bruWhite { Gdiplus::Color { 0, 0, 0 } } ; 
+    SolidBrush brush { Gdiplus::Color { 0, 0, 0 } } ; 
     for(INT nX = 2 ; nX < 12 ; nX++)
     {
         for(INT nY = 2 ; nY < 24 ; nY++) // -2 : 가상의 공간까지 지워져야함
         {
-            grfx.FillRectangle(&bruWhite, BLOCK_INTERVAL * (nX - 2) + m_nInitX + 2, BLOCK_INTERVAL * (nY - 2) + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+            FillRect(brush, nX, nY) ; 
         }
     } 
 }
@@ -180,7 +178,7 @@ void CPaint::EraseAnimation(INT /*arrTotalBoard*/[][BLOCK_HEIGHT_COUNT], INT nLi
 
     for(INT nX = 2 ; nX < 12 ; nX++)
     {
-        grfx.FillRectangle(&brush, BLOCK_INTERVAL * (nX - 2) + m_nInitX + 2, BLOCK_INTERVAL * (nLine - 2) + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
+        FillRect(brush, nX, nLine) ; 
     }
     Sleep(100) ; 
 }
@@ -249,6 +247,12 @@ void CPaint::PrintNextBlock()
         }
     }
     grfx.DrawImage(pImg, nX, nY, 200, 200) ; 
+}
+
+void CPaint::FillRect(Gdiplus::Brush &brush, INT nX, INT nY)
+{
+    Graphics grfx { m_hDC } ; 
+    grfx.FillRectangle(&brush, BLOCK_INTERVAL * (nX - 2) + m_nInitX + 2, BLOCK_INTERVAL * (nY - 2) + BLOCK_INTERVAL + 2, BLOCK_INTERVAL - 3, BLOCK_INTERVAL - 3) ; 
 }
 
 void CPaint::PrintGameOver()

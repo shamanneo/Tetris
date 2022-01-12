@@ -26,6 +26,7 @@ class CPaint
         void PrintMain() ; 
         void PrintGameOver() ; 
         void EraseAnimation(INT arrTotalBoard[][BLOCK_HEIGHT_COUNT], INT nLine) ; 
+        void FillRect(Gdiplus::Brush &brush, INT nX, INT nY) ; // call Gdiplus::FillRectangle f
     public :
         void DrawInfo(INT nScore = 0, INT nLevel = 0, INT nLine = 0) ; 
         void PrintNextBlock() ; 
