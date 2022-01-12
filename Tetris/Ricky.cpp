@@ -32,7 +32,7 @@ BlockId CRicky::GetId() const
 void CRicky::Draw(INT nGhost) 
 {   
     CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
-    paint.PaintBlock(m_spPosArr, nGhost, 255, 127, 0) ; 
+    paint.PaintBlock(m_spPosArr, 255, 127, 0, nGhost) ; 
 }
 
 

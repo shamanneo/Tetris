@@ -42,10 +42,10 @@ BlockId CHero::GetId() const
 void CHero::Draw(INT nGhost) 
 {   
     CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
-    paint.PaintBlock(m_spPosArr, nGhost, 0, 163, 210, HERO_ARRAY_SIZE) ; 
+    paint.PaintBlock(m_spPosArr, 0, 163, 210, nGhost, HERO_ARRAY_SIZE) ; 
 }
 
-void CHero::Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT]) 
+void CHero::Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT], INT /*nDirect*/) 
 {
     ClockWise() ; 
     if(!CanRotate(arrBoard, HERO_ARRAY_SIZE))

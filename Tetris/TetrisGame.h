@@ -36,7 +36,7 @@ class CTetrisGame
     public :
         void Left() ; 
         void Right() ; 
-        void Rotate() ; 
+        void Rotate(INT nDirect) ; 
         void Down() ; 
         bool SlowDown() ; 
         void FastDown() ; 

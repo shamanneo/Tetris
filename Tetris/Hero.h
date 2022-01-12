@@ -14,7 +14,7 @@ class CHero : public CBlock
         virtual BlockId GetId() const override ; 
     public :
         virtual void Draw(INT nGhost) override ; 
-        virtual void Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT]) override ; 
+        virtual void Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT], INT nDirect) override ; 
     public :    
         void ClockWise() ; 
         void CounterClockWise() ; 

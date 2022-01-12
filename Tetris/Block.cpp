@@ -101,7 +101,7 @@ void CBlock::Draw(INT /*nGhost*/)
 void CBlock::Erase()
 {
     CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
-    paint.PaintBlock(m_spPosArr, 255, 0, 0, 0, m_nArrSize) ; 
+    paint.PaintBlock(m_spPosArr, 0, 0, 0, ALIVE_BLOCK, m_nArrSize) ; 
 }
 
 void CBlock::Left() 
@@ -136,12 +136,23 @@ void CBlock::Down()
     }
 }
 
-void CBlock::Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT])
+void CBlock::Rotate(INT arrBoard[][BLOCK_HEIGHT_COUNT], INT nDirect)
 {
-    ClockWise() ; 
-    if(!CanRotate(arrBoard))
+    if(nDirect == CLOCKWISE_ROTATE) // 시계방향 회전
+    {
+        ClockWise() ; 
+        if(!CanRotate(arrBoard))
+        {
+            CounterClockWise() ; 
+        }
+    }
+    else // 반시계방향 회전 
     {
         CounterClockWise() ; 
+        if(!CanRotate(arrBoard))
+        {
+            ClockWise() ; 
+        }
     }
 }
 
