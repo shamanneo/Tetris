@@ -13,6 +13,9 @@ const INT BOARD_BOUND = 9 ;
 
 const INT DEFAULT_VELOCITY = 300 ; 
 
+const BYTE GHOST_BLOCK = 100 ; 
+const BYTE ALIVE_BLOCK = 255 ; 
+
 enum class BlockId
 {
     ID_VOID = 0,

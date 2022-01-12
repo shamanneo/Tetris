@@ -32,7 +32,7 @@ BlockId CLicky::GetId() const
 void CLicky::Draw(INT nGhost) 
 {   
     CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
-    paint.PaintBlock(m_spPosArr, nGhost, 0, 64, 255) ; 
+    paint.PaintBlock(m_spPosArr, 0, 64, 255, nGhost) ; 
 }
 
 

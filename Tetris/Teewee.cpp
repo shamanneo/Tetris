@@ -32,7 +32,7 @@ BlockId CTeewee::GetId() const
 void CTeewee::Draw(INT nGhost) 
 {   
     CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
-    paint.PaintBlock(m_spPosArr, nGhost, 102, 0, 153) ; 
+    paint.PaintBlock(m_spPosArr, 102, 0, 153, nGhost) ; 
 }
 
 

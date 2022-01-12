@@ -49,18 +49,17 @@ Gdiplus::Image *CPaint::LoadPNG(HMODULE hModule, LPCWSTR lp)
     return pImg ; 
 }
 
-void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nA, INT nR, INT nG, INT nB, INT nArrSize) 
+void CPaint::PaintBlock(std::unique_ptr<CSpace[]> &spPosArr, INT nR, INT nG, INT nB, INT nGhost, INT nArrSize) 
 {
-    SolidBrush brush { Gdiplus::Color { 255, (BYTE)nR, (BYTE)nG, (BYTE)nB } } ; 
+    SolidBrush brush { Gdiplus::Color { (BYTE)nR, (BYTE)nG, (BYTE)nB } } ; 
     for(INT nIndex = 0 ; nIndex < nArrSize ; nIndex++)
     {
         if(!spPosArr[nIndex].IsEmpty())
         {
-            if(nA == 100)
+            if(nGhost == GHOST_BLOCK)
             {
-                SolidBrush brushW { Gdiplus::Color { 255, (BYTE)255, (BYTE)255, (BYTE)255 } } ; 
-                FillRect(brushW, spPosArr[nIndex].m_nX, spPosArr[nIndex].m_nY) ; 
-
+                brush.SetColor(Gdiplus::Color { 255, 255 ,255 }) ; // Ghost color 
+                FillRect(brush, spPosArr[nIndex].m_nX, spPosArr[nIndex].m_nY) ; 
             }
             else 
             {

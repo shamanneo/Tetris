@@ -101,7 +101,7 @@ void CBlock::Draw(INT /*nGhost*/)
 void CBlock::Erase()
 {
     CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
-    paint.PaintBlock(m_spPosArr, 255, 0, 0, 0, m_nArrSize) ; 
+    paint.PaintBlock(m_spPosArr, 0, 0, 0, ALIVE_BLOCK, m_nArrSize) ; 
 }
 
 void CBlock::Left() 

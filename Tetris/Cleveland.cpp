@@ -32,7 +32,7 @@ BlockId CCleveland::GetId() const
 void CCleveland::Draw(INT nGhost) 
 {   
     CPaint paint { CMainApp::GetInstance().GetMainWnd() } ;
-    paint.PaintBlock(m_spPosArr, nGhost, 255, 0, 0) ; 
+    paint.PaintBlock(m_spPosArr, 255, 0, 0, nGhost) ; 
 }
 
 
