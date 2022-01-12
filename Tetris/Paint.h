@@ -11,6 +11,7 @@ class CPaint
         HDC m_hDC ;
         RECT m_rcClient ; 
         bool m_bAutoRelease ;
+        INT m_nInitX ; 
     public :
         CPaint(HWND hWnd) ;
         CPaint(HWND hWnd, HDC hDC) ;
@@ -24,6 +25,7 @@ class CPaint
         void EraseBoard() ; 
         void PrintMain() ; 
         void PrintGameOver() ; 
+        void EraseAnimation(INT arrTotalBoard[][BLOCK_HEIGHT_COUNT], INT nLine) ; 
     public :
         void DrawInfo(INT nScore = 0, INT nLevel = 0, INT nLine = 0) ; 
         void PrintNextBlock() ; 
