@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include "OptionsDlg.h"
+#include "Paint.h" 
 #include "TetrisGame.h"
 
 class CMainWnd : public CWindowImpl<CMainWnd>
@@ -30,6 +31,7 @@ class CMainWnd : public CWindowImpl<CMainWnd>
         LRESULT OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled) ; 
     public :
         void Start() ; 
+        void PaintDefault(CPaint &paint) ; 
         void ControlKey(WPARAM wParam) ; // 오직 방향키와 스페이스만을 담당함 
 } ;  
 

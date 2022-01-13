@@ -255,7 +255,10 @@ bool CTetrisGame::IsLastBlock()
 
 void CTetrisGame::Draw()
 {
-    m_spCurBk->Draw(ALIVE_BLOCK) ;
+    if(m_spCurBk != nullptr)
+    {
+        m_spCurBk->Draw(ALIVE_BLOCK) ;
+    }
 }
 
 void CTetrisGame::Erase()
@@ -265,16 +268,19 @@ void CTetrisGame::Erase()
 
 void CTetrisGame::DrawGhost() 
 {
-    CMainOption *MainOption = CMainApp::GetInstance().GetMainOption() ; 
-    m_spFurBk->Erase() ; 
-    if(MainOption->m_bGhostCheck)
+    if(m_spFurBk != nullptr)
     {
-        *m_spFurBk = *m_spCurBk ; 
-        while(IsMoveDown(m_spFurBk.get()))
+        CMainOption *MainOption = CMainApp::GetInstance().GetMainOption() ; 
+        m_spFurBk->Erase() ; 
+        if(MainOption->m_bGhostCheck)
         {
-            m_spFurBk->Down() ; 
+            *m_spFurBk = *m_spCurBk ; 
+            while(IsMoveDown(m_spFurBk.get()))
+            {
+                m_spFurBk->Down() ; 
+            }
+            m_spFurBk->Draw(GHOST_BLOCK) ; 
         }
-        m_spFurBk->Draw(GHOST_BLOCK) ; 
     }
 }
 
