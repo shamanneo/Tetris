@@ -31,9 +31,7 @@ LRESULT CMainWnd::OnPaint(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, B
     if(m_IsEntered == true)
     {
         CMainApp::GetInstance().SetScore(0) ; 
-        paint.DrawBoard() ; 
-        m_spTetrisGm->OutUpdate() ; 
-        paint.PrintNextBlock() ; 
+        PaintDefault(paint) ; 
     }
     else 
     {
@@ -126,6 +124,15 @@ void CMainWnd::Start()
     InvalidateRect(nullptr) ; 
     UpdateWindow() ;
     m_spTetrisGm->Create() ; 
+}
+
+void CMainWnd::PaintDefault(CPaint &paint)
+{
+    paint.DrawBoard() ; 
+    paint.PrintNextBlock() ;
+    m_spTetrisGm->OutUpdate() ; 
+    m_spTetrisGm->Draw() ; 
+    m_spTetrisGm->DrawGhost() ; 
 }
 
 void CMainWnd::ControlKey(WPARAM wParam)
