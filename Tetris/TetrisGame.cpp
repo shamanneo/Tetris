@@ -194,17 +194,17 @@ void CTetrisGame::OutUpdate()
 
 void CTetrisGame::SetLevel() 
 {
-    CMainApp pMainApp = CMainApp::GetInstance() ; 
-    INT nCurScore = pMainApp.GetScore() ;
+    HWND hWnd = CMainApp::GetInstance().GetMainWnd() ; 
+    INT nCurScore = CMainApp::GetInstance().GetScore() ; 
     if(nCurScore - m_nScore >= 950)
     {
         CMainApp::GetInstance().SetLevel(1) ; 
-        KillTimer(pMainApp.GetMainWnd(), IDT_DOWN_TIMER) ; 
+        KillTimer(hWnd, IDT_DOWN_TIMER) ; 
         if(m_nVelocity != 1)
         {
             m_nVelocity -= 5 ;
         }
-        SetTimer(pMainApp.GetMainWnd(), IDT_DOWN_TIMER, m_nVelocity, NULL) ; 
+        SetTimer(hWnd, IDT_DOWN_TIMER, m_nVelocity, NULL) ; 
         m_nScore += 1000 ; 
     }
 }

@@ -1,17 +1,19 @@
 #pragma once
 #include "Constants.h"
+#include "MainWnd.h"
 #include "MainOption.h"
 
 class CMainApp
 {
     private :
+        CMainWnd m_MainWnd ; 
+        CMainOption m_MainOption ; 
         HWND m_hWnd ;
         BlockId m_eId ; 
         INT m_nScore ; 
         INT m_nLevel ; 
         INT m_nLine ; 
         bool m_IsGameOver ;
-        CMainOption m_MainOption ; 
     public :
         CMainApp(HWND hWnd) ;
         ~CMainApp() ;
@@ -32,6 +34,8 @@ class CMainApp
         void SetIsGameOver(bool IsGameOver) ;
     public :
         void Reset() ;
+    public :
+        int Run(HINSTANCE hInstance, int nCmdShow) ; 
     public :
         static CMainApp &GetInstance(HWND hWnd = nullptr) ;
         static void Release() ;

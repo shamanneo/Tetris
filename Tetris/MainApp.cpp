@@ -103,6 +103,29 @@ void CMainApp::Reset()
     m_IsGameOver = false ; 
 }
 
+int CMainApp::Run(HINSTANCE hInstance, int nCmdShow) 
+{
+    
+    RECT rc { 100, 100, 1209, 806 } ; // Main Window size
+    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_TETRIS)) ;
+    MSG msg ;
+
+    m_MainWnd.Create(NULL, &rc, _T("Tetris"), WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX, 0) ;  
+    m_MainWnd.ShowWindow(nCmdShow) ; 
+    m_MainWnd.UpdateWindow() ; 
+
+    SetTimer(m_MainWnd, IDT_MAIN_DRAWING_TIMER, 300, NULL) ;  
+    while (::GetMessage(&msg, nullptr, 0, 0)) // main message loop.
+    {
+        if (!::TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        {
+            ::TranslateMessage(&msg) ;
+            ::DispatchMessage(&msg) ;
+        }
+    }
+    return (int) msg.wParam ; 
+}
+
 //      static
 
 CMainApp &CMainApp::GetInstance(HWND hWnd)

@@ -1,9 +1,9 @@
 #pragma once
 #include <memory>
 #include "OptionsDlg.h"
-#include "Paint.h" 
 #include "TetrisGame.h"
 
+class CPaint ; 
 class CMainWnd : public CWindowImpl<CMainWnd>
 {
     private :
@@ -23,7 +23,7 @@ class CMainWnd : public CWindowImpl<CMainWnd>
             MESSAGE_HANDLER(WM_DESTROY, OnDestroy) 
         END_MSG_MAP()
     public :    
-        virtual void OnFinalMessage(HWND) override ;
+        //virtual void OnFinalMessage(HWND) override ;
         LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled) ;
         LRESULT OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled) ;
         LRESULT OnKeyDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled) ; 
@@ -35,10 +35,12 @@ class CMainWnd : public CWindowImpl<CMainWnd>
         void ControlKey(WPARAM wParam) ; // 오직 방향키와 스페이스만을 담당함 
 } ;  
 
+/*
 inline void CMainWnd::OnFinalMessage(HWND)
 {
     delete this ;
 }
+*/
    
 
 
