@@ -14,6 +14,7 @@ class CMainApp
         INT m_nLevel ; 
         INT m_nLine ; 
         bool m_IsGameOver ;
+        bool m_IsPaused ; 
     public :
         CMainApp(HWND hWnd) ;
         ~CMainApp() ;
@@ -25,13 +26,15 @@ class CMainApp
         INT GetLine() const ; 
         bool GetIsGameOver() const ; 
         CMainOption *GetMainOption() ; 
+        bool GetIsPaused() const ; 
     public :
         void SetMainWnd(HWND hWnd) ; 
         void SetBlockId(BlockId eId) ; 
         void SetScore(INT nScore) ; 
         void SetLevel(INT nScore) ; 
         void SetLine(INT nScore) ; 
-        void SetIsGameOver(bool IsGameOver) ;
+        void SetIsGameOver(bool bGameOver) ;
+        void SetIsPaused(bool bPaused) ; 
     public :
         void Reset() ;
     public :

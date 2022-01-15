@@ -61,6 +61,7 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
         }
         case VK_ESCAPE :
         {
+            
             COptionsDlg OptionDlg ; 
             OptionDlg.DoModal() ; 
             break ;
@@ -79,6 +80,10 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
 
 LRESULT CMainWnd::OnTimer(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL &/*bHandled*/) 
 {
+    if(CMainApp::GetInstance().GetIsPaused())
+    {
+        return 0 ; 
+    }
     HDC hDC = GetDC() ;
     switch(wParam)
     {

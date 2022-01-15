@@ -12,6 +12,7 @@ CMainApp::CMainApp(HWND hWnd)
     m_nLevel = 1 ; 
     m_nLine = 0 ;
     m_IsGameOver = false ; 
+    m_IsPaused = false ; 
 }
 
 CMainApp::~CMainApp()
@@ -56,6 +57,11 @@ CMainOption *CMainApp::GetMainOption()
     return &m_MainOption ; 
 }
 
+bool CMainApp::GetIsPaused() const 
+{
+    return m_IsPaused ; 
+}
+
 //      Setter
 
 void CMainApp::SetMainWnd(HWND hWnd) 
@@ -89,9 +95,14 @@ void CMainApp::SetLine(INT nLine)
     paint.DrawInfo(m_nScore, m_nLevel, m_nLine) ; 
 }
 
-void CMainApp::SetIsGameOver(bool IsGameOver)
+void CMainApp::SetIsGameOver(bool bGameOver)
 {
-    m_IsGameOver = IsGameOver ; 
+    m_IsGameOver = bGameOver ; 
+}
+
+void CMainApp::SetIsPaused(bool bPaused)
+{
+    m_IsPaused = bPaused ; 
 }
 
 void CMainApp::Reset()

@@ -16,6 +16,7 @@ LRESULT COptionsDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lPa
 {
     Load() ; 
     CenterWindow() ;
+    CMainApp::GetInstance().SetIsPaused(true) ; 
     return 0 ;
 }
 
@@ -23,12 +24,14 @@ LRESULT COptionsDlg::OnOK(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, 
 {
     Save() ; 
     EndDialog(IDOK) ;
+    CMainApp::GetInstance().SetIsPaused(false) ; 
     return 0 ;
 }
 
 LRESULT COptionsDlg::OnCancel(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
 {
     EndDialog(IDCANCEL) ;
+    CMainApp::GetInstance().SetIsPaused(false) ; 
     return 0 ;
 }
 
