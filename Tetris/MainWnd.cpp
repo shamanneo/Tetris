@@ -128,6 +128,9 @@ void CMainWnd::Start()
     m_spTetrisGm = std::make_unique<CTetrisGame>() ;
     InvalidateRect(nullptr) ; 
     UpdateWindow() ;
+    
+    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
+    paint.PrintCountShow() ; 
     m_spTetrisGm->Create() ; 
 }
 

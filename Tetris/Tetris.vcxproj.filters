@@ -177,5 +177,14 @@
     <Image Include="TetrisMainPress.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="TETRIS_START_COUNT_1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TETRIS_START_COUNT_2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TETRIS_START_COUNT_3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
