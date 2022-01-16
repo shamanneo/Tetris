@@ -30,7 +30,6 @@ LRESULT CMainWnd::OnPaint(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, B
     CPaint paint { m_hWnd, hDC } ;
     if(m_IsEntered == true)
     {
-        CMainApp::GetInstance().SetScore(0) ; 
         PaintDefault(paint) ; 
     }
     else 
@@ -51,7 +50,7 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
             {
                 Start() ; 
             }
-            if(m_IsEntered == false)
+            if(m_IsEntered == false) 
             {
                 m_IsEntered = true ;
                 KillTimer(IDT_MAIN_DRAWING_TIMER) ; 
@@ -61,7 +60,6 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
         }
         case VK_ESCAPE :
         {
-            
             COptionsDlg OptionDlg ; 
             OptionDlg.DoModal() ; 
             break ;
@@ -136,6 +134,8 @@ void CMainWnd::Start()
 
 void CMainWnd::PaintDefault(CPaint &paint)
 {
+    paint.DrawRankingBoard() ; 
+    CMainApp::GetInstance().SetScore(0) ; 
     paint.DrawBoard() ; 
     paint.PrintNextBlock() ;
     m_spTetrisGm->OutUpdate() ; 

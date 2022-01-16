@@ -164,6 +164,8 @@
     <ClInclude Include="Phodeisland.h" />
     <ClInclude Include="Ricky.h" />
     <ClInclude Include="Smashboy.h" />
+    <ClInclude Include="SQLlite\sqlite3.h" />
+    <ClInclude Include="SQLlite\sqlite3ext.h" />
     <ClInclude Include="Teewee.h" />
     <ClInclude Include="TetrisGame.h" />
     <ClInclude Include="framework.h" />
@@ -186,6 +188,10 @@
     <ClCompile Include="Phodeisland.cpp" />
     <ClCompile Include="Ricky.cpp" />
     <ClCompile Include="Smashboy.cpp" />
+    <ClCompile Include="SQLlite\sqlite3.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Teewee.cpp" />
     <ClCompile Include="TetrisGame.cpp" />
     <ClCompile Include="MainWnd.cpp" />

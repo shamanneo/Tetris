@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\SQLlite">
+      <UniqueIdentifier>{a520681a-7c10-4501-935a-a8b330bb8a57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SQLlite">
+      <UniqueIdentifier>{d3de3903-b170-417b-ba7c-38be7ef4cd28}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -81,6 +87,12 @@
     <ClInclude Include="MainOption.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SQLlite\sqlite3.h">
+      <Filter>Header Files\SQLlite</Filter>
+    </ClInclude>
+    <ClInclude Include="SQLlite\sqlite3ext.h">
+      <Filter>Header Files\SQLlite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tetris.cpp">
@@ -133,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="MainOption.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SQLlite\sqlite3.c">
+      <Filter>Source Files\SQLlite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

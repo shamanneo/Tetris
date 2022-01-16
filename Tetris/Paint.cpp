@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "SQLlite/sqlite3.h" 
 #include "resource.h"
 #include "Paint.h"
 
@@ -284,18 +285,58 @@ void CPaint::PrintCountShow()
 
 void CPaint::DrawInfo(INT nScore, INT nLevel, INT nLine) 
 {
-    const INT nY = 215 ; 
+    const INT nY = 215 ; // 215 
     const INT nWidth = 200 ; 
     const INT nHeight = 200 ; 
     Graphics grfx { m_hDC } ;
-    SolidBrush brushBlack { Gdiplus::Color { 0, 0, 0 } } ;
+    
+    SolidBrush brush { Gdiplus::Color { 0, 0, 0 } } ;
     Rect rc { (m_rcClient.right / 2) + BLOCK_INTERVAL * 6, nY, nWidth, nHeight } ; 
     Pen pen { Gdiplus::Color { 255, 255, 255 }, 2.8f } ; 
 
-    grfx.FillRectangle(&brushBlack, rc) ;
-
+    grfx.FillRectangle(&brush, rc) ;
+    
     CString strText ;
     strText.Format(_T("SCORE \n%d\nLEVEL \n%d\nLINE \n%d\n"), nScore, nLevel, nLine) ;  
+
+    FontFamily fontFamily { L"Arial" } ; 
+    Font font { &fontFamily, 22, Gdiplus::FontStyleBold } ; 
+    RectF rectF { (Gdiplus::REAL)(m_rcClient.right / 2) + BLOCK_INTERVAL * 6, (REAL)nY, (REAL)nWidth, (REAL)nHeight } ; 
+    SolidBrush solidBrush { Gdiplus::Color { 255, 255 ,255 } } ; 
+
+    grfx.DrawString(strText, -1, &font, rectF, nullptr, &solidBrush) ; 
+}
+
+void CPaint::DrawRankingBoard() 
+{
+    Graphics grfx { m_hDC } ;
+    SolidBrush brush { Gdiplus::Color { 0, 0, 0 } } ;
+    CString strTotal { " *LEADERBOARD*\n\n" } ; 
+    CString strLabel ; 
+    CString strNickName ; 
+    INT nScore = 0 ; 
+    sqlite3 *db ; 
+    sqlite3_stmt *pStmt ; 
+    const char *sql = nullptr ; 
+    
+    sqlite3_open("Tetris.db", &db) ; 
+    sql = "SELECT * from TETRIS_SCORE" ; 
+    sqlite3_prepare_v2(db, sql, -1, &pStmt, NULL) ; 
+    for(INT i = 1 ; i <= 3 ; i++)
+    {
+        sqlite3_step(pStmt) ; 
+        strNickName = sqlite3_column_text(pStmt, 1) ; 
+        nScore = sqlite3_column_int(pStmt, 2) ; 
+        strLabel.Format(_T("%d  %s  %d          \n"), i, strNickName, nScore) ; 
+        strTotal += strLabel ; 
+    }
+    const INT nY = 30 ; 
+    const INT nWidth = 400 ; 
+    const INT nHeight = 200 ; 
+    Rect rc { (m_rcClient.right / 2) + BLOCK_INTERVAL * 6, nY, nWidth, nHeight } ; 
+    Pen pen { Gdiplus::Color { 255, 255, 255 }, 2.8f } ; 
+
+    grfx.FillRectangle(&brush, rc) ;
    
     StringFormat stringFormat ;
     stringFormat.SetAlignment(StringAlignmentNear) ; 
@@ -305,5 +346,7 @@ void CPaint::DrawInfo(INT nScore, INT nLevel, INT nLine)
     RectF rectF { (Gdiplus::REAL)(m_rcClient.right / 2) + BLOCK_INTERVAL * 6, (REAL)nY, (REAL)nWidth, (REAL)nHeight } ; 
     SolidBrush solidBrush { Gdiplus::Color { 255, 255 ,255 } } ; 
 
-    grfx.DrawString(strText, -1, &font, rectF, &stringFormat, &solidBrush) ; 
+    grfx.DrawString(strTotal, -1, &font, rectF, &stringFormat, &solidBrush) ; 
+    sqlite3_finalize(pStmt) ; 
+    sqlite3_close(db) ; 
 }

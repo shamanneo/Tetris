@@ -30,6 +30,7 @@ class CPaint
         void FillRect(Gdiplus::Brush &brush, INT nX, INT nY) ; // call Gdiplus::FillRectangle f
     public :
         void DrawInfo(INT nScore = 0, INT nLevel = 0, INT nLine = 0) ; 
+        void DrawRankingBoard() ; 
         void PrintNextBlock() ; 
 } ;
 
