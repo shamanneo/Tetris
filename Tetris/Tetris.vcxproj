@@ -220,9 +220,6 @@
     <Image Include="TetrisGameOver.png" />
     <Image Include="TetrisMain.png" />
     <Image Include="TetrisMainPress.png" />
-    <Image Include="TETRIS_START_COUNT_1.png" />
-    <Image Include="TETRIS_START_COUNT_2.png" />
-    <Image Include="TETRIS_START_COUNT_3.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -22,7 +22,7 @@ LRESULT CMainWnd::OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, 
     return 0 ;
 }
 
-LRESULT CMainWnd::OnPaint(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL & /*bHandled*/)
+LRESULT CMainWnd::OnPaint(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL &/*bHandled*/)
 {
     PAINTSTRUCT ps ; 
     HDC hDC = BeginPaint(&ps) ;
@@ -126,9 +126,6 @@ void CMainWnd::Start()
     m_spTetrisGm = std::make_unique<CTetrisGame>() ;
     InvalidateRect(nullptr) ; 
     UpdateWindow() ;
-    
-    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
-    paint.PrintCountShow() ; 
     m_spTetrisGm->Create() ; 
 }
 

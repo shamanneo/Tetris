@@ -25,10 +25,7 @@
 #define IDT_STAY_TIMER                  123
 #define IDC_CHECK_GHOST                 124
 #define IDC_CHECK_ANIMATION             125
-#define IDP_TETRIS_START_COUNT_1        126
-#define IDP_TETRIS_START_COUNT_2        127
 #define IDR_MAINFRAME                   128
-#define IDP_TETRIS_START_COUNT_3        128
 #define IDD_OPTIONS                     129
 #define IDB_PNG3                        143
 #define IDC_BUTTON1                     1004

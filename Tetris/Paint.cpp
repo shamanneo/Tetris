@@ -265,24 +265,6 @@ void CPaint::PrintGameOver()
     grfx.DrawImage(img, nX, nY, 200, 200) ; 
 }
 
-void CPaint::PrintCountShow() 
-{
-    HINSTANCE hInstance = _AtlBaseModule.GetModuleInstance() ;
-    const INT nX = (m_rcClient.right / 2) + BLOCK_INTERVAL * 6 ; 
-    const INT nY = 431 ; 
-    Graphics grfx { m_hDC } ;
-
-    Image *img = LoadPNG(hInstance, MAKEINTRESOURCE(IDP_TETRIS_START_COUNT_3)) ; 
-    grfx.DrawImage(img, nX, nY, 200, 200) ; 
-    Sleep(1000) ; 
-    img = LoadPNG(hInstance, MAKEINTRESOURCE(IDP_TETRIS_START_COUNT_2)) ; 
-    grfx.DrawImage(img, nX, nY, 200, 200) ; 
-    Sleep(1000) ; 
-    img = LoadPNG(hInstance, MAKEINTRESOURCE(IDP_TETRIS_START_COUNT_1)) ; 
-    grfx.DrawImage(img, nX, nY, 200, 200) ; 
-    Sleep(1000) ; 
-}
-
 void CPaint::DrawInfo(INT nScore, INT nLevel, INT nLine) 
 {
     const INT nY = 215 ; // 215 
