@@ -7,17 +7,6 @@
 
 using namespace Gdiplus ; 
 
-static int CallBack(void *NotUsed, int argc, char **argv, char **azColName)
-{
-    for(int i = 0 ; i < argc ; i++)
-    {
-        std::cout << azColName[i] << (argv[i]) ? argv[i] : "NULL" ; 
-
-    }
-    std::cout <<"\n" ; 
-    return 0 ; 
-}
-
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE /*hPrevInstance*/,
                      _In_ LPWSTR    /*lpCmdLine*/,

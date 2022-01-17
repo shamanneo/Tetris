@@ -93,6 +93,9 @@
     <ClInclude Include="SQLlite\sqlite3ext.h">
       <Filter>Header Files\SQLlite</Filter>
     </ClInclude>
+    <ClInclude Include="GameOverDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tetris.cpp">
@@ -148,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="SQLlite\sqlite3.c">
       <Filter>Source Files\SQLlite</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverDlg.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,7 @@
 #include "Smashboy.h" 
 #include "Hero.h" 
 #include "Paint.h" 
+#include "GameOverDlg.h" 
 #include "TetrisGame.h"
 
 const FLOAT DEFAULT_WAIT_TIME_ON_BLOCK = 0.7f ;  
@@ -233,7 +234,9 @@ void CTetrisGame::GameOver()
     paint.PaintBoard(m_arrBoard) ; 
     paint.PrintGameOver() ;
     KillTimer(hWnd, IDT_DOWN_TIMER) ;
-    return ; 
+  
+    CGameOverDlg GameOverDlg ; 
+    GameOverDlg.DoModal() ; 
 }
 
 bool CTetrisGame::IsLastBlock() 

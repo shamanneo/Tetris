@@ -45,7 +45,7 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
     switch(wParam)
     {
         case VK_RETURN :
-        {
+       {
             if(CMainApp::GetInstance().GetIsGameOver()) // 리스타트, 혹시 게임오버 인 후 다시 접근하는가?
             {
                 Start() ; 
@@ -131,7 +131,7 @@ void CMainWnd::Start()
 
 void CMainWnd::PaintDefault(CPaint &paint)
 {
-    paint.DrawRankingBoard() ; 
+    paint.DrawLeaderBoard() ; 
     CMainApp::GetInstance().SetScore(0) ; 
     paint.DrawBoard() ; 
     paint.PrintNextBlock() ;

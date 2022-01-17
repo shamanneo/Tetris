@@ -155,6 +155,7 @@
     <ClInclude Include="Block.h" />
     <ClInclude Include="Cleveland.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="GameOverDlg.h" />
     <ClInclude Include="Hero.h" />
     <ClInclude Include="Licky.h" />
     <ClInclude Include="MainApp.h" />
@@ -179,6 +180,7 @@
   <ItemGroup>
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Cleveland.cpp" />
+    <ClCompile Include="GameOverDlg.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="Licky.cpp" />
     <ClCompile Include="MainApp.cpp" />
