@@ -289,7 +289,7 @@ void CPaint::DrawInfo(INT nScore, INT nLevel, INT nLine)
 void CPaint::DrawLeaderBoard() 
 {
     Graphics grfx { m_hDC } ;
-    CString strTotal { "  *LEADERBOARD*\n\n" } ; 
+    CString strTotal { " *LEADERBOARD*\n\n" } ; 
     CString strLabel ; 
     CString strNickName ; 
     INT nScore = 0 ; 
@@ -298,7 +298,7 @@ void CPaint::DrawLeaderBoard()
     const char *sql = nullptr ; 
     
     sqlite3_open("Tetris.db", &db) ; 
-    sql = "SELECT * from TETRIS_SCORE" ; 
+    sql = "SELECT * from TETRIS_SCORE order by SCORE desc" ; 
     sqlite3_prepare_v2(db, sql, -1, &pStmt, NULL) ; 
     for(INT i = 1 ; i <= 3 ; i++)
     {

@@ -4,7 +4,7 @@
 class CGameOverDlg : public CDialogImpl<CGameOverDlg> 
 {
     private :
-        wchar_t m_szBuffer[3] ; 
+        
     public :
         CGameOverDlg() ; 
         ~CGameOverDlg() ; 
