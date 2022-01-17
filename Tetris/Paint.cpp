@@ -288,38 +288,58 @@ void CPaint::DrawInfo(INT nScore, INT nLevel, INT nLine)
 
 void CPaint::DrawLeaderBoard() 
 {
+    const INT nY = 30 ; 
+    const INT nWidth = 400 ; 
+    const INT nHeight = 200 ; 
+    
     Graphics grfx { m_hDC } ;
+    SolidBrush brush { Gdiplus::Color { 0, 0, 0 } } ;
+    Rect rc { (m_rcClient.right / 2) + BLOCK_INTERVAL * 6, nY, nWidth, nHeight } ; 
+    Pen pen { Gdiplus::Color { 255, 255, 255 }, 2.8f } ; 
+    grfx.FillRectangle(&brush, rc) ; // 제거 작업
+
     CString strTotal { " *LEADERBOARD*\n\n" } ; 
     CString strLabel ; 
     CString strNickName ; 
     INT nScore = 0 ; 
+    INT nRc = 0 ; 
     sqlite3 *db ; 
     sqlite3_stmt *pStmt ; 
     const char *sql = nullptr ; 
+
     
     sqlite3_open("Tetris.db", &db) ; 
-    sql = "SELECT * from TETRIS_SCORE order by SCORE desc" ; 
+    sql = "SELECT * from TETRIS_SCORE order by Score desc" ; 
     sqlite3_prepare_v2(db, sql, -1, &pStmt, NULL) ; 
     for(INT i = 1 ; i <= 3 ; i++)
     {
-        sqlite3_step(pStmt) ; 
-        strNickName = sqlite3_column_text(pStmt, 1) ; 
-        nScore = sqlite3_column_int(pStmt, 2) ; 
-        strLabel.Format(_T("%d  %s  %d          \n"), i, static_cast<LPCWSTR>(strNickName), nScore) ; 
-        strTotal += strLabel ; 
+        nRc = sqlite3_step(pStmt) ; 
+        if(nRc == SQLITE_DONE)
+        {
+            for(INT j = i ; j <= 3 ; j++)
+            {
+                strLabel.Format(_T("%d       0\n"), j) ; 
+                strTotal += strLabel ; 
+            }
+            break ;
+        }
+        else
+        {
+            strNickName = sqlite3_column_text(pStmt, 1) ; 
+            nScore = sqlite3_column_int(pStmt, 2) ; 
+            strLabel.Format(_T("%d  %s  %d          \n"), i, static_cast<LPCWSTR>(strNickName), nScore) ; 
+            strTotal += strLabel ; 
+        }
     }
     sqlite3_finalize(pStmt) ; 
     sqlite3_close(db) ; 
 
-    const INT nY = 30 ; 
-    const INT nWidth = 400 ; 
-    const INT nHeight = 200 ; 
     StringFormat stringFormat ;
     stringFormat.SetAlignment(StringAlignmentNear) ; 
 
     FontFamily fontFamily { L"Arial" } ; 
     Font font { &fontFamily, 22, Gdiplus::FontStyleBold } ; 
     RectF rectF { (Gdiplus::REAL)(m_rcClient.right / 2) + BLOCK_INTERVAL * 6, (REAL)nY, (REAL)nWidth, (REAL)nHeight } ; 
-    SolidBrush brush { Gdiplus::Color { 255, 255 ,255 } } ; 
+    brush.SetColor( Gdiplus::Color { 255, 255, 255 } ) ; 
     grfx.DrawString(strTotal, -1, &font, rectF, &stringFormat, &brush) ; 
 }

@@ -25,7 +25,7 @@ LRESULT CGameOverDlg::OnOK(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/,
     CStringA strInit ; 
     ::GetDlgItemTextA(m_hWnd, IDC_INIT_TEXT_BOX, strInit.GetBuffer(), 4) ; 
     char *zErrMsg = nullptr ; 
-    strSql.Format("INSERT INTO TETRIS_SCORE(ID, NAME, SCORE) VALUES (1, '%s', %d)", static_cast<LPCSTR>(strInit), CMainApp::GetInstance().GetScore()) ; 
+    strSql.Format("INSERT INTO TETRIS_SCORE(ID, Name, Score) VALUES (1, '%s', %d)", static_cast<LPCSTR>(strInit), CMainApp::GetInstance().GetScore()) ; 
     sqlite3 *db ; 
     sqlite3_open("Tetris.db", &db) ; 
     const char *sql = strSql ; 

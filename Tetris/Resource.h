@@ -28,6 +28,8 @@
 #define IDD_GAMEOVER_SCORE              131
 #define IDC_INIT_TEXT_BOX               132
 #define IDT_DOWN_TIMER                  133
+#define IDB_RESET_LEADERBOARD           134
+#define IDC_BUTTON1                     1010
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -37,7 +39,7 @@
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        147
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1010
-#define _APS_NEXT_SYMED_VALUE           134
+#define _APS_NEXT_CONTROL_VALUE         1011
+#define _APS_NEXT_SYMED_VALUE           135
 #endif
 #endif

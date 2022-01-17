@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "MainApp.h"
+#include "SQLlite/sqlite3.h" 
+#include "Paint.h"
 #include "OptionsDlg.h"
 
 COptionsDlg::COptionsDlg()
@@ -45,6 +47,20 @@ LRESULT COptionsDlg::OnCheckAnimation(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /
     return 0 ;
 }
 
+LRESULT COptionsDlg::OnBnClickedResetLeaderboard(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
+{
+    sqlite3 *db ; 
+    const char *sql = nullptr ; 
+    char *szErr = nullptr ; 
+    sqlite3_open("Tetris.db", &db) ; 
+    sql = "DELETE FROM TETRIS_SCORE" ; 
+    sqlite3_exec(db, sql, 0, 0, &szErr) ; 
+    sqlite3_close(db) ; 
+    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
+    paint.DrawLeaderBoard() ; // ÃÊ±âÈ­ 
+    return 0 ;
+}
+
 void COptionsDlg::Save()
 {
     CMainOption *MainOption = CMainApp::GetInstance().GetMainOption() ; 
@@ -58,4 +74,3 @@ void COptionsDlg::Load()
     (MainOption->m_bGhostCheck) ? CheckDlgButton(IDC_CHECK_GHOST, BST_CHECKED) : CheckDlgButton(IDC_CHECK_GHOST, BST_UNCHECKED) ; 
     (MainOption->m_bAnimationCheck) ? CheckDlgButton(IDC_CHECK_ANIMATION, BST_CHECKED) : CheckDlgButton(IDC_CHECK_ANIMATION, BST_UNCHECKED) ; 
 }
-
