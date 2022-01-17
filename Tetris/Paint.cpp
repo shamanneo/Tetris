@@ -290,7 +290,7 @@ void CPaint::DrawLeaderBoard()
 {
     const INT nY = 30 ; 
     const INT nWidth = 400 ; 
-    const INT nHeight = 200 ; 
+    const INT nHeight = 170 ; 
     
     Graphics grfx { m_hDC } ;
     SolidBrush brush { Gdiplus::Color { 0, 0, 0 } } ;
@@ -306,8 +306,6 @@ void CPaint::DrawLeaderBoard()
     sqlite3 *db ; 
     sqlite3_stmt *pStmt ; 
     const char *sql = nullptr ; 
-
-    
     sqlite3_open("Tetris.db", &db) ; 
     sql = "SELECT * from TETRIS_SCORE order by Score desc" ; 
     sqlite3_prepare_v2(db, sql, -1, &pStmt, NULL) ; 
@@ -333,10 +331,8 @@ void CPaint::DrawLeaderBoard()
     }
     sqlite3_finalize(pStmt) ; 
     sqlite3_close(db) ; 
-
     StringFormat stringFormat ;
     stringFormat.SetAlignment(StringAlignmentNear) ; 
-
     FontFamily fontFamily { L"Arial" } ; 
     Font font { &fontFamily, 22, Gdiplus::FontStyleBold } ; 
     RectF rectF { (Gdiplus::REAL)(m_rcClient.right / 2) + BLOCK_INTERVAL * 6, (REAL)nY, (REAL)nWidth, (REAL)nHeight } ; 

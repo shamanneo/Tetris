@@ -57,7 +57,7 @@ LRESULT COptionsDlg::OnBnClickedResetLeaderboard(WORD /*wNotifyCode*/, WORD /*wI
     sqlite3_exec(db, sql, 0, 0, &szErr) ; 
     sqlite3_close(db) ; 
     CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
-    paint.DrawLeaderBoard() ; // √ ±‚»≠ 
+    paint.DrawLeaderBoard() ;
     return 0 ;
 }
 

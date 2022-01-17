@@ -15,13 +15,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     GdiplusStartupInput gdiplusStartupInput ; 
     ULONG_PTR gdiplusToken ; 
     GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL) ; 
-
     CMainApp &MainApp = CMainApp::GetInstance() ; 
     int nResult = MainApp.Run(hInstance, nCmdShow) ; 
-   
     CMainApp::Release() ;
     GdiplusShutdown(gdiplusToken) ; 
-
     _CrtDumpMemoryLeaks() ; 
     return nResult ; 
 }
