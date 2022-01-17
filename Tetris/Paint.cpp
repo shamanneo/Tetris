@@ -271,19 +271,10 @@ void CPaint::DrawInfo(INT nScore, INT nLevel, INT nLine)
     const INT nWidth = 200 ; 
     const INT nHeight = 200 ; 
     Graphics grfx { m_hDC } ;
-    
-    SolidBrush brush { Gdiplus::Color { 0, 0, 0 } } ;
-    Rect rc { (m_rcClient.right / 2) + BLOCK_INTERVAL * 6, nY, nWidth, nHeight } ; 
-    Pen pen { Gdiplus::Color { 255, 255, 255 }, 2.8f } ; 
-    grfx.FillRectangle(&brush, rc) ; // 제거 작업
-    
+    DrawBlackRect(nY, nWidth, nHeight) ; // erase     
     CString strText ;
     strText.Format(_T("SCORE \n%d\nLEVEL \n%d\nLINE \n%d\n"), nScore, nLevel, nLine) ;  
-    FontFamily fontFamily { L"Arial" } ; 
-    Font font { &fontFamily, 22, Gdiplus::FontStyleBold } ; 
-    RectF rectF { (Gdiplus::REAL)(m_rcClient.right / 2) + BLOCK_INTERVAL * 6, (REAL)nY, (REAL)nWidth, (REAL)nHeight } ; 
-    SolidBrush solidBrush { Gdiplus::Color { 255, 255 ,255 } } ; 
-    grfx.DrawString(strText, -1, &font, rectF, nullptr, &solidBrush) ; 
+    DrawRectString(strText, nY, nWidth, nHeight) ; 
 }
 
 void CPaint::DrawLeaderBoard() 
@@ -291,13 +282,8 @@ void CPaint::DrawLeaderBoard()
     const INT nY = 30 ; 
     const INT nWidth = 400 ; 
     const INT nHeight = 170 ; 
-    
     Graphics grfx { m_hDC } ;
-    SolidBrush brush { Gdiplus::Color { 0, 0, 0 } } ;
-    Rect rc { (m_rcClient.right / 2) + BLOCK_INTERVAL * 6, nY, nWidth, nHeight } ; 
-    Pen pen { Gdiplus::Color { 255, 255, 255 }, 2.8f } ; 
-    grfx.FillRectangle(&brush, rc) ; // 제거 작업
-
+    DrawBlackRect(nY, nWidth, nHeight) ; // erase 
     CString strTotal { " *LEADERBOARD*\n\n" } ; 
     CString strLabel ; 
     CString strNickName ; 
@@ -331,11 +317,24 @@ void CPaint::DrawLeaderBoard()
     }
     sqlite3_finalize(pStmt) ; 
     sqlite3_close(db) ; 
-    StringFormat stringFormat ;
-    stringFormat.SetAlignment(StringAlignmentNear) ; 
+    DrawRectString(strTotal, nY, nWidth, nHeight) ; 
+}
+
+void CPaint::DrawBlackRect(INT nY, INT nWidth, INT nHeight) 
+{
+    Graphics grfx { m_hDC } ;
+    SolidBrush brush { Gdiplus::Color { 0, 0, 0 } } ;
+    Rect rc { (m_rcClient.right / 2) + BLOCK_INTERVAL * 6, nY, nWidth, nHeight } ; 
+    Pen pen { Gdiplus::Color { 255, 255, 255 }, 2.8f } ; 
+    grfx.FillRectangle(&brush, rc) ; 
+}
+
+void CPaint::DrawRectString(CString &str, INT nY, INT nWidth, INT nHeight) 
+{
+    Graphics grfx { m_hDC } ;
     FontFamily fontFamily { L"Arial" } ; 
     Font font { &fontFamily, 22, Gdiplus::FontStyleBold } ; 
     RectF rectF { (Gdiplus::REAL)(m_rcClient.right / 2) + BLOCK_INTERVAL * 6, (REAL)nY, (REAL)nWidth, (REAL)nHeight } ; 
-    brush.SetColor( Gdiplus::Color { 255, 255, 255 } ) ; 
-    grfx.DrawString(strTotal, -1, &font, rectF, &stringFormat, &brush) ; 
+    SolidBrush brush { Gdiplus::Color { 255, 255 ,255 } } ; 
+    grfx.DrawString(str, -1, &font, rectF, nullptr, &brush) ; 
 }
