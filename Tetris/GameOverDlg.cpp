@@ -26,10 +26,18 @@ LRESULT CGameOverDlg::OnOK(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/,
     CStringA strInit ; 
     ::GetDlgItemTextA(m_hWnd, IDC_INIT_TEXT_BOX, strInit.GetBuffer(), 4) ; 
     char *zErrMsg = nullptr ; 
+    const char *sql = nullptr ; 
     sqlite3 *db ; 
     sqlite3_open("Tetris.db", &db) ; 
+    sql = "SELECT * from TETRIS_SCORE" ; 
+    rc = sqlite3_exec(db, sql, 0, 0, &zErrMsg) ; 
+    if(rc == SQLITE_ERROR)
+    {
+        sql = "CREATE TABLE TETRIS_SCORE(ID, Name, Score)" ; 
+        rc = sqlite3_exec(db, sql, 0, 0, &zErrMsg) ; 
+    }
     strSql.Format("INSERT INTO TETRIS_SCORE(ID, Name, Score) VALUES (1, '%s', %d)", static_cast<LPCSTR>(strInit), CMainApp::GetInstance().GetScore()) ; 
-    const char *sql = strSql ; 
+    sql = strSql ; 
     rc = sqlite3_exec(db, sql, 0, 0, &zErrMsg) ; 
     ATLASSERT(!rc) ; 
     sqlite3_close(db) ; 
