@@ -17,6 +17,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL) ; 
     CMainApp &MainApp = CMainApp::GetInstance() ; 
     int nResult = MainApp.Run(hInstance, nCmdShow) ; 
+
+    CMainApp::GetInstance().GetThreadList().WaitForAll() ;
+    CMainApp::GetInstance().GetThreadList().RemoveAll() ;
+
     CMainApp::Release() ;
     GdiplusShutdown(gdiplusToken) ; 
     _CrtDumpMemoryLeaks() ; 

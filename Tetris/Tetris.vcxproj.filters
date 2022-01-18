@@ -96,6 +96,9 @@
     <ClInclude Include="GameOverDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ThreadList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tetris.cpp">
@@ -153,6 +156,9 @@
       <Filter>Source Files\SQLlite</Filter>
     </ClCompile>
     <ClCompile Include="GameOverDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

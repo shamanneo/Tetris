@@ -1,6 +1,7 @@
 #pragma once
 #include "Constants.h"
 #include "MainWnd.h"
+#include "ThreadList.h"
 #include "MainOption.h"
 
 class CMainApp
@@ -8,6 +9,7 @@ class CMainApp
     private :
         CMainWnd m_MainWnd ; 
         CMainOption m_MainOption ; 
+        CThreadList m_Threads ; 
         HWND m_hWnd ;
         BlockId m_eId ; 
         INT m_nScore ; 
@@ -20,12 +22,13 @@ class CMainApp
         ~CMainApp() ;
     public :
         HWND GetMainWnd() const ; 
+        CMainOption *GetMainOption() ; 
+        CThreadList &GetThreadList() ; 
         BlockId GetBlockId() const ; 
         INT GetScore() const ; 
         INT GetLevel() const ; 
         INT GetLine() const ; 
         bool GetIsGameOver() const ; 
-        CMainOption *GetMainOption() ; 
         bool GetIsPaused() const ; 
     public :
         void SetMainWnd(HWND hWnd) ; 

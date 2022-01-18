@@ -176,6 +176,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Tetris.h" />
+    <ClInclude Include="ThreadList.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp" />
@@ -205,6 +206,7 @@
     </ClCompile>
     <ClCompile Include="Space.cpp" />
     <ClCompile Include="Tetris.cpp" />
+    <ClCompile Include="ThreadList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Tetris.rc" />

@@ -27,6 +27,16 @@ HWND CMainApp::GetMainWnd() const
     return m_hWnd ;
 }
 
+CMainOption *CMainApp::GetMainOption() 
+{
+    return &m_MainOption ; 
+}
+
+CThreadList &CMainApp::GetThreadList() 
+{
+    return m_Threads ; 
+}
+
 BlockId CMainApp::GetBlockId() const 
 {
     return m_eId ;
@@ -50,11 +60,6 @@ INT CMainApp::GetLine() const
 bool CMainApp::GetIsGameOver() const
 {
     return m_IsGameOver ; 
-}
-
-CMainOption *CMainApp::GetMainOption() 
-{
-    return &m_MainOption ; 
 }
 
 bool CMainApp::GetIsPaused() const 
