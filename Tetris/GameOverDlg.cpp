@@ -20,7 +20,7 @@ unsigned int __stdcall RecordThread(void *arg)
         sql = "CREATE TABLE TETRIS_SCORE(ID, Name, Score)" ; 
         rc = sqlite3_exec(db, sql, 0, 0, &zErrMsg) ; 
     }
-    strSql.Format("INSERT INTO TETRIS_SCORE(ID, Name, Score) VALUES (1, '%s', %d)", static_cast<LPCSTR>(*strInit), CMainApp::GetInstance().GetScore()) ; 
+    strSql.Format("INSERT INTO TETRIS_SCORE(ID, Name, Score) VALUES (1, '%s', %d)", static_cast<LPCSTR>(*strInit), CMainApp::GetInstance().GetGameInfo().GetScore()) ; 
     sql = strSql ; 
     rc = sqlite3_exec(db, sql, 0, 0, &zErrMsg) ; 
     ATLASSERT(!rc) ; 

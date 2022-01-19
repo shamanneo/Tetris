@@ -12,6 +12,7 @@
 #include "Hero.h" 
 #include "Paint.h" 
 #include "GameOverDlg.h" 
+#include "CGameInfo.h" 
 #include "TetrisGame.h"
 
 const FLOAT DEFAULT_WAIT_TIME_ON_BLOCK = 0.7f ;  
@@ -147,8 +148,10 @@ void CTetrisGame::Reach()
             }
             InUpdate(nLine) ; // 외부 UI 갱신
             OutUpdate() ; // 내부 로직 갱신
-            CMainApp::GetInstance().SetScore(100 * nCount) ; 
-            CMainApp::GetInstance().SetLine(1) ; 
+            CGameInfo &GameInfo = CMainApp::GetInstance().GetGameInfo() ; 
+            GameInfo.StackScore(100 * nCount) ; 
+            GameInfo.StackLine(1) ; 
+            GameInfo.Draw(CMainApp::GetInstance().GetMainWnd().m_hWnd) ; 
         }
     }
     Create() ; 
@@ -196,10 +199,10 @@ void CTetrisGame::OutUpdate()
 void CTetrisGame::SetLevel() 
 {
     HWND hWnd = CMainApp::GetInstance().GetMainWnd() ; 
-    INT nCurScore = CMainApp::GetInstance().GetScore() ; 
+    INT nCurScore = CMainApp::GetInstance().GetGameInfo().GetScore() ;
     if(nCurScore - m_nScore >= 950)
     {
-        CMainApp::GetInstance().SetLevel(1) ; 
+        CMainApp::GetInstance().GetGameInfo().StackLevel(1) ; 
         KillTimer(hWnd, IDT_DOWN_TIMER) ; 
         if(m_nVelocity != 1)
         {
@@ -365,7 +368,9 @@ void CTetrisGame::FastDown()
     }
     m_spCurBk->Draw(ALIVE_BLOCK) ; 
     Reach() ; 
-    CMainApp::GetInstance().SetScore(30) ; 
+    CGameInfo &GameInfo = CMainApp::GetInstance().GetGameInfo() ;
+    GameInfo.StackScore(30) ; 
+    GameInfo.Draw(CMainApp::GetInstance().GetMainWnd().m_hWnd) ; 
 }
 
 bool CTetrisGame::IsMoveLeft() 

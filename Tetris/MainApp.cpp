@@ -7,9 +7,6 @@ static CMainApp *g_pMainApp = nullptr ;
 CMainApp::CMainApp()
 {
     m_eId = BlockId::ID_VOID ; 
-    m_nScore = 0 ; 
-    m_nLevel = 1 ; 
-    m_nLine = 0 ;
     m_IsGameOver = false ; 
     m_IsPaused = false ; 
 }
@@ -41,19 +38,9 @@ BlockId CMainApp::GetBlockId() const
     return m_eId ;
 }
 
-INT CMainApp::GetScore() const 
+CGameInfo &CMainApp::GetGameInfo() 
 {
-    return m_nScore ; 
-}
-
-INT CMainApp::GetLevel() const 
-{
-    return m_nLevel ; 
-}
-
-INT CMainApp::GetLine() const 
-{
-    return m_nLine ; 
+    return m_GameInfos ; 
 }
 
 bool CMainApp::GetIsGameOver() const
@@ -73,27 +60,6 @@ void CMainApp::SetBlockId(BlockId eId)
     m_eId = eId ; 
 }
 
-void CMainApp::SetScore(INT nScore)  
-{
-    m_nScore += nScore ; 
-    CPaint paint { this->GetInstance().GetMainWnd().m_hWnd } ; 
-    paint.DrawInfo(m_nScore, m_nLevel, m_nLine) ; 
-}
-
-void CMainApp::SetLevel(INT nLevel)  
-{
-    m_nLevel += nLevel ; 
-    CPaint paint { this->GetInstance().GetMainWnd().m_hWnd } ; 
-    paint.DrawInfo(m_nScore, m_nLevel, m_nLine) ; 
-}
-
-void CMainApp::SetLine(INT nLine)  
-{
-    m_nLine += nLine ; 
-    CPaint paint { this->GetInstance().GetMainWnd().m_hWnd } ; 
-    paint.DrawInfo(m_nScore, m_nLevel, m_nLine) ; 
-}
-
 void CMainApp::SetIsGameOver(bool bGameOver)
 {
     m_IsGameOver = bGameOver ; 
@@ -107,9 +73,6 @@ void CMainApp::SetIsPaused(bool bPaused)
 void CMainApp::Reset()
 {
     m_eId = BlockId::ID_VOID ; 
-    m_nScore = 0 ; 
-    m_nLevel = 1 ; 
-    m_nLine = 0 ;
     m_IsGameOver = false ; 
 }
 

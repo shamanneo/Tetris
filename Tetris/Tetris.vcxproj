@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="atlsupport.h" />
     <ClInclude Include="Block.h" />
+    <ClInclude Include="CGameInfo.h" />
     <ClInclude Include="Cleveland.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="GameOverDlg.h" />
@@ -180,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp" />
+    <ClCompile Include="CGameInfo.cpp" />
     <ClCompile Include="Cleveland.cpp" />
     <ClCompile Include="GameOverDlg.cpp" />
     <ClCompile Include="Hero.cpp" />

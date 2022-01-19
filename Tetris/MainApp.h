@@ -2,6 +2,7 @@
 #include "Constants.h"
 #include "MainWnd.h"
 #include "ThreadList.h"
+#include "CGameInfo.h" 
 #include "MainOption.h"
 
 class CMainApp
@@ -10,10 +11,8 @@ class CMainApp
         CMainWnd m_MainWnd ; 
         CMainOption m_MainOption ; 
         CThreadList m_Threads ; 
-        BlockId m_eId ; 
-        INT m_nScore ; 
-        INT m_nLevel ; 
-        INT m_nLine ; 
+        CGameInfo m_GameInfos ; 
+        BlockId m_eId ;
         bool m_IsGameOver ;
         bool m_IsPaused ; 
     public :
@@ -23,17 +22,12 @@ class CMainApp
         CMainWnd &GetMainWnd() ;
         CMainOption &GetMainOption() ; 
         CThreadList &GetThreadList() ; 
+        CGameInfo &GetGameInfo() ; 
         BlockId GetBlockId() const ; 
-        INT GetScore() const ; 
-        INT GetLevel() const ; 
-        INT GetLine() const ; 
         bool GetIsGameOver() const ; 
         bool GetIsPaused() const ; 
     public :
         void SetBlockId(BlockId eId) ; 
-        void SetScore(INT nScore) ; 
-        void SetLevel(INT nScore) ; 
-        void SetLine(INT nScore) ; 
         void SetIsGameOver(bool bGameOver) ;
         void SetIsPaused(bool bPaused) ; 
     public :

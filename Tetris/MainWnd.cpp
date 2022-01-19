@@ -47,6 +47,7 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
        {
             if(CMainApp::GetInstance().GetIsGameOver()) // 리스타트, 혹시 게임오버 인 후 다시 접근하는가?
             {
+                CMainApp::GetInstance().GetGameInfo().Reset() ; 
                 Start() ; 
             }
             if(m_IsEntered == false) 
@@ -131,7 +132,7 @@ void CMainWnd::Start()
 void CMainWnd::PaintDefault(CPaint &paint)
 {
     paint.DrawLeaderBoard() ; 
-    CMainApp::GetInstance().SetScore(0) ; 
+    CMainApp::GetInstance().GetGameInfo().Draw(m_hWnd) ; 
     paint.DrawBoard() ; 
     paint.PrintNextBlock() ;
     m_spTetrisGm->OutUpdate() ; 
