@@ -139,8 +139,8 @@ void CTetrisGame::Reach()
         if(IsFull(nLine))
         {
             nCount++ ; 
-            CMainOption *MainOption = CMainApp::GetInstance().GetMainOption() ; 
-            if(MainOption->m_bAnimationCheck)
+            CMainOption &MainOption = CMainApp::GetInstance().GetMainOption() ; 
+            if(MainOption.m_bAnimationCheck)
             {
                 CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
                 paint.EraseAnimation(m_arrBoard, nLine) ; 
@@ -273,9 +273,9 @@ void CTetrisGame::DrawGhost()
 {
     if(m_spFurBk != nullptr)
     {
-        CMainOption *MainOption = CMainApp::GetInstance().GetMainOption() ; 
+        CMainOption &MainOption = CMainApp::GetInstance().GetMainOption() ; 
         m_spFurBk->Erase() ; 
-        if(MainOption->m_bGhostCheck)
+        if(MainOption.m_bGhostCheck)
         {
             *m_spFurBk = *m_spCurBk ; 
             while(IsMoveDown(m_spFurBk.get()))

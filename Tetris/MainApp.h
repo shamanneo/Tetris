@@ -10,7 +10,6 @@ class CMainApp
         CMainWnd m_MainWnd ; 
         CMainOption m_MainOption ; 
         CThreadList m_Threads ; 
-        HWND m_hWnd ;
         BlockId m_eId ; 
         INT m_nScore ; 
         INT m_nLevel ; 
@@ -18,11 +17,11 @@ class CMainApp
         bool m_IsGameOver ;
         bool m_IsPaused ; 
     public :
-        CMainApp(HWND hWnd) ;
+        CMainApp() ;
         ~CMainApp() ;
     public :
-        HWND GetMainWnd() const ; 
-        CMainOption *GetMainOption() ; 
+        CMainWnd &GetMainWnd() ;
+        CMainOption &GetMainOption() ; 
         CThreadList &GetThreadList() ; 
         BlockId GetBlockId() const ; 
         INT GetScore() const ; 
@@ -31,7 +30,6 @@ class CMainApp
         bool GetIsGameOver() const ; 
         bool GetIsPaused() const ; 
     public :
-        void SetMainWnd(HWND hWnd) ; 
         void SetBlockId(BlockId eId) ; 
         void SetScore(INT nScore) ; 
         void SetLevel(INT nScore) ; 
@@ -43,7 +41,7 @@ class CMainApp
     public :
         int Run(HINSTANCE hInstance, int nCmdShow) ; 
     public :
-        static CMainApp &GetInstance(HWND hWnd = nullptr) ;
+        static CMainApp &GetInstance() ;
         static void Release() ;
 } ;
 

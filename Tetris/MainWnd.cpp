@@ -17,7 +17,6 @@ CMainWnd::~CMainWnd()
 
 LRESULT CMainWnd::OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL &bHandled)
 {
-    CMainApp::GetInstance().SetMainWnd(m_hWnd) ; 
     bHandled = FALSE ;
     return 0 ;
 }

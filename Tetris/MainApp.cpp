@@ -4,9 +4,8 @@
 
 static CMainApp *g_pMainApp = nullptr ; 
 
-CMainApp::CMainApp(HWND hWnd)
+CMainApp::CMainApp()
 {
-    m_hWnd = hWnd ;
     m_eId = BlockId::ID_VOID ; 
     m_nScore = 0 ; 
     m_nLevel = 1 ; 
@@ -22,14 +21,14 @@ CMainApp::~CMainApp()
 
 //      Getter
 
-HWND CMainApp::GetMainWnd() const 
+CMainWnd &CMainApp::GetMainWnd()  
 {
-    return m_hWnd ;
+    return m_MainWnd ;
 }
 
-CMainOption *CMainApp::GetMainOption() 
+CMainOption &CMainApp::GetMainOption() 
 {
-    return &m_MainOption ; 
+    return m_MainOption ; 
 }
 
 CThreadList &CMainApp::GetThreadList() 
@@ -69,11 +68,6 @@ bool CMainApp::GetIsPaused() const
 
 //      Setter
 
-void CMainApp::SetMainWnd(HWND hWnd) 
-{
-    m_hWnd = hWnd ; 
-}
-
 void CMainApp::SetBlockId(BlockId eId)  
 {
     m_eId = eId ; 
@@ -82,21 +76,21 @@ void CMainApp::SetBlockId(BlockId eId)
 void CMainApp::SetScore(INT nScore)  
 {
     m_nScore += nScore ; 
-    CPaint paint { m_hWnd } ; 
+    CPaint paint { this->GetInstance().GetMainWnd().m_hWnd } ; 
     paint.DrawInfo(m_nScore, m_nLevel, m_nLine) ; 
 }
 
 void CMainApp::SetLevel(INT nLevel)  
 {
     m_nLevel += nLevel ; 
-    CPaint paint { m_hWnd } ; 
+    CPaint paint { this->GetInstance().GetMainWnd().m_hWnd } ; 
     paint.DrawInfo(m_nScore, m_nLevel, m_nLine) ; 
 }
 
 void CMainApp::SetLine(INT nLine)  
 {
     m_nLine += nLine ; 
-    CPaint paint { m_hWnd } ; 
+    CPaint paint { this->GetInstance().GetMainWnd().m_hWnd } ; 
     paint.DrawInfo(m_nScore, m_nLevel, m_nLine) ; 
 }
 
@@ -144,11 +138,11 @@ int CMainApp::Run(HINSTANCE hInstance, int nCmdShow)
 
 //      static
 
-CMainApp &CMainApp::GetInstance(HWND hWnd)
+CMainApp &CMainApp::GetInstance()
 {
     if (g_pMainApp == nullptr)
     {
-        g_pMainApp = new CMainApp { hWnd } ;
+        g_pMainApp = new CMainApp ;
     }
     return *g_pMainApp ;
 }
