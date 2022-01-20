@@ -4,7 +4,6 @@
 class CGameOverDlg : public CDialogImpl<CGameOverDlg> 
 {
     private :
-        
     public :
         CGameOverDlg() ; 
         ~CGameOverDlg() ; 
@@ -23,7 +22,8 @@ class CGameOverDlg : public CDialogImpl<CGameOverDlg>
         LRESULT OnCancel(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/) ;
         LRESULT OnEnChangeEditInit(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/) ;
     public :
-        void RecordInitAndScore() ; 
-
+        static void InitCriticalSection() ; 
+        static void DeleCriticalSection() ; 
+        
 } ;
 

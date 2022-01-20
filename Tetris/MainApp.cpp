@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Paint.h"
+#include "GameOverDlg.h"
 #include "MainApp.h"
 
 static CMainApp *g_pMainApp = nullptr ; 
@@ -9,11 +10,12 @@ CMainApp::CMainApp()
     m_eId = BlockId::ID_VOID ; 
     m_IsGameOver = false ; 
     m_IsPaused = false ; 
+    CGameOverDlg::InitCriticalSection() ; 
 }
 
 CMainApp::~CMainApp()
 {
-
+    CGameOverDlg::DeleCriticalSection() ; 
 }
 
 //      Getter
