@@ -4,9 +4,9 @@
 class COptionsDlg : public CDialogImpl<COptionsDlg>
 {
     private :
-
+        bool m_bEntered ;
     public :
-        COptionsDlg() ; 
+        COptionsDlg(bool bEnterted) ; 
         ~COptionsDlg() ; 
     public :
         enum { IDD = IDD_OPTIONS } ;

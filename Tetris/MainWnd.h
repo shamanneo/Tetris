@@ -8,7 +8,7 @@ class CMainWnd : public CWindowImpl<CMainWnd>
 {
     private :
         std::unique_ptr<CTetrisGame> m_spTetrisGm ; 
-        bool m_IsEntered ; 
+        bool m_bEntered ; 
     public :
         CMainWnd() ; 
         ~CMainWnd() ;

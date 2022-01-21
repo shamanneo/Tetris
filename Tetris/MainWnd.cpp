@@ -7,7 +7,7 @@
 
 CMainWnd::CMainWnd()
 {
-    m_IsEntered = false ; 
+    m_bEntered = false ; 
 } 
 
 CMainWnd::~CMainWnd()
@@ -27,7 +27,7 @@ LRESULT CMainWnd::OnPaint(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, B
     HDC hDC = BeginPaint(&ps) ;
     
     CPaint paint { m_hWnd, hDC } ;
-    if(m_IsEntered == true)
+    if(m_bEntered == true)
     {
         PaintDefault(paint) ; 
     }
@@ -50,9 +50,9 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
                 CMainApp::GetInstance().GetGameInfo().Reset() ; 
                 Start() ; 
             }
-            if(m_IsEntered == false) 
+            if(m_bEntered == false) 
             {
-                m_IsEntered = true ;
+                m_bEntered = true ;
                 KillTimer(IDT_MAIN_DRAWING_TIMER) ; 
                 Start() ; 
             }
@@ -60,13 +60,13 @@ LRESULT CMainWnd::OnKeyDown(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOO
         }
         case VK_ESCAPE :
         {
-            COptionsDlg OptionDlg ; 
+            COptionsDlg OptionDlg { m_bEntered }  ; 
             OptionDlg.DoModal() ; 
             break ;
         }
         default :
         {
-            if((m_IsEntered == true) && !CMainApp::GetInstance().GetIsGameOver())
+            if((m_bEntered == true) && !CMainApp::GetInstance().GetIsGameOver())
             {
                 ControlKey(wParam) ;
             }

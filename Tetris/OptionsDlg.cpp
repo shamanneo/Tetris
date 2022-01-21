@@ -4,9 +4,9 @@
 #include "Paint.h"
 #include "OptionsDlg.h"
 
-COptionsDlg::COptionsDlg()
+COptionsDlg::COptionsDlg(bool bEntered)
 {
-
+    m_bEntered = bEntered ; 
 }
 
 COptionsDlg::~COptionsDlg()
@@ -56,8 +56,11 @@ LRESULT COptionsDlg::OnBnClickedResetLeaderboard(WORD /*wNotifyCode*/, WORD /*wI
     sql = "DELETE FROM TETRIS_SCORE" ; 
     sqlite3_exec(db, sql, 0, 0, &szErr) ; 
     sqlite3_close(db) ; 
-    CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
-    paint.DrawLeaderBoard() ;
+    if(m_bEntered)
+    {
+        CPaint paint { CMainApp::GetInstance().GetMainWnd() } ; 
+        paint.DrawLeaderBoard() ;
+    }
     return 0 ;
 }
 
