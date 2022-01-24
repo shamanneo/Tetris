@@ -183,6 +183,7 @@
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="CGameInfo.cpp" />
     <ClCompile Include="Cleveland.cpp" />
+    <ClCompile Include="Connect.cpp" />
     <ClCompile Include="GameOverDlg.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="Licky.cpp" />

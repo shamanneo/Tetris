@@ -274,17 +274,17 @@ void CPaint::DrawInfo(INT nScore, INT nLevel, INT nLine)
     DrawBlackRect(nY, nWidth, nHeight) ; // erase     
     CString strText ;
     strText.Format(_T("SCORE \n%d\nLEVEL \n%d\nLINE \n%d\n"), nScore, nLevel, nLine) ;  
-    DrawRectString(strText, nY, nWidth, nHeight) ; 
+    DrawRectString(strText, (m_rcClient.right / 2) + BLOCK_INTERVAL * 6, nY, nWidth, nHeight) ; 
 }
 
 void CPaint::DrawLeaderBoard() 
 {
     const INT nY = 30 ; 
     const INT nWidth = 400 ; 
-    const INT nHeight = 170 ; 
+    const INT nHeight = 600 ; 
     Graphics grfx { m_hDC } ;
     DrawBlackRect(nY, nWidth, nHeight) ; // erase 
-    CString strTotal { " *LEADERBOARD*\n\n" } ; 
+    CString strTotal { "*LEADERBOARD*\n\n" } ; 
     CString strLabel ; 
     CString strNickName ; 
     INT nScore = 0 ; 
@@ -295,14 +295,14 @@ void CPaint::DrawLeaderBoard()
     sqlite3_open("Tetris.db", &db) ; 
     sql = "SELECT * from TETRIS_SCORE order by Score desc" ; 
     sqlite3_prepare_v2(db, sql, -1, &pStmt, NULL) ; 
-    for(INT i = 1 ; i <= 3 ; i++)
+    for(INT i = 1 ; i <= 15 ; i++)
     {
         nRc = sqlite3_step(pStmt) ; 
         if(nRc == SQLITE_DONE)
         {
-            for(INT j = i ; j <= 3 ; j++)
+            for(INT j = i ; j <= 15 ; j++)
             {
-                strLabel.Format(_T("%d       0\n"), j) ; 
+                strLabel.Format(_T("   %d       0\n"), j) ; 
                 strTotal += strLabel ; 
             }
             break ;
@@ -311,13 +311,13 @@ void CPaint::DrawLeaderBoard()
         {
             strNickName = sqlite3_column_text(pStmt, 1) ; 
             nScore = sqlite3_column_int(pStmt, 2) ; 
-            strLabel.Format(_T("%d  %s  %d          \n"), i, static_cast<LPCWSTR>(strNickName), nScore) ; 
+            strLabel.Format(_T("   %d  %s  %d          \n"), i, static_cast<LPCWSTR>(strNickName), nScore) ; 
             strTotal += strLabel ; 
         }
     }
     sqlite3_finalize(pStmt) ; 
     sqlite3_close(db) ; 
-    DrawRectString(strTotal, nY, nWidth, nHeight) ; 
+    DrawRectString(strTotal, (m_rcClient.right / 2) - BLOCK_INTERVAL * 15,  nY, nWidth, nHeight) ; 
 }
 
 void CPaint::DrawBlackRect(INT nY, INT nWidth, INT nHeight) 
@@ -329,12 +329,14 @@ void CPaint::DrawBlackRect(INT nY, INT nWidth, INT nHeight)
     grfx.FillRectangle(&brush, rc) ; 
 }
 
-void CPaint::DrawRectString(CString &str, INT nY, INT nWidth, INT nHeight) 
+void CPaint::DrawRectString(CString &str, INT nX, INT nY, INT nWidth, INT nHeight) 
 {
     Graphics grfx { m_hDC } ;
     FontFamily fontFamily { L"Arial" } ; 
     Font font { &fontFamily, 22, Gdiplus::FontStyleBold } ; 
-    RectF rectF { (Gdiplus::REAL)(m_rcClient.right / 2) + BLOCK_INTERVAL * 6, (REAL)nY, (REAL)nWidth, (REAL)nHeight } ; 
+    RectF rectF { (REAL)nX, (REAL)nY, (REAL)nWidth, (REAL)nHeight } ; 
     SolidBrush brush { Gdiplus::Color { 255, 255 ,255 } } ; 
-    grfx.DrawString(str, -1, &font, rectF, nullptr, &brush) ; 
+    StringFormat sf ; 
+    sf.SetLineAlignment(StringAlignmentCenter) ; 
+    grfx.DrawString(str, -1, &font, rectF, &sf, &brush) ; 
 }

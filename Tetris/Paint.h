@@ -31,7 +31,7 @@ class CPaint
         void DrawInfo(INT nScore = 0, INT nLevel = 0, INT nLine = 0) ; 
         void DrawLeaderBoard() ; 
         void DrawBlackRect(INT nY, INT nWidth, INT nHeight) ; 
-        void DrawRectString(CString &str, INT nY, INT nWidth, INT nHeight) ; 
+        void DrawRectString(CString &str, INT nX, INT nY, INT nWidth, INT nHeight) ; 
         void PrintNextBlock() ; 
 } ;
 
