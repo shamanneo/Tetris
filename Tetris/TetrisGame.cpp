@@ -1,6 +1,6 @@
 #include "pch.h"
-#include <time.h>
 #include <set>
+#include <random>
 #include "MainApp.h"
 #include "Resource.h"
 #include "Licky.h"
@@ -44,18 +44,20 @@ CTetrisGame::~CTetrisGame()
 void CTetrisGame::Create()
 {
     SetLevel() ; 
-    srand((unsigned int)time(NULL)) ;
+    std::random_device dev ; 
+    std::mt19937 rng { dev() } ;
+    std::uniform_int_distribution<std::mt19937::result_type> dist6 { 0, 6 } ; 
     BlockId arrBlockId[7] { BlockId::ID_LICKY, BlockId::ID_RICKY, BlockId::ID_CLEVELAND, BlockId::ID_PHODEISLAND, BlockId::ID_TEEWEE, BlockId::ID_SMASHBOY, BlockId::ID_HERO } ; 
     BlockId eId ;
     if(m_eNextId == BlockId::ID_VOID)
     {
-        eId = arrBlockId[(rand() % 7)] ; 
+        eId = arrBlockId[dist6(rng)] ; 
     }
     else
     {
         eId = m_eNextId ; 
     }
-    m_eNextId = arrBlockId[(rand() % 7)] ; 
+    m_eNextId = arrBlockId[dist6(rng)] ; 
     switch(eId)
     {
         case BlockId::ID_LICKY :
