@@ -48,6 +48,7 @@ CGameOverDlg::~CGameOverDlg()
 LRESULT CGameOverDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL &/*bHandled*/)
 {
     CenterWindow() ; 
+    GetDlgItem(IDC_INIT_TEXT_BOX).SetFocus() ;
     return 0 ; 
 }
 
