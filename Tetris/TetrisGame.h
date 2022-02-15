@@ -10,7 +10,7 @@ class CTetrisGame
         INT m_nArrSize ;
         INT m_nScore ; 
         INT m_nVelocity ;
-        FLOAT m_fWaitTime ;
+        INT m_nWaitTime ;
         bool m_CanSetTimer ; 
         BlockId m_eNextId ; 
         std::unique_ptr<CBlock> m_spCurBk ; 
@@ -28,7 +28,6 @@ class CTetrisGame
         void SetLevel() ; 
         bool IsGameOver() ; 
         void GameOver() ; 
-        bool IsLastBlock() ; 
     public :
         void Draw() ; 
         void Erase() ; 

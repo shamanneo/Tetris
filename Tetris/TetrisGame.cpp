@@ -15,13 +15,13 @@
 #include "CGameInfo.h" 
 #include "TetrisGame.h"
 
-const FLOAT DEFAULT_WAIT_TIME_ON_BLOCK = 0.7f ;  
+const INT DEFAULT_WAIT_TIME_ON_BLOCK = 7 ; 
 
 CTetrisGame::CTetrisGame()
     : m_nArrSize(DEFAULT_ARRAY_SIZE), m_eNextId(BlockId::ID_VOID), m_nVelocity(DEFAULT_VELOCITY)
 {
     m_nScore = 0 ; 
-    m_fWaitTime = 0.0f ;
+    m_nWaitTime = 0 ;
     m_CanSetTimer = true ; 
     for(INT nY = 0 ; nY < BLOCK_HEIGHT_COUNT ; nY++)
     {
@@ -161,7 +161,7 @@ void CTetrisGame::Reach()
 
 void CTetrisGame::Stay()
 {
-    m_fWaitTime += 0.1f ; 
+    m_nWaitTime++ ; 
 }
 
 bool CTetrisGame::IsFull(INT nLine) 
@@ -206,7 +206,7 @@ void CTetrisGame::SetLevel()
     {
         CMainApp::GetInstance().GetGameInfo().StackLevel(1) ; 
         KillTimer(hWnd, IDT_DOWN_TIMER) ; 
-        if(m_nVelocity != 1)
+        if(m_nVelocity >= 10)
         {
             m_nVelocity -= 5 ;
         }
@@ -242,23 +242,6 @@ void CTetrisGame::GameOver()
   
     CGameOverDlg GameOverDlg ; 
     GameOverDlg.DoModal() ; 
-}
-
-bool CTetrisGame::IsLastBlock() 
-{
-    INT nX = 0 ;
-    INT nY = 0 ; 
-    for(INT nIndex = m_nArrSize - 1 ; nIndex >= 0 ; nIndex--)
-    {
-        if(m_spCurBk->GetPos(nIndex, nX, nY))
-        {
-            if(nY == 1)
-            {
-                return true ; 
-            }
-        }
-    }
-    return false ; 
 }
 
 void CTetrisGame::Draw()
@@ -338,22 +321,17 @@ bool CTetrisGame::SlowDown()
     }
     else // 맨 밑의 층에 도달, 블럭 위에서도 움직임이 가능해야함
     {
-        if(IsLastBlock()) // 마지막 블럭일 때는 시간을 주지 않음
-        {
-            Reach() ; 
-            return true ; 
-        }
         if(m_CanSetTimer) // 타이머는 단 한번만 설정
         {
             SetTimer(CMainApp::GetInstance().GetMainWnd(), IDT_STAY_TIMER, 300, NULL) ;  
             m_CanSetTimer = false ; 
         }
-        if(m_fWaitTime >= DEFAULT_WAIT_TIME_ON_BLOCK) 
+        if(m_nWaitTime == DEFAULT_WAIT_TIME_ON_BLOCK) 
         {                                             
             KillTimer(CMainApp::GetInstance().GetMainWnd(), IDT_STAY_TIMER) ;
             m_CanSetTimer = true ; 
             Reach() ; 
-            m_fWaitTime = 0.0f ; 
+            m_nWaitTime = 0 ; 
             return true ; 
         }
         m_spCurBk->Draw(ALIVE_BLOCK) ; 
