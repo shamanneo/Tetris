@@ -176,6 +176,23 @@ bool CTetrisGame::IsFull(INT nLine)
     return true ; 
 }
 
+bool CTetrisGame::IsLastBlock() 
+{
+    INT nX = 0 ;
+    INT nY = 0 ; 
+    for(INT nIndex = m_nArrSize - 1 ; nIndex >= 0 ; nIndex--)
+    {
+        if(m_spCurBk->GetPos(nIndex, nX, nY))
+        {
+            if(nY == 1)
+            {
+                return true ; 
+            }
+        }
+    }
+    return false ; 
+}
+
 void CTetrisGame::InUpdate(INT nLine)
 {   
     for(INT nX = 2 ; nX <= 11 ; nX++)
@@ -239,7 +256,6 @@ void CTetrisGame::GameOver()
     paint.PaintBoard(m_arrBoard) ; 
     paint.PrintGameOver() ;
     KillTimer(hWnd, IDT_DOWN_TIMER) ;
-  
     CGameOverDlg GameOverDlg ; 
     GameOverDlg.DoModal() ; 
 }
@@ -321,6 +337,11 @@ bool CTetrisGame::SlowDown()
     }
     else // 맨 밑의 층에 도달, 블럭 위에서도 움직임이 가능해야함
     {
+        if(IsLastBlock())
+        {
+            Reach() ; 
+            return true ; 
+        }
         if(m_CanSetTimer) // 타이머는 단 한번만 설정
         {
             SetTimer(CMainApp::GetInstance().GetMainWnd(), IDT_STAY_TIMER, 300, NULL) ;  
