@@ -15,7 +15,7 @@
 #include "CGameInfo.h" 
 #include "TetrisGame.h"
 
-const INT DEFAULT_WAIT_TIME_ON_BLOCK = 7 ; 
+const INT DEFAULT_WAIT_TIME_ON_BLOCK = 6 ; 
 
 CTetrisGame::CTetrisGame()
     : m_nArrSize(DEFAULT_ARRAY_SIZE), m_eNextId(BlockId::ID_VOID), m_nVelocity(DEFAULT_VELOCITY)
@@ -223,7 +223,7 @@ void CTetrisGame::SetLevel()
     {
         CMainApp::GetInstance().GetGameInfo().StackLevel(1) ; 
         KillTimer(hWnd, IDT_DOWN_TIMER) ; 
-        if(m_nVelocity >= 10)
+        if(m_nVelocity > 0)
         {
             m_nVelocity -= 5 ;
         }
